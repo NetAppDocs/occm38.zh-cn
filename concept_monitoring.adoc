@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: concept_monitoring.html 
+keywords: concepts, how cloud insights works, how monitoring works, features, monitoring features, cloud insights features, cost, monitoring 
+summary: 通过利用 NetApp 的 Cloud Insights 服务， Cloud Manager 可以让您深入了解所有 Cloud Volumes ONTAP 实例的运行状况和性能，并帮助您对云存储环境的性能进行故障排除和优化。 
+---
+= 了解监控服务
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+利用 https://cloud.netapp.com/cloud-insights["NetApp Cloud Insights 服务"]Cloud Manager 可帮助您深入了解 Cloud Volumes ONTAP 实例的运行状况和性能，并帮助您对云存储环境的性能进行故障排除和优化。
+
+
+
+== 功能
+
+* 自动监控所有卷
+* 查看按 IOPS ，吞吐量和延迟计算的卷性能数据
+* 确定性能问题，最大限度地减少对用户和应用程序的影响
+
+
+
+
+== 支持的云提供商
+
+适用于 AWS 的 Cloud Volumes ONTAP 支持监控服务。
+
+
+
+== 成本
+
+监控当前可作为预览版使用。激活是免费的，但 Cloud Manager 会在您的 VPC 中启动一个虚拟机以方便监控。此 VM 会从您的云提供商处收取费用。
+
+
+
+== Cloud Insights 如何与 Cloud Manager 配合使用
+
+概括地说， Cloud Insights 与 Cloud Manager 的集成工作原理如下：
+
+. 您可以在 Cloud Volumes ONTAP 上启用监控服务。
+. Cloud Manager 可配置您的环境。它可执行以下操作：
++
+.. 创建 Cloud Insights 租户（也称为 _environment_ ），并将 Cloud Central 帐户中的所有用户与租户关联。
+.. 支持 30 天免费试用 Cloud Insights 。
+.. 在 VPC 中部署一个称为采集单元的虚拟机，以便于监控卷（这是上文成本部分所述的虚拟机）。
+.. 将采集单元连接到 Cloud Volumes ONTAP 和 Cloud Insights 租户。
+
+
+. 在 Cloud Manager 中，单击监控并使用性能数据进行故障排除和优化性能。
+
+
+下图显示了这些组件之间的关系：
+
+image:diagram_cloud_insights.png["显示 AWS 中的 Cloud Manager ， Cloud Volumes ONTAP 和采集单元的概念图。"]
+
+
+
+=== 采集单元
+
+启用监控后， Cloud Manager 会在与 Connector 相同的子网中部署一个采集单元。
+
+采集单元 _ 从 Cloud Volumes ONTAP 收集性能数据并将其发送到 Cloud Insights 租户。然后， Cloud Manager 会查询该数据并将其提供给您。
+
+请注意以下有关采集单元实例的信息：
+
+* 采集单元在具有 100 GB GP2 卷的 T3.xlarge 实例上运行。
+* 此实例名为 _AcquiesitionUnit" ，并与此实例连接生成的哈希（ UUID ）。例如： _AcquiesitionUny-FAN7FqeH_
+* 每个连接器仅部署一个采集单元。
+* 要访问 " 监控 " 选项卡中的性能信息，实例必须正在运行。
+
+
+
+
+=== Cloud Insights 租户
+
+Cloud Manager 会在您启用监控时为您设置一个 _tenant_ 。通过 Cloud Insights 租户，您可以访问采集单元收集的性能数据。租户是 NetApp Cloud Insights 服务中的安全数据分区。
+
+
+
+=== Cloud Insights Web 界面
+
+Cloud Manager 中的 " 监控 " 选项卡提供卷的基本性能数据。您可以从浏览器转到 Cloud Insights Web 界面，以执行更深入的监控并为 Cloud Volumes ONTAP 系统配置警报。
+
+
+
+=== 免费试用和订阅
+
+Cloud Manager 支持 30 天免费试用 Cloud Insights ，以便在 Cloud Manager 中提供性能数据，并帮助您了解 Cloud Insights 标准版可提供的功能。
+
+您需要在免费试用结束之前订阅，否则您的 Cloud Insights 租户最终将被删除。您可以订阅基本版，标准版或高级版以继续使用 Cloud Manager 中的监控功能。
+
+https://docs.netapp.com/us-en/cloudinsights/concept_subscribing_to_cloud_insights.html["了解如何订阅 Cloud Insights"^]。

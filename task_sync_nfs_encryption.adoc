@@ -1,0 +1,138 @@
+---
+sidebar: sidebar 
+permalink: task_sync_nfs_encryption.html 
+keywords: encryption, in flight, data in flight, in-flight, data-in-flight, nfs, initiator, listener, port 
+summary: 如果您的企业有严格的安全策略、请使用数据飞行加密在不同网络中的 NFS 服务器之间同步数据。 
+---
+= 使用传输中数据加密同步 NFS 数据
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+如果您的企业拥有严格的安全策略，则可以使用数据传输加密来同步 NFS 数据。从 NFS 服务器到另一个 NFS 服务器以及从 Azure NetApp Files 到 Azure NetApp Files 均支持此功能。
+
+例如，您可能希望在位于不同网络的两个 NFS 服务器之间同步数据。或者，您可能需要在子网或区域之间安全地传输 Azure NetApp Files 上的数据。
+
+
+
+== 飞行中数据加密的工作原理
+
+传输中数据加密在两个数据代理之间通过网络发送 NFS 数据时对其进行加密。下图显示了两个 NFS 服务器和两个数据代理之间的关系：
+
+image:diagram_nfs_encryption.gif["图中显示了两个 NFS 服务器和两个数据代理。从源 NFS 服务器到源数据代理的数据流，在该代理中对数据进行加密。然后将数据发送到目标数据代理，然后再发送到目标 NFS 服务器。"]
+
+一个数据代理充当 _initiator_ 。同步数据时，它会向另一个数据代理（即 _listener_ ）发送连接请求。该数据代理会侦听端口 443 上的请求。如果需要，您可以使用其他端口，但请务必检查此端口是否未被其他服务使用。
+
+例如，如果将数据从内部 NFS 服务器同步到基于云的 NFS 服务器，则可以选择哪个数据代理侦听连接请求并将其发送。
+
+以下是动态加密的工作原理：
+
+. 创建同步关系后、启动程序将启动与其他数据代理的加密连接。
+. 源数据代理使用 TLS 1.3 对源中的数据进行加密。
+. 然后通过网络将数据发送到目标数据代理。
+. 目标数据代理会先对数据进行解密，然后再将其发送到目标。
+. 初始副本完成后、服务将每 24 小时同步所有更改的数据。如果有要同步的数据，则进程将从启动程序打开与其他数据代理的加密连接开始。
++
+如果您希望更频繁地同步数据， link:task_sync_managing_relationships.html#changing-the-settings-for-a-sync-relationship["您可以在创建关系后更改此计划"]。
+
+
+
+
+
+== 支持的 NFS 版本
+
+* 对于 NFS 服务器， NFS 版本 3 ， 4.0 ， 4.1 和 4.2 支持传输中数据加密。
+* 对于 Azure NetApp Files ， NFS 版本 3 和 4.1 支持传输中数据加密。
+
+
+
+
+== 您将需要什么才能开始
+
+请确保具有以下内容：
+
+* 两个 NFS 服务器相结合 link:reference_sync_requirements.html#source-and-target-requirements["源和目标要求"] 或 Azure NetApp Files 。
+* 服务器的 IP 地址或完全限定域名。
+* 两个数据代理的网络位置。
++
+您可以选择现有的数据代理、但它必须作为启动程序运行。侦听器数据代理必须是 _new_ 数据代理。
+
++
+如果尚未部署数据代理、请查看数据代理要求。由于您具有严格的安全策略，请务必查看网络要求，其中包括端口 443 和的出站流量 link:reference_sync_networking.html["Internet 端点"] 数据代理所联系的。
+
++
+** link:task_sync_installing_aws.html["查看 AWS 安装"]
+** link:task_sync_installing_azure.html["查看 Azure 安装"]
+** link:task_sync_installing_gcp.html["查看 GCP 安装"]
+** link:task_sync_installing_linux.html["查看 Linux 主机安装"]
+
+
+
+
+
+
+== 使用传输中数据加密同步 NFS 数据
+
+在两个 NFS 服务器之间或 Azure NetApp Files 之间创建新的同步关系，启用正在传输的加密选项，然后按照提示进行操作。
+
+.步骤
+. 单击 * 创建新同步 * 。
+. 将 * NFS Server* 拖放到源位置和目标位置，或者将 * Azure NetApp Files * 拖放到源位置和目标位置，然后选择 * 是 * 以启用传输中数据加密。
++
+下图显示了在两个 NFS 服务器之间同步数据的选择：
+
++
+image:screenshot_nfs_encryption.gif["屏幕截图显示了启用了数据飞行加密的 NFS 到 NFS 同步关系。"]
+
++
+下图显示了在 Azure NetApp Files 之间同步数据的选择：
+
++
+image:screenshot_anf_encryption.gif["屏幕截图显示了启用了数据传输加密的 Azure NetApp Files 到 Azure NetApp Files 同步关系。"]
+
+. 按照提示创建关系：
++
+.. * NFS Server*/* Azure NetApp Files* ：选择 NFS 版本，然后指定新的 NFS 源或选择现有服务器。
+.. * 定义数据代理功能 * ：定义哪个数据代理侦听端口上的连接请求以及哪个数据代理启动连接。根据您的网络要求做出选择。
+.. * 数据代理 * ：按照提示添加新的源数据代理或选择现有数据代理。
++
+如果源数据代理充当侦听程序、则它必须是新的数据代理。
+
++
+如果需要新的数据代理、 Cloud Sync 会提示您安装说明。您可以在云中部署数据代理或为自己的 Linux 主机下载安装脚本。
+
++
+image:screenshot_create_data_broker.gif["屏幕截图显示了在 AWS ， Azure ， Google Cloud Platform 或现有 Linux 主机中选择数据代理的选项。"]
+
+.. * 目录 * ：选择要同步的目录，方法是选择所有目录，或者向下钻取并选择子目录。
++
+单击 * 筛选源对象 * 可修改用于定义源文件和文件夹在目标位置的同步和维护方式的设置。
+
++
+image:screenshot_directories.gif["屏幕截图显示了选择顶级目录，展开并选择筛选源对象选项的选项。"]
+
+.. * 目标 NFS 服务器 */* 目标 NFS* ：选择 Azure NetApp Files 版本，然后输入新的 目标或选择现有服务器。
+.. * 目标数据代理 * ：按照提示添加新的源数据代理或选择现有数据代理。
++
+如果目标数据代理充当侦听程序、则它必须是新的数据代理。
+
++
+以下是目标数据代理充当侦听器时的提示示例。请注意指定端口的选项。
+
++
+image:screenshot_nfs_encryption_listener.gif["显示用于在侦听器数据代理上指定端口的选项的屏幕快照。"]
+
+.. * 目标目录 * ：选择顶级目录，或者向下钻取以选择现有子目录或在导出中创建新文件夹。
+.. * 设置 * ：定义如何在目标位置同步和维护源文件和文件夹。
+.. * 审阅 * ：查看同步关系的详细信息，然后单击 * 创建关系 * 。
++
+image:screenshot_nfs_encryption_review.gif["屏幕截图显示了“回顾”屏幕。其中显示了 NFS 服务器，数据代理以及每个代理的网络信息。"]
+
+
+
+
+
+Cloud Sync 开始创建新的同步关系。完成后，单击 * 在信息板中查看 * 以查看有关新关系的详细信息。

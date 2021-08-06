@@ -1,0 +1,109 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_aws.html 
+keywords: data broker, install, aws, networking, permissions, regions, install data broker in aws, install in aws, deploy in aws, deploy data broker in aws, cft, template, iam role, use your own iam role, regions, supported regions, networking requirements, port, ports, 443, port 443, ntp, network time protocol, permissions, iam role, iam permissions, aws data broker 
+summary: 创建同步关系时，请选择 AWS 数据代理选项以在 VPC 中的新 EC2 实例上部署数据代理软件。Cloud Sync 可指导您完成安装过程、但本页中重复了这些要求和步骤以帮助您做好安装准备。 
+---
+= 在 AWS 中安装数据代理
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+创建同步关系时，请选择 AWS 数据代理选项以在 VPC 中的新 EC2 实例上部署数据代理软件。Cloud Sync 可指导您完成安装过程、但本页中重复了这些要求和步骤以帮助您做好安装准备。
+
+您还可以选择在云中的现有 Linux 主机或您的企业中安装数据代理。 link:task_sync_installing_linux.html["了解更多信息。"]。
+
+
+
+== 支持的 AWS 区域
+
+除中国和戈维拉（美国）地区外，所有地区均受支持。
+
+
+
+== 网络要求
+
+* 数据代理需要出站 Internet 连接、因此可以通过端口 443 轮询 Cloud Sync 服务以了解任务。
++
+当 Cloud Sync 在 AWS 中部署数据代理时，它会创建一个安全组来启用所需的出站通信。请注意，您可以在安装过程中将数据代理配置为使用代理服务器。
+
++
+如果需要限制出站连接，请参见 link:reference_sync_networking.html["数据代理所联系的端点的列表"]。
+
+* NetApp 建议将源、目标和数据代理配置为使用网络时间协议（ NTP ）服务。三个组件之间的时间差不应超过 5 分钟。
+
+
+
+
+== 在 AWS 中部署数据代理所需的权限
+
+用于部署数据代理的 AWS 用户帐户必须具有中包含的权限 https://s3.amazonaws.com/metadata.datafabric.io/docs/aws_iam_policy.json["此 NetApp 提供的策略"^]。
+
+
+
+== 在 AWS 数据代理中使用您自己的 IAM 角色的要求
+
+当 Cloud Sync 部署数据代理时、它会为数据代理实例创建 IAM 角色。如果您愿意，可以使用自己的 IAM 角色部署数据代理。如果您的组织具有严格的安全策略，则可以使用此选项。
+
+IAM 角色必须满足以下要求：
+
+* 必须允许 EC2 服务作为受信任实体承担 IAM 角色。
+* link:media/aws_iam_policy_data_broker.json["此 JSON 文件中定义的权限"^] 必须附加到 IAM 角色，以便数据代理可以正常运行。
+
+
+在部署数据代理时，请按照以下步骤指定 IAM 角色。
+
+
+
+== 安装数据代理
+
+您可以在创建同步关系时在 AWS 中安装数据代理。
+
+.步骤
+. 单击 * 创建新同步 * 。
+. 在 * 定义同步关系 * 页面上，选择一个源和目标，然后单击 * 继续 * 。
++
+完成这些步骤，直到显示 * 数据代理 * 页面为止。
+
+. 在 * 数据代理 * 页面上，单击 * 创建数据代理 * ，然后选择 * Amazon Web Services* 。
++
+如果您已有数据代理，则需要单击 image:screenshot_plus_icon.gif["加号图标的屏幕截图"] 图标优先。
+
++
+image:screenshot_create_data_broker.gif["数据代理页面的屏幕截图，可用于在 AWS ， Azure ， GCP 和内部数据代理之间进行选择。"]
+
+. 输入数据代理的名称，然后单击 * 继续 * 。
+. 输入 AWS 访问密钥，以便 Cloud Sync 可以代表您在 AWS 中创建数据代理。
++
+这些密钥不会保存或用于任何其他目的。
+
++
+如果您不想提供访问密钥，请单击页面底部的链接以改用 CloudFormation 模板。使用此选项时，您无需提供凭据，因为您直接登录到 AWS 。
+
++
+以下视频显示了如何使用 CloudFormation 模板启动数据代理实例：
+
++
+video::video_cloud_sync.mp4[width=848,height=480]
+. 如果您输入了 AWS 访问密钥，请为实例选择一个位置，选择一个密钥对，选择是否启用公有 IP 地址，然后选择现有的 IAM 角色，或者将此字段留空，以便 Cloud Sync 为您创建角色。
++
+如果您选择自己的 IAM 角色， <<iam,您需要提供所需的权限>>。
+
++
+image:screenshot_aws_data_broker.gif["在 AWS 中部署数据代理时需要提供的信息的屏幕截图。"]
+
+. 数据代理可用后，单击 Cloud Sync 中的 * 继续 * 。
++
+下图显示了 AWS 中已成功部署的实例：
+
++
+image:screenshot_created_instance.gif["此屏幕快照显示已成功部署的实例。该界面显示有关实例的详细信息、包括 AWS 联网。"]
+
+. 完成向导中的页面以创建新的同步关系。
+
+
+您已在 AWS 中部署了数据代理并创建了新的同步关系。您可以将此数据代理与其他同步关系一起使用。

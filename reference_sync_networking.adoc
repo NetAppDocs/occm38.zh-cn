@@ -1,0 +1,101 @@
+---
+sidebar: sidebar 
+permalink: reference_sync_networking.html 
+keywords: networking, 443, port, ports, port 443, connections, connectivity, path, paths, vpn 
+summary: Cloud Sync 网络包括数据代理与源位置和目标位置之间的连接，以及使用端口 443 从数据代理到 Cloud Sync 的出站通信。 
+---
+= Cloud Sync 网络概述
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+云同步网络包括数据代理与源位置和目标位置之间的连接、以及数据代理通过端口 443 的出站 Internet 连接。
+
+
+
+== 数据代理位置
+
+您可以在云中或内部环境中安装数据代理。
+
+
+
+=== 云中的数据代理
+
+下图显示了在云中以 AWS 、 GCP 或 Azure 运行的数据代理。只要与数据代理建立连接，源和目标就可以位于任何位置。例如，您可能会从数据中心连接到云提供商。
+
+
+NOTE: 当 Cloud Sync 在 AWS 、 Azure 或 GCP 中部署数据代理时，它会创建一个安全组来启用所需的出站通信。
+
+image:diagram_networking_cloud.png["显示 Cloud Sync 服务，云中运行的数据代理以及与源和目标的连接的图表。"]
+
+
+
+=== 数据代理
+
+下图显示了在数据中心内运行在 Prem 上的数据代理。同样，只要与数据代理建立连接，源和目标就可以位于任何位置。
+
+image:diagram_networking_onprem.png["此图显示了 Cloud Sync 服务，内部运行的数据代理以及与源和目标的连接。"]
+
+
+
+== 网络要求
+
+* 源和目标必须与数据代理建立网络连接。
++
+例如，如果 NFS 服务器位于数据中心且数据代理位于 AWS 中、则需要从网络到 VPC 的网络连接（ VPN 或直接连接）。
+
+* 数据代理需要出站 Internet 连接、因此可以通过端口 443 轮询 Cloud Sync 服务以了解任务。
+* NetApp 建议将源、目标和数据代理配置为使用网络时间协议（ NTP ）服务。三个组件之间的时间差不应超过 5 分钟。
+
+
+
+
+== 网络端点
+
+NetApp 数据代理需要通过端口 443 进行出站 Internet 访问、以便与 Cloud Sync 服务进行通信、并与其他一些服务和存储库联系。您的本地 Web 浏览器还需要访问端点才能执行某些操作。如果需要限制出站连接、请在为出站通信配置防火墙时参考以下端点列表。
+
+
+
+=== 数据代理端点
+
+数据代理会联系以下端点：
+
+[cols="38,62"]
+|===
+| 端点 | 目的 
+
+
+| olcentgbl.trafficManager.net:443 | 可与存储库联系以更新数据代理主机的 CentOS 软件包。仅当您在 CentOS 主机上手动安装数据代理时，才会联系此端点。 
+
+
+| <Check Alignment of PHs>RPM.NODESource.com:443 registration.NPMJS.org:443 nodejs.org:443 | 与存储库联系以更新节点 .js 、 NPM 和开发中使用的其他第三方软件包。 
+
+
+| tgz.pm2.io:443 | 访问用于更新 PM2 的存储库、该存储库是用于监控云同步的第三方软件包。 
+
+
+| Sqs.us-East 1.amazonawss.com:443 Kinetsis.us-East 1.amazonawss.com:443 | 联系 Cloud Sync 用于操作的 AWS 服务（对文件进行排队、注册操作以及向数据代理提供更新）。 
+
+
+| s3._region_.amazonaws.com:443 ，例如： s3.us-east-2.amazonaws.com:443https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region["有关 S3 端点的列表，请参见 AWS 文档"^] | 在同步关系包括 S3 存储区时联系 Amazon S3 。 
+
+
+| cf.cloudsync.netapp.com:443 repo.cloudsync.netapp.com:443 | 可与 Cloud Sync 服务联系。 
+
+
+| support.netapp.com:443 | 在使用 BYOL 许可证进行同步关系时联系 NetApp 支持。 
+
+
+| fedoraproject.org:443 | 在安装和更新期间在数据代理虚拟机上安装 7z 。需要 7z 才能向 NetApp 技术支持发送 AutoSupport 消息。 
+|===
+
+
+=== Web 浏览器端点
+
+您的 Web 浏览器需要访问以下端点才能下载日志以进行故障排除：
+
+logs.cloudsync.netapp.com:443

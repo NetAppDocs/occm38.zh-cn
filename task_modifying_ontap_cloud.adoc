@@ -1,0 +1,180 @@
+---
+sidebar: sidebar 
+permalink: task_modifying_ontap_cloud.html 
+keywords: license, licensing, install, instance type, virtual machine type, VM type, change, modify, configuration, subscription, paygo, pay-as-you-go, pay as you go, byol, password, MTU, jumbo frames, c4.xlarge, c4.8xlarge, HA pair, file, license file, install, upload, change, modify, svm, storage virtual machine, password, route tables, nlf, gcp, machine type, virtual machine type, vm instance, write speed, high write speed, normal write speed, storage VM, storage virtual machine, SVM, modify SVM name, change SVM name 
+summary: 随着存储需求的变化，您可能需要更改 Cloud Volumes ONTAP 系统的配置。例如，您可以在 " 按需购买 " 配置之间进行更改，更改实例或 VM 类型等。 
+---
+= 修改 Cloud Volumes ONTAP 系统
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+随着存储需求的变化，您可能需要更改 Cloud Volumes ONTAP 系统的配置。例如，您可以在 " 按需购买 " 配置之间进行更改，更改实例或 VM 类型等。
+
+
+
+== 更改 Cloud Volumes ONTAP 的实例或计算机类型
+
+在 AWS ， Azure 或 GCP 中启动 Cloud Volumes ONTAP 时，您可以从多种实例或计算机类型中进行选择。如果您确定实例或计算机类型的大小不足或过大，则可以随时更改此实例或计算机类型。
+
+.关于此任务
+* 必须在 Cloud Volumes ONTAP HA 对上启用自动交还（这是默认设置）。否则，操作将失败。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/GUID-3F50DE15-0D01-49A5-BEFD-D529713EC1FA.html["ONTAP 9 文档：用于配置自动交还的命令"^]
+
+* 更改实例或计算机类型会影响云提供商的服务费用。
+* 该操作将重新启动 Cloud Volumes ONTAP 。
++
+对于单节点系统， I/O 中断。
+
++
+对于 HA 对、更改不会中断。HA 对继续为数据提供服务。
+
++
+
+TIP: Cloud Manager 通过启动接管并等待交还，一次正常更改一个节点。在此过程中， NetApp 的 QA 团队对文件的写入和读取进行了测试，但在客户端上看不到任何问题。随着连接的更改，我们确实看到 I/O 级别重试，但应用程序层克服了 NFS/CIFS 连接的这些短 " 重新连接 " 。
+
+
+
+.步骤
+. 在工作环境中，单击菜单图标，然后单击 * 更改 AWS 的许可证或实例 * ， * 更改 Azure 的许可证或 VM* 或 * 更改 GCP 的许可证或计算机 * 。
+. 如果您使用的是按需付费配置、则可以选择其他许可证。
+. 选择一个实例或计算机类型，选中此复选框以确认您了解更改的含义，然后单击 * 确定 * 。
+
+
+Cloud Volumes ONTAP 会使用新配置重新启动。
+
+
+
+== 在按需购买配置之间进行更改
+
+启动按需购买的 Cloud Volumes ONTAP 系统后、您可以随时通过修改许可证在 Explore 、 Standard 和 Premium 配置之间进行更改。更改许可证会增加或减少原始容量限制，并允许您从不同的 AWS 实例类型或 Azure 虚拟机类型中进行选择。
+
+
+NOTE: 在 GCP 中，每个按需购买配置都有一种计算机类型。您不能在不同的计算机类型之间进行选择。
+
+请注意以下有关在“按需购买、渐进扩展”许可证之间进行更改的信息：
+
+* 该操作将重新启动 Cloud Volumes ONTAP 。
++
+对于单节点系统， I/O 中断。
+
++
+对于 HA 对、更改不会中断。HA 对继续为数据提供服务。
+
+* 更改实例或计算机类型会影响云提供商的服务费用。
+
+
+.步骤
+. 在工作环境中，单击菜单图标，然后单击 * 更改 AWS 的许可证或实例 * ， * 更改 Azure 的许可证或 VM* 或 * 更改 GCP 的许可证或计算机 * 。
+. 选择许可证类型和实例类型或计算机类型，选中此复选框以确认您了解更改的含义，然后单击 * 确定 * 。
+
+
+Cloud Volumes ONTAP 将使用新许可证，实例类型或计算机类型或这两者重新启动。
+
+
+
+== 迁移到备用 Cloud Volumes ONTAP 配置
+
+如果要在按需购买订阅和 BYOL 订阅之间切换，或者在单个 Cloud Volumes ONTAP 系统和 HA 对之间切换，则需要部署一个新系统，然后将现有系统中的数据复制到新系统。
+
+.步骤
+. 创建新的 Cloud Volumes ONTAP 工作环境。
++
+link:task_deploying_otc_aws.html["在 AWS 中启动 Cloud Volumes ONTAP"]
+
+
+
+. link:task_replicating_data.html["设置一次性数据复制"] 必须复制的每个卷的系统之间。
+. 终止不再需要的 Cloud Volumes ONTAP 系统 link:task_deleting_working_env.html["删除原始工作环境"]。
+
+
+
+
+== 将写入速度更改为正常或较高
+
+利用 Cloud Manager ，您可以为单节点 Cloud Volumes ONTAP 系统选择写入速度设置。默认写入速度为正常。如果工作负载需要快速写入性能，则可以更改为高写入速度。在更改写入速度之前，您应先执行此操作 link:task_planning_your_config.html#choosing-a-write-speed["了解正常设置与高设置之间的区别"]。
+
+.关于此任务
+* 确保卷或聚合创建等操作未在进行中。
+* 请注意，此更改会重新启动 Cloud Volumes ONTAP ，这意味着 I/O 会中断。
+
+
+.步骤
+. 在工作环境中，单击菜单图标，然后单击 * 高级 > 写入速度 * 。
+. 选择 * 正常 * 或 * 高 * 。
++
+如果您选择 " 高 " ，则需要阅读 " 我了解 ..." 陈述并通过选中此复选框进行确认。
+
+. 单击 * 保存 * ，查看确认消息，然后单击 * 继续 * 。
+
+
+
+
+== 修改 Storage VM 名称
+
+Cloud Manager 会自动为其为 Cloud Volumes ONTAP 创建的单个 Storage VM （ SVM ）命名。如果您有严格的命名标准，则可以修改 SVM 的名称。例如，您可能希望此名称与您为 ONTAP 集群命名 SVM 的方式一致。
+
+但是，如果您为 Cloud Volumes ONTAP 创建了任何其他 SVM ，则不能从 Cloud Manager 重命名这些 SVM 。您需要使用 System Manager 或命令行界面直接从 Cloud Volumes ONTAP 执行此操作。
+
+.步骤
+. 在工作环境中，单击菜单图标，然后单击 * 信息 * 。
+. 单击 Storage VM 名称右侧的编辑图标。
++
+image:screenshot_svm.gif["屏幕抓图：显示 SVM 名称字段和必须单击以修改 SVM 名称的编辑图标。"]
+
+. 在修改 SVM 名称对话框中，更改名称，然后单击 * 保存 * 。
+
+
+
+
+== 更改 Cloud Volumes ONTAP 的密码
+
+Cloud Volumes ONTAP 包括集群管理员帐户。如果需要，您可以从 Cloud Manager 更改此帐户的密码。
+
+
+IMPORTANT: 不应通过 System Manager 或 CLI 更改管理员帐户的密码。该密码不会反映在 Cloud Manager 中。因此， Cloud Manager 无法正确监控实例。
+
+.步骤
+. 在工作环境中，单击菜单图标，然后单击 * 高级 > 设置密码 * 。
+. 输入新密码两次，然后单击 * 保存 * 。
++
+新密码必须不同于您使用的最后六个密码之一。
+
+
+
+
+
+== 更改 c4.4xLarge 和 c4.8xLarge 实例的网络 MTU
+
+默认情况下，当您在 AWS 中选择 c4.4xLarge 实例或 c4.8xLarge 实例时， Cloud Volumes ONTAP 配置为使用 9000 MTU （也称为巨型帧）。如果网络配置更适合，则可以将网络 MTU 更改为 1,500 字节。
+
+网络最大传输单元（ MTU ）为 9000 字节可为特定配置提供最高的网络吞吐量。
+
+如果同一 VPC 中的客户端与 Cloud Volumes ONTAP 系统通信、并且其中一些或全部客户端也支持 9000 MTU 、则最好选择 9000 MTU 。如果流量离开 VPC 、则可能会出现数据包碎片，从而降低性能。
+
+如果 VPC 以外的客户端或系统与 Cloud Volumes ONTAP 系统进行通信，则网络 MTU 为 1,500 字节是理想的选择。
+
+.步骤
+. 在工作环境中，单击菜单图标，然后单击 * 高级 > 网络利用率 * 。
+. 选择 * 标准 * 或 * 巨型帧 * 。
+. 单击 * 更改 * 。
+
+
+
+
+== 更改多个 AWS AZs 中与 HA 对关联的路由表
+
+您可以修改 AWS 路由表，其中包含指向 HA 对的浮动 IP 地址的路由。如果新的 NFS 或 CIFS 客户端需要访问 AWS 中的 HA 对，则可以执行此操作。
+
+.步骤
+. 在工作环境中，单击菜单图标，然后单击 * 信息 * 。
+. 单击 * 路由表 * 。
+. 修改选定路由表的列表，然后单击 * 保存 * 。
+
+
+Cloud Manager 发送 AWS 请求以修改路由表。

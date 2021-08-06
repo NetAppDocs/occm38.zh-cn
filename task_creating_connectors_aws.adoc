@@ -1,0 +1,85 @@
+---
+sidebar: sidebar 
+permalink: task_creating_connectors_aws.html 
+keywords: create connector in aws, create connector in azure, create connector in gcp, launch connector in aws, launch connector in azure, launch connector in gcp, deploy connector in aws, deploy connector in azure, deploy connector in gcp 
+summary: 客户管理员需要先部署 Connector ，然后才能使用大多数 Cloud Manager 功能。借助此连接器， Cloud Manager 可以管理公有云环境中的资源和流程。 
+---
+= 通过 Cloud Manager 在 AWS 中创建连接器
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+客户管理员需要先部署 _Connector_ ，然后才能使用大多数 Cloud Manager 功能。 link:concept_connectors.html["了解何时需要连接器"]。借助此连接器， Cloud Manager 可以管理公有云环境中的资源和流程。
+
+此页面介绍如何直接从 Cloud Manager 在 AWS 中创建 Connector 。您还可以选择 link:task_launching_aws_mktp.html["从 AWS Marketplace 创建 Connector"]或 。
+
+这些步骤必须由具有帐户管理员角色的用户完成。Workspace 管理员无法创建 Connector 。
+
+
+TIP: 在创建首个 Cloud Volumes ONTAP 工作环境时，如果您还没有连接器， Cloud Manager 将提示您创建一个连接器。
+
+
+
+== 设置 AWS 权限以创建 Connector
+
+在从 Cloud Manager 部署 Connector 之前，您需要确保您的 AWS 帐户具有正确的权限。
+
+.步骤
+. 从以下位置下载 Connector IAM 策略：
++
+https://mysupport.netapp.com/site/info/cloud-manager-policies["NetApp Cloud Manager ： AWS ， Azure 和 GCP 策略"^]
+
+. 在 AWS IAM 控制台中，通过复制并粘贴 Connector IAM 策略中的文本来创建您自己的策略。
+. 将上一步中创建的策略附加到要从 Cloud Manager 创建 Connector 的 IAM 用户。
+
+
+AWS 用户现在具有从 Cloud Manager 创建 Connector 所需的权限。在 Cloud Manager 提示时，您需要为此用户指定 AWS 访问密钥。
+
+
+
+== 在 AWS 中创建连接器
+
+您可以通过 Cloud Manager 直接从其用户界面在 AWS 中创建 Connector 。
+
+.您需要什么？ #8217 ；将需要什么
+* 具有的 IAM 用户的 AWS 访问密钥和机密密钥 https://mysupport.netapp.com/site/info/cloud-manager-policies["所需权限"^]。
+* 您选择的 AWS 区域中的 VPC ，子网和密钥对。
+
+
+.步骤
+. 如果要创建首个工作环境，请单击 * 添加工作环境 * 并按照提示进行操作。否则，请单击 * 连接器 * 下拉列表并选择 * 添加连接器 * 。
++
+image:screenshot_connector_add.gif["标题中显示 Connector 图标和 Add Connector 操作的屏幕截图。"]
+
+. 单击 * 开始 * 。
+. 选择 * Amazon Web Services* 作为云提供商。
++
+请记住， Connector 必须与您要创建的工作环境类型以及您计划启用的服务建立网络连接。
+
++
+link:reference_networking_cloud_manager.html["详细了解 Connector 的网络要求"]。
+
+. 查看所需内容，然后单击 * 继续 * 。
+. 提供所需信息：
++
+** * AWS Credentials* ：输入实例的名称，并指定符合权限要求的 AWS 访问密钥和机密密钥。
+** * 位置 * ：指定实例的 AWS 区域， VPC 和子网。
+** * 网络 * ：选择要与实例结合使用的密钥对，是否启用公有 IP 地址，以及是否可选择指定代理配置。
+** * 安全组 * ：选择是创建新的安全组，还是选择允许入站 HTTP ， HTTPS 和 SSH 访问的现有安全组。
++
+
+NOTE: 除非您启动 Connector ，否则不会向其传入流量。HTTP 和 HTTPS 可用于访问 link:concept_connectors.html#the-local-user-interface["本地 UI"]，在极少数情况下使用。只有在需要连接到主机进行故障排除时，才需要使用 SSH 。
+
+
+
+. 单击 * 创建 * 。
++
+此实例应在大约 7 分钟后准备就绪。您应停留在页面上，直到此过程完成。
+
+
+
+您需要将连接器与工作空间关联，以便 Workspace 管理员可以使用这些连接器创建 Cloud Volumes ONTAP 系统。如果您只有帐户管理员，则不需要将 Connector 与工作空间相关联。默认情况下，帐户管理员可以访问 Cloud Manager 中的所有工作空间。 link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["了解更多信息。"]。

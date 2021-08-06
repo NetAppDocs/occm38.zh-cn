@@ -1,0 +1,130 @@
+---
+sidebar: sidebar 
+permalink: task_manage_anf_volumes.html 
+keywords: azure netapp files, create volumes, delete volumes, create nfs volumes, delete nfs volumes, netapp account, capacity pool, create capacity pool, azure netapp files permissions, azure permissions, mount path, get mount path, find mount path, mount volume 
+summary: 设置工作环境后，您可以开始创建和管理 Azure NetApp Files 帐户，容量池，卷和快照。 
+---
+= 为 Azure NetApp Files 创建和管理卷
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+设置工作环境后，您可以创建和管理 Azure NetApp Files 帐户，容量池，卷和快照。
+
+
+
+== 正在创建卷
+
+您可以在新的或现有的 Azure NetApp Files 帐户中创建 NFS 或 SMB 卷。
+
+.步骤
+. 打开 Azure NetApp Files 工作环境。
+. 单击 * 添加新卷 * 。
+. 在每个页面上提供所需信息：
++
+** * Azure NetApp Files Account* ：选择现有 Azure NetApp Files 帐户或创建新帐户。
++
+image:screenshot_anf_create_account.gif["创建 Azure NetApp Files 帐户所需字段的屏幕截图，其中包括名称， Azure 订阅，位置和资源组。"]
+
+** * 容量池 * ：选择现有容量池或创建新容量池。
++
+如果要创建新的容量池，则需要指定一个大小并选择 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-service-levels["服务级别"^]。
+
++
+容量池的最小大小为 4 TB 。您可以指定大小的倍数为 4 TB 。
+
+** * 详细信息和标记 * ：输入卷名称和大小，卷应驻留的 vNet 和子网，并可选择指定卷的标记。
+** * 协议 * ：选择 NFS 或 SMB 协议并输入所需信息。
++
+下面是 NFS 详细信息的示例。
+
++
+image:screenshot_anf_nfs.gif[""]
+
++
+下面是 SMB 的详细信息示例。在设置第一个 SMB 卷时，您需要提供 Active Directory 信息。
+
++
+image:screenshot_anf_smb.gif[""]
+
+
+
+. 单击 * 添加卷 * 。
+
+
+
+
+== 挂载卷
+
+从 Cloud Manager 中访问挂载说明，以便将卷挂载到主机。
+
+.步骤
+. 打开工作环境。
+. 将鼠标悬停在卷上，然后选择 * 挂载卷 * 。
++
+image:screenshot_anf_hover.gif[""]
+
+. 按照说明挂载卷。
+
+
+
+
+== 编辑卷的大小和标记
+
+创建卷后，您可以随时修改其大小和标记。
+
+.步骤
+. 打开工作环境。
+. 将鼠标悬停在卷上并选择 * 编辑 * 。
+. 根据需要修改大小和标记。
+. 单击 * 应用 * 。
+
+
+
+
+== 管理 Snapshot 副本
+
+Snapshot 副本可为卷提供时间点副本。创建 Snapshot 副本，将数据还原到新卷以及删除 Snapshot 副本。
+
+.步骤
+. 打开工作环境。
+. 将鼠标悬停在卷上，然后选择一个可用选项来管理 Snapshot 副本：
++
+** * 创建 Snapshot 副本 *
+** * 还原到新卷 *
+** * 删除 Snapshot 副本 *
+
+
+. 按照提示完成选定操作。
+
+
+
+
+== 删除卷
+
+删除不再需要的卷。
+
+.步骤
+. 打开工作环境。
+. 将鼠标悬停在卷上，然后单击 * 删除 * 。
+. 确认要删除此卷。
+
+
+
+
+== 正在删除 Azure NetApp Files
+
+此操作将从 Cloud Manager 中删除 Azure NetApp Files 。它不会删除您的 Azure NetApp Files 帐户或卷。您可以随时将 Azure NetApp Files 重新添加到 Cloud Manager 中。
+
+.步骤
+. 打开 Azure NetApp Files 工作环境。
+. 在页面右上角，选择操作菜单，然后单击 * 删除 Azure NetApp Files * 。
++
+image:screenshot_anf_remove.gif[""]
+
+. 单击 * 删除 * 进行确认。
+

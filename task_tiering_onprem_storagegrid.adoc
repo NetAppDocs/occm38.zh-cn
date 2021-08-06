@@ -1,0 +1,191 @@
+---
+sidebar: sidebar 
+permalink: task_tiering_onprem_storagegrid.html 
+keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, storagegrid, tier to storagegrid, fabricpool storagegrid 
+summary: 通过将数据分层到 StorageGRID ，在内部 ONTAP 集群上释放空间。数据分层由 NetApp 的 Cloud Tiering 服务提供支持。 
+---
+= 将数据从内部 ONTAP 集群分层到 StorageGRID
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+通过将数据分层到 StorageGRID ，在内部 ONTAP 集群上释放空间。数据分层由 NetApp 的 Cloud Tiering 服务提供支持。
+
+
+
+== 快速入门
+
+按照以下步骤快速入门，或者向下滚动到其余部分以了解完整详细信息。
+
+
+
+==== 准备将数据分层到 StorageGRID
+
+[role="quick-margin-para"]
+您需要满足以下要求：
+
+* 一种 AFF 或 FAS 系统，其中包含运行 ONTAP 9.4 或更高版本的纯 SSD 聚合，并通过用户指定的端口连接到 StorageGRID 。
+* 具有 S3 权限的 AWS 访问密钥的 StorageGRID 10.3 或更高版本。
+* 内部安装的连接器。
+* 用于连接器的网络连接，可通过 HTTPS 出站连接到 ONTAP 集群， StorageGRID 和云分层服务。
+
+
+
+
+==== 设置分层
+
+[role="quick-margin-para"]
+选择一个内部工作环境，单击 * 设置分层 * ，然后按照提示将数据分层到 StorageGRID 。
+
+
+
+== 要求
+
+验证是否支持 ONTAP 集群，设置网络以及准备对象存储。
+
+下图显示了每个组件以及需要在它们之间准备的连接：
+
+image:diagram_cloud_tiering_storagegrid.png["一个架构映像，其中显示了云分层服务，该服务连接到内部的服务连接器，连接到 ONTAP 集群的服务连接器以及 ONTAP 集群和对象存储之间的连接。活动数据驻留在 ONTAP 集群上，而非活动数据驻留在对象存储中。"]
+
+
+NOTE: Connector 和 StorageGRID 之间的通信仅用于对象存储设置。
+
+
+
+=== 准备 ONTAP 集群
+
+将数据分层到 StorageGRID 时， ONTAP 集群必须满足以下要求。
+
+支持的 ONTAP 平台:: 云分层支持 AFF 系统上的 FAS 系统和纯 SSD 聚合。
+支持的 ONTAP 版本:: ONTAP 9.4 或更高版本
+许可:: 将数据分层到 StorageGRID 时， ONTAP 集群不需要 FabricPool 许可证。
+集群网络连接要求::
++
+--
+* ONTAP 集群通过用户指定的端口启动与 StorageGRID 的 HTTPS 连接（此端口可在分层设置期间进行配置）。
++
+ONTAP 可在对象存储之间读取和写入数据。对象存储永远不会启动，而只是响应。
+
+* 需要从连接器建立入站连接，该连接器必须位于您的内部。
++
+集群与 Cloud Tiering 服务之间不需要建立连接。
+
+* 托管分层卷的每个 ONTAP 节点上都需要一个集群间 LIF 。LIF 必须与 _IP 空间 _ 关联， ONTAP 应使用此 _IP 空间 _ 连接到对象存储。
++
+IP 空间可实现网络流量隔离，从而可以隔离客户端流量，以确保隐私和安全。 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html["了解有关 IP 空间的更多信息"^]。
+
++
+设置数据分层时， Cloud Tiering 会提示您输入要使用的 IP 空间。您应选择与每个 LIF 关联的 IP 空间。这可能是您创建的 " 默认 "IP 空间或自定义 IP 空间。
+
+
+
+--
+
+
+link:https://raw.githubusercontent.com/NetAppDocs/cloud-tiering/master/_include/supported_volumes.adoc[""]
+
+
+NOTE: 从 ONTAP 9.5 开始，云分层支持 FlexGroup 卷。安装程序的工作方式与任何其他卷相同。
+
+
+
+=== 正在准备 StorageGRID
+
+StorageGRID 必须满足以下要求。
+
+支持的 StorageGRID 版本:: 支持 StorageGRID 10.3 及更高版本。
+S3 凭据::
++
+--
+这些访问密钥必须与具有以下权限的用户相关联：
+
+[source, json]
+----
+"s3:ListAllMyBuckets",
+"s3:ListBucket",
+"s3:GetObject",
+"s3:PutObject",
+"s3:DeleteObject",
+"s3:CreateBucket"
+----
+--
+对象版本控制:: 不能在对象存储分段上启用 StorageGRID 对象版本控制。
+
+
+
+
+=== 创建或切换连接器
+
+要将数据分层到云，需要使用 Connector 。将数据分层到 StorageGRID 时，您的内部必须具有一个 Connector 。您需要安装新的 Connector 或确保当前选定的 Connector 位于内部。
+
+* link:concept_connectors.html["了解连接器"]
+* link:reference_cloud_mgr_reqs.html["连接器主机要求"]
+* link:task_installing_linux.html["在现有 Linux 主机上安装 Connector"]
+* link:task_managing_connectors.html["在连接器之间切换"]
+
+
+
+
+=== 为连接器准备网络连接
+
+确保此连接器具有所需的网络连接。
+
+.步骤
+. 确保安装 Connector 的网络启用以下连接：
++
+** 通过端口 443 （ HTTPS ）与 Cloud Tiering 服务的出站 Internet 连接
+** 通过端口 443 与 StorageGRID 建立 HTTPS 连接
+** 通过端口 443 与 ONTAP 集群建立 HTTPS 连接
+
+
+
+
+
+
+== 将第一个集群中的非活动数据分层到 StorageGRID
+
+准备好环境后，开始对第一个集群中的非活动数据进行分层。
+
+.您需要什么？ #8217 ；将需要什么
+* link:task_discovering_ontap.html["内部工作环境"]。
+* 具有所需 S3 权限的 AWS 访问密钥。
+
+
+.步骤
+. 选择一个内部集群。
+. 单击 * 设置分层 * 。
++
+image:screenshot_setup_tiering_onprem.gif["选择内部 ONTAP 工作环境后，屏幕右侧将显示设置分层选项的屏幕截图。"]
+
++
+您现在可以访问分层信息板。
+
+. 单击集群旁边的 * 设置分层 * 。
+. 完成 * 分层设置 * 页面上的步骤：
++
+.. * 选择您的提供商 * ：选择 StorageGRID 。
+.. * 服务器 * ：输入 StorageGRID 服务器的 FQDN ，输入 ONTAP 与 StorageGRID 进行 HTTPS 通信时应使用的端口，并输入具有所需 S3 权限的 AWS 帐户的访问密钥和机密密钥。
+.. * 分段 * ：为分层数据添加新分段或选择现有分段。
+.. * 集群网络 * ：选择 ONTAP 应用于连接到对象存储的 IP 空间，然后单击 * 继续 * 。
++
+选择正确的 IP 空间可确保云分层可以设置从 ONTAP 到云提供商对象存储的连接。
+
+
+
+. 单击 * 继续 * 以选择要分层的卷。
+. 在 * 层卷 * 页面上，为每个卷设置分层。单击 image:screenshot_edit_icon.gif["表中卷分层的每行末尾显示的编辑图标的屏幕截图"] 图标，选择分层策略，也可以调整散热天数，然后单击 * 应用 * 。
++
+link:concept_cloud_tiering.html#volume-tiering-policies["了解有关卷分层策略的更多信息"]。
+
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_select.gif["显示在 \" 选择源卷 \" 页面中选择的卷的屏幕截图。"]
+
+
+
+您已成功设置从集群上的卷到 StorageGRID 的数据分层。
+
+您可以添加其他集群或查看有关集群上的活动和非活动数据的信息。有关详细信息，请参见 link:task_managing_tiering.html["从集群管理数据分层"]。

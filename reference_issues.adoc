@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: reference_issues.html 
+keywords: issues, bugs, known issues 
+summary: 已知问题可确定可能妨碍您成功使用此版本产品的问题。 
+---
+= 已知问题
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+已知问题可确定可能妨碍您成功使用此版本产品的问题。
+
+此版本的 Cloud Manager 中没有已知问题。
+
+您可以在中找到 Cloud Volumes ONTAP 的已知问题 https://docs.netapp.com/us-en/cloud-volumes-ontap/["《 Cloud Volumes ONTAP 发行说明》"^] 和 ONTAP 软件的一般信息。

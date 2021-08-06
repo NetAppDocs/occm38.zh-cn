@@ -1,0 +1,182 @@
+---
+sidebar: sidebar 
+permalink: task_managing_cloud_central_accounts.html 
+keywords: account settings, workspaces, Connector, account admin, workspace admin, users, associate, disassociate, add user, add users, user management, administer, user, management, remove user, remove users, remove, delete, account, user account, user accounts, add workspace, setup workspace, workspace, Connector, manage Connector, manage workspace, associate Connector 
+summary: 执行初始设置后，您可能需要稍后管理用户，工作空间，连接器和订阅。 
+---
+= 管理用户，工作空间，连接器和订阅
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+link:task_setting_up_cloud_central_accounts.html["执行初始设置后"]，您可能需要稍后通过管理用户，工作空间，连接器和订阅来管理帐户设置。
+
+link:concept_cloud_central_accounts.html["详细了解 Cloud Central 帐户的工作原理"]。
+
+
+
+== 添加用户
+
+将 Cloud Central 用户与 Cloud Central 帐户关联，以便这些用户可以在 Cloud Manager 中创建和管理工作环境。
+
+.步骤
+. 如果用户尚未执行此操作，请让用户转到 https://cloud.netapp.com["NetApp Cloud Central"^] 并注册。
+. 从 Cloud Manager 顶部，单击 * 帐户 * 下拉列表。
++
+image:screenshot_account_settings_menu.gif["一个屏幕截图，显示 Cloud Manager 顶部横幅中的 Account Settings 选项。"]
+
+. 单击当前选定帐户旁边的 * 管理帐户 * 。
++
+image:screenshot_manage_account_settings.gif["显示 \" 帐户 \" 下拉列表中的 \" 管理帐户设置 \" 选项的屏幕截图。"]
+
+. 从用户选项卡中，单击 * 关联用户 * 。
+. 输入用户的电子邮件地址并为用户选择一个角色：
++
+** * 帐户管理员 * ：可以在 Cloud Manager 中执行任何操作。
+** * 工作空间管理员 * ：可以在分配的工作空间中创建和管理资源。
+** * 合规性查看器 * ：只能查看其有权访问的工作空间的合规性信息并生成报告。
+
+
+. 如果选择了 Workspace Admin 或 Compliance Viewer ，请选择一个或多个要与该用户关联的工作空间。
++
+image:screenshot_associate_user.gif["屏幕截图显示了如何通过选择角色和关联工作空间来关联用户。"]
+
+. 单击 * 关联用户 * 。
+
+
+用户应从 NetApp Cloud Central 收到一封标题为 " 客户关联 " 的电子邮件。 此电子邮件包含访问 Cloud Manager 所需的信息。
+
+
+
+== 删除用户
+
+解除用户关联后，用户将无法再访问 Cloud Central 帐户中的资源。
+
+.步骤
+. 从 Cloud Manager 顶部，单击 * 帐户 * 下拉列表，然后单击 * 管理帐户 * 。
++
+image:screenshot_manage_account_settings.gif["显示 \" 帐户 \" 下拉列表中的 \" 管理帐户设置 \" 选项的屏幕截图。"]
+
+. 在用户选项卡中，单击与用户对应的行中的操作菜单。
++
+image:screenshot_associate_user_workspace.gif["屏幕截图，显示将鼠标悬停在 Users 表中用户名上方时可用的操作菜单。"]
+
+. 单击 * 解除关联用户 * ，然后单击 * 解除关联 * 进行确认。
+
+
+用户无法再访问此 Cloud Central 帐户中的资源。
+
+
+
+== 管理 Workspace Admin 的工作空间
+
+您可以随时将 Workspace Admins 与工作空间关联和解除关联。通过关联用户，用户可以在该工作空间中创建和查看工作环境。
+
+.步骤
+. 从 Cloud Manager 顶部，单击 * 帐户 * 下拉列表，然后单击 * 管理帐户 * 。
++
+image:screenshot_manage_account_settings.gif["显示 \" 帐户 \" 下拉列表中的 \" 管理帐户设置 \" 选项的屏幕截图。"]
+
+. 在用户选项卡中，单击与用户对应的行中的操作菜单。
++
+image:screenshot_associate_user_workspace.gif["屏幕截图，显示将鼠标悬停在 Users 表中用户名上方时可用的操作菜单。"]
+
+. 单击 * 管理工作空间 * 。
+. 选择要与用户关联的工作空间，然后单击 * 应用 * 。
+
+
+现在，只要 Connector 还与这些工作空间关联，用户就可以从 Cloud Manager 访问这些工作空间。
+
+
+
+== 管理工作空间
+
+通过创建，重命名和删除工作空间来管理工作空间。请注意，如果某个工作空间包含任何资源，则无法将其删除。必须为空。
+
+.步骤
+. 从 Cloud Manager 顶部，单击 * 帐户 * 下拉列表，然后单击 * 管理帐户 * 。
+. 单击 * 工作空间 * 。
+. 选择以下选项之一：
++
+** 单击 * 添加新工作空间 * 以创建新工作空间。
+** 单击 * 重命名 * 以重命名工作空间。
+** 单击 * 删除 * 以删除此工作空间。
+
+
+
+
+
+
+== 管理 Connector 的工作空间
+
+您需要将 Connector 与工作空间关联，以便 Workspace 管理员可以从 Cloud Manager 访问这些工作空间。
+
+如果您只有帐户管理员，则不需要将 Connector 与工作空间相关联。默认情况下，帐户管理员可以访问 Cloud Manager 中的所有工作空间。
+
+link:concept_cloud_central_accounts.html#users-workspaces-and-service-connectors["详细了解用户，工作空间和连接器"]。
+
+.步骤
+. 从 Cloud Manager 顶部，单击 * 帐户 * 下拉列表，然后单击 * 管理帐户 * 。
+. 单击 * 连接器 * 。
+. 单击要关联的 Connector 的 * 管理工作空间 * 。
+. 选择要与 Connector 关联的工作空间，然后单击 * 应用 * 。
+
+
+
+
+== 管理订阅
+
+从云提供商的市场订阅后，每个订阅均可从 Account Settings 小工具中获取。您可以选择重命名订阅并取消订阅与一个或多个帐户的关联。
+
+例如，假设您有两个帐户，每个帐户都通过单独的订阅付费。您可能会解除某个订阅与某个帐户的关联，以便该帐户中的用户在创建 Cloud Volume ONTAP 工作环境时不会意外选择错误的订阅。
+
+link:concept_cloud_central_accounts.html["了解有关订阅的更多信息"]。
+
+.步骤
+. 从 Cloud Manager 顶部，单击 * 帐户 * 下拉列表，然后单击 * 管理帐户 * 。
+. 单击 * 订阅 * 。
++
+您将只看到与当前正在查看的帐户关联的订阅。
+
+. 单击与要管理的订阅对应的行中的操作菜单。
++
+image:screenshot_subscription_menu.gif["订阅的操作菜单的屏幕截图。"]
+
+. 选择重命名订阅或管理与订阅关联的帐户。
+
+
+
+
+== 更改帐户名称
+
+随时更改您的帐户名称，将其更改为对您有意义的名称。
+
+.步骤
+. 从 Cloud Manager 顶部，单击 * 帐户 * 下拉列表，然后单击 * 管理帐户 * 。
+. 在 * 概述 * 选项卡中，单击帐户名称旁边的编辑图标。
+. 键入新帐户名称并单击 * 保存 * 。
+
+
+
+
+== 启用或禁用 SaaS 平台
+
+除非您需要遵守公司的安全策略，否则我们不建议禁用 SaaS 平台。禁用 SaaS 平台会限制您使用 NetApp 集成云服务的能力。
+
+如果禁用 SaaS 平台，则无法从 Cloud Manager 获得以下服务：
+
+* 云合规性
+* Kubernetes
+* 云分层
+* 全局文件缓存
+* 监控（ Cloud Insights ）
+
+
+.步骤
+. 从 Cloud Manager 顶部，单击 * 帐户 * 下拉列表，然后单击 * 管理帐户 * 。
+. 在 * 概述 * 选项卡中，切换选项以启用使用 SaaS 平台。
+

@@ -1,0 +1,176 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_compliance.html 
+keywords: cloud compliance, get started, enable cloud compliance, cifs credentials, smb credentials, outbound internet, endpoints, cloud compliance internet, web browser connectivity, cloud compliance access, privacy, compliance, dp volumes, data protection volumes 
+summary: 完成几个步骤，开始在 AWS 或 Azure 中使用适用于 Azure NetApp Files 或 Cloud Volumes ONTAP 的云合规性。 
+---
+= Cloud Volumes ONTAP 和 Azure NetApp Files 云合规性入门
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+完成几个步骤，开始使用适用于 Cloud Volumes ONTAP 或 Azure NetApp Files 的云合规性。
+
+
+
+== 快速入门
+
+按照以下步骤快速入门，或者向下滚动到其余部分以了解完整详细信息。
+
+
+
+==== 部署 Cloud Compliance 实例
+
+[role="quick-margin-para"]
+link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compliance"^] 如果尚未部署实例。
+
+
+
+==== 在您的工作环境中实现云合规性
+
+[role="quick-margin-para"]
+单击 * 云合规性 * ，选择 * 配置 * 选项卡，然后为特定工作环境激活合规性扫描。
+
+
+
+==== 确保能够访问卷
+
+[role="quick-margin-para"]
+现在已启用 Cloud Compliance ，请确保它可以访问卷。
+
+* 云合规性实例需要与每个 Cloud Volumes ONTAP 子网或 Azure NetApp Files 子网建立网络连接。
+* Cloud Volumes ONTAP 的安全组必须允许来自云合规性实例的入站连接。
+* NFS 卷导出策略必须允许从 Cloud Compliance 实例进行访问。
+* Cloud Compliance 需要 Active Directory 凭据才能扫描 CIFS 卷。
++
+单击 * 云合规性 * > * 扫描配置 * > * 编辑 CIFS 凭据 * 并提供凭据。凭据可以是只读的，但提供管理员凭据可确保 Cloud Compliance 可以读取需要提升权限的数据。
+
+
+
+
+
+==== 配置要扫描的卷
+
+[role="quick-margin-para"]
+选择要扫描的卷， Cloud Compliance 将开始扫描这些卷。
+
+
+
+== 部署 Cloud Compliance 实例
+
+link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compliance"^] 如果尚未部署实例。
+
+
+
+== 在您的工作环境中实现云合规性
+
+. 在 Cloud Manager 顶部，单击 * 云合规性 * ，然后选择 * 配置 * 选项卡。
++
+image:screenshot_cloud_compliance_we_scan_config.png["部署 Cloud Compliance 实例后立即显示扫描配置选项卡的屏幕截图。"]
+
+. 要扫描工作环境中的所有卷，请单击 * 激活所有卷的合规性 * 。
++
+要仅扫描工作环境中的某些卷，请单击 * 或选择 Volumes* ，然后选择要扫描的卷。
+
+
+
+请参见 <<Enabling and disabling compliance scans on volumes,在卷上启用和禁用合规性扫描>> 了解详细信息。
+
+Cloud Compliance 开始扫描每个工作环境中的数据。一旦 Cloud Compliance 完成初始扫描，结果就会显示在合规性信息板中。所需时间取决于数据量—可能需要几分钟或几小时。
+
+
+
+== 验证 Cloud Compliance 是否有权访问卷
+
+通过检查网络，安全组和导出策略，确保 Cloud Compliance 可以访问卷。您需要为 Cloud Compliance 提供 CIFS 凭据，以便它可以访问 CIFS 卷。
+
+.步骤
+. 确保云合规性实例与包含 Cloud Volumes ONTAP 或 Azure NetApp Files 卷的每个网络之间存在网络连接。
++
+
+NOTE: 对于 Azure NetApp Files ， Cloud Compliance 只能扫描与 Cloud Manager 位于同一区域的卷。
+
+. 确保 Cloud Volumes ONTAP 的安全组允许来自云合规性实例的入站流量。
++
+您可以从 Cloud Compliance 实例的 IP 地址打开流量安全组，也可以从虚拟网络内部打开所有流量的安全组。
+
+. 确保 NFS 卷导出策略包含 Cloud Compliance 实例的 IP 地址，以便它可以访问每个卷上的数据。
+. 如果您使用 CIFS ，请为 Cloud Compliance 提供 Active Directory 凭据，以便它可以扫描 CIFS 卷。
++
+.. 在 Cloud Manager 顶部，单击 * 云合规性 * 。
+.. 单击 * 配置 * 选项卡。
++
+image:screenshot_cifs_credentials.gif["合规性选项卡的屏幕截图，其中显示了内容窗格右上角的扫描状态按钮。"]
+
+.. 对于每个工作环境，单击 * 编辑 CIFS 凭据 * ，然后输入 Cloud Compliance 访问系统上 CIFS 卷所需的用户名和密码。
++
+凭据可以是只读的，但提供管理员凭据可确保 Cloud Compliance 可以读取任何需要提升权限的数据。这些凭据存储在 Cloud Compliance 实例上。
+
++
+输入凭据后，您应看到一条消息，指出所有 CIFS 卷均已成功通过身份验证。
+
++
+image:screenshot_cifs_status.gif["屏幕截图显示了扫描配置页面以及已成功提供 CIFS 凭据的一个 Cloud Volumes ONTAP 系统。"]
+
+
+
+. 在 _Scan Configuration_ 页面上，单击 * 查看详细信息 * 以查看每个 CIFS 和 NFS 卷的状态并更正任何错误。
++
+例如，下图显示了三个卷；其中一个卷由于 Cloud Compliance 实例与卷之间的网络连接问题而无法扫描。
+
++
+image:screenshot_compliance_volume_details.gif["扫描配置中 \" 查看详细信息 \" 页面的屏幕截图，其中显示了三个卷；其中一个卷由于 Cloud Compliance 与卷之间的网络连接而未进行扫描。"]
+
+
+
+
+
+== 在卷上启用和禁用合规性扫描
+
+您可以随时从扫描配置页面停止或开始扫描工作环境中的卷。建议您扫描所有卷。
+
+image:screenshot_volume_compliance_selection.png["扫描配置页面的屏幕截图，您可以在其中启用或禁用单个卷的扫描。"]
+
+[cols="40,50"]
+|===
+| 收件人： | 执行以下操作： 
+
+
+| 禁用卷扫描 | 将卷滑块移至左侧 
+
+
+| 禁用所有卷的扫描 | 将 * 激活所有卷的合规性 * 滑块移至左侧 
+
+
+| 启用卷扫描 | 将卷滑块向右移动 
+
+
+| 为所有卷启用扫描 | 将 * 激活所有卷的合规性 * 滑块移至右侧 
+|===
+
+TIP: 只有在启用了 * 激活所有卷的合规性 * 设置后，才会自动扫描添加到工作环境中的新卷。禁用此设置后，您需要在工作环境中创建的每个新卷上激活扫描。
+
+
+
+== 扫描数据保护卷
+
+默认情况下，不会扫描数据保护（ DP ）卷，因为这些卷不会公开在外部，并且 Cloud Compliance 无法访问它们。这些卷通常是从内部 ONTAP 集群执行 SnapMirror 操作的目标卷。
+
+最初， Cloud Compliance 卷列表会将这些卷标识为 _Type_ * ，并显示 _Status_ * 未扫描 * 和 _Required Action" * 启用对 DP 卷的访问 * 。
+
+image:screenshot_cloud_compliance_dp_volumes.png["显示启用对 DP 卷的访问按钮的屏幕截图，您可以选择此按钮来扫描数据保护卷。"]
+
+如果要扫描这些数据保护卷：
+
+. 单击页面顶部的 * 启用对 DP 卷的访问 * 按钮。
+. 激活要扫描的每个 DP 卷，或者使用 * 激活所有卷的合规性 * 控件启用所有卷，包括所有 DP 卷。
+
+
+启用后， Cloud Compliance 会从为合规性激活的每个 DP 卷创建一个 NFS 共享，以便对其进行扫描。共享导出策略仅允许从 Cloud Compliance 实例进行访问。
+
+
+NOTE: 卷列表中仅显示最初在源 ONTAP 系统中创建为 NFS 卷的卷。最初以 CIFS 形式创建的源卷当前不会显示在 Cloud Compliance 中。

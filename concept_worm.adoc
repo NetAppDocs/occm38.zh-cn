@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: concept_worm.html 
+keywords: worm, write once, read many, snaplock, enterprise, retain, retention, period 
+summary: 您可以在 Cloud Volumes ONTAP 系统上激活一次写入、多次读取（ WORM ）存储、以在指定的保留期内以未经修改的形式保留文件。WORM 文件在文件级别受保护。 
+---
+= WORM 存储
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以在 Cloud Volumes ONTAP 系统上激活一次写入、多次读取（ WORM ）存储、以在指定的保留期内以未经修改的形式保留文件。WORM 存储由 SnapLock 技术在企业模式下提供支持、这意味着 WORM 文件在文件级别得到保护。
+
+一旦将文件提交到 WORM 存储，即使保留期已过，也无法对其进行修改。防篡改时钟将确定 WORM 文件的保留期已过。
+
+保留期结束后、您将负责删除不再需要的任何文件。
+
+[discrete]
+=== 激活 WORM 存储
+
+您可以在创建新的工作环境时在 Cloud Volumes ONTAP 系统上激活 WORM 存储。这包括指定激活代码和设置文件的默认保留期。您可以使用云管理器界面右下角的聊天图标获取激活代码。
+
+
+NOTE: 您不能在单个卷上激活 WORM 存储—必须在系统级别激活 WORM 。
+
+下图显示了如何在创建工作环境时激活 WORM 存储：
+
+image:screenshot_enabling_worm.gif["显示了创建新工作环境时可用的 WORM 选项。"]
+
+[discrete]
+=== 将文件提交到 WORM
+
+您可以使用应用程序通过 NFS 或 CIFS 将文件提交到 WORM ，或者使用 ONTAP CLI 自动将文件提交到 WORM 。您还可以使用 WORM 附加文件来保留增量写入的数据，例如日志信息。
+
+在 Cloud Volumes ONTAP 系统上激活 WORM 存储后，必须使用 ONTAP CLI 对 WORM 存储进行所有管理。有关说明，请参见 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-arch-con/home.html["ONTAP 文档"^]。
+
+
+NOTE: Cloud Volumes ONTAP 对 WORM 存储的支持等同于 SnapLock Enterprise 模式。
+
+[discrete]
+=== 限制
+
+* 如果直接从 AWS 或 Azure 删除或移动磁盘、则可以在卷到期日期之前删除该卷。
+* 激活 WORM 存储后，无法启用对象存储的数据分层。
+* 要启用 WORM 存储，必须禁用云备份。
+

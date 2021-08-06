@@ -1,0 +1,148 @@
+---
+sidebar: sidebar 
+permalink: concept_connectors.html 
+keywords: concept, connectors, learn about connectors, service connectors, what are connectors, what is a connector, what's a connector, days, 14 days 
+summary: 大多数情况下，您需要在云或内部网络中部署 Connector 。借助此连接器， Cloud Manager 可以管理公有云环境中的资源和流程。 
+---
+= 了解连接器
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+大多数情况下，客户管理员需要在云或内部网络中部署 _Connector_ 。借助此连接器， Cloud Manager 可以管理公有云环境中的资源和流程。
+
+
+
+== 需要连接器时
+
+要在 Cloud Manager 中使用以下任何功能，需要使用 Connector ：
+
+* Cloud Volumes ONTAP
+* 内部 ONTAP 集群
+* 云合规性
+* Kubernetes
+* 备份到云
+* 监控
+* 内部分层
+* 全局文件缓存
+* Amazon S3 存储分段发现
+
+
+对于 Azure NetApp Files ， Cloud Volumes Service 或 Cloud Sync ，需要使用连接器 * 。
+
+
+NOTE: 虽然设置和管理 Azure NetApp Files 不需要连接器，但如果要使用云合规性扫描 Azure NetApp Files 数据，则需要连接器。
+
+
+
+== 支持的位置
+
+以下位置支持连接器：
+
+* Amazon Web Services
+* Microsoft Azure
+* Google Cloud
+* 在您的内部环境中
+
+
+
+NOTE: 如果要在 Google Cloud 中创建 Cloud Volumes ONTAP 系统，则必须同时在 Google Cloud 中运行 Connector 。您不能使用在其他位置运行的 Connector 。
+
+
+
+== 连接器应保持运行状态
+
+连接器应始终保持运行状态。对于您启用的服务的持续运行状况和运行来说，这一点非常重要。
+
+例如，连接器是 Cloud Volumes ONTAP PAYGO 系统运行状况和操作的关键组件。如果某个连接器已关闭，则 Cloud Volumes ONTAP PAYGO 系统将在与某个连接器失去通信超过 14 天之后关闭。
+
+
+
+== 如何创建 Connector
+
+在工作空间管理员创建 Cloud Volumes ONTAP 工作环境并使用上述任何其他功能之前，客户管理员需要先创建连接器。
+
+客户管理员可以通过多种方式创建 Connector ：
+
+* 直接从 Cloud Manager （建议）
++
+** link:task_creating_connectors_aws.html["在 AWS 中创建"]
+** link:task_creating_connectors_azure.html["在 Azure 中创建"]
+** link:task_creating_connectors_gcp.html["在 GCP 中创建"]
+
+
+* link:task_launching_aws_mktp.html["来自 AWS Marketplace"]
+* link:task_launching_azure_mktp.html["从 Azure Marketplace 获取"]
+* link:task_installing_linux.html["在现有 Linux 主机上下载并安装软件"]
+
+
+在创建首个 Cloud Volumes ONTAP 工作环境时，如果您还没有连接器， Cloud Manager 将提示您创建一个连接器。
+
+
+
+== 权限
+
+创建 Connector 需要特定权限，而 Connector 实例本身也需要另一组权限。
+
+
+
+=== 创建 Connector 的权限
+
+从 Cloud Manager 创建 Connector 的用户需要特定权限才能在您选择的云提供商中部署此实例。Cloud Manager 将在您创建 Connector 时提醒您权限要求。
+
+https://mysupport.netapp.com/site/info/cloud-manager-policies["查看每个云提供商的策略"^]。
+
+
+
+=== Connector 实例的权限
+
+Connector 需要特定的云提供商权限才能代表您执行操作。例如，部署和管理 Cloud Volumes ONTAP 。
+
+直接从 Cloud Manager 创建 Connector 时， Cloud Manager 会使用所需权限创建 Connector 。您无需执行任何操作。
+
+如果您自己从 AWS Marketplace ， Azure Marketplace 或通过手动安装软件来创建 Connector ，则需要确保已设置正确的权限。
+
+https://mysupport.netapp.com/site/info/cloud-manager-policies["查看每个云提供商的策略"^]。
+
+
+
+== 何时使用多个连接器
+
+在某些情况下，您可能只需要一个连接器，但可能需要两个或更多连接器。
+
+以下是几个示例：
+
+* 您正在使用多云环境（ AWS 和 Azure ），因此在 AWS 中有一个连接器，在 Azure 中有另一个连接器。每个都管理在这些环境中运行的 Cloud Volumes ONTAP 系统。
+* 服务提供商可能会使用一个 Cloud Central 帐户为其客户提供服务，而使用另一个帐户为其某个业务部门提供灾难恢复。每个帐户都有单独的 Connectors 。
+
+
+
+
+== 何时在连接器之间切换
+
+创建首个 Connector 时， Cloud Manager 会自动对您创建的每个附加工作环境使用此 Connector 。创建额外的 Connector 后，您需要在它们之间切换，以查看每个 Connector 特有的工作环境。
+
+link:task_managing_connectors.html#switch-between-connectors["了解如何在连接器之间切换"]。
+
+
+
+== 本地用户界面
+
+而您应从执行几乎所有任务 https://cloudmanager.netapp.com["SaaS 用户界面"^]，连接器上仍提供本地用户界面。需要从连接器本身执行的几项任务需要使用此接口：
+
+* link:task_configuring_proxy.html["设置代理服务器"]
+* 安装修补程序（您通常与 NetApp 人员一起安装修补程序）
+* 下载 AutoSupport 消息（通常在遇到问题时由 NetApp 人员指导）
+
+
+link:task_managing_connectors.html#accessing-the-local-ui["了解如何访问本地 UI"]。
+
+
+
+== 连接器升级
+
+只要有最新版本， Connector 就会自动将其软件更新到最新版本 link:reference_networking_cloud_manager.html["出站 Internet 访问"] 以获取软件更新。

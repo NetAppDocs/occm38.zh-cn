@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: concept_flash_cache.html 
+keywords: cloud volumes ontap, aws, ec2, flash cache, read-intensive, read, random, databases, email, file services, c5d.4xlarge, c5d.9xlarge, r5d.2xlarge, compression, performance, azure, nvme, standard, l8s, vm type, virtual machine, m5d.8xlarge, m5d.12xlarge, c5d.18xlarge 
+summary: AWS 和 Azure 中的某些 Cloud Volumes ONTAP 配置包括本地 NVMe 存储， Cloud Volumes ONTAP 将其用作 Flash Cache 以提高性能。 
+---
+= Flash Cache
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+AWS 和 Azure 中的某些 Cloud Volumes ONTAP 配置包括本地 NVMe 存储， Cloud Volumes ONTAP 使用这些存储作为 _Flash Cache_ 来提高性能。
+
+
+
+== 什么是 Flash Cache ？
+
+Flash Cache 通过实时智能缓存最近读取的用户数据和 NetApp 元数据来加快数据访问速度。它适用于随机读取密集型工作负载，包括数据库，电子邮件和文件服务。
+
+
+
+== AWS 中支持的实例
+
+使用新的或现有的 Cloud Volumes ONTAP 高级版或 BYOL 系统选择以下 EC2 实例类型之一：
+
+* c5d.4xlarge
+* c5d.9x 大型
+* c5d.18x 大型
+* m5d.8xlarge
+* m5d.12 x 大型
+* r5d.2xlarge
+
+
+
+
+== Azure 中支持的 VM 类型
+
+在 Azure 中选择具有单节点 Cloud Volumes ONTAP BYOL 系统的 Standard_L8s_v2 VM 类型。
+
+
+
+== 限制
+
+* 必须在所有卷上禁用数据压缩，才能利用 Flash Cache 性能改进功能。
++
+在使用 Cloud Manager 创建卷时选择 " 无存储效率 " ，或者先创建卷，然后再创建卷 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/GUID-8508A4CB-DB43-4D0D-97EB-859F58B29054.html["使用命令行界面禁用数据压缩"^]。
+
+* Cloud Volumes ONTAP 不支持在重新启动后重新恢复缓存。
+

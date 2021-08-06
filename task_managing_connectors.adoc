@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: task_managing_connectors.html 
+keywords: managing connectors, uninstall connector, switch connectors, switch between connectors, go to local UI, local interface, local connector, local cloud manager 
+summary: 创建一个或多个连接器后，您可以通过在连接器之间切换，连接到在连接器上运行的本地用户界面等方式来管理这些连接器。 
+---
+= 管理现有连接器
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+创建一个或多个连接器后，您可以通过在连接器之间切换，连接到在连接器上运行的本地用户界面等方式来管理这些连接器。
+
+
+
+== 在连接器之间切换
+
+如果您有多个连接器，则可以在它们之间切换，以查看与特定连接器关联的工作环境。
+
+例如，假设您正在多云环境中工作。您可能在 AWS 中有一个连接器，在 Google Cloud 中有另一个连接器。您需要在这些连接器之间进行切换，以管理在这些云中运行的 Cloud Volumes ONTAP 系统。
+
+.步骤
+. 单击 * 连接器 * 下拉列表，选择另一个连接器，然后单击 * 交换机 * 。
++
+image:screenshot_connector_switch.gif["标题中显示 Connector 图标和 Switch 操作的屏幕截图。"]
+
++
+Cloud Manager 将刷新并显示与选定 Connector 关联的工作环境。
+
+
+
+
+
+== 访问本地 UI
+
+虽然您应该从 SaaS 用户界面执行几乎所有任务，但连接器上仍提供本地用户界面。需要从连接器本身执行的几项任务需要使用此接口：
+
+* link:task_configuring_proxy.html["设置代理服务器"]
+* 安装修补程序（您通常与 NetApp 人员一起安装修补程序）
+* 下载 AutoSupport 消息（通常在遇到问题时由 NetApp 人员指导）
+
+
+.步骤
+. https://docs.netapp.com/us-en/occm/task_logging_in.html["登录到 Cloud Manager SaaS 界面"^] 从已通过网络连接到 Connector 实例的计算机。
++
+如果此连接器没有公有 IP 地址，您需要 VPN 连接，或者您需要从与此连接器位于同一网络的跳转主机进行连接。
+
+. 单击 * 连接器 * 下拉列表，单击连接器的操作菜单，然后单击 * 转到本地 UID* 。
++
+image:screenshot_connector_local_ui.gif["标题中显示 Connector 图标和 Go to Local UI 操作的屏幕截图。"]
+
++
+在 Connector 上运行的 Cloud Manager 界面将加载到新的浏览器选项卡中。
+
+
+
+
+
+== 从 Cloud Manager 中删除连接器
+
+如果某个 Connector 处于非活动状态，您可以将其从 Cloud Manager 中的 Connectors 列表中删除。如果删除了 Connector 虚拟机或卸载了 Connector 软件，则可以执行此操作。
+
+有关删除连接器，请注意以下事项：
+
+* 此操作不会删除虚拟机。
+* 无法还原此操作—从 Cloud Manager 中删除 Connector 后，便无法将其重新添加到 Cloud Manager 中。
+
+
+.步骤
+. 单击 Cloud Manager 标题中的 Connector 下拉列表。
+. 单击非活动连接器的操作菜单，然后单击 * 删除连接器 * 。
++
+image:screenshot_connector_remove.gif["Connector 小工具的屏幕截图，您可以在其中删除非活动的 Connector 。"]
+
+. 输入 Connector 的名称进行确认，然后单击删除。
+
+
+Cloud Manager 将从其记录中删除 Connector 。
+
+
+
+== 卸载 Connector 软件
+
+Connector 提供了一个卸载脚本，您可以使用该脚本卸载软件以解决问题或从主机中永久删除软件。
+
+.步骤
+. 在 Linux 主机上运行卸载脚本：
++
+* /opt/application/netapp/cloudmanager/bin/uninstall.sh [silent]*
+
++
+_silent_ 运行此脚本，而不提示您进行确认。
+
+
+
+.软件升级如何？
+****
+只要有最新版本， Connector 就会自动将其软件更新到最新版本 link:reference_networking_cloud_manager.html["出站 Internet 访问"] 以获取软件更新。
+
+****

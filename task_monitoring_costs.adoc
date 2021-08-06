@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: task_monitoring_costs.html 
+keywords: cost, costs, storage, compute, savings, aws, aws costs, billing 
+summary: 通过 Cloud Manager ，您可以查看与在 AWS 中运行 Cloud Volumes ONTAP 相关的成本。您还可以了解使用 NetApp 功能可以降低存储成本节省了多少资金。 
+---
+= 监控 AWS 资源成本
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以通过 Cloud Manager 查看与在 AWS 中运行 Cloud Volumes ONTAP 相关的资源成本。您还可以了解使用 NetApp 功能可以降低存储成本节省了多少资金。
+
+Cloud Manager 会在您刷新页面时更新成本。有关最终成本详细信息，请参阅 AWS 。
+
+.步骤
+. 验证 Cloud Manager 是否可以从 AWS 获取成本信息：
++
+.. 确保为 Cloud Manager 提供权限的 IAM 策略包括以下操作：
++
+[source, json]
+----
+"ce:GetReservationUtilization",
+"ce:GetDimensionValues",
+"ce:GetCostAndUsage",
+"ce:GetTags"
+----
++
+这些操作包含在最新的中 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 策略"^]。从 NetApp Cloud Central 部署的新系统会自动包含这些权限。
+
+.. https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html["激活 * 工作环境 Id* 标记"^]。
++
+为了跟踪 AWS 成本， Cloud Manager 会为 Cloud Volumes ONTAP 实例分配成本分配标记。创建首个工作环境后，激活 * 工作环境 Id* 标记。用户定义的标记不会显示在 AWS 计费报告中，除非您在计费和成本管理控制台中激活它们。
+
+
+
+. 在工作环境页面上，选择一个 Cloud Volumes ONTAP 工作环境，然后单击 * 成本 * 。
++
+如果您在卷上启用了 NetApp 的成本节省功能，则成本页面将显示当前月份和前几个月的成本，并显示 NetApp 每年节省的成本。
+
++
+下图显示了成本页面示例：
+
++
+image:screenshot_cost.gif["屏幕截图：显示 Cloud Volumes ONTAP 实例的每月成本。"]
+
+

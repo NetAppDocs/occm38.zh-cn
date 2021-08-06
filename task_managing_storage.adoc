@@ -1,0 +1,363 @@
+---
+sidebar: sidebar 
+permalink: task_managing_storage.html 
+keywords: volumes, aggregates, managing, cloning, editing, CIFS server, edit, flexclone, snapshot copy, restore, mount, tier, delete, advanced allocation, disks, cifs setup, DNS, active directory, AD, domain, NetBIOS, identify, move, capacity, action required, clone, snapshot copies, restoring, disk type, add disk, change disk, vol move, volume move, move a volume, volume move slow, volume move performance 
+summary: 利用 Cloud Manager ，您可以管理卷、聚合和 CIFS 服务器。它还会提示您移动卷以避免容量问题。 
+---
+= 管理现有存储
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+利用 Cloud Manager ，您可以管理卷、聚合和 CIFS 服务器。它还会提示您移动卷以避免容量问题。
+
+
+
+== 管理现有卷
+
+您可以根据存储需求的变化管理现有卷。您可以查看、编辑、克隆、恢复和删除卷。
+
+.步骤
+. 在“工作环境”页面上，双击要管理卷的 Cloud Volumes ONTAP 工作环境。
+. 管理卷：
++
+[cols="30,70"]
+|===
+| 任务 | Action 
+
+
+| 查看有关卷的信息 | 选择一个卷，然后单击 * 信息 * 。 
+
+
+| 编辑卷（仅限读写卷）  a| 
+.. 选择一个卷，然后单击 * 编辑 * 。
+.. 修改卷的 Snapshot 策略， NFS 协议版本， NFS 访问控制列表或共享权限，然后单击 * 更新 * 。
+
+
+
+NOTE: 如果需要自定义 Snapshot 策略，可以使用 System Manager 创建这些策略。
+
+
+
+| 克隆卷  a| 
+.. 选择一个卷，然后单击 * 克隆 * 。
+.. 根据需要修改克隆名称，然后单击 * 克隆 * 。
+
+
+此过程将创建 FlexClone 卷。FlexClone 卷是一个可写的时间点副本、节省空间、因为它对元数据使用少量空间、然后仅在更改或添加数据时占用额外空间。
+
+要了解有关 FlexClone 卷的详细信息，请参见 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["《 ONTAP 9 逻辑存储管理指南》"^]。
+
+
+
+| 将数据从 Snapshot 副本恢复到新卷  a| 
+.. 选择一个卷，然后单击 * 从 Snapshot 副本还原 * 。
+.. 选择 Snapshot 副本，输入新卷的名称，然后单击 * 还原 * 。
+
+
+
+
+| 按需创建 Snapshot 副本  a| 
+.. 选择一个卷，然后单击 * 创建 Snapshot 副本 * 。
+.. 根据需要更改名称，然后单击 * 创建 * 。
+
+
+
+
+| 获取 NFS 挂载命令  a| 
+.. 选择一个卷，然后单击 * 挂载命令 * 。
+.. 单击 * 复制 * 。
+
+
+
+
+| 查看 iSCSI 卷的目标 IQN  a| 
+.. 选择一个卷，然后单击 * 目标 IQN* 。
+.. 单击 * 复制 * 。
+.. link:task_provisioning_storage.html#connecting-a-lun-to-a-host["使用 IQN 从主机连接到 LUN"]。
+
+
+
+
+| 更改底层磁盘类型  a| 
+.. 选择一个卷，然后单击 * 更改磁盘类型和分层策略 * 。
+.. 选择磁盘类型，然后单击 * 更改 * 。
+
+
+
+NOTE: Cloud Manager 会将卷移动到使用选定磁盘类型的现有聚合中、或者为卷创建新聚合。
+
+
+
+| 更改分层策略  a| 
+.. 选择一个卷，然后单击 * 更改磁盘类型和分层策略 * 。
+.. 单击 * 编辑策略 * 。
+.. 选择其他策略，然后单击 * 更改 * 。
+
+
+
+NOTE: Cloud Manager 会将卷移动到使用选定磁盘类型并进行分层的现有聚合中、或者为卷创建一个新聚合。
+
+
+
+| 删除卷  a| 
+.. 选择一个卷，然后单击 * 删除 * 。
+.. 再次单击 * 删除 * 进行确认。
+
+
+|===
+
+
+
+
+== 管理现有聚合
+
+您可以通过添加磁盘，查看聚合相关信息以及删除聚合来自行管理聚合。
+
+如果要删除聚合、必须先删除聚合中的卷。
+
+如果聚合空间不足，则可以使用 OnCommand System Manager 将卷移动到另一个聚合。
+
+.步骤
+. 在“工作环境”页面上，双击要管理聚合的 Cloud Volumes ONTAP 工作环境。
+. 单击菜单图标，然后单击 * 高级 > 高级分配 * 。
+. 管理聚合：
++
+[cols="30,70"]
+|===
+| 任务 | Action 
+
+
+| 查看有关聚合的信息 | 选择一个聚合并单击 * 信息 * 。 
+
+
+| 在特定聚合上创建卷 | 选择一个聚合并单击 * 创建卷 * 。 
+
+
+| 将磁盘添加到聚合  a| 
+.. 选择一个聚合，然后单击 * 添加 AWS 磁盘 * 或 * 添加 Azure 磁盘 * 。
+.. 选择要添加的磁盘数，然后单击 * 添加 * 。
++
+
+TIP: 聚合中的所有磁盘大小必须相同。
+
+
+
+
+
+| 删除聚合  a| 
+.. 选择不包含任何卷的聚合，然后单击 * 删除 * 。
+.. 再次单击 * 删除 * 进行确认。
+
+
+|===
+
+
+
+
+== 修改 CIFS 服务器
+
+如果您更改了 DNS 服务器或 Active Directory 域、则需要在 Cloud Volumes ONTAP 中修改 CIFS 服务器、以便它可以继续为客户端提供存储。
+
+.步骤
+. 在工作环境中，单击菜单图标，然后单击 * 高级 > CIFS 设置 * 。
+. 指定 CIFS 服务器的设置：
++
+[cols="30,70"]
+|===
+| 任务 | Action 
+
+
+| DNS 主 IP 地址和次 IP 地址 | 为 CIFS 服务器提供名称解析的 DNS 服务器的 IP 地址。列出的 DNS 服务器必须包含为 CIFS 服务器将加入的域定位 Active Directory LDAP 服务器和域控制器所需的服务位置记录（服务位置记录）。 
+
+
+| 要加入的 Active Directory 域 | 您希望 CIFS 服务器加入的 Active Directory （ AD ）域的 FQDN 。 
+
+
+| 授权加入域的凭据 | 具有足够权限将计算机添加到 AD 域中指定组织单位 (OU) 的 Windows 帐户的名称和密码。 
+
+
+| CIFS server NetBIOS name | 在 AD 域中唯一的 CIFS 服务器名称。 
+
+
+| 组织单位 | AD 域中要与 CIFS 服务器关联的组织单元。默认值为 cn = computers 。如果将 AWS 托管 Microsoft AD 配置为 Cloud Volumes ONTAP 的 AD 服务器，则应在此字段中输入 * OU=Computers ， OU=corp* 。 
+
+
+| DNS 域 | Cloud Volumes ONTAP Storage Virtual Machine （ SVM ）的 DNS 域。在大多数情况下，域与 AD 域相同。 
+
+
+| NTP 服务器 | 选择 * 使用 Active Directory 域 * 以使用 Active Directory DNS 配置 NTP 服务器。如果需要使用其他地址配置 NTP 服务器，则应使用 API 。请参见 link:api.html["Cloud Manager API 开发人员指南"^] 了解详细信息。 
+|===
+. 单击 * 保存 * 。
+
+
+Cloud Volumes ONTAP 会根据更改更新 CIFS 服务器。
+
+
+
+== 移动卷
+
+移动卷以提高容量利用率，提高性能并满足服务级别协议的要求。
+
+您可以在 System Manager 中移动卷，方法是选择卷和目标聚合，启动卷移动操作，并可选择监控卷移动作业。使用 System Manager 时，卷移动操作会自动完成。
+
+.步骤
+. 使用 System Manager 或 CLI 将卷移动到聚合。
++
+在大多数情况下，您可以使用 System Manager 移动卷。
+
++
+有关说明，请参见 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-vol-move/home.html["《 ONTAP 9 卷移动快速指南》"^]。
+
+
+
+
+
+== 在 Cloud Manager 显示 Action Required 消息时移动卷
+
+云管理器可能会显示一条需要执行的操作消息、指出需要移动卷以避免容量问题、但无法提供解决问题的建议。如果发生这种情况，您需要确定如何更正问题、然后移动一个或多个卷。
+
+.步骤
+. <<Identifying how to correct capacity issues,确定如何解决此问题。>>。
+. 根据您的分析、移动卷以避免容量问题：
++
+** <<Moving volumes to another system to avoid capacity issues,将卷移动到另一个系统。>>。
+** <<Moving volumes to another aggregate to avoid capacity issues,将卷移动到同一系统上的另一个聚合。>>。
+
+
+
+
+
+
+=== 确定如何解决容量问题
+
+如果云管理器无法提供移动卷以避免容量问题的建议、则必须确定需要移动的卷以及是否应将它们移动到同一系统上的另一个聚合或另一个系统上。
+
+.步骤
+. 查看“ Action Required ”（需要操作）消息中的高级信息以确定已达到其容量限制的聚合。
++
+例如，高级信息应显示类似于以下内容的内容：聚合 aggr1 已达到其容量限制。
+
+. 确定要从聚合中移出的一个或多个卷：
++
+.. 在工作环境中，单击菜单图标，然后单击 * 高级 > 高级分配 * 。
+.. 选择聚合，然后单击 * 信息 * 。
+.. 展开卷列表。
++
+image:screenshot_aggr_volumes.gif["屏幕抓图：显示聚合中聚合中卷的列表（在 \" 聚合信息 \" 对话框中）。"]
+
+.. 检查每个卷的大小并选择一个或多个卷以从聚合中移出。
++
+您应该选择足够大的卷来释放聚合中的空间、以便将来避免出现额外的容量问题。
+
+
+
+. 如果系统未达到磁盘限制、则应将卷移动到同一系统上的现有聚合或新聚合。
++
+有关详细信息，请参见 link:task_managing_storage.html#moving-volumes-to-another-aggregate-to-avoid-capacity-issues["将卷移动到另一个聚合以避免容量问题"]。
+
+. 如果系统已达到磁盘限制，请执行以下任一操作：
++
+.. 删除所有未使用的卷。
+.. 重新排列卷以释放聚合上的空间。
++
+有关详细信息，请参见 link:task_managing_storage.html#moving-volumes-to-another-aggregate-to-avoid-capacity-issues["将卷移动到另一个聚合以避免容量问题"]。
+
+.. 将两个或多个卷移动到另一个具有空间的系统。
++
+有关详细信息，请参见 link:task_managing_storage.html#moving-volumes-to-another-system-to-avoid-capacity-issues["将卷移动到另一个系统以避免容量问题"]。
+
+
+
+
+
+
+
+=== 将卷移动到另一个系统以避免容量问题
+
+您可以将一个或多个卷移动到另一个 Cloud Volumes ONTAP 系统以避免容量问题。如果系统达到其磁盘限制，则可能需要执行此操作。
+
+您可以按照此任务中的步骤更正以下需要执行的操作消息：
+
+....
+Moving a volume is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you because the system has reached the disk limit.
+....
+.步骤
+. 确定具有可用容量的 Cloud Volumes ONTAP 系统或部署新系统。
+. 将源工作环境拖放到目标工作环境中以执行卷的一次性数据复制。
++
+有关详细信息，请参见 link:task_replicating_data.html["在系统之间复制数据"]。
+
+. 转到复制状态页，然后中断 SnapMirror 关系、将复制的卷从数据保护卷转换为读 / 写卷。
++
+有关详细信息，请参见 link:task_replicating_data.html#managing-data-replication-schedules-and-relationships["管理数据复制计划和关系"]。
+
+. 配置卷以进行数据访问。
++
+有关为数据访问配置目标卷的信息，请参见 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-sm-ic-fr/home.html["《 ONTAP 9 卷灾难恢复快速指南》"^]。
+
+. 删除原始卷。
++
+有关详细信息，请参见 link:task_managing_storage.html#managing-existing-volumes["管理现有卷"]。
+
+
+
+
+
+=== 将卷移动到另一个聚合以避免容量问题
+
+您可以将一个或多个卷移动到另一个聚合中以避免容量问题。
+
+您可以按照此任务中的步骤更正以下需要执行的操作消息：
+
+....
+Moving two or more volumes is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you.
+....
+.步骤
+. 验证现有聚合是否具有需要移动的卷的可用容量：
++
+.. 在工作环境中，单击菜单图标，然后单击 * 高级 > 高级分配 * 。
+.. 选择每个聚合，单击 * 信息 * ，然后查看可用容量（聚合容量减去已用聚合容量）。
++
+image:screenshot_aggr_capacity.gif["屏幕抓图：显示聚合信息对话框中可用的总聚合容量和已用聚合容量。"]
+
+
+
+. 如果需要，请将磁盘添加到现有聚合：
++
+.. 选择聚合，然后单击 * 添加磁盘 * 。
+.. 选择要添加的磁盘数，然后单击 * 添加 * 。
+
+
+. 如果没有聚合可用容量，请创建新聚合。
++
+有关详细信息，请参见 link:task_provisioning_storage.html#creating-aggregates["创建聚合"]。
+
+. 使用 System Manager 或 CLI 将卷移动到聚合。
+. 在大多数情况下，您可以使用 System Manager 移动卷。
++
+有关说明，请参见 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-vol-move/home.html["《 ONTAP 9 卷移动快速指南》"^]。
+
+
+
+
+
+== 卷移动速度可能较慢的原因
+
+如果 Cloud Volumes ONTAP 满足以下任一条件，则移动卷所需时间可能会比预期长：
+
+* 此卷为克隆卷。
+* 卷是克隆的父卷。
+* 源聚合或目标聚合具有一个吞吐量优化型 HDD （ st1 ）磁盘。
+* Cloud Volumes ONTAP 系统位于 AWS 中，一个聚合使用较早的对象命名方案。两个聚合必须使用相同的名称格式。
++
+如果在 9.4 版或更早版本中的聚合上启用了数据分层，则会使用较早的命名方案。
+
+* 源聚合和目标聚合上的加密设置不匹配，或者正在重新设置密钥。
+* 在卷移动时指定了 _-tiering-policy_ 选项以更改分层策略。
+* 在卷移动时指定了 _-generate-destination-key_ 选项。
+

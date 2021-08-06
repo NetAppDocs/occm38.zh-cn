@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: task_encrypting_volumes.html 
+keywords: encrypt, encryption, data, volumes, netapp volume encryption, volume encryption, nve, key managers, kmip, key management servers, license, ssl certificates, nae, netapp aggregate encryption 
+summary: Cloud Volumes ONTAP 通过外部密钥管理器同时支持 NetApp 卷加密（ NVE ）和 NetApp 聚合加密（ NAE ）。如果设置了外部密钥管理器，则默认情况下会启用 NVE 和 NAE 。 
+---
+= 使用 NetApp 加密解决方案对卷进行加密
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Cloud Volumes ONTAP 通过外部密钥管理器同时支持 NetApp 卷加密（ NVE ）和 NetApp 聚合加密（ NAE ）。NVE 和 NAE 是基于软件的解决方案，支持（ FIPS ） 140-2 合规的卷空闲数据加密。 link:concept_security.html["详细了解这些加密解决方案"]。
+
+从 Cloud Volumes ONTAP 9.7 开始，在设置外部密钥管理器后，新聚合将默认启用 NAE 。默认情况下，不属于 NAE 聚合的新卷将启用 NVE （例如，如果您有在设置外部密钥管理器之前创建的现有聚合）。
+
+Cloud Volumes ONTAP 不支持板载密钥管理。
+
+您的 Cloud Volumes ONTAP 系统应向 NetApp 支持部门注册。从 Cloud Manager 3.7.1 开始，向 NetApp 支持部门注册的每个 Cloud Volumes ONTAP 系统都会自动安装 NetApp 卷加密许可证。
+
+* link:task_adding_nss_accounts.html["将 NetApp 支持站点帐户添加到 Cloud Manager"]
+* link:task_registering.html["注册按需购买的系统"]
+
+
+
+NOTE: Cloud Manager 不会在位于中国地区的系统上安装 NVE 许可证。
+
+.步骤
+. 查看中支持的密钥管理器列表 http://mysupport.netapp.com/matrix["NetApp 互操作性表工具"^]。
++
+
+TIP: 搜索 * 密钥管理器 * 解决方案。
+
+. link:task_connecting_to_otc.html["连接到 Cloud Volumes ONTAP 命令行界面"^]。
+. 安装 SSL 证书并连接到外部密钥管理服务器。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-DD718B42-038D-4009-84FF-20BBD6530BC2.html["ONTAP 9 NetApp 加密高级指南：配置外部密钥管理"^]
+
+

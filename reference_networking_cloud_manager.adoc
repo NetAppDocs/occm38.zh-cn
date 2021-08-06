@@ -1,0 +1,605 @@
+---
+sidebar: sidebar 
+permalink: reference_networking_cloud_manager.html 
+keywords: networking, network, requirements, connection, connections, vpc, security group, security groups, subnets, proxy server, vpn, outbound, inbound, connections, jump host, URL, URLs, endpoints, endpoint, ports 
+summary: 设置您的网络，以便 Connector 能够管理公有云环境中的资源和流程。最重要的步骤是确保对各种端点的出站 Internet 访问。 
+---
+= 连接器的网络连接要求
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+设置您的网络，以便 Connector 可以管理公有云环境中的资源和流程。最重要的步骤是确保对各种端点的出站 Internet 访问。
+
+
+TIP: 如果您的网络使用代理服务器与 Internet 进行所有通信，则可以从设置页面指定代理服务器。请参见 link:task_configuring_proxy.html["将 Connector 配置为使用代理服务器"]。
+
+
+
+== 连接到目标网络
+
+连接器要求与您要创建的工作环境类型以及计划启用的服务建立网络连接。
+
+例如，如果您在公司网络中安装了连接器，则必须设置与启动 Cloud Volumes ONTAP 的 VPC 或 vNet 的 VPN 连接。
+
+
+
+== 出站 Internet 访问
+
+连接器需要通过出站 Internet 访问来管理公有云环境中的资源和流程。如果要在 Linux 主机上手动安装 Connector 或访问在 Connector 上运行的本地 UI ，则还需要出站 Internet 访问。
+
+以下各节将标识特定的端点。
+
+
+
+=== 用于在 AWS 中管理资源的端点
+
+在 AWS 中管理资源时， Connector 会联系以下端点：
+
+[cols="43,57"]
+|===
+| 端点 | 目的 
+
+
+ a| 
+AWS 服务（ AmazonAWS.com ）：
+
+* 云形成
+* 弹性计算云（ EC2 ）
+* 密钥管理服务（ KMS ）
+* 安全令牌服务（ STS ）
+* 简单存储服务 (S3)
+
+
+确切的端点取决于您部署 Cloud Volumes ONTAP 的区域。 https://docs.aws.amazon.com/general/latest/gr/rande.html["有关详细信息，请参阅 AWS 文档。"^]
+| 支持 Connector 在 AWS 中部署和管理 Cloud Volumes ONTAP 。 
+
+
+| https://api.services.cloud.netapp.com:443 | 对 NetApp Cloud Central 的 API 请求。 
+
+
+| https://cloud.support.netapp.com.s3.us-west-1.amazonaws.com | 提供对软件映像、清单和模板的访问。 
+
+
+| https://repo.cloud.support.netapp.com | 用于下载 Cloud Manager 依赖关系。 
+
+
+| http://repo.mysql.com/ | 用于下载 MySQL 。 
+
+
+| https://cognito-idp.us-east-1.amazonaws.com \https://cognito-identity.us-east-1.amazonaws.com \https://sts.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.amazonaws.com | 使 Connector 能够访问和下载清单，模板和 Cloud Volumes ONTAP 升级映像。 
+
+
+| https://cloudmanagerinfraprod.azurecr.io | 访问运行 Docker 的基础架构中容器组件的软件映像，并提供解决方案以实现与 Cloud Manager 的服务集成。 
+
+
+| https://kinesis.us-east-1.amazonaws.com | 使 NetApp 能够从审计记录流化数据。 
+
+
+| https://cloudmanager.cloud.netapp.com | 与 Cloud Manager 服务进行通信，其中包括 Cloud Central 帐户。 
+
+
+| https://netapp-cloud-account.auth0.com | 与 NetApp Cloud Central 进行通信以实现集中式用户身份验证。 
+
+
+| https://w86yt021u5.execute-api.us-east-1.amazonaws.com/production/whitelist | 用于将您的 AWS 帐户 ID 添加到备份到 S3 的允许用户列表中。 
+
+
+| https://support.netapp.com/aods/asupmessage \https://support.netapp.com/asupprod/post/1.0/postAsup | 与 NetApp AutoSupport 通信。 
+
+
+| https://support.netapp.com/svcgw \https://support.netapp.com/ServiceGW/entitlement \https://eval.lic.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com.s3.us-west-1.amazonaws.com | 与 NetApp 沟通以获得系统许可和支持注册。 
+
+
+| https://client.infra.support.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.us-west-1.amazonaws.com \https://trigger.asup.netapp.com.s3.us-west-1.amazonaws.com | 使 NetApp 能够收集对支持问题进行故障排除所需的信息。 
+
+
+| https://ipa-signer.cloudmanager.netapp.com | 允许 Cloud Manager 生成许可证（例如，适用于 Cloud Volumes ONTAP 的 FlexCache 许可证） 
+
+
+| https://packages.cloud.google.com/yum \https://github.com/NetApp/trident/releases/download/ | 要将 Cloud Volumes ONTAP 系统连接到 Kubernetes 集群，需要此许可证。这些端点支持安装 NetApp Trident 。 
+
+
+ a| 
+各种第三方位置，例如：
+
+* https://repo1.maven.org/maven2
+* https://oss.sonatype.org/content/repository
+* https://repo.typesafe.com
+
+
+第三方位置可能会发生变化。
+| 在升级过程中、 Cloud Manager 会下载最新的软件包以满足第三方依赖性。 
+|===
+
+
+=== 用于在 Azure 中管理资源的端点
+
+在 Azure 中管理资源时， Connector 会联系以下端点：
+
+[cols="43,57"]
+|===
+| 端点 | 目的 
+
+
+| https://management.azure.com https://login.microsoftonline.com | 支持 Cloud Manager 在大多数 Azure 区域部署和管理 Cloud Volumes ONTAP 。 
+
+
+| https://management.microsoftazure.de https://login.microsoftonline.de | 支持 Cloud Manager 在 Azure Germany 地区部署和管理 Cloud Volumes ONTAP 。 
+
+
+| https://management.usgovcloudapiNet https://login.microsoftonline.com | 支持 Cloud Manager 在 Azure US Gov 区域部署和管理 Cloud Volumes ONTAP 。 
+
+
+| https://api.services.cloud.netapp.com:443 | 对 NetApp Cloud Central 的 API 请求。 
+
+
+| https://cloud.support.netapp.com.s3.us-west-1.amazonaws.com | 提供对软件映像、清单和模板的访问。 
+
+
+| https://repo.cloud.support.netapp.com | 用于下载 Cloud Manager 依赖关系。 
+
+
+| http://repo.mysql.com/ | 用于下载 MySQL 。 
+
+
+| https://cognito-idp.us-east-1.amazonaws.com \https://cognito-identity.us-east-1.amazonaws.com \https://sts.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.amazonaws.com | 使 Connector 能够访问和下载清单，模板和 Cloud Volumes ONTAP 升级映像。 
+
+
+| https://cloudmanagerinfraprod.azurecr.io | 访问运行 Docker 的基础架构中容器组件的软件映像，并提供解决方案以实现与 Cloud Manager 的服务集成。 
+
+
+| https://kinesis.us-east-1.amazonaws.com | 使 NetApp 能够从审计记录流化数据。 
+
+
+| https://cloudmanager.cloud.netapp.com | 与 Cloud Manager 服务进行通信，其中包括 Cloud Central 帐户。 
+
+
+| https://netapp-cloud-account.auth0.com | 与 NetApp Cloud Central 进行通信以实现集中式用户身份验证。 
+
+
+| https://mysupport.netapp.com | 与 NetApp AutoSupport 通信。 
+
+
+| https://support.netapp.com/svcgw \https://support.netapp.com/ServiceGW/entitlement \https://eval.lic.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com.s3.us-west-1.amazonaws.com | 与 NetApp 沟通以获得系统许可和支持注册。 
+
+
+| https://client.infra.support.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.us-west-1.amazonaws.com \https://trigger.asup.netapp.com.s3.us-west-1.amazonaws.com | 使 NetApp 能够收集对支持问题进行故障排除所需的信息。 
+
+
+| https://ipa-signer.cloudmanager.netapp.com | 允许 Cloud Manager 生成许可证（例如，适用于 Cloud Volumes ONTAP 的 FlexCache 许可证） 
+
+
+| https://packages.cloud.google.com/yum \https://github.com/NetApp/trident/releases/download/ | 要将 Cloud Volumes ONTAP 系统连接到 Kubernetes 集群，需要此许可证。这些端点支持安装 NetApp Trident 。 
+
+
+| * .blob.core.windows.net | 使用代理时， HA 对需要此参数。 
+
+
+ a| 
+各种第三方位置，例如：
+
+* https://repo1.maven.org/maven2
+* https://oss.sonatype.org/content/repository
+* https://repo.typesafe.com
+
+
+第三方位置可能会发生变化。
+| 在升级过程中、 Cloud Manager 会下载最新的软件包以满足第三方依赖性。 
+|===
+
+
+=== 用于在 GCP 中管理资源的端点
+
+在 GCP 中管理资源时， Connector 会联系以下端点：
+
+[cols="43,57"]
+|===
+| 端点 | 目的 
+
+
+| https://www.googleapis.com | 使 Connector 能够联系 Google API 以在 GCP 中部署和管理 Cloud Volumes ONTAP 。 
+
+
+| https://api.services.cloud.netapp.com:443 | 对 NetApp Cloud Central 的 API 请求。 
+
+
+| https://cloud.support.netapp.com.s3.us-west-1.amazonaws.com | 提供对软件映像、清单和模板的访问。 
+
+
+| https://repo.cloud.support.netapp.com | 用于下载 Cloud Manager 依赖关系。 
+
+
+| http://repo.mysql.com/ | 用于下载 MySQL 。 
+
+
+| https://cognito-idp.us-east-1.amazonaws.com \https://cognito-identity.us-east-1.amazonaws.com \https://sts.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.amazonaws.com | 使 Connector 能够访问和下载清单，模板和 Cloud Volumes ONTAP 升级映像。 
+
+
+| https://cloudmanagerinfraprod.azurecr.io | 访问运行 Docker 的基础架构中容器组件的软件映像，并提供解决方案以实现与 Cloud Manager 的服务集成。 
+
+
+| https://kinesis.us-east-1.amazonaws.com | 使 NetApp 能够从审计记录流化数据。 
+
+
+| https://cloudmanager.cloud.netapp.com | 与 Cloud Manager 服务进行通信，其中包括 Cloud Central 帐户。 
+
+
+| https://netapp-cloud-account.auth0.com | 与 NetApp Cloud Central 进行通信以实现集中式用户身份验证。 
+
+
+| https://mysupport.netapp.com | 与 NetApp AutoSupport 通信。 
+
+
+| https://support.netapp.com/svcgw \https://support.netapp.com/ServiceGW/entitlement \https://eval.lic.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com.s3.us-west-1.amazonaws.com | 与 NetApp 沟通以获得系统许可和支持注册。 
+
+
+| https://client.infra.support.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.us-west-1.amazonaws.com \https://trigger.asup.netapp.com.s3.us-west-1.amazonaws.com | 使 NetApp 能够收集对支持问题进行故障排除所需的信息。 
+
+
+| https://ipa-signer.cloudmanager.netapp.com | 允许 Cloud Manager 生成许可证（例如，适用于 Cloud Volumes ONTAP 的 FlexCache 许可证） 
+
+
+| https://packages.cloud.google.com/yum \https://github.com/NetApp/trident/releases/download/ | 要将 Cloud Volumes ONTAP 系统连接到 Kubernetes 集群，需要此许可证。这些端点支持安装 NetApp Trident 。 
+
+
+ a| 
+各种第三方位置，例如：
+
+* https://repo1.maven.org/maven2
+* https://oss.sonatype.org/content/repository
+* https://repo.typesafe.com
+
+
+第三方位置可能会发生变化。
+| 在升级过程中、 Cloud Manager 会下载最新的软件包以满足第三方依赖性。 
+|===
+
+
+=== 用于在 Linux 主机上安装 Connector 的端点
+
+您可以选择在自己的 Linux 主机上手动安装 Connector 软件。否则， Connector 的安装程序必须在安装过程中访问以下 URL ：
+
+* http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+* https://dl.fedoraProject.org/pub/epel/epEl-release-latest-7.noarch.rpm
+* https://s3.amazonaws.com/aws-cli/awscri-bundle.zip
+
+
+主机可能会在安装期间尝试更新操作系统软件包。主机可以联系这些操作系统软件包的不同镜像站点。
+
+
+
+=== 使用本地 UI 时从 Web 浏览器访问的端点
+
+虽然您应该从 SaaS 用户界面执行几乎所有任务，但连接器上仍提供本地用户界面。运行 Web 浏览器的计算机必须连接到以下端点：
+
+[cols="43,57"]
+|===
+| 端点 | 目的 
+
+
+| Connector 主机  a| 
+要加载 Cloud Manager 控制台，必须从 Web 浏览器输入主机的 IP 地址。
+
+根据您与云提供商的连接，您可以使用分配给主机的专用 IP 或公有 IP ：
+
+* 如果您对虚拟网络具有 VPN 和直接连接访问权限，则专用 IP 可以正常工作
+* 公有 IP 可用于任何网络连接情形
+
+
+在任何情况下，您都应确保安全组规则仅允许从授权的 IP 或子网进行访问，从而确保网络访问的安全。
+
+
+
+| https://auth0.com \https://cdn.auth0.com \https://netapp-cloud-account.auth0.com \https://services.cloud.netapp.com | 您的 Web 浏览器连接到这些端点、以便通过 NetApp Cloud Central 进行集中式用户身份验证。 
+
+
+| https://widget.intercom.io | 用于与 NetApp 云专家交流的产品内聊天。 
+|===
+
+
+== 端口和安全组
+
+除非您启动 Connector ，否则不会向其传入流量。HTTP 和 HTTPS 可用于访问 link:concept_connectors.html#the-local-user-interface["本地 UI"]，在极少数情况下使用。只有在需要连接到主机进行故障排除时，才需要使用 SSH 。
+
+
+
+=== AWS 中连接器的规则
+
+Connector 的安全组需要入站和出站规则。
+
+
+
+==== 入站规则
+
+预定义安全组中入站规则的源代码为 0.0.0.0/0 。
+
+[cols="10,10,80"]
+|===
+| 协议 | Port | 目的 
+
+
+| SSH | 22. | 提供对 Connector 主机的 SSH 访问 
+
+
+| HTTP | 80 | 提供从客户端 Web 浏览器到本地用户界面的 HTTP 访问以及从 Cloud Compliance 建立的连接 
+
+
+| HTTPS | 443. | 提供从客户端 Web 浏览器到本地用户界面的 HTTPS 访问 
+
+
+| TCP | 3128 | 如果您的 AWS 网络不使用 NAT 或代理，则可为 Cloud Compliance 实例提供 Internet 访问 
+|===
+
+
+==== 出站规则
+
+连接器的预定义安全组将打开所有出站流量。如果可以接受，请遵循基本出站规则。如果您需要更严格的规则、请使用高级出站规则。
+
+
+
+===== 基本外向规则
+
+Connector 的预定义安全组包括以下出站规则。
+
+[cols="20,20,60"]
+|===
+| 协议 | Port | 目的 
+
+
+| 所有 TCP | 全部 | 所有出站流量 
+
+
+| 所有 UDP | 全部 | 所有出站流量 
+|===
+
+
+===== 高级出站规则
+
+如果您需要对出站流量设置严格的规则，则可以使用以下信息仅打开 Connector 进行出站通信所需的端口。
+
+
+NOTE: 源 IP 地址是 Connector 主机。
+
+[cols="5*"]
+|===
+| 服务 | 协议 | Port | 目标 | 目的 
+
+
+.9+| Active Directory | TCP | 88 | Active Directory 目录林 | Kerberos V 身份验证 
+
+
+| TCP | 139. | Active Directory 目录林 | NetBIOS 服务会话 
+
+
+| TCP | 389. | Active Directory 目录林 | LDAP 
+
+
+| TCP | 445 | Active Directory 目录林 | Microsoft SMB/CIFS over TCP （通过 TCP ）和 NetBIOS 成帧 
+
+
+| TCP | 464. | Active Directory 目录林 | Kerberos V 更改和设置密码（ set_change ） 
+
+
+| TCP | 749 | Active Directory 目录林 | Active Directory Kerberos V 更改和设置密码（ RPCSEC_GSS ） 
+
+
+| UDP | 137. | Active Directory 目录林 | NetBIOS 名称服务 
+
+
+| UDP | 138. | Active Directory 目录林 | NetBIOS 数据报服务 
+
+
+| UDP | 464. | Active Directory 目录林 | Kerberos 密钥管理 
+
+
+| API 调用和 AutoSupport | HTTPS | 443. | 出站 Internet 和 ONTAP 集群管理 LIF | API 调用 AWS 和 ONTAP 、并将 AutoSupport 消息发送到 NetApp 
+
+
+.2+| API 调用 | TCP | 3000 | ONTAP 集群管理 LIF | API 调用 ONTAP 
+
+
+| TCP | 8088 | 备份到 S3 | 对备份到 S3 进行 API 调用 
+
+
+| DNS | UDP | 53. | DNS | 用于云管理器进行 DNS 解析 
+
+
+| 云合规性 | HTTP | 80 | Cloud Compliance 实例 | 适用于 Cloud Volumes ONTAP 的云合规性 
+|===
+
+
+=== Azure 中连接器的规则
+
+Connector 的安全组需要入站和出站规则。
+
+
+
+==== 入站规则
+
+预定义安全组中入站规则的源代码为 0.0.0.0/0 。
+
+[cols="3*"]
+|===
+| Port | 协议 | 目的 
+
+
+| 22. | SSH | 提供对 Connector 主机的 SSH 访问 
+
+
+| 80 | HTTP | 提供从客户端 Web 浏览器到本地用户界面的 HTTP 访问 
+
+
+| 443. | HTTPS | 提供从客户端 Web 浏览器到本地用户界面的 HTTPS 访问 
+|===
+
+
+==== 出站规则
+
+连接器的预定义安全组将打开所有出站流量。如果可以接受，请遵循基本出站规则。如果您需要更严格的规则、请使用高级出站规则。
+
+
+
+===== 基本外向规则
+
+Connector 的预定义安全组包括以下出站规则。
+
+[cols="3*"]
+|===
+| Port | 协议 | 目的 
+
+
+| 全部 | 所有 TCP | 所有出站流量 
+
+
+| 全部 | 所有 UDP | 所有出站流量 
+|===
+
+
+===== 高级出站规则
+
+如果您需要对出站流量设置严格的规则，则可以使用以下信息仅打开 Connector 进行出站通信所需的端口。
+
+
+NOTE: 源 IP 地址是 Connector 主机。
+
+[cols="5*"]
+|===
+| 服务 | Port | 协议 | 目标 | 目的 
+
+
+.9+| Active Directory | 88 | TCP | Active Directory 目录林 | Kerberos V 身份验证 
+
+
+| 139. | TCP | Active Directory 目录林 | NetBIOS 服务会话 
+
+
+| 389. | TCP | Active Directory 目录林 | LDAP 
+
+
+| 445 | TCP | Active Directory 目录林 | Microsoft SMB/CIFS over TCP （通过 TCP ）和 NetBIOS 成帧 
+
+
+| 464. | TCP | Active Directory 目录林 | Kerberos V 更改和设置密码（ set_change ） 
+
+
+| 749 | TCP | Active Directory 目录林 | Active Directory Kerberos V 更改和设置密码（ RPCSEC_GSS ） 
+
+
+| 137. | UDP | Active Directory 目录林 | NetBIOS 名称服务 
+
+
+| 138. | UDP | Active Directory 目录林 | NetBIOS 数据报服务 
+
+
+| 464. | UDP | Active Directory 目录林 | Kerberos 密钥管理 
+
+
+| API 调用和 AutoSupport | 443. | HTTPS | 出站 Internet 和 ONTAP 集群管理 LIF | API 调用 AWS 和 ONTAP 、并将 AutoSupport 消息发送到 NetApp 
+
+
+| API 调用 | 3000 | TCP | ONTAP 集群管理 LIF | API 调用 ONTAP 
+
+
+| DNS | 53. | UDP | DNS | 用于云管理器进行 DNS 解析 
+|===
+
+
+=== GCP 中连接器的规则
+
+Connector 的防火墙规则需要入站和出站规则。
+
+
+
+==== 入站规则
+
+预定义的防火墙规则中的入站规则源为 0.0.0.0/0 。
+
+[cols="10,10,80"]
+|===
+| 协议 | Port | 目的 
+
+
+| SSH | 22. | 提供对 Connector 主机的 SSH 访问 
+
+
+| HTTP | 80 | 提供从客户端 Web 浏览器到本地用户界面的 HTTP 访问 
+
+
+| HTTPS | 443. | 提供从客户端 Web 浏览器到本地用户界面的 HTTPS 访问 
+|===
+
+
+==== 出站规则
+
+连接器的预定义防火墙规则会打开所有出站流量。如果可以接受，请遵循基本出站规则。如果您需要更严格的规则、请使用高级出站规则。
+
+
+
+===== 基本外向规则
+
+Connector 的预定义防火墙规则包括以下出站规则。
+
+[cols="20,20,60"]
+|===
+| 协议 | Port | 目的 
+
+
+| 所有 TCP | 全部 | 所有出站流量 
+
+
+| 所有 UDP | 全部 | 所有出站流量 
+|===
+
+
+===== 高级出站规则
+
+如果您需要对出站流量设置严格的规则，则可以使用以下信息仅打开 Connector 进行出站通信所需的端口。
+
+
+NOTE: 源 IP 地址是 Connector 主机。
+
+[cols="5*"]
+|===
+| 服务 | 协议 | Port | 目标 | 目的 
+
+
+.9+| Active Directory | TCP | 88 | Active Directory 目录林 | Kerberos V 身份验证 
+
+
+| TCP | 139. | Active Directory 目录林 | NetBIOS 服务会话 
+
+
+| TCP | 389. | Active Directory 目录林 | LDAP 
+
+
+| TCP | 445 | Active Directory 目录林 | Microsoft SMB/CIFS over TCP （通过 TCP ）和 NetBIOS 成帧 
+
+
+| TCP | 464. | Active Directory 目录林 | Kerberos V 更改和设置密码（ set_change ） 
+
+
+| TCP | 749 | Active Directory 目录林 | Active Directory Kerberos V 更改和设置密码（ RPCSEC_GSS ） 
+
+
+| UDP | 137. | Active Directory 目录林 | NetBIOS 名称服务 
+
+
+| UDP | 138. | Active Directory 目录林 | NetBIOS 数据报服务 
+
+
+| UDP | 464. | Active Directory 目录林 | Kerberos 密钥管理 
+
+
+| API 调用和 AutoSupport | HTTPS | 443. | 出站 Internet 和 ONTAP 集群管理 LIF | API 调用 GCP 和 ONTAP 、并将 AutoSupport 消息发送到 NetApp 
+
+
+| API 调用 | TCP | 3000 | ONTAP 集群管理 LIF | API 调用 ONTAP 
+
+
+| DNS | UDP | 53. | DNS | 用于云管理器进行 DNS 解析 
+|===

@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: task_deleting_working_env.html 
+keywords: terminate, delete, working environment, remove, cloudformation 
+summary: 最好从 Cloud Manager 中删除 Cloud Volumes ONTAP 系统、而不是从 AWS 或 Azure 中删除。 
+---
+= 删除 Cloud Volumes ONTAP 工作环境
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+最好从 Cloud Manager 中删除 Cloud Volumes ONTAP 系统，而不是从云提供商的控制台删除。例如，如果您从 AWS 终止已获得许可的 Cloud Volumes ONTAP 实例，则不能将此许可证密钥用于其他实例。您必须从 Cloud Manager 中删除工作环境才能发布许可证。
+
+删除工作环境时、 Cloud Manager 会终止实例、删除磁盘和快照。
+
+
+IMPORTANT: Cloud Volumes ONTAP 实例启用了终止保护、有助于防止 AWS 意外终止。但是，如果确实要从 AWS 终止 Cloud Volumes ONTAP 实例，则必须转到 AWS CloudFormation 控制台并删除该实例的堆栈。堆栈名称是工作环境的名称。
+
+.步骤
+. 在工作环境中，单击菜单图标，然后单击 * 删除 * 。
+. 键入工作环境的名称，然后单击 * 删除 * 。
++
+删除工作环境最多可能需要 5 分钟。
+
+

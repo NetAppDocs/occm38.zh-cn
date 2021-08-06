@@ -1,0 +1,136 @@
+---
+sidebar: sidebar 
+permalink: task_setup_cvs_gcp.html 
+keywords: cloud volumes service for gcp, google cloud, cloud volumes, create cloud volumes, discover cloud volumes service for gcp, cloud volumes service subscription, discover cloud volumes service subscription, discover region, allowed clients, create snapshots 
+summary: 在 Cloud Manager 中创建适用于 Google Cloud 的 Cloud Volumes Service 工作环境，以创建和管理卷和快照。 
+---
+= 设置适用于 Google Cloud 的 Cloud Volumes Service
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在 Cloud Manager 中创建适用于 Google Cloud 的 Cloud Volumes Service 工作环境，以创建和管理卷和快照。
+
+
+
+== 快速入门
+
+按照以下步骤快速入门，或者转到下一节了解完整详细信息。
+
+
+
+==== 启用 Cloud Volumes Service API
+
+[role="quick-margin-para"]
+在 Google 中，启用适用于 GCP 的 Cloud Volumes Service API ，以便 Cloud Manager 可以管理订阅和云卷。
+
+
+
+==== 创建 GCP 服务帐户并下载凭据
+
+[role="quick-margin-para"]
+在 Google 中，创建一个 GCP 服务帐户和角色，以便 Cloud Manager 可以访问您的 Cloud Volumes Service for GCP 帐户。
+
+
+
+==== 创建适用于 GCP 的 Cloud Volumes Service 工作环境
+
+[role="quick-margin-para"]
+在 Cloud Volumes Service 中，单击 * 添加工作环境 * > * Google Cloud* > * * ，然后提供有关服务帐户和 Google Cloud 项目的详细信息。
+
+
+
+== 启用 Cloud Volumes Service API
+
+在 Google Cloud Shell 中，运行以下命令以启用 Cloud Volumes Service API ：
+
+`gcloud -project=<my-cvs-project> 服务支持 cloudvolumesgcp-api.netapp.com`
+
+
+
+== 授予 Cloud Manager 对 GCP Cloud Volumes Service 帐户的访问权限
+
+您必须完成以下任务， Cloud Manager 才能访问您的 Google Cloud 项目：
+
+* 创建新的服务帐户
+* 将新服务帐户成员添加到项目中并为其分配特定角色（权限）
+* 为用于向 Google 进行身份验证的服务帐户创建并下载密钥对
+
+
+.步骤
+. 在 Google Cloud Console 中，转到 * 服务帐户 * 页面。
+. 单击 * 选择一个项目 * ，选择您的项目，然后单击 * 打开 * 。
+. 单击 * 创建服务帐户 * ，输入服务帐户名称（友好显示名称）和问题描述，然后单击 * 创建 * 。
+. 在 _IAM 页面中，单击 * 添加 * 并填写 _ 添加成员 _ 页面中的字段：
++
+.. 在 New Members 字段中，输入完整的服务帐户 ID ，例如 user1-service-account-cvs@project1.iam.gserviceaccount.com 。
+.. 添加以下角色：
++
+*** _NetApp Cloud Volumes Admin_
+*** 计算网络查看器 _
+*** 文件夹查看器 _
+
+
+.. 单击 * 保存 * 。
+
+
+. 在 _Service 帐户详细信息 _ 页面中，单击 * 添加密钥 > 创建新密钥 * 。
+. 选择 * JSON* 作为密钥类型，然后单击 * 创建 * 。
++
+单击 * 创建 * 将生成新的公共 / 私有密钥对并将其下载到系统中。它是私钥的唯一副本。请安全地存储此文件，因为它可用于作为您的服务帐户进行身份验证。
+
+
+
+有关详细步骤，请参见 Google Cloud 主题 link:https://cloud.google.com/iam/docs/creating-managing-service-accounts["创建和管理服务帐户"^]， ，和 。
+
+
+
+== 创建适用于 GCP 的 Cloud Volumes Service 工作环境
+
+在 Cloud Manager 中设置适用于 GCP 的 Cloud Volumes Service 工作环境，以便您可以开始创建卷。
+
+无论您是已从 Google Cloud Console 创建卷，还是刚刚注册适用于 GCP 的 Cloud Volumes Service 且尚未创建卷，第一步都是根据您的 GCP 订阅为卷创建一个工作环境。
+
+如果此订阅已存在云卷，则这些卷将显示在新的工作环境中。如果您尚未为 GCP 订阅添加任何云卷，请在创建新的工作环境后执行此操作。
+
+
+TIP: 如果您在多个 GCP 项目中有订阅和卷，则需要对每个项目执行此任务。
+
+为每个项目添加订阅时，您必须具有以下信息：
+
+* 服务帐户凭据（您下载的 JSON 专用密钥）
+* 项目名称
+
+
+.步骤
+. 在 Cloud Manager 中，添加一个新的工作环境，选择位置 * Google Cloud* ，然后单击 * 继续 * 。
+. 选择 * Cloud Volumes Service * 并单击 * 继续 * 。
++
+image:screenshot_add_cvs_gcp_working_env.png["为 Cloud Volumes Service for GCP 订阅添加工作环境的屏幕截图。"]
+
+. 提供有关 Cloud Volumes Service 订阅的信息：
++
+.. 输入要使用的工作环境名称。
+.. 复制 / 粘贴您在上述步骤中下载的 JSON 专用密钥。
+.. 选择 Google Cloud 项目的名称。
+.. 单击 * 添加 * 。
++
+image:screenshot_add_cvs_gcp_credentials.png["为 Cloud Volumes Service for GCP 订阅添加凭据的屏幕截图。"]
+
+
+
+
+
+Cloud Manager 可显示适用于 Google Cloud 的 Cloud Volumes Service 工作环境。
+
+image:screenshot_cvs_gcp_cloud.png["Cloud Volumes Service for Google Cloud 工作环境的屏幕截图。"]
+
+如果此订阅已存在云卷，则这些卷将显示在新的工作环境中，如屏幕截图所示。您可以从 Cloud Manager 添加其他云卷。
+
+如果此订阅不存在任何云卷，请立即创建。
+
+link:task_manage_cvs_gcp.html["开始创建和管理卷"]。

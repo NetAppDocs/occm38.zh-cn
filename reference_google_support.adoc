@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: reference_google_support.html 
+keywords: google, gcp, regions, google regions, gcp regions, storage class, standard storage class 
+summary: Cloud Tiering 支持标准存储类和大多数地区。 
+---
+= 支持的 Google Cloud 存储类和区域
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Tiering 支持标准存储类和大多数 Google Cloud 地区。
+
+
+
+== 支持的访问层
+
+Cloud Tiering 对非活动数据使用 _Standard_ 访问层。
+
+
+
+== 支持的 Google Cloud 地区
+
+Cloud Tiering 支持以下区域。
+
+
+
+=== 美洲
+
+* 爱荷华州
+* 洛杉矶
+* Montree.
+* 不包括维吉尼亚）
+* 俄勒冈州
+* 圣保罗
+* 南卡罗来纳州
+
+
+
+
+=== 亚太地区
+
+* 中国香港
+* 孟买
+* 大城
+* 新加坡
+* 悉尼
+* 中国台湾
+* 东京
+
+
+
+
+=== 欧洲
+
+* 比利时
+* 芬兰
+* 法兰克福
+* 伦敦
+* 荷兰
+* 苏黎世
+

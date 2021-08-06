@@ -1,0 +1,207 @@
+---
+sidebar: sidebar 
+permalink: concept_backup_to_cloud.html 
+keywords: backing up, restoring, back up, backup, restore, cloud volumes ontap, aws, azure, s3, blob, back up volumes, Backup to Cloud, restore volumes, billing, cost, on-premises ONTAP, onprem 
+summary: " 备份到云 " 是一项适用于 Cloud Volumes ONTAP 和内部 ONTAP 集群的附加服务，可提供备份和还原功能来保护云数据并对其进行长期归档。备份存储在云帐户的对象存储中，与用于近期恢复或克隆的卷 Snapshot 副本无关。 
+---
+= 了解有关备份到云的信息
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+" 备份到云 " 是一项适用于 Cloud Volumes ONTAP 和内部 ONTAP 集群的附加服务，可提供备份和还原功能来保护云数据并对其进行长期归档。备份存储在云帐户的对象存储中，与用于近期恢复或克隆的卷 Snapshot 副本无关。
+
+云备份由提供支持 https://cloud.netapp.com/cloud-backup-service["Cloud Backup Service"^]。
+
+
+NOTE: 您必须使用 Cloud Manager 执行所有备份和还原操作。直接从 ONTAP 或云提供商执行的任何操作都会导致配置不受支持。
+
+
+
+== 功能
+
+* 将数据卷的独立副本备份到云中的低成本对象存储。
+* 使用 AES-256 位空闲加密和正在传输的 TLS 1.2 HTTPS 连接保护备份数据。
+* 从云备份到云，从内部 ONTAP 系统备份到云。
+* 支持一个卷最多 1 ， 019 个备份。
+* 从特定时间点还原数据。
+* 将数据还原到源系统上的卷或其他系统。
+
+
+
+
+== 支持的工作环境和对象存储提供程序
+
+以下类型的工作环境支持备份到云：
+
+* AWS 中的 Cloud Volumes ONTAP
+* Azure 中的 Cloud Volumes ONTAP
+* 内部 ONTAP 集群
+
+
+
+
+== 成本
+
+备份到云有两种定价选项：自带许可证（ BYOL ）和按需购买（ PAYGO ）。
+
+对于 BYOL ，您需要向 NetApp 支付费用，使其在一段时间内（如 6 个月）使用此服务，并为最大备份容量（如 10 GB ）（在存储效率之前）支付费用，您需要向云提供商支付对象存储成本。您将收到一个序列号，您可以在 Cloud Manager 的 " 许可 " 页面中输入此序列号来启用此服务。达到任一限制后，您需要续订许可证。请参见 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["添加和更新备份 BYOL 许可证"^]。备份 BYOL 许可证适用场景与关联的所有 Cloud Volumes ONTAP 系统 。
+
+对于 PAYGO ，您需要为云提供商支付对象存储成本，并为 NetApp 支付备份许可成本。许可成本基于已用容量（未达到存储效率）：
+
+* AWS https://aws.amazon.com/marketplace/pp/B07QX2QLXX["有关定价详细信息，请访问 Cloud Manager Marketplace"^]。
+* Azure 酒店 https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["有关定价详细信息，请访问 Cloud Manager Marketplace"^]。
+
+
+
+
+=== 免费试用
+
+提供 30 天免费试用。使用试用版时，系统会通知您剩余的免费试用天数。在免费试用版结束时，备份将停止创建。您必须订阅此服务或购买许可证才能继续使用此服务。
+
+禁用此服务后，不会删除备份。除非删除备份，否则云提供商会继续为您的备份所使用的容量收取对象存储成本。
+
+
+
+== 备份到云的工作原理
+
+在 Cloud Volumes ONTAP 或内部部署 ONTAP 系统上启用 " 备份到云 " 时，此服务将对您的数据执行完整备份。备份映像中不包含卷快照。初始备份之后，所有额外备份都是增量备份，这意味着只会备份更改的块和新块。
+
+
+
+=== 备份所在位置
+
+备份副本存储在 Cloud Manager 在云帐户中创建的 S3 存储分段或 Azure Blob 容器中。对于 Cloud Volumes ONTAP 系统，对象存储是在 Cloud Volumes ONTAP 系统所在的区域创建的。对于内部部署 ONTAP 系统，您可以在启用此服务时确定区域。
+
+每个 Cloud Volumes ONTAP 或内部 ONTAP 系统都有一个对象存储。Cloud Manager 将对象存储命名为： "netapp-backup-_clusteruuid_" 。
+
+请确保不要删除此对象存储。
+
+注释：
+
+* 在 AWS 中， Cloud Manager 可启用 https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html["Amazon S3 块公有访问功能"^] 在 S3 存储分段上。
+* 在 Azure 中， Cloud Manager 使用新的或现有的资源组以及 Blob 容器的存储帐户。
+
+
+
+
+=== 支持的 S3 存储类
+
+在 Amazon S3 中，备份从 _Standard_ 存储类开始，并在 30 天后过渡到 _Standard-Infrequent Access_ 存储类。
+
+
+
+=== 支持的 Azure Blob 访问层
+
+在 Azure 中，每个备份都与 _c冷 _ 访问层相关联。
+
+
+
+=== 备份设置在系统范围内
+
+启用备份到云后，系统上标识的所有卷都将备份到云。
+
+要保留的备份计划和数量是在系统级别定义的。备份设置会影响系统上的所有卷。
+
+
+
+=== 此计划为每日，每周，每月或两者的组合
+
+您可以选择对所有卷进行每日，每周或每月备份。您还可以选择系统定义的策略之一，这些策略可提供 3 个月， 1 年和 7 年的备份和保留期限。这些策略包括：
+
+[cols="30,20,20,20,30"]
+|===
+| Policy name 3+| 每间隔备份数 ... | 最大备份 
+
+
+|  | * 每日 * | * 每周 * | * 每月 * |  
+
+
+| NetApp 3 个月保留 | 30 个 | 13 | 3. | 46 
+
+
+| NetApp 保留 1 年 | 30 个 | 13 | 12 | 55 
+
+
+| NetApp 7 年保留 | 30 个 | 53. | 84. | 167. 
+|===
+达到某个类别或间隔的最大备份数后，较早的备份将被删除，以便始终拥有最新的备份。
+
+请注意，数据保护卷备份的保留期限与源 SnapMirror 关系中定义的保留期限相同。您可以根据需要使用 API 更改此设置。
+
+
+
+=== 备份在午夜进行
+
+* 每天的备份在每天午夜后开始。
+* 每周备份将在星期日早晨午夜后开始。
+* 每月备份从每个月第一个午夜后开始。
+
+
+此时，您无法在用户指定的时间计划备份操作。
+
+
+
+=== 备份副本与您的 Cloud Central 帐户关联
+
+备份副本与关联 link:concept_cloud_central_accounts.html["Cloud Central 帐户"^] Cloud Manager 所在位置。
+
+如果您在同一 Cloud Central 帐户中有多个 Cloud Manager 系统，则每个 Cloud Manager 系统将显示相同的备份列表。其中包括与其他 Cloud Manager 系统中的 Cloud Volumes ONTAP 和内部 ONTAP 实例关联的备份。
+
+
+
+=== BYOL 许可证注意事项
+
+使用 Backup to Cloud BYOL 许可证时， Cloud Manager 会在备份接近容量限制或接近许可证到期日期时向您发出通知。您将收到以下通知：
+
+* 备份达到许可容量的 80% 时，再次达到限制时
+* 许可证到期前 30 天，许可证到期后再次
+
+
+收到这些通知后，请使用 Cloud Manager 界面右下角的聊天图标续订许可证。
+
+许可证过期后，可能会发生以下两种情况：
+
+* 如果您用于 ONTAP 系统的帐户具有 Marketplace 帐户，则备份服务将继续运行，但您将转移到 PAYGO 许可模式。云提供商会向您收取对象存储成本， NetApp 会向您收取备份许可成本以及您的备份所使用的容量费用。
+* 如果您用于 ONTAP 系统的帐户没有 Marketplace 帐户，备份服务将继续运行，但您仍会收到到期消息。
+
+
+续订 BYOL 订阅后， Cloud Manager 会自动从 NetApp 获取新许可证并进行安装。如果 Cloud Manager 无法通过安全 Internet 连接访问此许可证文件，您可以自行获取此文件并手动将其上传到 Cloud Manager 。有关说明，请参见 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["添加和更新备份 BYOL 许可证"^]。
+
+已转移到 PAYGO 许可证的系统将自动返回到 BYOL 许可证。如果系统在未获得许可证的情况下运行，则会停止接收此警告消息，并对许可证过期期间发生的备份收取费用。
+
+
+
+== 支持的卷
+
+备份到云支持读写卷和数据保护（ DP ）卷。
+
+目前不支持 FlexGroup 卷。
+
+
+
+== 限制
+
+* 启用备份到云后， Cloud Volumes ONTAP 或内部系统不支持 WORM 存储（ SnapLock ）。
+* 从内部 ONTAP 系统创建备份时的云备份限制：
++
+** 内部集群必须运行 ONTAP 9.7P5 或更高版本。
+** Cloud Manager 必须部署在 Azure 上。不支持内部 Cloud Manager 部署。
+** 备份的目标位置仅是 Azure 上的对象存储。
+** 只能将备份还原到部署在 Azure 上的 Cloud Volumes ONTAP 系统。您不能将备份还原到内部 ONTAP 系统或使用其他云提供商的 Cloud Volumes ONTAP 系统。
+
+
+* 备份数据保护（ DP ）卷时，为源卷上的 SnapMirror 策略定义的规则必须使用与允许的备份到云策略名称 * 每日 * ， * 每周 * 或 * 每月 * 匹配的标签。否则，该 DP 卷的备份将失败。
+* 在 Azure 中，如果您在部署 Cloud Volumes ONTAP 时启用了备份到云，则 Cloud Manager 将为您创建资源组，您无法更改它。如果要在启用备份到云时选择自己的资源组，请在部署 Cloud Volumes ONTAP 时 * 禁用 * 备份到云，然后启用备份到云，并从备份到云设置页面中选择资源组。
+* 从 Cloud Volumes ONTAP 系统备份卷时，不会自动备份您在 Cloud Manager 外部创建的卷。
++
+例如，如果您使用 ONTAP 命令行界面， ONTAP API 或 System Manager 创建卷，则不会自动备份该卷。
+
++
+如果要备份这些卷，则需要禁用备份到云，然后重新启用它。
+
+

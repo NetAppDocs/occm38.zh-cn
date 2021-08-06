@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: task_responding_to_dsar.html 
+keywords: dsar, data subject access request, search, search for name, report, gdpr, data privacy laws, data subject, compliance 
+summary: 通过搜索主题的全名或已知标识符（例如电子邮件地址）并下载报告来响应数据主题访问请求（ Data Subject Access Request ， DAR ）。本报告旨在帮助贵组织满足 GDPR 或类似数据隐私法律的要求。 
+---
+= 响应数据主体访问请求
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+通过搜索主题的全名或已知标识符（例如电子邮件地址）并下载报告来响应数据主题访问请求（ Data Subject Access Request ， DAR ）。本报告旨在帮助贵组织满足 GDPR 或类似数据隐私法律的要求。
+
+
+NOTE: NetApp 无法保证 Cloud Compliance 所识别的个人数据和敏感个人数据的 100% 准确性。您应始终通过查看数据来验证此信息。
+
+
+
+== 什么是数据主体访问请求？
+
+欧洲 GDPR 等隐私法规授予数据主体（如客户或员工）访问其个人数据的权利。当数据主体请求此信息时，此信息称为 DSAar （数据主体访问请求）。组织必须 " 无不当延迟 " 地对这些请求做出响应，并且最迟在收到请求后一个月内做出响应。
+
+
+
+== 云合规性如何帮助您应对 DAR ？
+
+执行数据主题搜索时， Cloud Compliance 会查找包含此人的名称或标识符的所有文件。Cloud Compliance 会检查最新的预索引数据中的名称或标识符。它不会启动新扫描。
+
+搜索完成后，您可以下载数据主题访问请求报告的文件列表。该报告汇总了数据中的洞察信息，并将其纳入法律条款中，您可以将其发回给相关人员。
+
+
+
+== 搜索数据主题并下载报告
+
+搜索数据主体的全名或已知标识符，然后下载文件列表报告或 DSAL 报告。您可以搜索依据 link:task_controlling_private_data.html#types-of-personal-data["任何个人信息类型"^]。
+
+搜索数据主题的名称时，仅支持英语。稍后将添加对更多语言的支持。
+
+
+NOTE: 目前，数据库不支持数据主题搜索。
+
+.步骤
+. 在 Cloud Manager 顶部，单击 * 云合规性 * 。
+. 单击 * 数据主题 * 。
+. 搜索数据主体的全名或已知标识符。
++
+以下示例显示了对名称 _john doe_ 的搜索：
+
++
+image:screenshot_dsar_search.gif["显示搜索 DAR 名称 \"John Doe\" 的屏幕截图。"]
+
+. 选择一个可用选项：
++
+** * 下载 DSAl 报告 * ：对访问请求的正式响应，您可以将此响应发送给数据主体。此报告包含根据 Cloud Compliance 在数据主题上找到的数据自动生成的信息，该信息可用作模板。您应填写此表单并在内部进行审核，然后再将其发送给数据主体。
+** * 调查结果 * ：一个页面，可用于通过搜索，排序，扩展特定文件的详细信息以及下载文件列表来调查数据。
++
+
+NOTE: 如果结果超过 10 ， 000 个，则文件列表中仅显示前 10 ， 000 个。
+
+
+
+

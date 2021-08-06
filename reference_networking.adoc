@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: reference_networking.html 
+keywords: networking overview, networking requirements, endpoints, urls 
+summary: 在用户登录到 Cloud Manager 之前，您需要确保其 Web 浏览器可以访问特定端点。之后，您需要验证所创建的特定工作环境类型以及所启用的任何服务的网络连接要求。 
+---
+= 网络概述
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在用户登录到 Cloud Manager 之前，您需要确保其 Web 浏览器可以访问特定端点。之后，您需要验证要使用的特定工作环境和服务类型的网络要求。
+
+
+
+== 从 Web 浏览器访问的端点
+
+用户必须从 Web 浏览器访问 Cloud Manager 。运行 Web 浏览器的计算机必须连接到以下端点：
+
+[cols="43,57"]
+|===
+| 端点 | 目的 
+
+
+| https://cloudmanager.cloud.netapp.com | 以连接到 Cloud Manager SaaS 界面。 
+
+
+| https://api.services.cloud.netapp.com | 联系 Cloud Central API 。 
+
+
+| https://auth0.com \https://cdn.auth0.com \https://netapp-cloud-account.auth0.com \https://services.cloud.netapp.com | 您的 Web 浏览器连接到这些端点、以便通过 NetApp Cloud Central 进行集中式用户身份验证。 
+
+
+| https://widget.intercom.io | 用于与 NetApp 云专家交流的产品内聊天。 
+|===
+
+
+== 网络要求索引
+
+* link:reference_networking_cloud_manager.html["连接器"]
+* link:reference_networking_aws.html["适用于 AWS 的 Cloud Volumes ONTAP"]
+* link:reference_networking_azure.html["适用于 Azure 的 Cloud Volumes ONTAP"]
+* link:reference_networking_gcp.html["适用于 GCP 的 Cloud Volumes ONTAP"]
+* link:task_replicating_data.html["在 ONTAP 系统之间进行数据复制"]
+* link:task_getting_started_compliance.html["适用于 Cloud Volumes ONTAP 或 Azure NetApp Files 的云合规性"]
+* link:task_scanning_s3.html["适用于 Amazon S3 的 Cloud Compliance"]
+* link:task_discovering_ontap.html["内部 ONTAP 集群"]
++
+** link:task_tiering_onprem_aws.html["从 ONTAP 集群到 Amazon S3 的数据分层"]
+** link:task_tiering_onprem_azure.html["从 ONTAP 集群到 Azure Blob 存储的数据分层"]
+** link:task_tiering_onprem_gcp.html["从 ONTAP 集群到 Google 云存储的数据分层"]
+** link:task_tiering_onprem_storagegrid.html["从 ONTAP 集群到 StorageGRID 的数据分层"]
+
+
+

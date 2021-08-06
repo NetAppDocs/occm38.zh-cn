@@ -1,0 +1,61 @@
+---
+sidebar: sidebar 
+permalink: concept_accounts_gcp.html 
+keywords: cloud provider accounts, gcp, gcp accounts, google cloud platform, google accounts, google cloud platform accounts, permissions, tiering, data tiering, account for data tiering, account for tiering, project, projects, add project, select new project, gcp project, google project, google cloud project 
+summary: 您可以使用 Google Cloud 帐户在项目中部署 Cloud Manager 。然后，您可以在同一项目或不同项目中部署 Cloud Volumes ONTAP 。您添加到 Cloud Manager 的 Google Cloud 帐户用于启用数据分层。 
+---
+= Google Cloud 项目，权限和帐户
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+通过服务帐户， Cloud Manager 可以在与 Cloud Manager 相同的项目或不同的项目中部署和管理 Cloud Volumes ONTAP 系统。
+
+
+
+== Cloud Manager 的项目和权限
+
+在 Google Cloud 中部署 Cloud Volumes ONTAP 之前，必须先在 Google Cloud 项目中部署 Connector 。Connector 不能在您的内部环境或其他云提供商中运行。
+
+在直接从 Cloud Manager 部署 Connector 之前，必须具有两组权限：
+
+. 您需要使用有权从 Cloud Manager 启动 Connector VM 实例的 Google 帐户部署 Connector 。
+. 部署 Connector 时，系统会提示您选择 https://cloud.google.com/iam/docs/service-accounts["服务帐户"^] VM 实例。Cloud Manager 可从服务帐户中获得代表您创建和管理 Cloud Volumes ONTAP 系统的权限。权限可通过将自定义角色附加到服务帐户来提供。
+
+
+我们设置了两个 YAML 文件，其中包括用户和服务帐户所需的权限。 link:task_creating_connectors_gcp.html["了解如何使用 YAML 文件设置权限"]。
+
+下图显示了上面编号 1 和 2 中所述的权限要求：
+
+image:diagram_permissions_gcp.png["说明"]
+
+
+
+== Cloud Volumes ONTAP 项目
+
+Cloud Volumes ONTAP 可以与 Connector 位于同一项目中，也可以位于不同项目中。要在其他项目中部署 Cloud Volumes ONTAP ，您需要先将 Connector 服务帐户和角色添加到该项目中。
+
+* link:task_creating_connectors_gcp.html#setting-up-gcp-permissions-to-create-a-connector["了解如何设置服务帐户（请参见第 2 步）"]。
+* link:task_deploying_gcp.html["了解如何在 GCP 中部署 Cloud Volumes ONTAP 并选择项目"]。
+
+
+
+
+== 数据分层的帐户
+
+
+TIP: Cloud Manager 要求为 Cloud Volumes ONTAP 9.6 提供 GCP 帐户，但不要求为 9.7 及更高版本提供 GCP 帐户。如果要在 Cloud Volumes ONTAP 9.7 中使用数据分层，请按照中的步骤 4 进行操作 link:task_getting_started_gcp.html["在 Google 云平台中开始使用 Cloud Volumes ONTAP"]。
+
+要在 Cloud Volumes ONTAP 9.6 系统上启用数据分层，需要向 Cloud Manager 添加 Google Cloud 帐户。数据分层功能会自动将冷数据分层到低成本的对象存储，使您能够回收主存储上的空间并缩减二级存储。
+
+添加帐户时，您需要为 Cloud Manager 提供具有存储管理员权限的服务帐户的存储访问密钥。Cloud Manager 可使用访问密钥设置和管理用于数据分层的云存储分段。
+
+添加 Google Cloud 帐户后，您可以在创建，修改或复制单个卷时对其启用数据分层。
+
+* link:task_adding_gcp_accounts.html["了解如何在 Cloud Manager 中设置和添加 GCP 帐户"]。
+* link:task_tiering.html["了解如何将非活动数据分层到低成本对象存储"]。
+

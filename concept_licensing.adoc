@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: concept_licensing.html 
+keywords: licenses, licensing, byol, license, subscription, renewal, expire, netapp support site, account, credentials, file, license file, upload, nlf, backup to cloud license, byol backup, license for backup to cloud 
+summary: 每个 Cloud Volumes ONTAP BYOL 系统都必须在有效订阅中安装一个系统许可证。Cloud Manager 通过管理您的许可证以及在许可证过期前通知您来简化流程。还为备份到云提供了 BYOL 许可证。 
+---
+= 许可
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+每个 Cloud Volumes ONTAP BYOL 系统都必须在有效订阅中安装一个系统许可证。Cloud Manager 通过管理您的许可证以及在许可证过期前通知您来简化流程。还为备份到云提供了 BYOL 许可证。
+
+
+
+== BYOL 系统许可证
+
+您可以为 Cloud Volumes ONTAP BYOL 系统购买多个许可证，以分配超过 368 TB 的容量。例如，您可以购买两个许可证，以便为 Cloud Volumes ONTAP 分配高达 736 TB 的容量。或者，您也可以购买四个许可证，以获得高达 1.4 PB 的容量。
+
+您可以为单节点系统或 HA 对购买的许可证数量不受限制。
+
+请注意，磁盘限制可能会阻止您单独使用磁盘来达到容量限制。您可以通过超出磁盘限制 link:concept_data_tiering.html["将非活动数据分层到对象存储"]。有关磁盘限制的信息，请参见 https://docs.netapp.com/us-en/cloud-volumes-ontap/["《 Cloud Volumes ONTAP 发行说明》中的存储限制"^]。
+
+
+
+=== 新系统的许可证管理
+
+创建 BYOL 系统时， Cloud Manager 会提示您输入许可证的序列号和 NetApp 支持站点帐户。Cloud Manager 使用帐户从 NetApp 下载许可证文件并将其安装在 Cloud Volumes ONTAP 系统上。
+
+link:task_adding_nss_accounts.html["了解如何将 NetApp 支持站点帐户添加到 Cloud Manager"]。
+
+如果 Cloud Manager 无法通过安全 Internet 连接访问许可证文件，您可以自行获取此文件，然后手动将此文件上传到 Cloud Manager 。有关说明，请参见 link:task_managing_licenses.html["管理 Cloud Volumes ONTAP 的 BYOL 许可证"]。
+
+
+
+=== 许可证到期警告
+
+Cloud Manager 会在许可证到期前 30 天以及许可证到期后再次向您发出警告。下图显示了 30 天到期警告：
+
+image:screenshot_warning.gif["屏幕截图：显示了包含警告图标的 Cloud Volumes ONTAP 工作环境。图标表示需要执行操作。"]
+
+您可以选择工作环境来查看消息。
+
+如果您不及时续订许可证， Cloud Volumes ONTAP 系统将自行关闭。如果重新启动它、它会再次自动关闭。
+
+
+NOTE: Cloud Volumes ONTAP 还可以使用 EMS （事件管理系统）事件通知通过电子邮件、 SNMP 陷阱主机或系统日志服务器通知您。有关说明，请参见 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-ems/home.html["《 ONTAP 9 EMS 配置快速指南》"^]。
+
+
+
+=== 许可证续订
+
+当您通过联系 NetApp 代表续订 BYOL 订阅时、 Cloud Manager 会自动从 NetApp 获取新许可证并将其安装在 Cloud Volumes ONTAP 系统上。
+
+如果 Cloud Manager 无法通过安全 Internet 连接访问许可证文件，您可以自行获取此文件，然后手动将此文件上传到 Cloud Manager 。有关说明，请参见 link:task_managing_licenses.html["管理 Cloud Volumes ONTAP 的 BYOL 许可证"]。
+
+
+
+== BYOL 备份许可证
+
+通过 BYOL 备份许可证，您可以从 NetApp 购买一份许可证，以便在特定时间段内使用 " 备份到云 " ，并获得最大备份空间量。达到任一限制后，您需要续订许可证。
+
+link:concept_backup_to_cloud.html#cost["了解有关 Backup to Cloud BYOL 许可证的更多信息"]。

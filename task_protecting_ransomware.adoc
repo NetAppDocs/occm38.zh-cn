@@ -1,0 +1,37 @@
+---
+sidebar: sidebar 
+permalink: task_protecting_ransomware.html 
+keywords: snapshot policy, ransomware, protection, fpolicy, block, extension, attacks 
+summary: 勒索软件攻击可能会耗费业务时间，资源和声誉。您可以通过 Cloud Manager 实施 NetApp 解决方案 for 勒索软件，它可以提供有效的工具来实现可见性，检测和补救。 
+---
+= 提高防范勒索软件的能力
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+勒索软件攻击可能会耗费业务时间，资源和声誉。您可以通过 Cloud Manager 实施 NetApp 解决方案 for 勒索软件，它可以提供有效的工具来实现可见性，检测和补救。
+
+.步骤
+. 在工作环境中，单击 * 勒索软件 * 图标。
++
+image:screenshot_ransomware_icon.gif["显示查看工作环境时页面右上角的勒索软件图标的屏幕截图。"]
+
+. 实施 NetApp 解决方案 for 勒索软件：
++
+.. 如果卷未启用 Snapshot 策略，请单击 * 激活 Snapshot 策略 * 。
++
+NetApp Snapshot 技术可为勒索软件补救提供业内最佳的解决方案。成功恢复的关键在于从未受感染的备份中还原。Snapshot 副本为只读副本，可防止勒索软件损坏。它们还可以提供创建单个文件副本或完整灾难恢复解决方案映像的粒度。
+
+.. 单击 * 激活 FPolicy* 以启用 ONTAP 的 FPolicy 解决方案，它可以根据文件扩展名阻止文件操作。
++
+此预防性解决方案可通过阻止常见的勒索软件文件类型来增强抵御勒索软件攻击的能力。
+
+
+
+
+
+image:screenshot_ransomware_protection.gif["屏幕截图显示了在工作环境中提供的 \" 勒索软件保护 \" 页面。此屏幕将显示没有 Snapshot 策略的卷数量以及阻止勒索软件文件扩展的功能。"]

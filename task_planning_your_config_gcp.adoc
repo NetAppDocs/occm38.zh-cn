@@ -1,0 +1,139 @@
+---
+sidebar: sidebar 
+permalink: task_planning_your_config_gcp.html 
+keywords: license, disk, ebs, storage, size, write speed, volume usage, explore, standard, premium, byol, capacity, limit, configurations, virtual machine, vm, regions, supported disks, disk types, use profile, thin provisioning, deduplication, compression, Cloud Volumes ONTAP explore, Cloud Volumes ONTAP standard, Cloud Volumes ONTAP premium, Cloud Volumes ONTAP byol, shared instance, dedicated instance, write speed, high write speed, normal write speed, network information, worksheet, limit, limits, storage limits, volume limit, aggregate limit, maximum volume size, maximum aggregate size 
+summary: 部署 Cloud Volumes ONTAP 时、您可以选择符合工作负载要求的预配置系统、也可以创建自己的配置。如果您选择自己的配置、则应了解可用的选项。 
+---
+= 在 Google Cloud 中规划 Cloud Volumes ONTAP 配置
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在 Google Cloud 中部署 Cloud Volumes ONTAP 时，您可以选择符合工作负载要求的预配置系统，也可以创建自己的配置。如果您选择自己的配置、则应了解可用的选项。
+
+
+
+== 选择许可证类型
+
+Cloud Volumes ONTAP 有两种定价选项：按需购买和自带许可证（ BYOL ）。对于按需购买、可从三种许可证中进行选择： Explore 、 Standard 或 Premium 。每个许可证提供不同的容量和计算选项。
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_configs_gcp_97.html["GCP 中的 Cloud Volumes ONTAP 9.7 支持的配置"^]
+
+
+
+== 了解存储限制
+
+Cloud Volumes ONTAP 系统的原始容量限制与许可证相关。附加限制会影响聚合和卷的大小。在规划配置时，您应该了解这些限制。
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_gcp_97.html["GCP 中 Cloud Volumes ONTAP 9.7 的存储限制"]
+
+
+
+== 在 GCP 中估算系统规模
+
+对 Cloud Volumes ONTAP 系统进行规模估算有助于满足性能和容量要求。在选择计算机类型，磁盘类型和磁盘大小时，您应注意几个要点：
+
+计算机类型::
++
+--
+有关更多详细信息，请参见以下内容：
+
+* https://cloud.google.com/compute/docs/machine-types#n1_machine_types["Google Cloud 文档： N1 标准计算机类型"^]
+* https://cloud.google.com/docs/compare/data-centers/networking#performance["Google Cloud 文档：性能"^]
+
+
+--
+GCP 磁盘类型::
++
+--
+SSD 持久磁盘最适合需要高随机 IOPS 速率的工作负载，而标准持久磁盘经济实惠，可处理顺序读 / 写操作。有关详细信息，请参见 https://cloud.google.com/compute/docs/disks/#pdspecs["Google Cloud 文档：区域持久性磁盘（标准和 SSD ）"^]。
+
+--
+GCP 磁盘大小::
++
+--
+* 聚合中的所有磁盘大小必须相同。
+* 确定所需空间，同时考虑性能。
+* 永久性磁盘的性能会随磁盘大小和系统可用的 vCPU 数量自动扩展。
++
+有关更多详细信息，请参见以下内容：
+
++
+** https://cloud.google.com/compute/docs/disks/#pdspecs["Google Cloud 文档：区域持久性磁盘（标准和 SSD ）"^]
+** https://cloud.google.com/compute/docs/disks/performance["Google Cloud 文档：优化持久磁盘和本地 SSD 性能"^]
+
+
+
+
+--
+
+
+
+
+== GCP 网络信息工作表
+
+在 GCP 中部署 Cloud Volumes ONTAP 时，需要指定有关虚拟网络的详细信息。您可以使用工作表从管理员收集信息。
+
+[cols="30,70"]
+|===
+| GCP 信息 | 您的价值 
+
+
+| Region |  
+
+
+| 分区 |  
+
+
+| VPC 网络 |  
+
+
+| Subnet |  
+
+
+| 防火墙策略（如果使用自己的策略） |  
+|===
+
+
+== 选择写入速度
+
+利用 Cloud Manager ，您可以为单节点 Cloud Volumes ONTAP 系统选择写入速度设置。在选择写入速度之前、您应该了解正常和高设置之间的差异、以及使用高速写入速度时的风险和建议。
+
+
+
+==== 正常写入速度和高速写入速度之间的差异
+
+选择正常写入速度后、数据将直接写入磁盘、从而减少发生计划外系统中断时数据丢失的可能性。
+
+如果选择高速写入速度、则在将数据写入磁盘之前将数据缓冲在内存中、从而提供更快的写入性能。由于这种缓存，如果发生计划外系统中断，则可能会导致数据丢失。
+
+在发生计划外系统中断时可能丢失的数据量是最后两个一致性点的范围。一致性点是将缓冲数据写入磁盘的操作。写入日志已满或 10 秒后（以先到者为准）会出现一致性点。但是， AWS EBS 卷性能可能会影响一致性点处理时间。
+
+
+
+==== 何时使用高速写入
+
+如果您的工作负载需要快速写入性能、并且您可以在发生计划外系统中断时承受数据丢失的风险、则可以选择高速写入速度。
+
+
+
+==== 使用高速写入时的建议
+
+如果启用高速写入速度、则应确保应用程序层的写保护。
+
+
+
+== 选择卷使用情况配置文件
+
+ONTAP 包含多种存储效率功能、可以减少您所需的存储总量。在 Cloud Manager 中创建卷时，您可以选择启用这些功能的配置文件或禁用这些功能的配置文件。您应该了解有关这些功能的更多信息、以帮助您确定要使用的配置文件。
+
+NetApp 存储效率功能具有以下优势：
+
+精简配置:: 为主机或用户提供的逻辑存储比实际在物理存储池中提供的存储多。在写入数据时，存储空间将动态分配给每个卷而不是预先分配存储空间。
+重复数据删除:: 通过定位相同的数据块并将其替换为单个共享块的引用来提高效率。此技术通过消除驻留在同一卷中的冗余数据块来降低存储容量需求。
+压缩:: 通过在主存储、二级存储和归档存储上的卷中压缩数据来减少存储数据所需的物理容量。
+

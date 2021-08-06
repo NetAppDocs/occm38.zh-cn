@@ -1,0 +1,103 @@
+---
+sidebar: sidebar 
+permalink: task_sync_creating_relationships.html 
+keywords: sync, relationship, create, tags, settings, create a relationship, creating relationships, bucket setup, tags 
+summary: 创建同步关系时、 Cloud Sync 服务会将文件从源复制到目标。初始副本完成后、服务将每 24 小时同步所有更改的数据。 
+---
+= 创建同步关系
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+创建同步关系时、 Cloud Sync 服务会将文件从源复制到目标。初始副本完成后、服务将每 24 小时同步所有更改的数据。
+
+以下步骤提供了一个示例，说明如何设置从 NFS 服务器到 S3 存储分段的同步关系。
+
+.步骤
+. 在 Cloud Manager 中，单击 * 同步 * 。
+. 在 * 定义同步关系 * 页面上，选择源和目标。
++
+以下步骤提供了如何创建从 NFS 服务器到 S3 存储区的同步关系的示例。
+
++
+image:screenshot_nfs_to_s3.gif["一个屏幕截图，显示 NFS 为源、 S3 为新同步关系中的目标。"]
+
+. 在 * NFS Server* 页面上，输入要同步到 AWS 的 NFS 服务器的 IP 地址或完全限定域名。
+. 在 * 数据代理 * 页面上，按照提示在 AWS ， Azure 或 Google Cloud Platform 中创建数据代理虚拟机，或者在现有 Linux 主机上安装数据代理软件。
++
+有关详细信息，请参阅以下页面：
+
++
+** link:task_sync_installing_aws.html["在 AWS 中安装数据代理"]
+** link:task_sync_installing_azure.html["在 Azure 中安装数据代理"]
+** link:task_sync_installing_gcp.html["在 GCP 中安装数据代理"]
+** link:task_sync_installing_linux.html["在 Linux 主机上安装数据代理"]
+
+
+. 安装数据代理后，单击 * 继续 * 。
++
+下图显示了在 AWS 中成功部署的数据代理：
+
++
+image:screenshot_created_instance.gif["此屏幕快照显示已成功部署的实例。该界面显示有关实例的详细信息、包括 AWS 联网。"]
+
+. 在 * 目录 * 页面上，选择顶级目录或子目录。
++
+如果 Cloud Sync 无法检索导出，请单击 * 手动添加导出 * 并输入 NFS 导出的名称。
+
++
+
+NOTE: 如果要同步 NFS 服务器上的多个目录、则必须在完成后创建其他同步关系。
+
+. 在 * AWS S3 Bucket* 页面上，选择一个存储分段：
++
+** 向下钻取以选择存储桶中的现有文件夹或选择在存储桶内创建的新文件夹。
+** 单击 * 添加到列表 * 以选择与您的 AWS 帐户无关的 S3 存储分段。 link:reference_sync_requirements.html#s3["必须将特定权限应用于 S3 存储区。"]。
+
+
+. 在 * 分段设置 * 页面上，设置分段：
++
+** 选择是否启用 S3 存储分段加密，然后选择 AWS KMS 密钥，输入 KMS 密钥的 ARN 或选择 AES-256 加密。
+** 选择 S3 存储类。 link:reference_sync_requirements.html#storage-classes["查看支持的存储类。"]。
++
+image:screenshot_bucket_setup.gif["此屏幕截图显示了 \" 存储分段设置 \" 页面，您可以通过该页面选择 \" 是 \" 或 \" 否 \" 进行加密，并为已同步数据选择特定的 S3 存储类。"]
+
+
+
+. 在 * 设置 * 页面上，定义如何在目标位置同步和维护源文件和文件夹：
++
+计划:: 为将来的同步选择重复计划或关闭同步计划。您可以计划一个关系以每 1 分钟同步一次数据。
+重试:: 定义在跳过文件之前、 Cloud Sync 应重试同步文件的次数。
+最近修改的文件:: 选择排除在计划同步之前最近修改的文件。
+删除源上的文件::
++
+--
+如果启用此选项，则还需要更改数据代理上 local.json 文件中的参数。打开文件并将名为 _workers.transferrer.delete-on-source_ 的参数更改为 * true * 。
+
+--
+删除目标上的文件:: 如果文件已从源文件中删除，请选择从目标位置删除这些文件。默认情况下，从不从目标位置删除文件。
+对象标记:: 如果 AWS S3 是同步关系中的目标，则 Cloud Sync 会使用与同步操作相关的元数据对 S3 对象进行标记。如果环境中不需要对 S3 对象进行标记，则可以禁用该标记。如果禁用标记，则不会对 Cloud Sync 产生任何影响— Cloud Sync 只是以不同方式存储同步元数据。
+文件类型:: 定义要包括在每个同步中的文件类型：文件、目录和符号链接。
+排除文件扩展名::
++
+--
+video::video_file_extensions.mp4[width=840,height=240]
+--
+文件大小:: 选择同步所有文件、无论文件大小如何、还是仅同步特定大小范围内的文件。
+修改日期:: 选择所有文件，无论其上次修改日期、在特定日期之后修改的文件、特定日期之前或时间范围之间的文件。
+
+
+. 在 * 关系标记 * 页面上，最多输入 9 个关系标记，然后单击 * 继续 * 。
++
+Cloud Sync 服务将标记分配给它将其同步到 S3 数据段的每个对象。
+
+. 查看同步关系的详细信息，然后单击 * 创建关系 * 。
+
+
+* 结果 *
+
+Cloud Sync 开始在源和目标之间同步数据。

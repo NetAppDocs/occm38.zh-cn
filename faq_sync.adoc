@@ -1,0 +1,351 @@
+---
+sidebar: sidebar 
+permalink: faq_sync.html 
+keywords: community, forums, help, support, videos, faq, getting help, permissions, access control lists, acls, preserve, preserving, troubleshooting, support 
+summary: 您可以获得有关 Cloud Sync 的帮助，并通过论坛，聊天服务和视频等各种资源查找更多信息。 
+---
+= Cloud Sync 技术常见问题解答
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+如果您只是在寻找一个问题的快速答案，此常见问题解答将会有所帮助。
+
+
+
+== 入门
+
+以下问题与 Cloud Sync 入门相关。
+
+
+
+=== Cloud Sync 如何工作？
+
+Cloud Sync 使用 NetApp 数据代理软件将数据从源同步到目标（称为 _sync relationship_ ）。
+
+数据代理控制源和目标之间的同步关系。建立同步关系后、 Cloud Sync 会分析您的源系统并将其分成多个复制流以推入选定的目标数据。
+
+初始副本之后、服务将根据您设置的计划同步所有更改的数据。
+
+
+
+=== 14 天免费试用如何工作？
+
+14 天免费试用将在您注册 Cloud Sync 服务时开始。对于您创建的 14 天 Cloud Sync 关系，您无需支付 NetApp 费用。但是，您部署的任何数据代理的所有资源费用仍然适用。
+
+
+
+=== Cloud Sync 的成本是多少？
+
+使用 Cloud Sync 需要两种类型的成本：服务费用和资源费用。
+
+* 服务费用 *
+
+对于按需购买的定价，根据您创建的同步关系数量， Cloud Sync 服务的收费是每小时一次的。
+
+* https://aws.amazon.com/marketplace/pp/B01LZV5DUJ["在 AWS 中查看按需购买定价"^]
+* https://aws.amazon.com/marketplace/pp/B06XX5V3M2["查看 AWS 中的年度定价"^]
+* https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-sync-service?tab=PlansAndPrice["查看 Azure 中的定价"^]
+
+
+您的 NetApp 代表也可以获得 Cloud Sync 许可证。每个许可证可在 12 个月内实现 20 个同步关系。
+
+link:concept_cloud_sync.html["了解有关许可证的更多信息。"]。
+
+* 资源费用 *
+
+资源费用与在云中运行数据代理的计算和存储成本相关。
+
+
+
+=== 如何对 Cloud Sync 进行收费？
+
+在 14 天免费试用结束后、有两种方式可以支付同步关系的费用。第一种选择是从 AWS 或 Azure 订阅、这使您可以按需付费或每年付款。第二种选择是直接从 NetApp 购买许可证。
+
+
+
+=== 是否可以在云之外使用 Cloud Sync ？
+
+是的、您可以在非云架构中使用 Cloud Sync 。源和目标可以驻留在内部、数据代理也可以驻留在内部。
+
+请注意以下有关在云之外使用云同步的要点：
+
+* 对于内部同步，可通过 NetApp StorageGRID 获得私有 Amazon S3 数据段。
+* 数据代理需要 Internet 连接才能与 Cloud Sync 服务进行通信。
+* 如果您不直接从 NetApp 购买许可证，则需要一个 AWS 或 Azure 帐户才能为 PAYGO Cloud Sync 服务计费。
+
+
+
+
+=== 如何访问 Cloud Sync ？
+
+Cloud Sync 可从 Cloud Manager 的 * 同步 * 选项卡中访问。
+
+
+
+== 支持的源和目标
+
+以下问题与同步关系中支持的源和目标有关。
+
+
+
+=== Cloud Sync 支持哪些源和目标？
+
+Cloud Sync 支持多种不同类型的同步关系。 link:reference_sync_requirements.html["查看整个列表。"]。
+
+
+
+=== Cloud Sync 支持哪些版本的 NFS 和 SMB ？
+
+Cloud Sync 支持 NFS 版本 3 和更高版本以及 SMB 版本 1 和更高版本。
+
+link:reference_sync_requirements.html["了解有关同步要求的更多信息。"]。
+
+
+
+=== 当 Amazon S3 成为目标时、能否将数据分层到特定的 S3 存储类？
+
+是的、当 AWS S3 为目标时，您可以选择特定的 S3 存储类：
+
+* 标准（这是默认类）
+* Intelligent-Hierarchy
+* 标准—不经常访问
+* 一个 ZONE 不常访问
+* 冰河
+* Glacier 深度存档
+
+
+
+
+=== Azure Blob Storage 的存储层如何？
+
+当 BLOB 容器是目标容器时，可以选择特定的 Azure Blob 存储层：
+
+* 热存储
+* 冷却存储
+
+
+
+
+== 网络
+
+以下问题与 Cloud Sync 的网络要求有关。
+
+
+
+=== Cloud Sync 的网络要求是什么？
+
+Cloud Sync 环境要求数据代理通过选定的协议（ NFS 、 SMB 、 EFS ）或对象存储 API （ Amazon S3 、 Azure Blob 、 IBM Cloud 对象存储）与源和目标连接。
+
+此外、数据代理需要通过端口 443 进行出站 Internet 连接、以便它可以与 Cloud Sync 服务进行通信并与其他一些服务和存储库联系。
+
+有关详细信息： link:reference_sync_networking.html["查看网络要求："]。
+
+
+
+=== 是否存在与数据代理连接相关的网络限制？
+
+数据代理需要访问 Internet 。在 Azure 或 Google Cloud Platform 中部署数据代理时，我们不支持代理服务器。
+
+
+
+== 数据同步
+
+以下问题与数据同步的工作原理有关。
+
+
+
+=== 同步发生的频率是多少？
+
+默认计划设置为每日同步。初始同步后，您可以：
+
+* 将同步计划修改为所需的天数、小时数或分钟数
+* 禁用同步计划
+* 删除同步计划（不会丢失任何数据；只会删除同步关系）
+
+
+
+
+=== 最低同步计划是什么？
+
+您可以计划一个关系以每 1 分钟同步一次数据。
+
+
+
+=== 数据代理是否在文件无法同步时重试？还是超时？
+
+当单个文件无法传输时，数据代理不会超时。相反、数据代理会在跳过文件之前重试 3 次。重试值可在同步关系的设置中进行配置。
+
+link:task_sync_managing_relationships.html#changing-the-settings-for-a-sync-relationship["了解如何更改同步关系的设置。"]。
+
+
+
+=== 如果我有一个非常大的数据集会怎样？
+
+如果一个目录包含 600 ， 000 个或更多文件，请发送邮件至： ng-cloudsync-support@netapp.com ，以便我们帮助您配置数据代理来处理有效负载。我们可能需要为数据代理计算机添加额外内存。
+
+
+
+== 安全性
+
+以下与安全相关的问题。
+
+
+
+=== 云同步是否安全？
+
+是的。所有 Cloud Sync 服务网络连接均使用完成 https://aws.amazon.com/sqs/["Amazon Simple Queue Service （ SQS ）"^]。
+
+数据代理与 Amazon S3 、 Azure Blob 、 Google Cloud Storage 和 IBM Cloud 对象存储之间的所有通信均通过 HTTPS 协议完成。
+
+如果您将 Cloud Sync 与内部（源或目标）系统结合使用，建议使用以下连接选项：
+
+* AWS Direct Connect 、 Azure ExpressRoute 或 Google Cloud 互连连接（非 Internet 路由）（并且只能与您指定的云网络通信）
+* 内部网关设备与云网络之间的 VPN 连接
+* 为了通过 S3 Battle 、 Azure Blob Storage 或 Google Cloud Storage 实现额外的安全数据传输、可以建立 Amazon 私有 S3 端点、 Azure 虚拟网络服务端点或私有 Google Access 。
+
+
+这些方法中的任何一种都可以在内部 NAS 服务器和云同步数据代理之间建立安全连接。
+
+
+
+=== 数据是否通过 Cloud Sync 加密？
+
+* Cloud Sync 支持在源 NFS 服务器和目标 NFS 服务器之间进行数据流加密。 link:task_sync_nfs_encryption.html["了解更多信息。"]。
+* SMB 不支持加密。
+* 如果 Amazon S3 存储分段是同步关系中的目标，您可以选择是使用 AWS KMS 加密还是 AES-256 加密启用数据加密。
+
+
+
+
+== 权限
+
+以下问题与数据权限相关。
+
+
+
+=== SMB 数据权限是否与目标位置同步？
+
+您可以设置 Cloud Sync 以保留源 SMB 共享和目标 SMB 共享之间的访问控制列表（ ACL ）。或者您也可以自己手动复制 ACL 。 link:task_sync_copying_acls.html["了解如何在 SMB 共享之间复制 ACL 。"]。
+
+
+
+=== NFS 数据权限是否与目标位置同步？
+
+Cloud Sync 会自动在 NFS 服务器之间复制 NFS 权限，如下所示：
+
+* NFS 版本 3 ： Cloud Sync 会复制权限和用户组所有者。
+* NFS 版本 4 ： Cloud Sync 会复制 ACL 。
+
+
+
+
+== 性能
+
+以下问题与云同步性能有关。
+
+
+
+=== 同步关系的进度指示符代表什么？
+
+同步关系显示数据代理的网络适配器的吞吐量。如果使用多个数据代理提高同步性能、则吞吐量是所有流量的总和。此吞吐量每 20 秒刷新一次。
+
+
+
+=== 我遇到了性能问题。我们是否可以限制并发传输的数量？
+
+数据代理一次可以同步 4 个文件。如果您有非常大的文件（每个 TB 数）、则可能需要很长时间才能完成传输过程、并且性能可能会受到影响。
+
+限制并发传输的数量有助于实现这一目标。mailto ： ng-cloudsync-support@netapp.com 。
+
+
+
+=== 为什么使用 Azure NetApp Files 时性能较低？
+
+在与 Azure NetApp Files 同步数据时，如果磁盘服务级别为标准，则可能会出现故障和性能问题。
+
+将服务级别更改为高级或超高级以提高同步性能。
+
+https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-service-levels#throughput-limits["详细了解 Azure NetApp Files 服务级别和吞吐量"^]。
+
+
+
+=== 为什么我在使用适用于 AWS 的 Cloud Volumes Service 时遇到性能低下的问题？
+
+在将数据同步到云卷或从云卷同步时，如果云卷的性能级别是标准的、则可能会遇到故障和性能问题。
+
+将服务级别更改为“高级”或“至尊”以提高同步性能。
+
+
+
+=== 需要多少个数据代理？
+
+创建新关系时、首先使用单个数据代理（除非选择了属于加速同步关系的现有数据代理）。在许多情况下、单个数据代理可以满足同步关系的性能要求。否则，您可以通过添加其他数据代理来提高同步性能。但是，您应该首先检查可能影响同步性能的其他因素。
+
+多个因素会影响数据传输性能。由于网络带宽、延迟和网络拓扑以及数据代理 VM 规格和存储系统性能的影响、整体同步性能可能会受到影响。例如，同步关系中的单个数据代理可以达到 100 MB/ 秒，而目标上的磁盘吞吐量可能只允许 64 MB/ 秒。因此，数据代理会不断尝试复制数据，但目标无法满足数据代理的性能要求。
+
+因此，请务必检查网络的性能以及目标上的磁盘吞吐量。
+
+然后，您可以考虑通过添加额外的数据代理来共享该关系的负载来加速同步性能。 link:task_sync_managing_relationships.html#accelerating-sync-performance["了解如何提高同步性能。"]。
+
+
+
+== 删除内容
+
+以下问题与从源和目标删除同步关系和数据有关。
+
+
+
+=== 如果删除了我的云同步关系，会发生什么情况？
+
+删除关系将停止所有将来的数据同步并终止付款。与目标同步的任何数据均保持原样。
+
+
+
+=== 如果从源服务器中删除某些内容会发生什么情况？它是否也从目标中删除？
+
+默认情况下，如果您具有活动同步关系、则在下次同步时不会从目标中删除源服务器上已删除的项目。但是，每个关系的同步设置中都有一个选项，您可以在其中定义：如果从源中删除了目标位置中的文件，则 Cloud Sync 将删除这些文件。
+
+link:task_sync_managing_relationships.html#changing-the-settings-for-a-sync-relationship["了解如何更改同步关系的设置。"]。
+
+
+
+=== 如果我从目标中删除某些内容会发生什么情况？它是否也从我的来源中删除？
+
+如果从目标中删除了项目，则不会从源中删除该项目。这种关系是从源到目标的单向关系。在下一个同步周期中、 Cloud Sync 会将源与目标进行比较、确定缺少该项目、然后 Cloud Sync 会将其从源再次复制到目标。
+
+
+
+== 故障排除
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Cloud_Sync/Cloud_Sync_FAQ:_Support_and_Troubleshooting["NetApp 知识库： Cloud Sync 常见问题解答：支持和故障排除"^]
+
+
+
+== 数据代理深入探讨
+
+以下问题与数据代理有关。
+
+
+
+=== 您能否解释数据代理的架构？
+
+当然。以下是最重要的一点：
+
+* 数据代理是在 Linux 主机上运行的一个 node.js 应用程序。
+* Cloud Sync 按以下方式部署数据代理：
++
+** AWS ：来自 AWS Cloudformation 模板
+** Azure ：来自 Azure Resource Manager
+** Google ：来自 Google Cloud 部署管理器
+** 如果您使用自己的 Linux 主机、则需要手动安装软件
+
+
+* 数据代理软件会自动升级到最新版本。
+* 数据代理使用 AWS SQS 作为可靠、安全的通信通道以及进行控制和监控。SQS 还提供持久性层。
+* 您可以向关系中添加其他数据代理、以提高传输速度并增加高可用性。如果一个数据代理出现故障，则具有服务弹性。
+

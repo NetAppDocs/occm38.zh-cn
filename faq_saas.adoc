@@ -1,0 +1,148 @@
+---
+sidebar: sidebar 
+permalink: faq_saas.html 
+keywords: faq, frequently asked questions, questions 
+summary: 本常见问题解答解答解答了与全新 Cloud Manager SaaS 版本相关的关键问题。 
+---
+= 有关 Cloud Manager SaaS 的常见问题解答
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+本常见问题解答解答解答了与全新 Cloud Manager SaaS 版本相关的关键问题。
+
+
+
+== 2020 年 8 月 3 日发布的 Cloud Manager SaaS 版本引入了哪些功能？
+
+* * 一个统一的 API 和 UUI *
++
+适用于所有基于 NetApp ONTAP 的存储解决方案的统一集中式 API 控制平台，为客户提供以下管理和控制：
+
++
+** Azure NetApp Files
+** 适用于 AWS 的 Cloud Volumes Service
+** 适用于 Google Cloud 的 Cloud Volumes Service
+** Cloud Volumes ONTAP
+
+
+* * 与 NetApp 数据服务无缝集成 *
++
+为了实现平稳集成，存储解决方案内置了可轻松集成的数据服务。
+
+* * 集中管理多个环境 *
++
+现在，多个环境的部署和管理已得到简化。在以前的版本中，客户必须在每个需要的位置部署 Cloud Manager 实例。在新版本中， Cloud Manager 代理现在重命名为 _Connector_ 。
+
++
+拥有多个 NetApp Cloud Central 帐户或连接器的用户可以轻松地在不同的帐户和环境之间切换。
+
+* * 用于 API 和 UI 的公有端点 *
++
+在新版本中，您可以通过安全地访问 Cloud Manager 的 API 和 GUI  https://cloudmanager.netapp.com[]。
+
+
+
+
+
+== 部署在 VPC/vNet 中的 Cloud Manager 实例会发生什么情况？
+
+如前所述，部署在客户网络中的 Cloud Manager 实例现在称为 _Connector_ 。
+
+Connector 的角色未更改。它的用途与以前相同—管理客户公有云网络中的资源和流程。
+
+
+
+== 我是否可以在使用 SaaS 平台的情况下删除 Connector ？
+
+不，您不应。Connector 软件与用于管理公有云环境中的资源和流程的软件相同，例如部署和管理 Cloud Volumes ONTAP ，启用 Cloud Backup Service ，部署云合规性等。
+
+
+
+== 我是否可以像以前一样使用 Cloud Manager （通过 VPC 中部署的实例在本地）？
+
+可以。您可以通过单击 * 连接器 * 菜单并单击 * 转到本地 UID* 或直接在 Web 浏览器中输入连接器的 IP 地址来执行此操作。
+
+
+
+== 迁移到 Cloud Manager SaaS 是否需要迁移或采取任何具体操作？
+
+无需任何操作。只需浏览即可 https://cloudmanager.netapp.com[] 并开始工作。显然， Cloud Manager 的访问权限仅授予授权用户。
+
+
+
+== Cloud Volumes ONTAP 或存储的数据是否发生了更改或移动到任何位置？
+
+否它始终是您的 VPC 或 vNet 中由您管理的一个方面。
+
+
+
+== Cloud Manager SaaS 平台的端点在哪里？
+
+它由 NetApp 在公有云中安全地运行。
+
+
+
+== Cloud Manager SaaS 服务层存储了哪种类型的数据或元数据？
+
+Cloud Manager SaaS 服务层不会存储任何数据。
+
+SaaS 平台用作用户 Web 浏览器与本地连接器或集成到 Cloud Manager 中的不同 NetApp 服务之间 API 调用（ HTTPS 与 NetApp 签名证书）的安全管道。
+
+
+
+== VPC-vNet 中部署的连接器会存储哪些数据或元数据？
+
+Connector/Cloud Manager 未更改。它存储的数据与上一版本中的数据相同。它仅保存在公有云环境中管理资源和流程所需的元数据，例如部署和管理 Cloud Volumes ONTAP ，启用 Cloud Backup Service ，部署和使用云合规性等（请参见 link:concept_connectors.html["了解连接器"] 页面）。
+
+
+
+== 数据和元数据路径是什么？
+
+从 Connector 到客户的数据通过 HTTPS 传输，并通过 NetApp 证书进行加密和签名。基于 SaaS 的 UI 可作为客户端 Web 浏览器和 Connector 之间的安全管道。这意味着，只有授权用户才能访问 Connector 中的数据。
+
+对于使用 Cloud Compliance 服务的客户，现在对其进行端到端加密密钥交换在 Web 浏览器和 Connector 之间进行，因此 NetApp 无法读取任何数据。 https://cloud.netapp.com/cloud-compliance["了解有关云合规性的更多信息"^]。
+
+
+
+== 通过 SaaS 端点使用云合规服务是否会影响 GDPR ？
+
+数据会进行端到端加密密钥交换在 Web 浏览器和 Connector 之间进行，因此 NetApp 无法读取任何数据。
+
+
+
+== 基于 SaaS 的 UI 和 API 使用哪种网络方向访问来访问连接器？
+
+* 从客户的 VPC/vNet 到基于 SaaS 的 UI 的通信仅为 _outout_ ，这意味着它仅由 Connector 启动。
+* Connector 会在安全通道上轮询基于 SaaS 的服务层的更新。
+* 所有 API 调用都使用身份验证和授权来确保访问安全。
++
+这意味着您的网络中无需打开其他端口 / 端点。
+
+* 用户的浏览器客户端与基于 SaaS 的 UI 之间的通信使用 HTTPS 和 NetApp 签名的证书。
+
+
+
+
+== 登录流是否已更改？
+
+否，登录流与上一版本保持相同。当用户登录（ SSO 或凭据）时，他们会按照 Auth0 进行身份验证，就像以前一样。
+
+请注意以下事项：
+
+* 如果已设置 SSO 或联合，则仍可执行与所使用的安全过程相同的安全过程。访问是贵公司设施中的联合访问。在使用联合访问时，您可以根据公司的判断添加 MFA ，以提高安全性。
+* 角色或权限没有任何更改。只有已向 Cloud Central 帐户注册的用户才能访问基于 SaaS 的端点。
+* 目前不支持使用匿名模式或在客户端浏览器中不允许使用第三方 cookie 的配置。
+
+
+
+
+== 基于 SaaS 的 Cloud Manager 是否符合要求（ SOC2 ， FedRAMP 等）？
+
+Cloud Manager 正在获取 SOC2 认证。
+
+为了符合 FedRAMP 认证要求，不会为需要 FedRAMP 的客户启用基于 SaaS 的 UI 。

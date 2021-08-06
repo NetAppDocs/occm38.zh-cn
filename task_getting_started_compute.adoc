@@ -1,0 +1,85 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_compute.html 
+keywords: compute, cloud insights, cloud analyzer, connect cloud analyzer, connect master payer account, connect payer account, aws payer account 
+summary: 完成几个步骤，从 Spot 的 Cloud Analyzer 中深入分析您的云计算成本。 
+---
+= 开始优化云计算成本
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+连接您的 AWS 帐户，然后查看分析结果，开始优化您的云计算成本。
+
+
+
+== 将 Cloud Analyzer 连接到您的 AWS 帐户
+
+单击 * 计算 * 并连接您的 AWS 付款人帐户。
+
+.步骤
+. 单击 * 计算 * 。
+. 单击 * 将 AWS 凭据添加到启动 * 。
+. 按照页面上的步骤连接您的 AWS 帐户：
++
+.. 登录到您的 AWS 主付款人帐户。
+.. 在 AWS 帐户上设置成本和使用情况报告。
+.. 运行 CloudFormation 模板。
+.. 粘贴 Spot RoleARN 。
++
+https://help.spot.io/cloud-analyzer/connect-your-aws-account-2/["查看有关这些步骤的更多详细信息"^]。
+
++
+image:screenshot_compute_add_account.gif["显示连接页面上每个可用字段的屏幕截图。"]
+
+
+
+
+
+Cloud Analyzer 开始处理您的 AWS 帐户数据。如果您有多个帐户， Cloud Analyzer 将从主付款人帐户下所有链接帐户的只读功能开始。如果您希望了解有关这些客户可能节省的空间的更多详细信息，则还需要将其连接起来。有关此过程的详细信息，请参见以下部分。
+
+
+
+== 分析计算成本
+
+在 Cloud Analyzer 处理您的帐户数据后， " 计算 " 选项卡将显示您对过去，当前和未来云成本的洞察。
+
+image:screenshot_compute_dashboard.gif["显示 Cloud Manager 中 \" 成本分析 \" 页面的屏幕截图。此页面包含以下文本中所述的信息。"]
+
+月至今成本:: 从当月月初到目前的工作负载总成本。
+预计成本:: 根据对使用模式的分析得出的月底预测成本。
+上周未实现节省:: 通过优化 Spot 实例和预留，可在过去七天内实现的节省量。
+排名前几位的 AWS 客户的效率支出::
++
+--
+系统会根据当前节省的空间以及可能节省的额外空间为每个帐户分配一个效率得分。预计额外节省量表示利用 Spot 和 Reserved 实例可以进一步节省多少空间。
+
+您可以执行以下操作来进一步优化您的帐户：
+
+* * 查看详细信息 * ：转到 Spot 的 Cloud Analyzer ，查看您的成本优化机会。
+* * 连接 * ：连接尚未管理的帐户。系统将引导您访问连接帐户的向导。
+
+
+--
+排名靠前的 AWS 帐户:: 这是一个条形图，按成本显示您排名前十位的客户。此图基于过去 30 天的支出活动。
+
+
+https://help.spot.io/cloud-analyzer/cost-analysis/["了解有关 Spot Cloud Analyzer 中的 " 成本分析 " 页面的更多信息"^]。
+
+
+
+== 请访问 Cloud Analyzer 以获取更多分析和建议
+
+随时单击 * 获取完整分析 * 可访问更多图表和分析，深入建议，用例优化细分（容器， ElasticApps 和预留）等。
+
+下面是您在 Cloud Analyzer 中看到的内容示例：
+
+image:screenshot_compute_dashboard_spot.gif["显示 Spot Cloud Analyzer 中的 \" 成本分析 \" 页面的屏幕截图。"]
+
+* https://spot.io/products/cloud-analyzer/["查看 Cloud Analyzer 的产品页面，了解有关其功能的更多信息"^]。
+* https://help.spot.io/cloud-analyzer/["查看有关 Spot 的文档，以获取有关使用 Cloud Analyzer 的帮助"^]。
+

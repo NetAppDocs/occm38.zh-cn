@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_gcp.html 
+keywords: google cloud platform, gcp, deploy cloud manager, launch cloud manager, create cloud manager, getting started, networking, gcp networking, service account, tiering, data tiering, bucket, fabricpool, storage access key, gcp role, role, iam role, permissions, gcp permissions 
+summary: 通过几个步骤开始使用适用于 GCP 的 Cloud Volumes ONTAP 。 
+---
+= Cloud Volumes ONTAP for Google Cloud 入门
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+通过几个步骤开始使用适用于 GCP 的 Cloud Volumes ONTAP 。
+
+
+
+==== 创建连接器
+
+[role="quick-margin-para"]
+如果您没有 link:concept_connectors.html["连接器"] 但是，客户管理员需要创建一个。 。
+
+[role="quick-margin-para"]
+在创建首个 Cloud Volumes ONTAP 工作环境时，如果尚未部署 Connector ，则 Cloud Manager 会提示您部署一个。
+
+
+
+==== 规划您的配置
+
+[role="quick-margin-para"]
+Cloud Manager 可提供符合您的工作负载要求的预配置软件包，您也可以创建自己的配置。如果您选择自己的配置、则应了解可用的选项。 link:task_planning_your_config_gcp.html["了解更多信息。"]。
+
+
+
+==== 设置网络
+
+. 确保您的 VPC 和子网支持连接器和 Cloud Volumes ONTAP 之间的连接。
+. 从目标 VPC 启用出站 Internet 访问，以便连接器和 Cloud Volumes ONTAP 可以联系多个端点。
++
+此步骤非常重要，因为没有出站 Internet 访问， Connector 无法管理 Cloud Volumes ONTAP 。如果需要限制出站连接，请参阅的端点列表 link:reference_networking_gcp.html["连接器和 Cloud Volumes ONTAP"]。
+
+
+
+[role="quick-margin-para"]
+link:reference_networking_gcp.html["详细了解网络要求"]。
+
+
+
+==== 设置用于数据分层的 GCP
+
+[role="quick-margin-para"]
+要将冷数据从 Cloud Volumes ONTAP 分层到低成本对象存储（ Google 云存储分段），必须满足两项要求。
+
+. https://cloud.google.com/vpc/docs/configure-private-google-access["为专用 Google 访问配置 Cloud Volumes ONTAP 子网"^]。
+. https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["设置用于数据分层的服务帐户"^]：
++
+** 将预定义的 _Storage Admin_ 角色分配给分层服务帐户。
+** 将 Connector 服务帐户作为 _Service Account User_ 添加到分层服务帐户。
++
+您可以提供用户角色 https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["在创建分层服务帐户时，请执行向导的第 3 步"]或。
+
++
+稍后在创建 Cloud Volumes ONTAP 工作环境时，您需要选择分层服务帐户。
+
++
+如果在创建 Cloud Volumes ONTAP 系统时未启用数据分层并选择服务帐户，则需要关闭系统并从 GCP 控制台将服务帐户添加到 Cloud Volumes ONTAP 。
+
+
+
+
+
+
+
+==== 启用 Google Cloud API
+
+[role="quick-margin-para"]
+https://cloud.google.com/apis/docs/getting-started#enabling_apis["在项目中启用以下 Google Cloud API"^]。部署连接器和 Cloud Volumes ONTAP 需要使用这些 API 。
+
+* Cloud Deployment Manager V2 API
+* 云日志记录 API
+* Cloud Resource Manager API
+* 计算引擎 API
+* 身份和访问管理（ IAM ） API
+
+
+
+
+==== 使用 Cloud Manager 启动 Cloud Volumes ONTAP
+
+[role="quick-margin-para"]
+单击 * 添加工作环境 * ，选择要部署的系统类型，然后完成向导中的步骤。 link:task_deploying_gcp.html["阅读分步说明"]。
+
+.相关链接
+* link:concept_evaluating.html["评估"]
+* link:task_creating_connectors_gcp.html["使用 Cloud Manager 创建连接器"]
+* link:task_installing_linux.html["在 Linux 主机上安装 Connector 软件"]
+* link:reference_permissions.html#what-cloud-manager-does-with-gcp-permissions["Cloud Manager 如何使用 GCP 权限"]
+

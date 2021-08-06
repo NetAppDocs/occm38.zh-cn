@@ -1,0 +1,145 @@
+---
+sidebar: sidebar 
+permalink: task_scanning_databases.html 
+keywords: cloud compliance, enable cloud compliance, outbound internet, endpoints, cloud compliance internet, web browser connectivity, cloud compliance access, privacy, compliance, databases, database schemas, Oracle, SAP HANA, SQL Server, MongoDB, PostgreSQL 
+summary: 请完成几个步骤，开始使用 Cloud Compliance 扫描数据库架构。 
+---
+= 正在扫描数据库架构
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+请完成几个步骤，开始使用 Cloud Compliance 扫描数据库架构。
+
+
+
+== 快速入门
+
+按照以下步骤快速入门，或者向下滚动到其余部分以了解完整详细信息。
+
+
+
+==== 查看数据库前提条件
+
+[role="quick-margin-para"]
+确保您的数据库受支持，并且您具有连接到数据库所需的信息。
+
+
+
+==== 部署 Cloud Compliance 实例
+
+[role="quick-margin-para"]
+link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compliance"^] 如果尚未部署实例。
+
+
+
+==== 添加数据库服务器
+
+[role="quick-margin-para"]
+添加要访问的数据库服务器。
+
+
+
+==== 选择模式
+
+[role="quick-margin-para"]
+选择要扫描的模式。
+
+
+
+== 查看前提条件
+
+在启用 Cloud Compliance 之前，请查看以下前提条件以确保您的配置受支持。
+
+
+
+=== 支持的数据库
+
+Cloud Compliance 可以从以下数据库扫描架构：
+
+* MongoDB
+* Oracle
+* PostgreSQL
+* SAP HANA
+* SQL Server （ MSSQL ）
+
+
+
+IMPORTANT: 数据库中必须启用 * 统计信息收集功能。
+
+
+
+=== 数据库要求
+
+可以扫描连接到 Cloud Compliance 实例的任何数据库，而不管其托管在何处。要连接到数据库，您只需提供以下信息：
+
+* IP 地址或主机名
+* Port
+* 服务名称（仅用于访问 Oracle 数据库）
+* 允许对模式进行读取访问的凭据
++
+选择用户名和密码时，请务必选择对要扫描的所有架构和表具有完全读取权限的用户名和密码。我们建议您为 Cloud Compliance 系统创建一个具有所有所需权限的专用用户。
+
+
+
+* 注： * 对于 MongoDB ，需要只读管理员角色。
+
+
+
+== 正在添加数据库服务器
+
+您必须拥有 link:task_deploy_cloud_compliance.html["已在 Cloud Manager 中部署 Cloud Compliance 实例"^]。
+
+添加架构所在的数据库服务器。
+
+. 在 _Scan Configuration_ 页面中，单击 * 添加数据库服务器 * 按钮。
++
+image:screenshot_compliance_add_db_server_button.png["扫描配置页面的屏幕截图，您可以在其中单击添加数据库服务器按钮。"]
+
+. 输入所需信息以标识数据库服务器。
++
+.. 选择数据库类型。
+.. 输入要连接到数据库的端口和主机名或 IP 地址。
+.. 对于 Oracle 数据库，输入服务名称。
+.. 输入凭据，以便 Cloud Compliance 可以访问服务器。
+.. 单击 * 添加数据库服务器 * 。
++
+image:screenshot_compliance_add_db_server_dialog.png["Add DB Server 页面的屏幕截图，用于标识数据库。"]
+
+
+
+
+
+数据库将添加到工作目录列表中。
+
+
+
+== 对数据库架构启用和禁用合规性扫描
+
+您可以随时停止或开始扫描模式。
+
+. 在 _Scan Configuration_ 页面中，单击要配置的数据库的 * 配置 * 按钮。
++
+image:screenshot_compliance_db_server_config.png["扫描配置页面的屏幕截图，您可以在其中选择配置按钮。"]
+
+. 向右移动滑块以选择要扫描的架构。
++
+image:screenshot_compliance_select_schemas.png["扫描配置页面的屏幕截图，您可以从中选择要扫描的架构。"]
+
+
+
+Cloud Compliance 将开始扫描您启用的数据库架构。如果存在任何错误，它们将显示在状态列中，并显示修复此错误所需的操作。
+
+
+
+== 从 Cloud Manager 中删除数据库
+
+如果您不想再扫描某个数据库，可以从 Cloud Manager 界面中将其删除并停止所有扫描。
+
+在 _Scan Configuration_ 页面中，单击 image:screenshot_gallery_options.gif["更多按钮"] 按钮，然后单击 * 删除数据库服务器 * 。
+
+image:screenshot_compliance_remove_db.png["扫描配置页面中的删除数据库服务器按钮的屏幕截图。"]

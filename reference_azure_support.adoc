@@ -1,0 +1,85 @@
+---
+sidebar: sidebar 
+permalink: reference_azure_support.html 
+keywords: microsoft azure, azure, hot, access tier, cold, regions 
+summary: Cloud Tiering 支持热访问层和大多数地区。 
+---
+= 支持的 Azure Blob 访问层和区域
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Tiering 支持 _hot_ 访问层和大多数地区。
+
+
+
+== 支持的 Azure Blob 访问层
+
+在将数据分层设置为 Azure 时， Cloud Tiering 会自动对非活动数据使用 _hot_ 访问层。
+
+
+
+== 支持的 Azure 区域
+
+Cloud Tiering 支持以下 Azure 区域。
+
+
+
+=== 非洲
+
+* 南非北部
+
+
+
+
+=== 亚太地区
+
+* 澳大利亚东部
+* 澳大利亚东南部
+* 东亚
+* 日本东部
+* 日本西部
+* 韩国中部
+* 韩国
+* 东南亚
+
+
+
+
+=== 欧洲
+
+* 法国中部
+* 德国中部
+* 德国东北部
+* 北欧
+* 英国南部
+* 英国西部
+* 西欧
+
+
+
+
+=== 北美
+
+* 加拿大中部
+* 加拿大东部
+* 位于美国中部
+* 美国东部
+* 美国东部 2.
+* 位于美国中部北部
+* 位于美国中部南部
+* 美国西部
+* 美国西部 2.
+* 位于美国西部
+
+
+
+
+=== 南美洲
+
+* 巴西南部
+

@@ -1,0 +1,508 @@
+---
+sidebar: sidebar 
+permalink: reference_sync_requirements.html 
+keywords: networking, nfs, cifs, smb, version, connection, google, gcp, azure, blob, service account, resource, permissions, networking, version, ntp, network, protocol, aws efs requirements, efs requirements, s3 requirements, azure blob requirements, blob requirements, azure netapp files, cifs requirements, smb requirements, cloud volumes service, google cloud storage, gcp, ibm cloud object storage, storagegrid, storage tier, blob storage tier, storage class, s3 storage class, nfs versions, smb versions 
+summary: 通过验证是否支持和设置源和目标来准备同步数据。 
+---
+= 准备源和目标
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+通过验证是否支持和设置源和目标来准备同步数据。
+
+
+
+== 支持的同步关系
+
+通过 Cloud Sync ，您可以将数据从源同步到目标（称为 _sync relationship_ ）。您应该先了解支持的关系，然后再开始。
+
+[cols="20,25"]
+|===
+| 源位置 | 支持的目标位置 
+
+
+| AWS EFS  a| 
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp 文件（ NFS ）
+* Cloud Volumes ONTAP （ NFS ）
+* 云卷服务（ NFS ）
+* IBM 云对象存储
+* Google Cloud 存储
+* NFS 服务器
+* 内部 ONTAP 集群
+* StorageGRID
+
+
+
+
+| AWS S3  a| 
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp Files
+* Cloud Volumes ONTAP
+* Cloud Volumes Service
+* IBM 云对象存储
+* Google Cloud 存储
+* NFS 服务器
+* 内部 ONTAP 集群
+* SMB 服务器
+* StorageGRID
+
+
+
+
+| Azure Blob  a| 
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp Files
+* Cloud Volumes ONTAP
+* Cloud Volumes Service
+* Google Cloud 存储
+* IBM 云对象存储
+* NFS 服务器
+* 内部 ONTAP 集群
+* SMB 服务器
+* StorageGRID
+
+
+
+
+| Azure NetApp 文件（ NFS ）  a| 
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp 文件（ NFS ）
+* Cloud Volumes ONTAP （ NFS ）
+* 云卷服务（ NFS ）
+* IBM 云对象存储
+* Google Cloud 存储
+* NFS 服务器
+* 内部 ONTAP 集群
+* StorageGRID
+
+
+
+
+| Azure NetApp 文件 (SMB)  a| 
+* AWS S3
+* Azure Blob
+* Azure NetApp 文件 (SMB)
+* Cloud Volumes ONTAP （ SMB ）
+* 云卷服务（ SMB ）
+* Google Cloud 存储
+* IBM 云对象存储
+* 内部 ONTAP 集群
+* SMB 服务器
+* StorageGRID
+
+
+
+
+| Cloud Volumes ONTAP （ NFS ）  a| 
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp 文件（ NFS ）
+* Cloud Volumes ONTAP （ NFS ）
+* 云卷服务（ NFS ）
+* IBM 云对象存储
+* Google Cloud 存储
+* NFS 服务器
+* 内部 ONTAP 集群
+* StorageGRID
+
+
+
+
+| Cloud Volumes ONTAP （ SMB ）  a| 
+* AWS S3
+* Azure Blob
+* Azure NetApp 文件 (SMB)
+* Cloud Volumes ONTAP （ SMB ）
+* 云卷服务（ SMB ）
+* Google Cloud 存储
+* IBM 云对象存储
+* 内部 ONTAP 集群
+* SMB 服务器
+* StorageGRID
+
+
+
+
+| 云卷服务（ NFS ）  a| 
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp 文件（ NFS ）
+* Cloud Volumes ONTAP （ NFS ）
+* 云卷服务（ NFS ）
+* IBM 云对象存储
+* Google Cloud 存储
+* NFS 服务器
+* 内部 ONTAP 集群
+* StorageGRID
+
+
+
+
+| 云卷服务（ SMB ）  a| 
+* AWS S3
+* Azure Blob
+* Azure NetApp 文件 (SMB)
+* Cloud Volumes ONTAP （ SMB ）
+* 云卷服务（ SMB ）
+* Google Cloud 存储
+* IBM 云对象存储
+* 内部 ONTAP 集群
+* SMB 服务器
+* StorageGRID
+
+
+
+
+| Google Cloud 存储  a| 
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp Files
+* Cloud Volumes ONTAP
+* Cloud Volumes Service
+* Google Cloud 存储
+* IBM 云对象存储
+* NFS 服务器
+* 内部 ONTAP 集群
+* SMB 服务器
+* StorageGRID
+
+
+
+
+| IBM 云对象存储  a| 
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp Files
+* Cloud Volumes ONTAP
+* Cloud Volumes Service
+* Google Cloud 存储
+* IBM 云对象存储
+* NFS 服务器
+* 内部 ONTAP 集群
+* SMB 服务器
+* StorageGRID
+
+
+
+
+| NFS 服务器  a| 
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp 文件（ NFS ）
+* Cloud Volumes ONTAP （ NFS ）
+* 云卷服务（ NFS ）
+* IBM 云对象存储
+* Google Cloud 存储
+* NFS 服务器
+* 内部 ONTAP 集群
+* StorageGRID
+
+
+
+
+| 内部 ONTAP 集群（ NFS ）  a| 
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp 文件（ NFS ）
+* Cloud Volumes ONTAP （ NFS ）
+* 云卷服务（ NFS ）
+* IBM 云对象存储
+* Google Cloud 存储
+* NFS 服务器
+* 内部 ONTAP 集群
+* StorageGRID
+
+
+
+
+| 内部 ONTAP 集群（ SMB ）  a| 
+* AWS S3
+* Azure Blob
+* Azure NetApp 文件 (SMB)
+* Cloud Volumes ONTAP （ SMB ）
+* 云卷服务（ SMB ）
+* Google Cloud 存储
+* IBM 云对象存储
+* 内部 ONTAP 集群
+* SMB 服务器
+* StorageGRID
+
+
+
+
+| ONTAP S3 存储  a| 
+* StorageGRID
+
+
+
+
+| SMB 服务器  a| 
+* AWS S3
+* Azure Blob
+* Azure NetApp 文件 (SMB)
+* Cloud Volumes ONTAP （ NFS ）
+* 云卷服务（ NFS ）
+* IBM 云对象存储
+* Google Cloud 存储
+* 内部 ONTAP 集群
+* SMB 服务器
+* StorageGRID
+
+
+
+
+| StorageGRID  a| 
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp Files
+* Cloud Volumes ONTAP
+* Cloud Volumes Service
+* IBM 云对象存储
+* Google Cloud 存储
+* NFS 服务器
+* 内部 ONTAP 集群
+* ONTAP S3 存储
+* SMB 服务器
+* StorageGRID
+
+
+|===
+注释：
+
+. 当 BLOB 容器是目标容器时，可以选择特定的 Azure Blob 存储层：
++
+** 热存储
+** 冷却存储
+
+
+. 如果 AWS S3 为目标，则可以选择特定的 S3 存储类：
++
+** 标准（这是默认类）
+** Intelligent-Hierarchy
+** 标准—不经常访问
+** 一个 ZONE 不常访问
+** 冰河
+** Glacier 深度存档
+
+
+
+
+
+
+== 源和目标的网络连接
+
+* 源和目标必须与数据代理建立网络连接。
++
+例如，如果 NFS 服务器位于数据中心且数据代理位于 AWS 中、则需要从网络到 VPC 的网络连接（ VPN 或直接连接）。
+
+* NetApp 建议将源、目标和数据代理配置为使用网络时间协议（ NTP ）服务。三个组件之间的时间差不应超过 5 分钟。
+
+
+
+
+== 源和目标要求
+
+验证源和目标是否满足以下要求。
+
+
+
+=== AWS S3 存储桶要求
+
+确保 AWS S3 桶满足以下要求。
+
+
+
+==== AWS S3 支持的数据代理位置
+
+包含 S3 存储的同步关系需要在 AWS 或您的内部部署数据代理。在这两种情况下、 Cloud Sync 都会提示您在安装期间将数据代理与 AWS 帐户关联。
+
+* link:task_sync_installing_aws.html["了解如何部署 AWS 数据代理"]
+* link:task_sync_installing_linux.html["了解如何在 Linux 主机上安装数据代理"]
+
+
+
+
+==== 支持的 AWS 区域
+
+除中国和戈维拉（美国）地区外，所有地区均受支持。
+
+
+
+==== 在其他 AWS 帐户中 S3 数据段所需的权限
+
+在设置同步关系时，您可以指定一个 S3 存储分段，该存储分段驻留在与数据代理不关联的 AWS 帐户中。
+
+link:media/aws_iam_policy_s3_bucket.json["此 JSON 文件中包含的权限"^] 必须应用于该 S3 存储分段，以便数据代理可以访问它。这些权限使数据代理可以将数据复制到存储桶中或从中复制数据、并列出存储桶中的对象。
+
+请注意以下有关 JSON 文件中包含的权限的信息：
+
+. _<BucketName>_ 是位于 AWS 帐户中且与数据代理不关联的存储分段的名称。
+. 应将 _<RoleARN>_ 替换为以下项之一：
++
+** 如果数据代理手动安装在 Linux 主机上，则 _RoleARN_ 应是部署数据代理时为其提供 AWS 凭据的 AWS 用户的 ARN 。
+** 如果数据代理是使用 CloudFormation 模板部署在 AWS 中的，则 _RoleARN_ 应是此模板创建的 IAM 角色的 ARN 。
++
+您可以通过转至 EC2 控制台、选择数据代理实例并从“描述”选项卡中单击 IAM 角色来查找角色 ARN 。然后，应在 IAM 控制台中查看包含角色 ARN 的“摘要”页面。
+
++
+image:screenshot_iam_role_arn.gif["AWS IAM 控制台的屏幕快照，其中显示了角色 ARN 。"]
+
+
+
+
+
+
+
+=== Azure Blob 存储要求
+
+确保 Azure Blob 存储满足以下要求。
+
+
+
+==== Azure Blob 支持的数据代理位置
+
+当同步关系包括 Azure Blob 存储时、数据代理可以驻留在任何位置。
+
+
+
+==== 支持的 Azure 区域
+
+除中国、美国政府和美国国防部地区外，所有地区均受支持。
+
+
+
+==== 包括 Azure Blob 和 NFS/SMB 的关系需要连接字符串
+
+在 Azure Blob 容器和 NFS 或 SMB 服务器之间创建同步关系时，需要使用存储帐户连接字符串提供 Cloud Sync ：
+
+image:screenshot_connection_string.gif["显示了一个连接字符串，可通过选择存储帐户并单击访问密钥从 Azure 门户访问此字符串。"]
+
+如果要在两个 Azure Blob 容器之间同步数据，则连接字符串必须包含 https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1["共享访问签名"^] （ SAS ）。在 blob 容器和 NFS 或 SMB 服务器之间同步时，您还可以选择使用 SAS 。
+
+SAS 必须允许访问 Blob 服务和所有资源类型（服务、容器和对象）。SAS 还必须包括以下权限：
+
+* 对于源 blob 容器：读取并列出
+* 对于目标 BLOB 容器：读取、写入、列出、添加和创建
+
+
+image:screenshot_connection_string_sas.gif["显示共享访问签名，可通过选择存储帐户并单击共享访问签名从 Azure 门户访问此签名。"]
+
+
+
+=== Azure NetApp Files 要求
+
+在与 Azure NetApp Files 同步数据时，请使用高级或超高级服务级别。如果磁盘服务级别为标准，则可能会出现故障和性能问题。
+
+
+TIP: 如果您需要帮助确定合适的服务级别，请咨询解决方案架构师。卷大小和卷层决定了您可以获得的吞吐量。
+
+https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-service-levels#throughput-limits["详细了解 Azure NetApp Files 服务级别和吞吐量"]。
+
+
+
+=== Google Cloud 存储桶要求
+
+确保 Google Cloud 存储桶满足以下要求。
+
+
+
+==== Google Cloud 存储支持的数据代理位置
+
+包括 Google Cloud 存储的同步关系需要在 GCP 或您的内部部署数据代理。在创建同步关系时， Cloud Sync 将指导您完成数据代理安装过程。
+
+* link:task_sync_installing_gcp.html["了解如何部署 GCP 数据代理"]
+* link:task_sync_installing_linux.html["了解如何在 Linux 主机上安装数据代理"]
+
+
+
+
+==== 支持的 GCP 区域
+
+支持所有区域。
+
+
+
+=== NFS 服务器要求
+
+* NFS 服务器可以是 NetApp 系统或非 NetApp 系统。
+* 文件服务器必须允许数据代理主机访问导出。
+* 支持 NFS 版本 3 、 4.0 、 4.1 和 4.2 。
++
+必须在服务器上启用所需的版本。
+
+* 如果要从 ONTAP 系统同步 NFS 数据，请确保已启用对 SVM NFS 导出列表的访问（已启用 vserver nfs modify -vserver _svm_name_ -showmount ）。
++
+
+NOTE: 从 ONTAP 9.2 开始， showmount 的默认设置为 _enabled" 。
+
+
+
+
+
+=== ONTAP S3 存储要求
+
+ONTAP 9.7 支持将 Amazon Simple Storage Service （ Amazon S3 ）作为公有预览版。 link:https://www.netapp.com/us/media/tr-4814.pdf["了解有关适用于 Amazon S3 的 ONTAP 支持的更多信息"^]。
+
+在设置包含 ONTAP S3 存储的同步关系时，您需要提供以下内容：
+
+* 连接到 ONTAP S3 的 LIF 的 IP 地址
+* ONTAP 配置为使用的访问密钥和机密密钥
+
+
+
+
+=== SMB 服务器要求
+
+* SMB 服务器可以是 NetApp 系统或非 NetApp 系统。
+* 文件服务器必须允许数据代理主机访问导出。
+* 支持 SMB 版本 1.0 ， 2.0 ， 2.1 ， 3.0 和 3.11 。
+* 向 " 管理员 " 组授予对源文件夹和目标文件夹的 " 完全控制 " 权限。
++
+如果不授予此权限，则数据代理可能没有足够的权限来获取文件或目录上的 ACL 。如果发生这种情况，您将收到以下错误： "getxattr error 95"
+
+
+
+
+
+==== 隐藏目录和文件的 SMB 限制
+
+在 SMB 服务器之间同步数据时， SMB 限制会影响隐藏的目录和文件。如果源 SMB 服务器上的任何目录或文件通过 Windows 隐藏，则隐藏属性不会复制到目标 SMB 服务器。
+
+
+
+==== 由于大小写不敏感限制而导致的 SMB 同步行为
+
+SMB 协议不区分大小写，这意味着大小写字母将被视为相同。如果同步关系包含 SMB 服务器且目标上已存在数据，则此行为可能会导致文件被覆盖和目录复制错误。
+
+例如，假设源上有一个名为 "A" 的文件，目标上有一个名为 "A" 的文件。当 Cloud Sync 将名为 "A" 的文件复制到目标时，文件 "A" 将被源中的文件 "A" 覆盖。
+
+对于目录，假设源上有一个名为 "b" 的目录，目标上有一个名为 "B" 的目录。当 Cloud Sync 尝试将名为 "b" 的目录复制到目标时， Cloud Sync 会收到一条错误，指出此目录已存在。因此， Cloud Sync 始终无法复制名为 "b" 的目录。
+
+避免此限制的最佳方法是确保将数据同步到空目录。
+
+
+
+== SnapMirror 目标的权限
+
+如果同步关系的源是 SnapMirror 目标（只读），则 " 读 / 列表 " 权限足以将数据从源同步到目标。

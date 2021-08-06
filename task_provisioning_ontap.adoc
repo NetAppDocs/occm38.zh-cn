@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: task_provisioning_ontap.html 
+keywords: ontap, cluster, manage, provision, provisioning, volumes, discovering, fas, aff, creating volumes, adding volumes 
+summary: 从 Cloud Manager 发现内部 ONTAP 集群后，您可以打开工作环境来配置存储。 
+---
+= 管理 ONTAP 集群的存储
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+从 Cloud Manager 发现 ONTAP 集群后，您可以打开工作环境来配置和管理存储。
+
+
+
+== 为 ONTAP 集群创建卷
+
+您可以使用 Cloud Manager 在 ONTAP 集群上配置 NFS ， CIFS 和 iSCSI 卷。
+
+必须使用 System Manager 或 CLI 在集群上设置数据协议。
+
+您可以在现有聚合上创建卷。您无法从 Cloud Manager 创建新聚合。
+
+.步骤
+. 在“工作环境”页面上，双击要在其上配置卷的 ONTAP 集群的名称。
+. 单击 * 添加新卷 * 。
+. 在创建新卷页面上，输入卷的详细信息，然后单击 * 创建 * 。
++
+本页中的某些字段是不言自明的。下表介绍了可能需要指导的字段：
+
++
+[cols="2,6"]
+|===
+| 字段 | Description 
+
+
+| Size | 您可以输入的最大大小在很大程度上取决于您是否启用精简配置、这样您就可以创建一个大于当前可用物理存储的卷。 
+
+
+| 快照策略 | Snapshot 副本策略指定自动创建的 NetApp Snapshot 副本的频率和数量。NetApp Snapshot 副本是一个时间点文件系统映像、对性能没有影响、并且只需要极少的存储。您可以选择默认策略或无。您可以为瞬态数据选择无：例如， Microsoft SQL Server 的 tempdb 。 
+
+
+| 访问控制（仅适用于 NFS ） | 导出策略定义子网中可以访问卷的客户端。默认情况下， Cloud Manager 会输入一个值、用于访问子网中的所有实例。 
+
+
+| 权限和用户 / 组（仅限 CIFS ） | 这些字段使您能够控制用户和组对共享的访问级别（也称为访问控制列表或 ACL ）。您可以指定本地或域 Windows 用户或组、 UNIX 用户或组。如果指定域 Windows 用户名，则必须使用 domain\username 格式包含用户的域。 
+
+
+| 启动程序组和 IQN （仅适用于 iSCSI ） | iSCSI 存储目标称为 LUN （逻辑单元），并作为标准块设备提供给主机。启动程序组是包含 iSCSI 主机节点名称的表，用于控制哪些启动程序可以访问哪些 LUN 。iSCSI 目标通过标准以太网网络适配器（ NIC ），带软件启动程序的 TCP 卸载引擎（ TOE ）卡，融合网络适配器（ CNA ）或专用主机总线适配器（ HBA ）连接到网络，并通过 iSCSI 限定名称（ IQN ）进行标识。创建 iSCSI 卷时， Cloud Manager 会自动为您创建 LUN 。我们通过为每个卷仅创建一个 LUN 来简化此过程，因此无需进行管理。创建卷后，将其选中，单击目标 IQN ，然后使用 IQN 从主机连接到 LUN 。 
+
+
+| 使用情况配置文件 | 使用情况配置文件定义了为卷启用的 NetApp 存储效率功能。 
+|===
+
+
+
+
+== 复制数据
+
+您可以在 Cloud Volumes ONTAP 系统和 ONTAP 集群之间复制数据、方法是选择一次性数据复制、该复制可以帮助您将数据移入或移出云、或定期计划、这有助于灾难恢复或长期保留。
+
+link:task_replicating_data.html["单击此处了解更多详细信息"]。
+
+
+
+== 备份数据
+
+您可以使用 Cloud Manager 备份到云服务将内部 ONTAP 系统中的数据备份到云中的低成本对象存储。此服务提供备份和还原功能，用于保护和长期归档云数据。
+
+link:task_backup_from_ontap.html["单击此处了解更多详细信息"]。
+
+
+
+== 将数据分层到云
+
+通过自动将非活动数据从 ONTAP 集群分层到对象存储，将数据中心扩展到云。
+
+link:concept_cloud_tiering.html["单击此处了解更多详细信息"]。

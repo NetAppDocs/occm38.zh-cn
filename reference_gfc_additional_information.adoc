@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: reference_gfc_additional_information.html 
+keywords: global file cache 
+summary: 使用以下链接可了解有关全局文件缓存和其他 NetApp 产品的更多信息。 
+---
+= 追加信息
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+使用以下链接可了解有关全局文件缓存和其他 NetApp 产品的更多信息：
+
+* 全局文件缓存常见问题解答
++
+** 查看常见问题解答列表 link:https://cloud.netapp.com/global-file-cache-faq["此处"^]
+
+
+* link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["《 NetApp 全局文件缓存用户指南》"^]
+* NetApp 产品文档
++
+** 请参见有关 NetApp 云产品的其他文档 https://docs.netapp.com/us-en/cloud/["此处"^]
+** 请参见所有 NetApp 产品的其他文档 https://docs.netapp.com["此处"^]
+
+
+* 可通过以下渠道为使用 Cloud Volumes ONTAP 的全局文件缓存用户提供客户支持：
++
+** 引导式问题解决，案例管理，知识库，下载，工具， 等等 link:https://cloud.netapp.com/gfc-support["此处"^]
+** 登录到 NetApp 支持部门，网址为 https://mysupport.netapp.com[] 使用您的 NSS 凭据
+** 要获得 P1 问题描述呼叫的即时帮助，请拨打： +1 856.481.3990 （选项 2 ）
+
+
+* 您的提供商可通过标准支持为使用 Cloud Volumes Services 和 Azure NetApp Files 的全局文件缓存用户提供客户支持。请分别联系 Google 客户支持或 Microsoft 客户支持。
+

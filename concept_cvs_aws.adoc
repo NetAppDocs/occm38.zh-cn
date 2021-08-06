@@ -1,0 +1,107 @@
+---
+sidebar: sidebar 
+permalink: concept_cvs_aws.html 
+keywords: cloud volumes service for aws, cloud volumes, cloud volumes service subscription, access key, secret key 
+summary: NetApp Cloud Volumes Service for AWS 是一种云原生文件服务，可通过 NFS 和 SMB 提供具有全闪存性能的 NAS 卷。此服务支持在 AWS 云中运行任何工作负载，包括原有应用程序。 
+---
+= 了解适用于 AWS 的 Cloud Volumes Service
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Cloud Volumes Service for AWS 是一种云原生文件服务，可通过 NFS 和 SMB 提供具有全闪存性能的 NAS 卷。此服务支持在 AWS 云中运行任何工作负载，包括原有应用程序。
+
+
+
+== 使用 Cloud Volumes Service for AWS 的优势
+
+Cloud Volumes Service for AWS 具有以下优势：
+
+* 完全托管服务，因此无需配置或管理存储设备
+* 支持 NFSv3 和 NFSv4.1 以及 SMB 3.0 和 3.1.1 NAS 协议
+* 安全访问 Linux 和 Windows 弹性容器服务（ Elastic Container Service ， ECS ）实例，并提供以下支持：
++
+** Amazon Linux 2 ， Red Hat Enterprise Linux 7.5 ， SLES 12 SP3 和 Ubuntu 16.04 LTS
+** Windows Server 2008 R2 ， Windows Server 2012 R2 和 Windows Server 2016
+
+
+* 可选择捆绑定价和按需购买定价
+
+
+
+
+== 成本
+
+Cloud Volumes Service for AWS 创建的卷会根据您的服务订阅付费，而不是通过 Cloud Manager 付费。
+
+从 Cloud Manager 发现适用于 AWS 的 Cloud Volumes Service 区域或卷不收取任何费用。
+
+
+
+== 开始之前
+
+* Cloud Manager 可以发现现有的 Cloud Volumes Service for AWS 订阅和卷。请参见 https://docs.netapp.com/us-en/cloud_volumes/aws/media/cvs_aws_account_setup.pdf["《 NetApp Cloud Volumes Service for AWS 帐户设置指南》"^] 如果您尚未设置订阅。在 Cloud Manager 中添加 AWS 订阅和卷之前，您必须按照每个区域的此设置过程进行操作。
+* 您需要获取 Cloud Volumes API 密钥和机密密钥，才能将其提供给 Cloud Manager 。 https://docs.netapp.com/us-en/cloud_volumes/aws/reference_cloud_volume_apis.html#finding-the-api-url-api-key-and-secret-key["有关说明，请参见 Cloud Volumes Service for AWS 文档"^]。
+
+
+
+
+== 快速入门
+
+按照以下步骤快速入门，或者转到下一节了解完整详细信息。
+
+
+
+==== 验证是否支持您的配置
+
+[role="quick-margin-para"]
+您已为 Cloud Volumes Service 设置 AWS ，并且必须已订阅其中一个 https://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=netapp+cloud+volumes+service["AWS 市场上的 NetApp Cloud Volumes Service 产品"^]。
+
+
+
+==== 添加 Cloud Volumes Service for AWS 订阅
+
+[role="quick-margin-para"]
+您必须根据 Cloud Volumes Service for AWS 订阅为卷创建一个工作环境。
+
+
+
+==== 创建云卷
+
+[role="quick-margin-para"]
+此订阅已存在的云卷将显示在新的工作环境中。否则，您将从 Cloud Manager 创建新卷。
+
+
+
+==== 挂载云卷
+
+[role="quick-margin-para"]
+将新的云卷挂载到 AWS 实例，以便用户可以开始使用存储。
+
+
+
+== 获取帮助
+
+有关一般服务问题，请使用 Cloud Manager 聊天工具。
+
+对于与云卷相关的技术支持问题，请使用 Cloud Volumes Service 用户界面的 " 支持 " 选项卡中的 20 位 "930" 序列号。打开 Web 服务单或致电支持部门时，请使用此支持 ID 。请务必从 Cloud Volumes Service 用户界面激活 Cloud Volumes Service 序列号以获得支持。 https://docs.netapp.com/us-en/cloud_volumes/aws/task_activating_support_entitlement.html["此处将介绍这些步骤"^]。
+
+
+
+== 限制
+
+* 使用 Cloud Volumes Service 卷时， Cloud Manager 不支持在工作环境之间进行数据复制。
+* 不支持从 Cloud Manager 中删除 Cloud Volumes Service for AWS 订阅。您只能通过 Cloud Volumes Service for AWS 界面执行此操作。
+
+
+
+
+== 相关链接
+
+* https://cloud.netapp.com/cloud-volumes-service-for-aws["NetApp Cloud Central ：适用于 AWS 的 Cloud Volumes Service"^]
+* https://docs.netapp.com/us-en/cloud_volumes/aws/["NetApp Cloud Volumes Service for AWS 文档"^]
+

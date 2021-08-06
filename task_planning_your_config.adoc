@@ -1,0 +1,194 @@
+---
+sidebar: sidebar 
+permalink: task_planning_your_config.html 
+keywords: license, disk, ebs, storage, size, write speed, volume usage, explore, standard, premium, byol, ec2, capacity, limit, configurations, virtual machine, vm, regions, supported disks, disk types, general purpose, gp2 provisioned IOPS, piops, throughput optimized, cold, SSD, HDD, st1, sc1, use profile, thin provisioning, deduplication, compression, Cloud Volumes ONTAP explore, Cloud Volumes ONTAP standard, Cloud Volumes ONTAP premium, Cloud Volumes ONTAP byol, shared instance, dedicated instance, write speed, high write speed, normal write speed, network information, worksheet, limit, limits, storage limits, volume limit, aggregate limit, maximum volume size, maximum aggregate size 
+summary: 在 AWS 中部署 Cloud Volumes ONTAP 时，您可以选择符合工作负载要求的预配置系统，也可以创建自己的配置。如果您选择自己的配置、则应了解可用的选项。 
+---
+= 在 AWS 中规划 Cloud Volumes ONTAP 配置
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在 AWS 中部署 Cloud Volumes ONTAP 时，您可以选择符合工作负载要求的预配置系统，也可以创建自己的配置。如果您选择自己的配置、则应了解可用的选项。
+
+
+
+== 选择许可证类型
+
+Cloud Volumes ONTAP 有两种定价选项：按需购买和自带许可证（ BYOL ）。对于按需购买、可从三种许可证中进行选择： Explore 、 Standard 或 Premium 。每个许可证提供不同的容量和计算选项。
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_configs_aws_97.html["AWS 中的 Cloud Volumes ONTAP 9.7 支持的配置"^]
+
+
+
+== 了解存储限制
+
+Cloud Volumes ONTAP 系统的原始容量限制与许可证相关。附加限制会影响聚合和卷的大小。在规划配置时，您应该了解这些限制。
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_aws_97.html["AWS 中 Cloud Volumes ONTAP 9.7 的存储限制"]
+
+
+
+== 在 AWS 中估算系统规模
+
+对 Cloud Volumes ONTAP 系统进行规模估算有助于满足性能和容量要求。在选择实例类型，磁盘类型和磁盘大小时，应注意以下要点：
+
+Instance type::
++
+--
+* 将工作负载要求与每个 EC2 实例类型的最大吞吐量和 IOPS 相匹配。
+* 如果多个用户同时向系统写入数据，请选择一种具有足够 CPU 来管理请求的实例类型。
+* 如果您的应用程序大部分是读取的，请选择具有足够 RAM 的系统。
++
+** https://aws.amazon.com/ec2/instance-types/["AWS 文档： Amazon EC2 实例类型"^]
+** https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html["AWS 文档： Amazon EBS 优化实例"^]
+
+
+
+
+--
+EBS 磁盘类型:: 通用 SSD 是 Cloud Volumes ONTAP 最常见的磁盘类型。要查看 EBS 磁盘的使用情形，请参见 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html["AWS 文档： EBS 卷类型"^]。
+EBS 磁盘大小::
++
+--
+* 聚合中的所有磁盘大小必须相同。
+* EBS 磁盘的性能取决于磁盘大小。该大小决定了 SSD 磁盘的基准 IOPS 和最大突发持续时间以及 HDD 磁盘的基准和突发吞吐量。
+* 最后，您应选择磁盘大小，以获得所需的 _stimed_perform性 能。
+* 即使您选择了更大的磁盘（例如六个 4 TB 磁盘）、但由于 EC2 实例可以达到其带宽限制，因此您可能无法获得全部 IOPS 。
++
+有关 EBS 磁盘性能的详细信息，请参见 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html["AWS 文档： EBS 卷类型"^]。
+
+
+
+--
+
+
+有关在 AWS 中调整 Cloud Volumes ONTAP 系统规模的更多详细信息，请观看以下视频：
+
+video::GELcXmOuYPw[youtube, width=848,height=480]
+
+
+== 选择支持 Flash Cache 的配置
+
+AWS 中的某些 Cloud Volumes ONTAP 配置包括本地 NVMe 存储， Cloud Volumes ONTAP 使用此存储作为 _Flash Cache_ 来提高性能。 link:concept_flash_cache.html["了解有关 Flash Cache 的更多信息"]。
+
+
+
+== AWS 网络信息工作表
+
+在 AWS 中启动 Cloud Volumes ONTAP 时，需要指定有关 VPC 网络的详细信息。您可以使用工作表从管理员收集信息。
+
+
+
+==== Cloud Volumes ONTAP 的网络信息
+
+[cols="30,70"]
+|===
+| AWS 信息 | 您的价值 
+
+
+| Region |  
+
+
+| VPC |  
+
+
+| Subnet |  
+
+
+| 安全组（如果使用您自己的） |  
+|===
+
+
+==== 多个 AWS 中 HA 对的网络信息
+
+[cols="30,70"]
+|===
+| AWS 信息 | 您的价值 
+
+
+| Region |  
+
+
+| VPC |  
+
+
+| 安全组（如果使用您自己的） |  
+
+
+| 节点 1 可用性区域 |  
+
+
+| 节点 1 子网 |  
+
+
+| 节点 2 可用性区域 |  
+
+
+| 节点 2 子网 |  
+
+
+| 调解器可用性区域 |  
+
+
+| 调解器子网 |  
+
+
+| 调解器的密钥对 |  
+
+
+| 用于集群管理端口的浮动 IP 地址 |  
+
+
+| 节点 1 上数据的浮动 IP 地址 |  
+
+
+| 节点 2 上数据的浮动 IP 地址 |  
+
+
+| 浮动 IP 地址的路由表 |  
+|===
+
+
+== 选择写入速度
+
+利用 Cloud Manager ，您可以为单节点 Cloud Volumes ONTAP 系统选择写入速度设置。在选择写入速度之前、您应该了解正常和高设置之间的差异、以及使用高速写入速度时的风险和建议。
+
+
+
+==== 正常写入速度和高速写入速度之间的差异
+
+选择正常写入速度后、数据将直接写入磁盘、从而减少发生计划外系统中断时数据丢失的可能性。
+
+如果选择高速写入速度、则在将数据写入磁盘之前将数据缓冲在内存中、从而提供更快的写入性能。由于这种缓存，如果发生计划外系统中断，则可能会导致数据丢失。
+
+在发生计划外系统中断时可能丢失的数据量是最后两个一致性点的范围。一致性点是将缓冲数据写入磁盘的操作。写入日志已满或 10 秒后（以先到者为准）会出现一致性点。但是， AWS EBS 卷性能可能会影响一致性点处理时间。
+
+
+
+==== 何时使用高速写入
+
+如果您的工作负载需要快速写入性能、并且您可以在发生计划外系统中断时承受数据丢失的风险、则可以选择高速写入速度。
+
+
+
+==== 使用高速写入时的建议
+
+如果启用高速写入速度、则应确保应用程序层的写保护。
+
+
+
+== 选择卷使用情况配置文件
+
+ONTAP 包含多种存储效率功能、可以减少您所需的存储总量。在 Cloud Manager 中创建卷时，您可以选择启用这些功能的配置文件或禁用这些功能的配置文件。您应该了解有关这些功能的更多信息、以帮助您确定要使用的配置文件。
+
+NetApp 存储效率功能具有以下优势：
+
+精简配置:: 为主机或用户提供的逻辑存储比实际在物理存储池中提供的存储多。在写入数据时，存储空间将动态分配给每个卷而不是预先分配存储空间。
+重复数据删除:: 通过定位相同的数据块并将其替换为单个共享块的引用来提高效率。此技术通过消除驻留在同一卷中的冗余数据块来降低存储容量需求。
+压缩:: 通过在主存储、二级存储和归档存储上的卷中压缩数据来减少存储数据所需的物理容量。
+

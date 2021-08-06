@@ -1,0 +1,150 @@
+---
+sidebar: sidebar 
+permalink: task_planning_your_config_azure.html 
+keywords: license, disk, storage, size, write speed, volume usage, explore, standard, premium, byol, capacity, limit, configurations, virtual machine, vm, regions, supported disks, disk types, premium storage, standard storage, use profile, thin provisioning, deduplication, compression, Cloud Volumes ONTAP explore, Cloud Volumes ONTAP standard, Cloud Volumes ONTAP premium, Cloud Volumes ONTAP byol, shared instance, dedicated instance, write speed, high write speed, normal write speed, network information, worksheet, limit, limits, storage limits, volume limit, aggregate limit, maximum volume size, maximum aggregate size 
+summary: 在 Azure 中部署 Cloud Volumes ONTAP 时，您可以选择符合工作负载要求的预配置系统，也可以创建自己的配置。如果您选择自己的配置、则应了解可用的选项。 
+---
+= 在 Azure 中规划 Cloud Volumes ONTAP 配置
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在 Azure 中部署 Cloud Volumes ONTAP 时，您可以选择符合工作负载要求的预配置系统，也可以创建自己的配置。如果您选择自己的配置、则应了解可用的选项。
+
+
+
+== 选择许可证类型
+
+Cloud Volumes ONTAP 有两种定价选项：按需购买和自带许可证（ BYOL ）。对于按需购买、可从三种许可证中进行选择： Explore 、 Standard 或 Premium 。每个许可证提供不同的容量和计算选项。
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_configs_azure_97.html["Azure 中 Cloud Volumes ONTAP 9.7 支持的配置"^]
+
+
+
+== 了解存储限制
+
+Cloud Volumes ONTAP 系统的原始容量限制与许可证相关。附加限制会影响聚合和卷的大小。在规划配置时，您应该了解这些限制。
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_azure_97.html["Azure 中 Cloud Volumes ONTAP 9.7 的存储限制"]
+
+
+
+== 在 Azure 中估算系统规模
+
+对 Cloud Volumes ONTAP 系统进行规模估算有助于满足性能和容量要求。在选择虚拟机类型，磁盘类型和磁盘大小时，您应注意几个要点：
+
+虚拟机类型::
++
+--
+* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes-general#dsv2-series["Azure 文档：通用虚拟机大小"^]
+* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes-memory#dsv2-series-11-15["Azure 文档：内存优化的虚拟机大小"^]
+
+
+--
+Azure 磁盘类型::
++
+--
+HA 系统使用高级页面 Blobs 。同时，单节点系统可以使用两种类型的 Azure 受管磁盘：
+
+* _Premium SSD 受管磁盘 _ 以较高的成本为 I/O 密集型工作负载提供高性能。
+* 标准 SSD 受管磁盘 _ 可为需要低 IOPS 的工作负载提供稳定一致的性能。
+* 如果您不需要高 IOPS 并希望降低成本， _Standard HDD 受管磁盘 _ 是一个不错的选择。
++
+有关这些磁盘的使用情形的其他详细信息，请参见 https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types["Microsoft Azure 文档： Azure 中提供了哪些磁盘类型？"^]。
+
+
+
+--
+Azure 磁盘大小::
++
+--
+
+TIP: 聚合中的所有磁盘大小必须相同。
+
+选择磁盘大小时，应考虑多个因素。磁盘大小会影响您为存储支付的费用、可以在聚合中创建的卷大小、可用于 Cloud Volumes ONTAP 的总容量以及存储性能。
+
+Azure 高级存储的性能取决于磁盘大小。更大的磁盘可提供更高的 IOPS 和吞吐量。例如，选择 1 TB 磁盘可以提供比 500 GB 磁盘更好的性能、而且成本更高。
+
+标准存储的磁盘大小之间没有性能差异。应根据需要的容量选择磁盘大小。
+
+有关按磁盘大小显示的 IOPS 和吞吐量，请参见 Azure ：
+
+* https://azure.microsoft.com/en-us/pricing/details/managed-disks/["Microsoft Azure ：受管磁盘定价"^]
+* https://azure.microsoft.com/en-us/pricing/details/storage/page-blobs/["Microsoft Azure ：页面 Blob 定价"^]
+
+
+--
+
+
+
+
+== 选择支持 Flash Cache 的配置
+
+Azure 中的 Cloud Volumes ONTAP 配置包括本地 NVMe 存储， Cloud Volumes ONTAP 使用此存储作为 _Flash Cache_ 来提高性能。 link:concept_flash_cache.html["了解有关 Flash Cache 的更多信息"]。
+
+
+
+== Azure 网络信息工作表
+
+在 Azure 中部署 Cloud Volumes ONTAP 时，需要指定有关虚拟网络的详细信息。您可以使用工作表从管理员收集信息。
+
+[cols="30,70"]
+|===
+| Azure 信息 | 您的价值 
+
+
+| Region |  
+
+
+| 虚拟网络（ VNet ） |  
+
+
+| Subnet |  
+
+
+| 网络安全组（如果使用您自己的组） |  
+|===
+
+
+== 选择写入速度
+
+利用 Cloud Manager ，您可以为单节点 Cloud Volumes ONTAP 系统选择写入速度设置。在选择写入速度之前、您应该了解正常和高设置之间的差异、以及使用高速写入速度时的风险和建议。
+
+
+
+==== 正常写入速度和高速写入速度之间的差异
+
+选择正常写入速度后、数据将直接写入磁盘、从而减少发生计划外系统中断时数据丢失的可能性。
+
+如果选择高速写入速度、则在将数据写入磁盘之前将数据缓冲在内存中、从而提供更快的写入性能。由于这种缓存，如果发生计划外系统中断，则可能会导致数据丢失。
+
+在发生计划外系统中断时可能丢失的数据量是最后两个一致性点的范围。一致性点是将缓冲数据写入磁盘的操作。写入日志已满或 10 秒后（以先到者为准）会出现一致性点。但是， AWS EBS 卷性能可能会影响一致性点处理时间。
+
+
+
+==== 何时使用高速写入
+
+如果您的工作负载需要快速写入性能、并且您可以在发生计划外系统中断时承受数据丢失的风险、则可以选择高速写入速度。
+
+
+
+==== 使用高速写入时的建议
+
+如果启用高速写入速度、则应确保应用程序层的写保护。
+
+
+
+== 选择卷使用情况配置文件
+
+ONTAP 包含多种存储效率功能、可以减少您所需的存储总量。在 Cloud Manager 中创建卷时，您可以选择启用这些功能的配置文件或禁用这些功能的配置文件。您应该了解有关这些功能的更多信息、以帮助您确定要使用的配置文件。
+
+NetApp 存储效率功能具有以下优势：
+
+精简配置:: 为主机或用户提供的逻辑存储比实际在物理存储池中提供的存储多。在写入数据时，存储空间将动态分配给每个卷而不是预先分配存储空间。
+重复数据删除:: 通过定位相同的数据块并将其替换为单个共享块的引用来提高效率。此技术通过消除驻留在同一卷中的冗余数据块来降低存储容量需求。
+压缩:: 通过在主存储、二级存储和归档存储上的卷中压缩数据来减少存储数据所需的物理容量。
+

@@ -1,0 +1,259 @@
+---
+sidebar: sidebar 
+permalink: download_gfc_resources.html 
+keywords: global file cache, edge 
+summary: 在远程办公室安装全局文件缓存边缘软件之前，您需要了解许多要求。 
+---
+= 开始部署全局文件缓存边缘实例之前
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在远程办公室安装全局文件缓存边缘软件之前，您需要了解许多要求。
+
+
+
+== 下载所需资源
+
+下载您计划在分支机构使用的全局文件缓存虚拟模板，软件安装包以及其他参考文档：
+
+* Windows Server 2016 虚拟模板：
++
+https://repo.cloudsync.netapp.com/gfc/2K16_GFC_1_0_18_OVF.zip["包括 NetApp GFC （ VMware vSphere 6.5 及更高版本）的 Windows Server 2016 .OVA"^]
+
+
+* Windows Server 2019 虚拟模板：
++
+https://repo.cloudsync.netapp.com/gfc/2K19_GFC_1_0_18_OVF.zip["包括 NetApp GFC （ VMware vSphere 6.5 及更高版本）的 Windows Server 2019 .OVA"^]
+
+
+* 全局文件缓存边缘软件：
++
+https://repo.cloudsync.netapp.com/gfc/GFC-1-0-0-21-Release.exe["NetApp GFC 软件（ .exe ）"^]
+
+* 全局文件缓存文档：
++
+link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["《 NetApp 全局文件缓存用户指南》"^]
+
+
+
+
+
+== 设计和部署全局文件缓存边缘
+
+根据您的要求，您可能需要根据分支机构中的并发用户会话部署一个或多个全局文件缓存边缘实例。Edge 实例将虚拟文件共享呈现给分支机构的最终用户，该实例已从关联的全局文件缓存核心实例透明地扩展。全局文件缓存边缘应包含 `D ： \` NTFS 卷，该卷包含分支机构内的缓存文件。
+
+
+NOTE: 对于全局文件缓存边缘，了解非常重要 link:concept_before_you_begin_to_deploy_gfc.html#sizing-guidelines["规模估算准则"^]。这将有助于您为全局文件缓存部署制定正确的设计。此外，您还需要确定在规模，资源可用性和冗余方面哪些方面适合您的环境。
+
+
+
+=== 全局文件缓存边缘实例
+
+部署全局文件缓存边缘实例时，您需要通过部署 Windows Server 2016 Standard 或 Datacenter Edition ， Windows Server 2019 Standard 或 Datacenter Edition 或使用全局文件缓存 ` .OVA` 或 ` .VHD` 模板来配置单个 VM 。 其中包括所选的 Windows Server 操作系统和全局文件缓存软件。
+
+
+
+==== 快速步骤
+
+. 部署全局文件缓存虚拟模板， Windows Server 2016 VM ， Windows Server 2019 标准版或数据中心版。
+. 确保虚拟机已连接到网络，已加入域并可通过 RDP 访问。
+. 安装最新的 Global File Cache Edge 软件。
+. 确定全局文件缓存管理服务器和核心实例。
+. 配置全局文件缓存边缘实例。
+
+
+
+
+== 全局文件缓存边缘要求
+
+全球文件缓存边缘旨在支持 Windows Server 2016 和 2019 的所有平台上运行，为企业远程办公室及其他地方提供简化的 IT 。关键是，如果您的现有硬件基础架构，虚拟化或混合 / 公共云环境满足一些基本要求，则几乎可以在每个情况下都部署全局文件缓存。
+
+要使全局文件缓存边缘以最佳状态运行，需要以下硬件和软件资源。有关整体规模估算准则的详细信息，请参见 link:concept_before_you_begin_to_deploy_gfc.html#sizing-guidelines["规模估算准则"]。
+
+
+
+=== 经过加固的服务器设备
+
+全局文件缓存安装包可在任何 Microsoft Windows Server 实例上创建一个经过加固的软件设备。_Do not Uninstall_ 全局文件缓存软件包。卸载全局文件缓存将影响服务器实例的功能，并且可能需要完全重建服务器实例。
+
+
+
+=== 物理硬件要求
+
+* 至少 4 个 CPU 核
+* 至少 16 GB RAM
+* 专用单个或冗余 1 Gbps NIC
+* 10K RPM SAS HDD 或 SSD （首选）
+* 启用了回写缓存功能的 RAID 控制器
+
+
+
+
+=== 虚拟部署要求
+
+从存储子系统的角度来看，虚拟机管理程序平台的性能可能会下降（例如延迟）。为了使用全局文件缓存获得最佳性能，建议使用具有 SSD 的物理服务器实例。
+
+为了在虚拟环境中获得最佳性能，除了物理主机要求之外，还必须满足以下要求和资源预留：
+
+Microsoft Hyper-V 2012 R2 及更高版本：
+
+* 处理器（ CPU ）： CPU 必须设置为 * 静态 * ：最小： 4 个 vCPU 核心。
+* 内存（ RAM ）：最小： 16 GB 设置为 * 静态 * 。
+* 硬盘配置：硬盘必须配置为 * 固定磁盘 * 。
+
+
+VMware vSphere 6.x 及更高版本：
+
+* 处理器（ CPU ）：必须设置 CPU 周期预留。最小值： 4 个 vCPU 核心 @ 10000 MHz 。
+* Memory （ RAM ）：最小：预留 16 GB 。
+* 硬盘配置：
++
+** 磁盘配置必须设置为 * 厚配置主动置零 * 。
+** 硬盘共享必须设置为 * 高 * 。
+** 必须使用 vSphere Client 将 devices.hotplug 设置为 * 。 False ，以防止 Microsoft Windows 将全局文件缓存驱动器提供为可移动驱动器。
+
+
+* 网络连接：网络接口必须设置为 * VMXNET3* （需要 VM 工具）。
+
+
+全局文件缓存在 Windows Server 2016 和 2019 上运行，因此虚拟化平台需要支持操作系统，并与实用程序相集成以提高 VM 子操作系统的性能和 VM 管理，例如 VM Tools 。
+
+
+
+=== 分区规模估算要求
+
+* C ： \ - 最小 250 GB （系统 / 启动卷）
+* D ： \ - 最小 1 TB （用于全局文件缓存智能文件缓存的单独数据卷 * ）
+
+
+* 最小大小是活动数据集的 2 倍。缓存卷（ D ： \ ）可以扩展，并且仅受 Microsoft Windows NTFS 文件系统限制。
+
+
+
+=== 全局文件缓存智能文件缓存磁盘要求
+
+全局文件缓存智能文件缓存磁盘（ D ： \ ）上的磁盘延迟应为每个并发用户提供小于 0.5 毫秒的平均 I/O 磁盘延迟和 1 MiBps 吞吐量。
+
+有关详细信息，请参见 link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["《 NetApp 全局文件缓存用户指南》"^]。
+
+
+
+=== 网络
+
+* 防火墙：应允许在全局文件缓存边缘和管理服务器与核心实例之间使用 TCP 端口。
++
+全局文件缓存 TCP 端口： 443 （ HTTPS - LMS ）， 6618 – 6630 。
+
+* 必须将网络优化设备（例如 Riverbed Steelhead ）配置为直通全局文件缓存专用端口（ TCP 6618-6630 ）。
+
+
+
+
+=== 客户端工作站和应用程序最佳实践
+
+全局文件缓存可透明地集成到客户环境中，从而使用户可以使用其客户端工作站访问集中式数据，并运行企业级应用程序。使用全局文件缓存，可以通过直接驱动器映射或 DFS 命名空间访问数据。有关全局文件缓存网络结构，智能文件缓存以及软件关键方面的详细信息，请参见 link:concept_before_you_begin_to_deploy_gfc.html["开始部署全局文件缓存之前"^] 部分。
+
+为了确保获得最佳体验和性能，请务必遵循《全局文件缓存用户指南》中所述的 Microsoft Windows 客户端要求和最佳实践。此适用场景适用于所有版本的 Microsoft Windows 。
+
+有关详细信息，请参见 link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["《 NetApp 全局文件缓存用户指南》"^]。
+
+
+
+=== 防火墙和防病毒最佳实践
+
+虽然全局文件缓存会尽力验证最常见的防病毒应用程序套件是否与全局文件缓存兼容，但对于这些程序或其相关更新，服务包或修改导致的任何不兼容或性能问题， NetApp 不能提供担保，也不承担任何责任。
+
+全局文件缓存不建议在任何启用了全局文件缓存的实例（核心或边缘）上安装或应用监控或防病毒解决方案。如果是根据选择或策略安装解决方案，则必须应用以下最佳实践和建议。有关常见防病毒套件，请参见中的附录 A link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["《 NetApp 全局文件缓存用户指南》"^]。
+
+
+
+=== 防火墙设置
+
+* Microsoft 防火墙：
++
+** 保留默认防火墙设置。
+** 建议：对于标准全局文件缓存边缘实例，将 Microsoft 防火墙设置和服务保留为默认设置 off ，而不是启动。
+** 建议：将 Microsoft 防火墙设置和服务保留为默认设置 on ，并为同时运行域控制器角色的 Edge 实例启动。
+
+
+* 企业防火墙：
++
+** 全局文件缓存核心实例侦听 TCP 端口 6618-6630 ，确保全局文件缓存边缘实例可以连接到这些 TCP 端口。
+** 全局文件缓存实例需要通过 TCP 端口 443 （ HTTPS ）与全局文件缓存管理服务器进行通信。
+
+
+* 必须将网络优化解决方案 / 设备配置为直通全局文件缓存特定端口。
+
+
+
+
+=== 防病毒最佳实践
+
+本节将帮助您了解在运行全局文件缓存的 Windows Server 实例上运行防病毒软件的要求。Global File Cache 已测试最常用的防病毒产品，包括 Cylance ， McAfee ， Symantec ， Sophos ， Trend Micro ， 与全局文件缓存结合使用的 Kaspersky 和 Windows Defender 。
+
+
+NOTE: 向 Edge 设备添加防病毒软件可能会对用户性能产生 10 – 20% 的影响。
+
+有关详细信息，请参见 link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["《 NetApp 全局文件缓存用户指南》"^]。
+
+
+
+==== 配置排除项
+
+防病毒软件或其他第三方索引编制或扫描实用程序绝不能扫描 Edge 实例上的驱动器 D ： \ 。这些对 Edge 服务器驱动器 D ： \ 的扫描将导致对整个缓存命名空间发出大量文件打开请求。这将导致通过 WAN 将文件提取到数据中心优化的所有文件服务器。Edge 实例上会发生 WAN 连接泛洪和不必要的负载，从而导致性能下降。
+
+除了 D ： \ 驱动器之外，以下全局文件缓存目录和进程通常应从所有防病毒应用程序中排除：
+
+* `C ： \Program Files\TalonFAST\`
+* `C ： \Program Files\TalonFAST\Bin\LMClientService.exe`
+* `C ： \Program Files\TalonFAST\Bin\LMServerService.exe`
+* `C ： \Program Files\TalonFAST\Bin\Optimus.exe`
+* `C ： \Program Files\TalonFAST\Bin\tafsexport.exe`
+* `C ： \Program Files\TalonFAST\Bin\tafsutils.exe`
+* `C ： \Program Files\TalonFAST\Bin\tapp.exe`
+* `C ： \Program Files\TalonFAST\Bin\TFS.exe`
+* `C ： \Program Files\TalonFAST\Bin\TService.exe`
+* `C ： \Program Files\TalonFAST\Bin\tm.exe`
+* `C ： \Program Files\TalonFAST\Fast调试 日志 \`
+* `C ： \Windows\System32\drivers\tfast.sys`
+* ` \\ ？ TafsMtPt ： \ 或 \\ ？ TafsMtP*`
+* ` \Device\TalonCachFS\`
+* ` \\ ？ \GLOBALROOT\Device\TalonCachFS\`
+* ` \\ ？ \GLOBALROOT\Device\TalonCachFS\*`
+
+
+
+
+== NetApp 支持策略
+
+全局文件缓存实例专为全局文件缓存设计，作为在 Windows Server 2016 和 2019 平台上运行的主应用程序。全局文件缓存要求优先访问平台资源，例如磁盘，内存，网络接口， 并可能对这些资源提出高需求。虚拟部署需要预留内存 /CPU 和高性能磁盘。
+
+* 对于部署全局文件缓存的分支机构，运行全局文件缓存的服务器上支持的服务和应用程序限制为：
++
+** DNS/DHCP
+** Active Directory 域控制器（全局文件缓存必须位于单独的卷上）
+** 打印服务
+** Microsoft System Center Configuration Manager （ Microsoft System Center Configuration Manager ， SCCM" ）
+** 经全局文件缓存批准的客户端系统代理和防病毒应用程序
+
+
+* NetApp 支持和维护仅适用于全局文件缓存。
+* 业务部门生产效率软件，通常需要大量资源，例如数据库服务器，邮件服务器等。 不支持。
+* 客户负责可能安装在运行全局文件缓存的服务器上的任何非全局文件缓存软件：
++
+** 如果任何第三方软件包导致软件或资源与全局文件缓存发生冲突或性能受到影响，则全局文件缓存的支持组织可能会要求客户在运行全局文件缓存的服务器上禁用或删除该软件。
+** 客户负责安装，集成，支持和升级添加到运行全局文件缓存应用程序的服务器的任何软件。
+
+
+* 防病毒工具和许可代理等系统管理实用程序 / 代理可能可以共存。但是，除了上面列出的受支持服务和应用程序之外，全局文件缓存不支持这些应用程序，并且仍必须遵循上述准则：
++
+** 客户负责安装，集成，支持和升级所添加的任何软件。
+** 如果客户安装的任何第三方软件包导致或怀疑导致软件或资源与全局文件缓存冲突或性能受到影响，则全局文件缓存的支持组织可能要求禁用 / 删除该软件。
+
+
+

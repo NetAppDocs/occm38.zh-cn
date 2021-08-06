@@ -1,0 +1,58 @@
+---
+sidebar: sidebar 
+permalink: index.html 
+summary: 借助 Cloud Manager ， IT 专家和云架构师可以使用 NetApp 的云解决方案集中管理其混合多云基础架构。 
+---
+= Cloud Manager 和 Cloud Volumes ONTAP 文档
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+借助 Cloud Manager ， IT 专家和云架构师可以使用 NetApp 的云解决方案集中管理其混合多云基础架构。
+
+
+
+== 了解新功能
+
+* link:reference_key_changes.html["Cloud Manager 中的重要变更"]
+* link:reference_new_occm.html["Cloud Manager 中的新增功能"]
+* https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_new_97.html["Cloud Volumes ONTAP 中的新增功能"^]
+
+
+
+
+== 入门
+
+* link:concept_overview.html["云管理器"]
+* link:concept_cloud_central_accounts.html["帐户设置"]
+* link:task_getting_started_aws.html["适用于 AWS 的 Cloud Volumes ONTAP"]
+* link:task_getting_started_azure.html["适用于 Azure 的 Cloud Volumes ONTAP"]
+* link:task_getting_started_gcp.html["适用于 Google Cloud 的 Cloud Volumes ONTAP"]
+* link:task_manage_anf.html["Azure NetApp Files"]
+* link:task_manage_cvs_aws.html["适用于 AWS 的 Cloud Volumes Service"]
+* link:task_manage_cvs_gcp.html["适用于 Google Cloud 的 Cloud Volumes Service"]
+* link:task_getting_started_compliance.html["云合规性"]
+* link:task_gfc_getting_started.html["全局文件缓存"]
+* link:concept_backup_to_cloud.html["备份到云"]
+* link:task_getting_started_monitoring.html["Cloud Insights"]
+
+
+
+
+== 通过 API 实现自动化
+
+* link:api.html["API 开发人员指南"^]
+* link:reference_infrastructure_as_code.html["自动化示例"]
+
+
+
+
+== 与同行建立联系、获得帮助并查找更多信息
+
+* https://community.netapp.com/t5/Cloud-Data-Services/ct-p/CDS["NetApp 社区：云数据服务"^]
+* https://mysupport.netapp.com/GPS/ECMLS2588181.html["NetApp Cloud Volumes ONTAP 支持"^]
+* link:reference_additional_info.html["从何处获取帮助和查找更多信息"]
+

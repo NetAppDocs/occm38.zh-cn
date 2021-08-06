@@ -1,0 +1,85 @@
+---
+sidebar: sidebar 
+permalink: task_sync_licensing.html 
+keywords: license, subscription, registering, subscribing, subscribing in aws, subscribing in azure, subscribing to aws, subscribing to azure, aws marketplace, azure marketplace, netapp license, byol license, purchase a license, license settings, pay for relationships, paygo, annual, pay-as-you-go 
+summary: 在 14 天免费试用结束后、有两种方式可以支付同步关系的费用。第一种选择是按需购买。第二种选择是直接从 NetApp 购买许可证。 
+---
+= 在免费试用结束后为同步关系付费
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+在 14 天免费试用结束后、有两种方式可以支付同步关系的费用。第一种选择是从 AWS 或 Azure 订阅“按需购买、渐进购买”或“每年支付”。第二种选择是直接从 NetApp 购买许可证。
+
+您可以将 NetApp 的许可证与 AWS 或 Azure 订阅一起使用。例如，如果您有 25 个同步关系、则可以使用许可证支付前 20 个同步关系的费用、然后从 AWS 或 Azure 中按原样支付剩余的 5 个同步关系的费用。
+
+link:concept_cloud_sync.html["了解有关许可证工作原理的更多信息。"]。
+
+.如果在免费试用结束后，我不能立即支付费用，该怎么办？
+****
+您将无法创建任何其他关系。现有关系不会被删除、但您必须订阅或输入许可证才能对其进行任何更改。
+
+****
+
+
+== 从 AWS 订阅
+
+AWS 使您可以按需付费或每年支付。
+
+.按需购买的步骤
+. 单击 * 同步 > 许可 * 。
+. 选择 * AWS *
+. 单击 * 订阅 * ，然后单击 * 继续 * 。
+. 从 AWS Marketplace 订阅，然后重新登录到 Cloud Sync 服务以完成注册。
++
+以下视频显示了该过程：
+
++
+video::video_cloud_sync_registering.mp4[width=848,height=480]
+
+
+.每年支付的步骤
+. https://aws.amazon.com/marketplace/pp/B06XX5V3M2["转至 AWS Marketplace 页面。"^]。
+. 单击 * 继续订阅 * 。
+. 选择您的合同选项，然后单击 * 创建合同 * 。
+
+
+
+
+== 从 Azure 订阅
+
+Azure 使您可以按需付费或每年支付。
+
+在相关订阅中具有“贡献者”或“所有者”权限的 Azure 用户帐户。
+
+.步骤
+. 单击 * 同步 > 许可 * 。
+. 选择 * Azure * 。
+. 单击 * 订阅 * ，然后单击 * 继续 * 。
+. 在 Azure 门户中，单击 * 创建 * ，选择您的选项，然后单击 * 订阅 * 。
++
+选择 * 按月 * 按小时付费，或者选择 * 按年 * 按前一年付费。
+
+. 部署完成后，在通知弹出窗口中单击 SaaS 资源的名称。
+. 单击 * 配置帐户 * 以返回到 Cloud Sync 。
++
+以下视频显示了该过程：
+
++
+video::video_cloud_sync_registering_azure.mp4[width=848,height=480]
+
+
+
+
+== 从 NetApp 购买许可证并将其添加到 Cloud Sync
+
+要预先支付同步关系的费用、您必须购买一个或多个许可证并将其添加到 Cloud Sync 服务。
+
+.步骤
+. 请发送邮件至： ng-cloudsync-contact@netapp.com ？ Subject=Cloud%20Sync%20Service%20-%20BYOL%20License%20Purches%20Request[ 联系 NetApp] 购买许可证。
+. 在 Cloud Manager 中，单击 * 同步 > 许可 * 。
+. 单击 * 添加许可证 * 并添加许可证。
+

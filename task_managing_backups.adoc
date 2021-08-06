@@ -1,0 +1,144 @@
+---
+sidebar: sidebar 
+permalink: task_managing_backups.html 
+keywords: restoring, restore, restore volumes, Backup to Cloud, cloud backup service, backup schedule, change schedule, change backup schedule, modify schedule, modify backup schedule, retention, backup retention, delete, delete backups, deleting, deleting backups, disable, disable backups, turn off backups, disable backup to cloud, turn off backup to cloud 
+summary: 通过更改备份计划，还原卷，删除备份等方式管理 Cloud Volumes ONTAP 和内部 ONTAP 系统的备份。 
+---
+= 管理 Cloud Volumes ONTAP 和内部 ONTAP 系统的备份
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+通过更改备份计划，还原卷，删除备份等方式管理 Cloud Volumes ONTAP 和内部 ONTAP 系统的备份。
+
+
+
+== 更改计划和备份保留
+
+默认策略每天备份卷，并保留每个卷的最新 30 个备份副本。您可以更改为每周或每月备份，也可以更改要保留的备份副本数。您还可以选择系统定义的策略之一，这些策略可提供 3 个月， 1 年和 7 年的计划备份。
+
+
+TIP: 更改备份策略仅会影响在更改计划后创建的新卷。它不会影响任何现有卷的计划。
+
+.步骤
+. 选择工作环境。
+. 单击 image:screenshot_gallery_options.gif["更多图标"] 并选择 * 备份设置 * 。
++
+image:screenshot_backup_settings_button.png["屏幕截图显示了备份设置按钮，您可以在选择工作环境后使用该按钮。"]
+
+. 在 _Backup Settings page_ 中，单击 image:screenshot_horizontal_more_button.gif["更多图标"] 对于工作环境，请选择 * 修改备份策略 * 。
++
+image:screenshot_backup_modify_policy.png["屏幕截图显示了备份设置按钮，您可以在选择工作环境后使用该按钮。"]
+
+. 在 _Modify Backup Policy_ 页面中，更改计划和备份保留，然后单击 * 保存 * 。
++
+image:screenshot_backup_modify_policy_page.png["显示 Backup to Cloud 设置的屏幕截图，您可以在其中修改备份计划和备份保留设置。"]
+
+
+
+
+
+== 启动和停止卷备份
+
+如果您不需要卷的备份副本，并且不想为存储备份付费，则可以停止备份卷。如果当前未备份新卷，您也可以将其添加到备份列表中。
+
+.步骤
+. 选择工作环境。
+. 单击 image:screenshot_gallery_options.gif["更多图标"] 并选择 * 备份设置 * 。
++
+image:screenshot_backup_settings_button.png["屏幕截图显示了备份设置按钮，您可以在选择工作环境后使用该按钮。"]
+
+. 在 _Backup Settings page_ 中，单击 image:screenshot_horizontal_more_button.gif["更多图标"] 对于工作环境，请选择 * 管理卷 * 。
++
+image:screenshot_backup_manage_volumes.png["屏幕截图显示了备份设置页面中的管理卷按钮。"]
+
+. 选中要开始备份的卷对应的复选框，然后取消选中要停止备份的卷对应的复选框。
++
+image:screenshot_backup_manage_volumes_page.png["管理卷页面，您可以在其中选择或取消选择卷。"]
+
+
+
+* 注意： * 停止备份卷时，云提供商会继续为备份所用容量收取对象存储成本，除非您这样做 <<Deleting backups,删除备份>>。
+
+
+
+== 从备份还原卷
+
+从备份还原数据时， Cloud Manager 会使用备份中的数据创建 _new_ 卷。您可以将数据还原到同一工作环境中的卷，也可以还原到与源工作环境位于同一云帐户中的其他工作环境。由于备份不包含任何快照，因此新还原的卷也不包含。
+
+
+TIP: 从内部 ONTAP 系统创建的备份只能还原到使用与备份所在位置相同的云提供程序的 Cloud Volumes ONTAP 系统。
+
+.步骤
+. 选择工作环境。
+. 单击 image:screenshot_gallery_options.gif["更多图标"] 并选择 * 查看备份 * 。
++
+image:screenshot_view_backups_selection.png["为工作环境选择查看备份按钮的屏幕截图。"]
+
+. 选择要还原的卷所在的行，然后单击 * 查看备份列表 * 。
++
+image:screenshot_backup_to_s3_volume.gif["\" 备份和还原 \" 选项卡的屏幕截图，显示具有备份的卷。"]
+
+. 找到要还原的备份，然后单击 * 还原 * 图标。
++
+image:screenshot_backup_to_s3_restore_icon.gif["选择卷后备份的还原图标的屏幕截图。"]
+
+. 填写 _Restore Backup to new volumes_ 页面：
++
+.. 选择要将卷还原到的工作环境。
+.. 输入卷的名称。
+.. 单击 * 还原 * 。
++
+image:screenshot_backup_to_s3_restore_options.gif["显示还原选项的屏幕截图：要还原到的工作环境，卷的名称以及卷信息。"]
+
+
+
+
+
+Cloud Manager 会根据您选择的备份创建一个新卷。您可以 link:task_managing_storage.html#managing-existing-volumes["管理此新卷"^] 根据需要。
+
+
+
+== 删除备份
+
+通过备份到云，您可以删除特定卷的 _all_ 备份。您不能删除 _individual_ 备份。
+
+如果您不再需要备份，或者删除了源卷并希望删除所有备份，则可以执行此操作。
+
+
+IMPORTANT: 如果您计划删除具有备份的 Cloud Volumes ONTAP 或内部 ONTAP 系统，则必须删除备份 * 在删除系统之前 * 。删除系统时，备份到云不会自动删除备份，并且当前 UI 不支持在删除系统后删除备份。
+
+.步骤
+. 在 Cloud Manager 顶部，单击 * 备份 * 。
+. 从卷列表中找到卷，然后单击 * 查看备份列表 * 。
+. 单击 image:screenshot_horizontal_more_button.gif["更多图标"] 并选择 * 删除所有备份 * 。
++
+image:screenshot_delete_all_backups.png["选择删除所有备份按钮删除卷的所有备份的屏幕截图。"]
+
+. 在确认对话框中，单击 * 删除 * 。
+
+
+
+
+== 禁用备份到云
+
+如果在工作环境中禁用备份到云，则会禁用系统上每个卷的备份，同时也会禁用还原卷的功能。不会删除任何现有备份。
+
+请注意，除非删除备份，否则云提供商仍会为您的备份所使用的容量收取对象存储成本。
+
+.步骤
+. 选择工作环境。
+. 单击 image:screenshot_gallery_options.gif["更多图标"] 并选择 * 备份设置 * 。
++
+image:screenshot_backup_settings_button.png["屏幕截图显示了备份设置按钮，您可以在选择工作环境后使用该按钮。"]
+
+. 在 _Backup Settings page_ 中，单击 image:screenshot_horizontal_more_button.gif["更多图标"] 对于工作环境，请选择 * 停用备份到云 * 。
++
+image:screenshot_disable_backups.png["工作环境的停用备份按钮的屏幕截图。"]
+
+. 在确认对话框中，单击 * 停用 * 。
+

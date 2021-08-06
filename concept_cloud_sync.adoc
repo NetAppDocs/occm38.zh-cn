@@ -1,0 +1,140 @@
+---
+sidebar: sidebar 
+permalink: concept_cloud_sync.html 
+keywords: cloud sync, overview, conceptual, how, data broker, service 
+summary: NetApp Cloud Sync 服务提供了一种简单、安全且自动化的方式、可以将数据迁移到云或您的企业内部的任何目标。 
+---
+= Cloud Sync 概述
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Cloud Sync 服务提供了一种简单、安全且自动化的方式、可以将数据迁移到云或您的企业内部的任何目标。无论是基于文件的 NAS 数据集（ NFS 或 SMB ）、 Amazon Simple Storage Service （ S3 ）对象格式、 NetApp StorageGRID ® 设备还是任何其他云提供商对象存储、 Cloud Sync 都可以为您转换和移动它。
+
+
+
+== 功能
+
+观看以下视频以了解 Cloud Sync 的概述：
+
+video::oZNJtLvgNfQ[youtube, width=848,height=480]
+
+
+== Cloud Sync 的工作原理
+
+Cloud Sync 是一个软件即服务（ SaaS ）平台，由一个数据代理，一个通过 Cloud Manager 提供的基于云的界面以及一个源和目标组成。
+
+下图显示了 Cloud Sync 组件之间的关系：
+
+image:diagram_cloud_sync_overview.gif["显示从源到目标的数据流的概念图像。数据代理软件充当调解器并轮询云同步服务以了解任务。"]
+
+NetApp 数据代理软件会将数据从源同步到目标（称为 _sync relationship_ ）。您可以在 AWS 、 Azure 、 Google Cloud 平台或内部运行数据代理。数据代理需要通过端口 443 建立出站 Internet 连接、以便与 Cloud Sync 服务进行通信、并与其他一些服务和存储库联系。 link:reference_sync_networking.html["查看端点列表。"]。
+
+初始副本之后、服务将根据您设置的计划同步所有更改的数据。
+
+
+
+== 支持的存储类型
+
+Cloud Sync 支持以下存储类型：
+
+* 任何 NFS 服务器
+* 任何 SMB 服务器
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp Files
+* Cloud Volumes Service
+* Cloud Volumes ONTAP
+* Google Cloud 存储
+* IBM 云对象存储
+* 内部 ONTAP 集群
+* ONTAP S3 存储
+* StorageGRID
+
+
+link:reference_sync_requirements.html["查看支持的同步关系"]。
+
+
+
+== 成本
+
+使用 Cloud Sync 会产生两种成本：资源费用和服务费用。
+
+资源费用:: 资源费用与在云中运行数据代理的计算和存储成本相关。
+服务费用:: 在 14 天免费试用结束后、有两种方式可以支付同步关系的费用。第一种选择是从 AWS 或 Azure 订阅，这样您可以按小时或按年付费。第二种选择是直接从 NetApp 购买许可证。有关详细信息，请阅读以下各节。
+
+
+
+
+=== 市场订阅
+
+通过从 AWS 或 Azure 订阅 Cloud Sync 服务、您可以按小时付费或每年付款。 link:task_sync_licensing.html["您可以通过 AWS 或 Azure 订阅"]，具体取决于您要向何处付费。
+
+每小时订阅::
++
+--
+* https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-sync-service?tab=PlansAndPrice["查看 Azure 中的定价"^]
+* https://aws.amazon.com/marketplace/pp/B01LZV5DUJ["在 AWS 中查看按需购买定价"^]
+
+
+--
+年度订阅::
++
+--
+https://aws.amazon.com/marketplace/pp/B06XX5V3M2["查看 AWS 中的年度定价"^]
+
+--
+
+
+
+
+=== 来自 NetApp 的许可证
+
+另一种提前支付同步关系费用的方法是直接从 NetApp 购买许可证。每个许可证最多可创建 20 个同步关系。
+
+您可以将这些许可证与 AWS 或 Azure 订阅一起使用。例如，如果您有 25 个同步关系、则可以使用许可证支付前 20 个同步关系的费用、然后从 AWS 或 Azure 中按原样支付剩余的 5 个同步关系的费用。
+
+link:task_sync_licensing.html["了解如何购买许可证并将其添加到 Cloud Sync 中。"]。
+
+
+
+=== 许可条款
+
+购买“将您自己的许可证（ BYOL ）带到云同步服务”的客户应了解与许可证权利相关的限制。
+
+* 客户有权在自交付之日起一年内利用 BYOL 许可证。
+* 客户有权利用 BYOL 许可证在源和目标之间建立总共不超过 20 个单独的连接（每个连接均为“同步关系”）。
+* 无论客户是否已达到 20 个同步关系限制、客户的权利在一年许可期限结束时到期。
+* 如果客户选择续订其许可证、则与以前的许可证授权关联的未使用同步关系不会滚动到许可证续订。
+
+
+
+
+== 数据隐私
+
+NetApp 无法访问您在使用 Cloud Sync 服务时提供的任何凭据。凭据直接存储在驻留在网络中的数据代理计算机上。
+
+根据您选择的配置、在创建新关系时， Cloud Sync 可能会提示您输入凭据。例如，在设置包含 SMB 服务器的关系时，或者在 AWS 中部署数据代理时。
+
+这些凭据始终直接保存到数据代理本身。数据代理驻留在您网络中的计算机上，无论该计算机位于内部还是位于您的云帐户中。NetApp 从不能获得凭据。
+
+凭据在数据代理计算机上使用 HashiCorp Vault 进行本地加密。
+
+
+
+== 限制
+
+* 中国不支持云同步。
+* 除中国外、以下地区不支持 Cloud Sync 数据代理：
++
+** AWS Govloud （美国）
+** Azure US gov 酒店
+** Azure US DoD
+
+
+

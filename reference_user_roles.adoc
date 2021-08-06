@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: reference_user_roles.html 
+keywords: user, users, roles, role, task, permission, permissions, tasks, admin, Account Admin, Workspace Admin, Cloud Compliance Viewer 
+summary: " 帐户管理员 " ， " 工作空间管理员 " 和 " 云合规性查看器 " 角色可为用户提供特定权限。 
+---
+= 角色
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+" 帐户管理员 " ， " 工作空间管理员 " 和 " 云合规性查看器 " 角色可为用户提供特定权限。
+
+[cols="31,23,23,23"]
+|===
+| 任务 | 帐户管理员 | 工作空间管理员 | Cloud Compliance Viewer 
+
+
+| 管理工作环境 | 是的。 | 是的。 | 否 
+
+
+| 在工作环境中启用服务 | 是的。 | 是的。 | 否 
+
+
+| 查看数据复制状态 | 是的。 | 是的。 | 否 
+
+
+| 查看时间表 | 是的。 | 是的。 | 否 
+
+
+| 在工作空间之间切换 | 是的。 | 是的。 | 是的。 
+
+
+| 查看合规性扫描结果 | 是的。 | 是的。 | 是的。 
+
+
+| 删除工作环境 | 是的。 | 否 | 否 
+
+
+| 将 Kubernetes 集群连接到工作环境 | 是的。 | 否 | 否 
+
+
+| 接收 Cloud Volumes ONTAP 报告 | 是的。 | 否 | 否 
+
+
+| 创建连接器 | 是的。 | 否 | 否 
+
+
+| 管理 Cloud Central 帐户 | 是的。 | 否 | 否 
+
+
+| 管理凭据 | 是的。 | 否 | 否 
+
+
+| 修改 Cloud Manager 设置 | 是的。 | 否 | 否 
+
+
+| 查看和管理支持仪表板 | 是的。 | 否 | 否 
+
+
+| 从 Cloud Manager 中删除工作环境 | 是的。 | 否 | 否 
+
+
+| 安装 HTTPS 证书 | 是的。 | 否 | 否 
+|===
+.相关链接
+* link:task_setting_up_cloud_central_accounts.html["在 Cloud Central 帐户中设置工作空间和用户"^]
+* link:task_managing_cloud_central_accounts.html["在 Cloud Central 帐户中管理工作空间和用户"^]
+

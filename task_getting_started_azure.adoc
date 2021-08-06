@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_azure.html 
+keywords: microsoft, azure, netapp, data fabric, hybrid cloud, cloud, public cloud, networking, marketplace, virtual machine, vnet, quick, getting started, install, installing, deploy, deploying, setup, setting up, launching, requirements, prerequisites, cloud central, permissions, custom role, role, json, permissions, virtual machine, video, connectivity, internet, outbound, endpoint, connection, networks, vpn, replicating, policy, iam, setupasservice, sign up, cloud manager, cloud volumes ontap, cloud ontap, subscription, create 
+summary: 只需几步即可开始使用适用于 Azure 的 Cloud Volumes ONTAP 。 
+---
+= Cloud Volumes ONTAP for Azure 入门
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+只需几步即可开始使用适用于 Azure 的 Cloud Volumes ONTAP 。
+
+
+
+==== 创建连接器
+
+[role="quick-margin-para"]
+如果您没有 link:concept_connectors.html["连接器"] 但是，客户管理员需要创建一个。 。
+
+[role="quick-margin-para"]
+在创建首个 Cloud Volumes ONTAP 工作环境时，如果尚未部署 Connector ，则 Cloud Manager 会提示您部署一个。
+
+
+
+==== 规划您的配置
+
+[role="quick-margin-para"]
+Cloud Manager 可提供符合您的工作负载要求的预配置软件包，您也可以创建自己的配置。如果您选择自己的配置、则应了解可用的选项。 link:task_planning_your_config_azure.html["了解更多信息。"]。
+
+
+
+==== 设置网络
+
+. 确保您的 vNet 和子网支持连接器和 Cloud Volumes ONTAP 之间的连接。
+. 从目标 vNet 启用出站 Internet 访问，以便 Connector 和 Cloud Volumes ONTAP 可以联系多个端点。
++
+此步骤非常重要，因为没有出站 Internet 访问， Connector 无法管理 Cloud Volumes ONTAP 。如果需要限制出站连接，请参阅的端点列表 link:reference_networking_azure.html["连接器和 Cloud Volumes ONTAP"]。
+
+
+
+[role="quick-margin-para"]
+link:reference_networking_azure.html["详细了解网络要求"]。
+
+
+
+==== 使用 Cloud Manager 启动 Cloud Volumes ONTAP
+
+[role="quick-margin-para"]
+单击 * 添加工作环境 * ，选择要部署的系统类型，然后完成向导中的步骤。 link:task_deploying_otc_azure.html["阅读分步说明"]。
+
+.相关链接
+* link:concept_evaluating.html["评估"]
+* link:task_creating_connectors_azure.html["使用 Cloud Manager 创建连接器"]
+* link:task_launching_azure_mktp.html["从 Azure Marketplace 创建 Connector"]
+* link:task_installing_linux.html["在 Linux 主机上安装 Connector 软件"]
+* link:reference_permissions.html#what-cloud-manager-does-with-azure-permissions["Cloud Manager 使用 Azure 权限的功能"]
+

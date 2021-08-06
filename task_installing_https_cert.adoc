@@ -1,0 +1,85 @@
+---
+sidebar: sidebar 
+permalink: task_installing_https_cert.html 
+keywords: https certificate, certificate, adding, installing, ca, certificate authority, format, encoding, renewing 
+summary: 默认情况下， Cloud Manager 使用自签名证书对 Web 控制台进行 HTTPS 访问。您可以安装由证书颁发机构（ CA ）签名的证书、该证书提供比自签名证书更好的安全保护。 
+---
+= 管理 HTTPS 证书以实现安全访问
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+默认情况下， Cloud Manager 使用自签名证书对 Web 控制台进行 HTTPS 访问。您可以安装由证书颁发机构（ CA ）签名的证书、该证书提供比自签名证书更好的安全保护。
+
+
+
+== 开始之前
+
+您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
+
+
+
+== 安装 HTTPS 证书
+
+安装由 CA 签名的证书以确保安全访问。
+
+.步骤
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * HTTPS 设置 * 。
++
+image:screenshot_settings_icon.gif["一个屏幕截图，显示 Cloud Manager 控制台右上角的设置图标。"]
+
+. 在 HTTPS 设置页面中、通过生成证书签名请求（ CSR ）或安装您自己的 CA 签名证书来安装证书：
++
+[cols="25,75"]
+|===
+| 选项 | Description 
+
+
+| 生成 CSR  a| 
+.. 输入 Connector 主机的主机名或 DNS （其公用名），然后单击 * 生成 CSR* 。
++
+Cloud Manager 将显示证书签名请求。
+
+.. 使用 CSR 向 CA 提交 SSL 证书请求。
++
+证书必须使用 Privacy Enhanced Mail （ PEM ） Base － 64 编码的 X.509 格式。
+
+.. 复制签名证书的内容，将其粘贴到证书字段中，然后单击 * 安装 * 。
+
+
+
+
+| 安装您自己的 CA 签名证书  a| 
+.. 选择 * 安装 CA 签名证书 * 。
+.. 加载证书文件和私钥，然后单击 * 安装 * 。
++
+证书必须使用 Privacy Enhanced Mail （ PEM ） Base － 64 编码的 X.509 格式。
+
+
+
+|===
+
+
+Cloud Manager 现在使用 CA 签名的证书提供安全 HTTPS 访问。下图显示了为安全访问配置的 Cloud Manager 系统：
+
+image:screenshot_https_cert.gif["屏幕截图：在安装签名证书后显示 HTTPS 设置页面。该页显示证书属性和续订证书的选项。"]
+
+
+
+== 续订 Cloud Manager HTTPS 证书
+
+您应该在云管理器 HTTPS 证书过期之前续订该证书，以确保对云管理器 Web 控制台的安全访问。如果在证书过期前未续订证书、则当用户使用 HTTPS 访问 Web 控制台时会显示警告。
+
+.步骤
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * HTTPS 设置 * 。
++
+此时将显示有关 Cloud Manager 证书的详细信息、包括到期日期。
+
+. 单击 * 续订 HTTPS 证书 * ，然后按照以下步骤生成 CSR 或安装您自己的 CA 签名证书。
+
+
+Cloud Manager 使用新的 CA 签名证书提供安全 HTTPS 访问。

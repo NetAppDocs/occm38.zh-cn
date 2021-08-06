@@ -1,0 +1,99 @@
+---
+sidebar: sidebar 
+permalink: task_licensing_cloud_tiering.html 
+keywords: subscribe, trial, marketplace, subscription, paygo, pay, pay as you go, aws, tiering, cloud tiering 
+summary: 通过按需购买订阅，名为 FabricPool 的 ONTAP 分层许可证或两者的组合为云分层付费。如果您希望按需购买，则需要从市场订阅要将冷数据分层到的云提供商。无需从每个市场订阅。 
+---
+= 为 Cloud Tiering 设置许可
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+通过按需购买订阅，名为 _Cloud Tier_ 的 ONTAP 分层许可证或两者的组合为 FabricPool 分层付费。如果您希望按需购买，则需要从市场订阅要将冷数据分层到的云提供商。无需从每个市场订阅。
+
+在阅读其他内容之前，请先阅读一些注释：
+
+* 如果集群上已安装 FabricPool 许可证，则表示您已准备就绪，无需执行任何其他操作。
+* 如果您已在云提供商的市场中订阅 Cloud Manager 订阅，则也会自动订阅 Cloud Tiering 。您将在 Cloud Tiering * 许可 * 选项卡中看到活动订阅。您无需再次订阅。
+* 将数据分层到 StorageGRID 时不收取任何费用。无需 BYOL 许可证或 PAYGO 注册。
+
+
+link:concept_cloud_tiering.html["详细了解云分层的许可工作原理"]。
+
+
+
+== 从 AWS Marketplace 订阅
+
+从 AWS Marketplace 订阅 Cloud Tiering ，设置按需购买的订阅，以便将数据从 ONTAP 集群分层到 AWS S3 。
+
+[[subscribe-aws]]
+.步骤
+. 在 Cloud Manager 中，单击 * 分层 > 许可 * 。
+. 单击 AWS Marketplace 下的 * 订阅 * ，然后单击 * 继续 * 。
+. 从 AWS Marketplace 订阅，然后重新登录到 Cloud Central 以完成注册。
++
+以下视频显示了该过程：
+
++
+video::video_subscribing_aws_tiering.mp4[width=848,height=480]
+
+
+
+
+== 从 Azure Marketplace 订阅
+
+从 Azure Marketplace 订阅云分层以设置按需购买的订阅，以便将数据从 ONTAP 集群分层到 Azure Blob 存储。
+
+[[subscribe-azure]]
+.步骤
+. 在 Cloud Manager 中，单击 * 分层 > 许可 * 。
+. 单击 Azure Marketplace 下的 * 订阅 * ，然后单击 * 继续 * 。
+. 从 Azure Marketplace 订阅，然后重新登录到 Cloud Central 以完成注册。
++
+以下视频显示了该过程：
+
++
+video::video_subscribing_azure_tiering.mp4[width=848,height=480]
+
+
+
+
+== 从 GCP Marketplace 订阅
+
+从 GCP Marketplace 订阅 Cloud Tiering ，设置按需购买订阅，以便将数据从 ONTAP 集群分层到 Google Cloud 存储。
+
+.步骤
+. 在 Cloud Manager 中，单击 * 分层 > 许可 * 。
+. 单击 GCP Marketplace 下的 * 订阅 * ，然后单击 * 继续 * 。
+. 从 GCP Marketplace 订阅，然后重新登录到 Cloud Central 以完成注册。
++
+【订阅 GCP 】以下视频显示了此过程：
+
++
+video::video_subscribing_gcp_tiering.mp4[width=848,height=480]
+
+
+
+
+== 向 ONTAP 添加分层许可证
+
+通过从 NetApp 购买 ONTAP FabricPool 许可证来自带许可证。
+
+.步骤
+. 如果您没有 FabricPool 许可证，请发送邮件至： ng-cloud-tiering@netapp.com ？ Subject=Licensing[ 请联系我们购买一个许可证 ] 。
+. 在 Cloud Manager 中，单击 * 分层 > 许可 * 。
+. 在集群列表表中，单击内部 ONTAP 集群的 * 激活许可证（ BYOL ） * 。
++
+image:screenshot_activate_license.gif["\" 许可 \" 页面的屏幕截图，您可以在其中为内部集群激活许可证。"]
+
+. 输入许可证的序列号，然后输入与此序列号关联的 NetApp 支持站点帐户。
+. 单击 * 激活许可证 * 。
+
+
+Cloud Tiering 会注册许可证并将其安装在集群上。
+
+如果您稍后再购买附加容量，则集群上的许可证将自动使用新容量更新。无需将新的 NetApp 许可证文件（ NLF ）应用于集群。

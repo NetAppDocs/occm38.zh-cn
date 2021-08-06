@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: reference_aws_support.html 
+keywords: aws, amazon, s3, support, regions, storage classes 
+summary: Cloud Tiering 支持多个 S3 存储类和大多数地区。 
+---
+= 支持的 S3 存储类和区域
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Tiering 支持多个 S3 存储类和大多数地区。
+
+
+
+== 支持的 S3 存储类
+
+Cloud Tiering 可以应用生命周期规则，以便数据在 30 天后从 _Standard_ 存储类过渡到另一个存储类。您可以从以下存储类中进行选择：
+
+* 标准—不经常访问
+* 一个区域 IA
+* 智能
+
+
+如果选择标准，则数据将保留在该存储类中。
+
+https://aws.amazon.com/s3/storage-classes/["了解 S3 存储课程"^]。
+
+
+
+== 支持的 AWS 区域
+
+Cloud Tiering 支持以下 AWS 区域。
+
+
+
+==== 亚太地区
+
+* 孟买
+* 汉城
+* 新加坡
+* 悉尼
+* 东京
+
+
+
+
+==== 欧洲
+
+* 法兰克福
+* 爱尔兰
+* 伦敦
+* 巴黎
+* 斯德哥尔摩
+
+
+
+
+==== 北美
+
+* 加拿大中部
+* GovCloud （美国西部）—从 ONTAP 9.3 开始
+* 美国东部（ N.维吉尼亚）
+* 美国东部（俄亥俄州）
+* 美国西部（ N.加利福尼亚）
+* US West （俄勒冈州）
+
+
+
+
+==== 南美洲
+
+* São
+

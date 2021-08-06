@@ -1,0 +1,162 @@
+---
+sidebar: sidebar 
+permalink: concept_cloud_compliance.html 
+keywords: artificial intelligence, ai, compliance, cloud compliance, dsar, personal data, personal information, sensitive, personal sensitive data, gdpr, hipaa, scans, scanning, azure netapp files, cloud volumes ontap, Amazon S3, database 
+summary: Cloud Compliance 是 Cloud Manager 的一项数据隐私和合规服务，用于扫描卷， Amazon S3 存储分段和数据库，以确定这些文件中的个人和敏感数据。借助人工智能（ AI ）驱动的技术， Cloud Compliance 可帮助企业了解数据环境并识别敏感数据。 
+---
+= 了解云合规性
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Compliance 是 Cloud Manager 的一项数据隐私和合规服务，用于扫描卷， Amazon S3 存储分段和数据库，以确定这些文件中的个人和敏感数据。借助人工智能（ AI ）驱动的技术， Cloud Compliance 可帮助企业了解数据环境并识别敏感数据。
+
+https://cloud.netapp.com/cloud-compliance["了解 Cloud Compliance 的用例"^]。
+
+
+
+== 功能
+
+Cloud Compliance 提供了多种工具，可帮助您完成合规工作。您可以使用 Cloud Compliance ：
+
+* 识别个人身份信息（ PiII ）
+* 根据 GDPR ， CCPA ， PCI 和 HIPAA 隐私法规的要求确定广泛的敏感信息
+* 响应数据主体访问请求（ DSAar ）
+
+
+
+
+== 支持的工作环境和数据源
+
+Cloud Compliance 可以从以下类型的数据源扫描数据：
+
+* AWS 中的 Cloud Volumes ONTAP
+* Azure 中的 Cloud Volumes ONTAP
+* Azure NetApp Files
+* Amazon S3
+* 位于任意位置的数据库（不要求数据库驻留在工作环境中）
+
+
+* 注意： * 对于 Azure NetApp Files ， Cloud Compliance 可以扫描与 Cloud Manager 位于同一区域的任何卷。
+
+
+
+== 成本
+
+* 使用 Cloud Compliance 的成本取决于您要扫描的数据量。截至 2020 年 10 月 7 日， Cloud Compliance 在 Cloud Manager 工作空间中扫描的前 1 TB 数据是免费的。其中包括来自 Cloud Volumes ONTAP 卷， Azure NetApp Files 卷， Amazon S3 分段和数据库架构的数据。要在这之后继续扫描数据，需要订阅 AWS 或 Azure Marketplace 。请参见 https://cloud.netapp.com/cloud-compliance#pricing["定价"^] 了解详细信息。
++
+link:task_deploy_cloud_compliance.html#subscribing-to-the-cloud-compliance-service["了解如何订阅"^]。
+
+* 安装 Cloud Compliance 需要部署云实例，这会导致部署该实例的云提供商收取费用。请参见 <<The Cloud Compliance instance,为每个云提供商部署的实例类型>>
+* Cloud Compliance 要求您已部署 Connector 。在许多情况下，由于您在 Cloud Manager 中使用的其他存储和服务，您已经有了 Connector 。Connector 实例会从部署该实例的云提供商处收取费用。请参见 link:reference_cloud_mgr_reqs.html["为每个云提供商部署的实例类型"^]。
+
+
+
+
+=== 数据传输成本
+
+数据传输成本取决于您的设置。如果 Cloud Compliance 实例和数据源位于同一可用性区域和区域，则不会产生数据传输成本。但是，如果数据源（例如 Cloud Volumes ONTAP 集群或 S3 存储分段）位于 _Different_ 可用性区域或区域，则云提供商会向您收取数据传输成本。有关详细信息，请参见以下链接：
+
+* https://aws.amazon.com/ec2/pricing/on-demand/["AWS ： Amazon EC2 定价"^]
+* https://azure.microsoft.com/en-us/pricing/details/bandwidth/["Microsoft Azure ：带宽定价详细信息"^]
+
+
+
+
+== Cloud Compliance 的工作原理
+
+概括地说，云合规性的工作原理如下：
+
+. 您可以在 Cloud Manager 中部署 Cloud Compliance 实例。
+. 您可以在一个或多个工作环境或数据库上启用它。
+. Cloud Compliance 使用 AI 学习流程扫描数据。
+. 在 Cloud Manager 中，单击 * 合规性 * ，然后使用提供的信息板和报告工具帮助您实现合规性。
+
+
+
+
+== Cloud Compliance 实例
+
+启用 Cloud Compliance 后， Cloud Manager 会在与 Connector 相同的子网中部署 Cloud Compliance 实例。 link:concept_connectors.html["了解有关连接器的更多信息。"^]
+
+
+NOTE: 如果此 Connector 安装在内部，则它会将云合规性实例部署在与请求中的第一个 Cloud Volumes ONTAP 系统相同的 VPC 或 vNet 中。
+
+image:diagram_cloud_compliance_instance.png["显示云提供商中运行的 Cloud Manager 实例和 Cloud Compliance 实例的示意图。"]
+
+有关此实例，请注意以下事项：
+
+* 在 Azure 中， Cloud Compliance 在具有 512 GB 磁盘的 Standard_d16s_v3 VM 上运行。
+* 在 AWS 中， Cloud Compliance 在具有 500 GB GP2 磁盘的 m5.4xlarge 实例上运行。
++
+在 m5.4xlarge 不可用的区域中， Cloud Compliance 会在 m4.4xlarge 实例上运行。
+
++
+
+NOTE: 不支持更改实例 /VM 类型或调整其大小。您需要使用提供的大小。
+
+* 此实例名为 _CloudCompliance_ ，并与生成的哈希（ UUID ）串联在一起。例如： _CloudCompliance" — 16bb6564-38AD-4080-9a92 — 36f5fd2f71c7_
+* 每个 Connector 只部署一个 Cloud Compliance 实例。
+* Cloud Compliance 软件的升级是自动化的—您无需担心。
+
+
+
+TIP: 此实例应始终保持运行状态，因为 Cloud Compliance 会持续扫描数据。
+
+
+
+== 扫描的工作原理
+
+启用 Cloud Compliance 并选择要扫描的卷，分段或数据库架构后，它会立即开始扫描数据以确定个人和敏感数据。它会映射您的组织数据，对每个文件进行分类，并标识和提取数据中的实体和预定义模式。扫描的结果是个人信息，敏感个人信息和数据类别的索引。
+
+Cloud Compliance 通过挂载 NFS 和 CIFS 卷与任何其他客户端一样连接到数据。NFS 卷会自动以只读方式访问，而您需要提供 Active Directory 凭据来扫描 CIFS 卷。
+
+image:diagram_cloud_compliance_scan.png["显示云提供商中运行的 Cloud Manager 实例和 Cloud Compliance 实例的示意图。Cloud Compliance 实例连接到 NFS 和 CIFS 卷， S3 分段和数据库以进行扫描。"]
+
+在初始扫描之后， Cloud Compliance 会持续扫描每个卷以检测增量更改（因此，保持实例运行非常重要）。
+
+您可以在中启用和禁用扫描 link:task_getting_started_compliance.html#enabling-and-disabling-compliance-scans-on-volumes["卷级别"^]，位于 和 。
+
+
+
+== Cloud Compliance 索引的信息
+
+Cloud Compliance 收集非结构化数据（文件）并为其编制索引和分配类别。Cloud Compliance 索引的数据包括以下内容：
+
+标准元数据:: Cloud Compliance 收集有关文件的标准元数据：文件类型，大小，创建和修改日期等。
+个人数据:: 个人身份信息，例如电子邮件地址，标识号或信用卡号。 link:task_controlling_private_data.html#personal-data["了解有关个人数据的更多信息"^]。
+敏感的个人数据:: GDPR 和其他隐私法规定义的特殊类型的敏感信息，例如健康数据，种族或政治观点。 link:task_controlling_private_data.html#sensitive-personal-data["了解有关敏感个人数据的更多信息"^]。
+类别:: Cloud Compliance 会获取所扫描的数据并将其划分为不同类型的类别。类别是基于 AI 对每个文件的内容和元数据的分析而得出的主题。 link:task_controlling_private_data.html#categories["了解有关类别的更多信息"^]。
+名称实体识别:: Cloud Compliance 使用 AI 从文档中提取自然人的姓名。 link:task_responding_to_dsar.html["了解如何响应数据主体访问请求"^]。
+
+
+
+
+== 网络概述
+
+Cloud Manager 将 Cloud Compliance 实例部署为一个安全组，该安全组可从 Connector 实例启用入站 HTTP 连接。
+
+在 SaaS 模式下使用 Cloud Manager 时，将通过 HTTPS 提供与 Cloud Manager 的连接，并通过端到端加密保护浏览器与 Cloud Compliance 实例之间发送的私有数据，这意味着 NetApp 和第三方无法读取这些数据。
+
+如果出于任何原因需要使用本地用户界面而不是 SaaS 用户界面，您仍然可以 link:task_managing_connectors.html#accessing-the-local-ui["访问本地 UI"^]。
+
+出站规则完全开放。要安装和升级 Cloud Compliance 软件以及发送使用情况指标，需要访问 Internet 。
+
+如果您有严格的网络连接要求， link:task_deploy_cloud_compliance.html#reviewing-prerequisites["了解 Cloud Compliance 所联系的端点"^]。
+
+
+
+== 用户访问合规性信息
+
+为每个用户分配的角色可在 Cloud Manager 和 Cloud Compliance 中提供不同的功能：
+
+* * 客户管理员 * 可以管理所有工作环境的合规性设置并查看合规性信息。
+* * 工作空间管理员 * 只能管理其有权访问的系统的合规性设置和查看合规性信息。如果 Workspace 管理员无法访问 Cloud Manager 中的工作环境，则在合规性选项卡中看不到该工作环境的任何合规性信息。
+* 具有 * 云合规性查看器 * 角色的用户只能查看其有权访问的系统的合规性信息并生成报告。这些用户无法启用 / 禁用卷，分段或数据库架构的扫描。
+
+
+link:reference_user_roles.html["了解有关 Cloud Manager 角色的更多信息"^] 以及操作方法 。

@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: task_managing_compliance.html 
+keywords: remove, delete, stop, stop scans, stop scanning, cloud compliance, stop cloud compliance, delete cloud compliance, terminate, deactivate, deactivating cloud compliance 
+summary: 如果需要，您可以阻止 Cloud Compliance 扫描一个或多个工作环境。如果您不再希望在工作环境中使用 Cloud Compliance ，也可以删除 Cloud Compliance 实例。 
+---
+= 禁用 Cloud Compliance
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+如果需要，您可以阻止 Cloud Compliance 扫描一个或多个工作环境或数据库。如果您不再希望在工作环境中使用 Cloud Compliance ，也可以删除 Cloud Compliance 实例。
+
+
+
+== 为工作环境停用合规性扫描
+
+停用扫描后， Cloud Compliance 将不再扫描系统上的数据，并从 Cloud Compliance 实例中删除索引的合规性洞察（不会删除工作环境或数据库本身中的数据）。
+
+在 _Scan Configuration_ 页面中，单击 image:screenshot_gallery_options.gif["更多按钮"] 按钮，然后单击 * 停用合规性 * 。
+
+image:screenshot_deactivate_compliance_scan.png["操作图标的屏幕截图，您可以在其中选择停用扫描。从 \" 工作环境 \" 页面选择工作环境后，可以使用此选项。"]
+
+
+TIP: 您也可以在选择工作环境时从服务面板为工作环境禁用合规性扫描。
+
+
+
+== 正在删除 Cloud Compliance 实例
+
+如果您不想再使用 Cloud Compliance ，可以删除 Cloud Compliance 实例。删除此实例还会删除索引数据所在的关联磁盘。
+
+.步骤
+. 转到云提供商的控制台并删除 Cloud Compliance 实例。
++
+此实例名为 _CloudCompliance_ ，并与生成的哈希（ UUID ）串联在一起。例如： _CloudCompliance" — 16bb6564-38AD-4080-9a92 — 36f5fd2f71c7_
+
+

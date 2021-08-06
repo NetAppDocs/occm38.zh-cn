@@ -1,0 +1,153 @@
+---
+sidebar: sidebar 
+permalink: task_adding_aws_accounts.html 
+keywords: permissions, aws, policy, iam, iam role, role, granting, policy, iam policy, iam user, access keys, arn, cloud provider accounts, aws, cloud provider profile, json, iam, credentials, adding credentials, add credentials 
+summary: 如果要在不同的 AWS 帐户中部署 Cloud Volumes ONTAP ，则需要为这些帐户提供所需的权限，然后将详细信息添加到 Cloud Manager 。如何提供权限取决于您是要为 Cloud Manager 提供 AWS 密钥还是要为受信任帐户中某个角色提供 ARN 。 
+---
+= 管理 Cloud Manager 的 AWS 凭据和订阅
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+创建 Cloud Volumes ONTAP 系统时，您需要选择要用于该系统的 AWS 凭据和订阅。如果您管理多个 AWS 订阅，则可以从凭据页面将其中每个订阅分配给不同的 AWS 凭据。
+
+在将 AWS 凭据添加到 Cloud Manager 之前，您需要为该帐户提供所需的权限。通过这些权限， Cloud Manager 可以管理该 AWS 帐户中的资源和进程。如何提供权限取决于您是要为 Cloud Manager 提供 AWS 密钥还是要为受信任帐户中某个角色提供 ARN 。
+
+
+NOTE: 从 Cloud Manager 部署 Connector 时， Cloud Manager 会自动为部署此 Connector 的帐户添加 AWS 凭据。如果您在现有系统上手动安装了 Connector 软件，则不会添加此初始帐户。 link:concept_accounts_aws.html["了解 AWS 凭据和权限"]。
+
+* 选项 *
+
+* <<Granting permissions by providing AWS keys>>
+* <<Granting permissions by assuming IAM roles in other accounts>>
+
+
+.如何安全地轮换 AWS 凭据？
+****
+您可以通过 Cloud Manager 通过以下几种方式提供 AWS 凭据：与 Connector 实例关联的 IAM 角色，在可信帐户中担任 IAM 角色或提供 AWS 访问密钥。 link:concept_accounts_aws.html["详细了解 AWS 凭据和权限"]。
+
+对于前两个选项， Cloud Manager 使用 AWS 安全令牌服务获取持续轮换的临时凭据。此过程是最佳实践，它是自动的，并且安全。
+
+如果您为 Cloud Manager 提供了 AWS 访问密钥，则应定期在 Cloud Manager 中更新这些密钥以轮换使用。这是一个完全手动的过程。
+
+****
+
+
+== 通过提供 AWS 密钥授予权限
+
+如果要为 IAM 用户提供 Cloud Manager 的 AWS 密钥，则需要向该用户授予所需的权限。Cloud Manager IAM 策略定义了允许云管理器使用的 AWS 操作和资源。
+
+.步骤
+. 从下载 Cloud Manager IAM 策略 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 策略页面"^]。
+. 从 IAM 控制台，通过从 Cloud Manager IAM 策略复制和粘贴文本来创建您自己的策略。
++
+https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html["AWS 文档：创建 IAM 策略"^]
+
+. 将策略附加到 IAM 角色或 IAM 用户。
++
+** https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html["AWS 文档：创建 IAM 角色"^]
+** https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html["AWS 文档：添加和删除 IAM 策略"^]
+
+
+
+
+现在，此帐户具有所需权限。 <<Adding AWS credentials to Cloud Manager,现在，您可以将其添加到 Cloud Manager 中>>。
+
+
+
+== 在其他帐户中使用 IAM 角色来授予权限
+
+您可以使用 IAM 角色在部署 Connector 实例的源 AWS 帐户与其他 AWS 帐户之间设置信任关系。然后，您可以为 Cloud Manager 提供可信帐户中 IAM 角色的 ARN 。
+
+.步骤
+. 转到要部署 Cloud Volumes ONTAP 的目标帐户，然后选择 * 其他 AWS 帐户 * 来创建 IAM 角色。
++
+请务必执行以下操作：
+
++
+** 输入 Connector 实例所在帐户的 ID 。
+** 附加 Cloud Manager IAM 策略，该策略可从获得 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 策略页面"^]。
++
+image:screenshot_iam_create_role.gif["屏幕截图显示了 AWS IAM 控制台中的创建角色页面。在 Select type of trusted entity 下，将选择另一个 AWS 帐户。"]
+
+
+
+. 转到 Connector 实例所在的源帐户，然后选择附加到该实例的 IAM 角色。
++
+.. 单击 * 附加策略 * ，然后单击 * 创建策略 * 。
+.. 创建一个策略，其中包含 "STS ： AssumeRole" 操作以及您在目标帐户中创建的角色的 ARN 。
++
+* 示例 *
+
++
+[source, json]
+----
+{
+ "Version": "2012-10-17",
+ "Statement": {
+   "Effect": "Allow",
+   "Action": "sts:AssumeRole",
+   "Resource": "arn:aws:iam::ACCOUNT-B-ID:role/ACCOUNT-B-ROLENAME"
+}
+}
+----
+
+
+
+
+现在，此帐户具有所需权限。 <<Adding AWS credentials to Cloud Manager,现在，您可以将其添加到 Cloud Manager 中>>。
+
+
+
+== 将 AWS 凭据添加到 Cloud Manager
+
+在为 AWS 帐户提供所需权限后，您可以将该帐户的凭据添加到 Cloud Manager 中。这样，您就可以在该帐户中启动 Cloud Volumes ONTAP 系统。
+
+.步骤
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * 凭据 * 。
++
+image:screenshot_settings_icon.gif["一个屏幕截图，显示 Cloud Manager 控制台右上角的设置图标。"]
+
+. 单击 * 添加凭据 * 并选择 * AWS* 。
+. 提供 AWS 密钥或可信 IAM 角色的 ARN 。
+. 确认已满足策略要求，然后单击 * 继续 * 。
+. 选择要与凭据关联的 " 按需购买 " 订阅，如果尚未订阅，请单击 * 添加订阅 * 。
++
+要创建按需购买的 Cloud Volumes ONTAP 系统， AWS 凭据必须与 AWS Marketplace 中的 Cloud Volumes ONTAP 订阅相关联。
+
+. 单击 * 添加 * 。
+
+
+现在，在创建新的工作环境时，您可以从 " 详细信息和凭据 " 页面切换到另一组凭据：
+
+image:screenshot_accounts_switch_aws.gif["单击详细信息和 amp ；凭据页面中的切换帐户后，显示在云提供商帐户之间进行选择的屏幕截图。"]
+
+
+
+== 将 AWS 订阅与凭据关联
+
+将 AWS 凭据添加到 Cloud Manager 后，您可以将 AWS Marketplace 订阅与这些凭据相关联。通过订阅，您可以创建按需购买的 Cloud Volumes ONTAP 系统并使用其他 NetApp 云服务。
+
+在以下两种情况下，您可能会在将凭据添加到 Cloud Manager 后关联 AWS Marketplace 订阅：
+
+* 最初将凭据添加到 Cloud Manager 时，您未关联订阅。
+* 您希望将现有 AWS Marketplace 订阅替换为新订阅。
+
+
+您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
+
+.步骤
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * 凭据 * 。
+. 将鼠标悬停在一组凭据上，然后单击操作菜单。
+. 从菜单中，单击 * 关联订阅 * 。
++
+image:screenshot_aws_add_subscription.gif["凭据页面的屏幕截图，您可以从菜单中为 AWS 凭据添加订阅。"]
+
+. 从下拉列表中选择订阅或单击 * 添加订阅 * ，然后按照步骤创建新订阅。
++
+video::video_subscribing_aws.mp4[width=848,height=480]
+

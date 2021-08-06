@@ -1,0 +1,186 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_monitoring.html 
+keywords: monitoring, cloud insights, tenant, acquisition unit, iops, throughput, latency, performance, cloud volumes ontap performance, volume performance 
+summary: 完成几个步骤以开始监控 Cloud Volumes ONTAP 性能。 
+---
+= 在 AWS 中监控 Cloud Volumes ONTAP
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+完成几个步骤以开始监控 Cloud Volumes ONTAP 性能。
+
+
+
+== 快速入门
+
+按照以下步骤快速入门，或者向下滚动到其余部分以了解完整详细信息。
+
+
+
+==== 验证是否支持您的配置
+
+[role="quick-margin-para"]
+您需要在 AWS 中全新安装 Cloud Manager 3.8.4 或更高版本，在 AWS 中安装 Cloud Volumes ONTAP ，并且您必须是新的 Cloud Insights 客户。
+
+
+
+==== 在新系统或现有系统上启用监控
+
+* 新的工作环境：在创建工作环境时，请确保始终启用监控（默认情况下处于启用状态）。
+* 现有工作环境：选择一个工作环境，然后单击 * 启动监控 * 。
+
+
+
+
+==== 查看性能数据
+
+[role="quick-margin-para"]
+单击 * 监控 * 并查看卷的性能数据。
+
+
+
+==== 订阅 Cloud Insights
+
+[role="quick-margin-para"]
+在 30 天免费试用结束之前订阅，继续在 Cloud Manager 和 Cloud Insights 中查看性能数据。 https://docs.netapp.com/us-en/cloudinsights/concept_subscribing_to_cloud_insights.html["了解如何订阅"^]。
+
+
+
+== 要求
+
+请阅读以下要求，以确保您的配置受支持。
+
+支持的 Cloud Manager 版本:: 您需要全新安装 Cloud Manager 3.8.4 或更高版本。需要进行新安装，因为要启用监控服务，需要新的基础架构。此基础架构从全新安装的 Cloud Manager 3.1.4 开始提供。
+支持的 Cloud Volumes ONTAP 版本:: AWS 中的任何 Cloud Volumes ONTAP 版本。
+Cloud Insights 要求:: 您必须是新的 Cloud Insights 客户。如果您已有 Cloud Insights 租户，则不支持监控。
+Cloud Central 的电子邮件地址:: Cloud Central 用户帐户的电子邮件地址应为您的业务电子邮件地址。创建 Cloud Insights 租户时，不支持 Gmail 和 Hotmail. 等免费电子邮件域。
+采集单元的网络连接::
++
+--
+采集单元使用以下两个端点与 Cloud Insights 进行通信。如果您在采集单元服务器和 Cloud Insights 之间设置了防火墙，则在配置防火墙规则时需要使用以下端点：
+
+....
+https://aulogin.<Cloud Insights Domain>
+https://<your-tenant-ID>.<Cloud Insights Domain>
+....
+例如：
+
+....
+https://aulogin.c01.cloudinsights.netapp.com
+https://cg0c586a-ee05-45rb-a5ac-333b5ae7718d7.c01.cloudinsights.netapp.com
+....
+如果您需要帮助确定 Cloud Insights 域和租户 ID ，请通过产品聊天联系我们。
+
+--
+连接器的网络连接::
++
+--
+....
+https://<your-short-tenant-ID>.<Cloud Insights Domain>
+....
+例如：
+
+....
+https://abcd12345.c01.cloudinsights.netapp.com
+....
+同样，如果您需要帮助确定租户主机 URL ，您可以通过产品内聊天与我们联系。
+
+--
+
+
+
+
+== 在新系统上启用监控
+
+在工作环境向导中，监控服务默认处于启用状态。请务必保持此选项处于启用状态。
+
+.步骤
+. 单击 * 创建 Cloud Volumes ONTAP * 。
+. 选择 Amazon Web Services 作为云提供商，然后选择单个节点或 HA 系统。
+. 填写详细信息和凭据页面。
+. 在服务页面上，保持服务处于启用状态，然后单击 * 继续 * 。
++
+image:screenshot_monitoring.gif["可从工作环境向导启用的监控服务的屏幕截图。"]
+
+
+
+
+
+== 在现有系统上启用监控
+
+可随时从工作环境进行监控。
+
+.步骤
+. 在 Cloud Manager 顶部，单击 * 工作环境 * 。
+. 选择工作环境。
+. 在右侧窗格中，单击 * 启动监控 * 。
++
+image:screenshot_enable_monitoring.gif["[ 一个屏幕截图，其中显示了启用监控图标，在您选择工作环境后，此图标将显示在工作环境选项卡中。"]
+
+
+
+
+
+== 监控卷
+
+通过查看每个卷的 IOPS ，吞吐量和延迟来监控性能。
+
+.步骤
+. 在 Cloud Manager 顶部，单击 * 监控 * 。
+. 筛选信息板的内容以获取所需信息。
++
+** 选择特定的工作环境。
+** 请选择其他时间范围。
+** 选择特定 SVM 。
+** 搜索特定卷。
++
+下图突出显示了其中每个选项：
+
++
+image:screenshot_filter_options.gif["\" 监控 \" 选项卡的屏幕截图，其中显示了可用于筛选信息板内容的选项。"]
+
+
+
+. 单击表中的某个卷以展开行并查看 IOPS ，吞吐量和延迟的时间线。
++
+image:screenshot_vol_performance.gif["卷的性能数据的屏幕截图。"]
+
+. 使用数据确定性能问题，最大限度地减少对用户和应用程序的影响。
+
+
+
+
+== 从 Cloud Insights 获取详细信息
+
+Cloud Manager 中的 " 监控 " 选项卡提供卷的基本性能数据。您可以从浏览器转到 Cloud Insights Web 界面，以执行更深入的监控并为 Cloud Volumes ONTAP 系统配置警报。
+
+.步骤
+. 在 Cloud Manager 顶部，单击 * 监控 * 。
+. 单击 * Cloud Insights * 链接。
++
+image:screenshot_cloud_insights.gif["显示 \" 监控 \" 选项卡右上角的 Cloud Insights 链接的屏幕截图。"]
+
+
+
+Cloud Insights 将在新的浏览器选项卡中打开。如果需要帮助，请参见 https://docs.netapp.com/us-en/cloudinsights["Cloud Insights 文档"^]。
+
+
+
+== 禁用监控
+
+如果您不想再监控 Cloud Volumes ONTAP ，可以随时禁用此服务。
+
+
+NOTE: 如果您在每个工作环境中禁用监控，则需要自己删除 EC2 实例。此实例名为 _AcquiesitionUnit" ，并与此实例连接生成的哈希（ UUID ）。例如： _AcquiesitionUny-FAN7FqeH_
+
+.步骤
+. 在 Cloud Manager 顶部，单击 * 工作环境 * 。
+. 选择工作环境。
+. 在右侧窗格中，单击 image:screenshot_gallery_options.gif["选择工作环境后显示在服务窗格中的选项图标的屏幕截图"] 图标并选择 * 停用扫描 * 。
+

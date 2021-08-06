@@ -1,0 +1,188 @@
+---
+sidebar: sidebar 
+permalink: api_sync.html 
+keywords: api, apis, rest, restful, authorization, getting started, body, header, token, reference, expired token, expires, expired, token expired, list apis, 202, https status code 202, status code 202, id, id field 
+summary: 通过 Web UI 提供的云同步功能也可通过 REST 风格的 API 获得。 
+---
+= 云同步 API
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+通过 Web UI 提供的云同步功能也可通过 REST 风格的 API 获得。
+
+
+
+== 入门
+
+要开始使用 Cloud Sync APIs ，您需要获取用户令牌和您的 Cloud Central 帐户 ID 。在进行 API 调用时，您需要将令牌和帐户 ID 添加到授权标题中。
+
+.步骤
+. 从 NetApp Cloud Central 获取用户令牌。
++
+[source, http]
+----
+POST https://netapp-cloud-account.auth0.com/oauth/token
+Header: Content-Type: application/json
+Body:
+{
+              "username": "<user_email>",
+              "scope": "profile",
+              "audience": "https://api.cloud.netapp.com",
+              "client_id": "UaVhOIXMWQs5i1WdDxauXe5Mqkb34NJQ",
+              "grant_type": "password",
+              "password": "<user_password>"
+}
+----
+. 获取 Cloud Central 帐户 ID 。
++
+[source, http]
+----
+GET https://cloudsync.netapp.com/api/accounts
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+----
++
+此 API 将返回如下响应：
+
++
+[source, json]
+----
+[
+  {
+    "accountId": "account-JeL97Ry3",
+    "name": "Test"
+  }
+]
+----
+. 在每个 API 调用的 Authorization 标头中添加用户令牌和帐户 ID 。
++
+* 示例 *
+
++
+以下示例显示了在 Microsoft Azure 中创建数据代理的 API 调用。您只需将 <user_token> 和 <AccountID> 替换为您在上述步骤中获得的令牌和 ID 即可。
+
++
+[source, http]
+----
+POST https://cloudsync.netapp.com/api/data-brokers
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+Body: { "name": "databroker1", "type": "AZURE" }
+----
+
+
+.令牌过期时应执行什么操作？
+****
+来自 NetApp Cloud Central 的用户令牌具有到期日期。要刷新令牌、您需要再次调用步骤 1 中的 API 。
+
+API 响应包括一个 "expires_in" 字段、该字段指出令牌何时过期。
+
+****
+
+
+== API 参考
+
+有关每个 Cloud Sync API 的文档，请参见 https://cloudsync.netapp.com/docs/["NetApp Cloud Central"^]。
+
+
+
+== 使用列表 API
+
+列表 API 是异步 API ，因此不会立即返回结果（例如： `get /data-brokers/ ｛ id ｝ /list-nfs-export-folders` 和 `get /data-brokers/ ｛ id ｝ /list-s3-basses` ）。服务器的唯一响应是 HTTP 状态 202 。要获得实际结果，您必须使用 `GET /messages/client` API 。
+
+.步骤
+. 调用要使用的列表 API 。
+. 使用 `get /messages/client` API 查看操作结果。
+. 使用相同的 API ，方法是将其附加到刚刚收到的 ID ： `get \http://cloudsync.netapp.com/api/messages/client?last=<id_from_step_2>`
++
+请注意，每次调用 `get /messages/client` API 时， ID 都会发生更改。
+
+
+
+* 示例 *
+
+调用 `list-s3-bates` API 时，不会立即返回结果：
+
+[source, http]
+----
+GET http://cloudsync.netapp.com/api/data-brokers/<data-broker-id>/list-s3-buckets
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+结果是 HTTP 状态代码 202 、这意味着邮件已被接受、但尚未处理。
+
+要获得操作的结果，您需要使用以下 API ：
+
+[source, http]
+----
+GET http://cloudsync.netapp.com/api/messages/client
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+结果是一个数组，其中一个对象包含 ID 字段。ID 字段表示服务器发送的最后一条消息。例如：
+
+[source, json]
+----
+[
+    {
+        "header": {
+            "requestId": "init",
+            "clientId": "init",
+            "agentId": "init"
+        },
+        "payload": {
+            "init": {}
+        },
+        "id": "5801"
+    }
+]
+----
+现在，您可以使用刚才收到的 ID 进行以下 API 调用：
+
+[source, http]
+----
+GET http://cloudsync.netapp.com/api/messages/client?last=<id_from_step_2>
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+结果是一组消息。每个消息内部都是一个有效负载对象，该对象由操作的名称（作为密钥）及其结果（作为值）组成。例如：
+
+[source, json]
+----
+[
+    {
+        "payload": {
+            "list-s3-buckets": [
+                {
+                    "tags": [
+                        {
+                            "Value": "100$",
+                            "Key": "price"
+                        }
+                    ],
+                    "region": {
+                        "displayName": "US West (Oregon)",
+                        "name": "us-west-2"
+                    },
+                    "name": "small"
+                }
+            ]
+        },
+        "header": {
+            "requestId": "f687ac55-2f0c-40e3-9fa6-57fb8c4094a3",
+            "clientId": "5beb032f548e6e35f4ed1ba9",
+            "agentId": "5bed61f4489fb04e34a9aac6"
+        },
+        "id": "5802"
+    }
+]
+----

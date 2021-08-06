@@ -1,0 +1,146 @@
+---
+sidebar: sidebar 
+permalink: task_backup_from_onprem.html 
+keywords: backing up, back up, backup, backup cloud volumes ontap, back up cloud volumes ontap, cloud volumes ontap, on-prem, on-premises, back up volumes, Backup to Cloud, cloud backup service 
+summary: 完成几个步骤，开始将数据从内部 ONTAP 系统备份到云中的低成本对象存储。 
+---
+= 将数据从内部 ONTAP 系统备份到云
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+完成几个步骤，开始将数据从内部 ONTAP 系统备份到云中的低成本对象存储。
+
+
+
+== 快速入门
+
+按照以下步骤快速入门，或者向下滚动到其余部分以了解完整详细信息。
+
+
+
+==== 验证是否支持您的配置
+
+* 您已发现内部集群并将其添加到 Cloud Manager 中的工作环境中。请参见 link:task_discovering_ontap.html["发现 ONTAP 集群"^] 了解详细信息。
+* 您正在集群上运行 ONTAP 9.7P5 或更高版本。
+* 您已为备份所在的存储空间订阅了有效的云提供商。
+* 您已订阅 https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Cloud Manager Marketplace Backup 产品"^]或您已购买 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["并激活"^] NetApp 提供的 Backup to Cloud BYOL 许可证。
+
+
+
+
+==== 在系统上启用备份到云
+
+[role="quick-margin-para"]
+选择工作环境，然后单击右侧面板中备份到云服务旁边的 * 激活 * ，然后按照设置向导进行操作。
+
+[role="quick-margin-para"]
+image:screenshot_backup_to_s3_icon.gif["屏幕截图显示了 \" 备份到云激活 \" 按钮，该按钮可在您选择工作环境后使用。"]
+
+
+
+==== 选择云提供商并输入提供商详细信息
+
+[role="quick-margin-para"]
+选择提供程序，然后选择提供程序订阅，区域和资源组。您还需要在卷所在的 ONTAP 集群中指定 IP 空间。
+
+[role="quick-margin-para"]
+image:screenshot_backup_onprem_to_azure.png["显示将卷从内部集群备份到 Azure Blob 层时云提供商详细信息的屏幕截图"]
+
+
+
+==== 定义备份策略
+
+[role="quick-margin-para"]
+默认策略每天备份卷，并保留每个卷的最新 30 个备份副本。更改为每周或每月备份，或者选择一个提供更多选项的系统定义策略。
+
+[role="quick-margin-para"]
+image:screenshot_backup_onprem_policy.png["显示 Backup to Cloud 设置的屏幕截图，您可以在其中选择备份计划和保留期限。"]
+
+
+
+==== 选择要备份的卷
+
+[role="quick-margin-para"]
+确定要从集群备份的卷。
+
+
+
+==== 根据需要还原数据
+
+[role="quick-margin-para"]
+从备份列表中，选择一个卷，选择一个备份，然后将备份中的数据还原到使用同一云提供程序的 Cloud Volumes ONTAP 系统上的新卷。
+
+[role="quick-margin-para"]
+image:screenshot_backup_to_s3_restore_icon.gif["选择卷后备份的还原图标的屏幕截图。"]
+
+
+
+== 要求
+
+在开始将卷备份到 Azure Blob 存储之前，请阅读以下要求，以确保您的配置受支持。
+
+支持的 ONTAP 版本:: ONTAP 9.7P5 及更高版本。
+集群网络连接要求::
++
+--
+在设置到云的备份时，系统会提示您使用 IP 空间。您应选择与每个 LIF 关联的 IP 空间。这可能是您创建的 " 默认 "IP 空间或自定义 IP 空间。
+
+--
+支持的 Azure 区域:: 所有 Azure 地区均支持备份到云 https://cloud.netapp.com/cloud-volumes-global-regions["支持云卷的位置"^]。
+许可证要求::
++
+--
+对于 Backup to Cloud BYOL 许可，您需要 NetApp 提供的序列号，以便在许可证有效期和容量内使用此服务。请参见 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["添加和更新备份 BYOL 许可证"^]。
+
+您需要为备份所在的存储空间订阅 Microsoft Azure 。
+
+--
+
+
+
+
+== 启用备份到云
+
+随时直接从工作环境备份到云。
+
+.步骤
+. 选择工作环境，然后单击右侧面板中备份到云服务旁边的 * 激活 * 。
++
+image:screenshot_backup_to_s3_icon.gif["屏幕截图显示了 \" 备份到云激活 \" 按钮，该按钮可在您选择工作环境后使用。"]
+
+. 选择提供程序，然后输入提供程序详细信息。
++
+.. 用于存储备份的 Azure 订阅。
+.. Azure 区域。
+.. 资源组—您可以创建新资源组，也可以选择和现有资源组。
+.. 要备份的卷所在的 ONTAP 集群中的 IP 空间。
+.. 然后单击 * 继续 * 。
++
+image:screenshot_backup_onprem_to_azure.png["显示将卷从内部集群备份到 Azure Blob 层时云提供商详细信息的屏幕截图"]
+
++
+请注意，服务启动后，您无法更改订阅或资源组。
+
+
+
+. 在 _Define Policy_ 页面中，选择备份计划和保留值，然后单击 * 继续 * 。
++
+image:screenshot_backup_onprem_policy.png["显示 Backup to Cloud 设置的屏幕截图，您可以在其中选择备份计划和保留期限。"]
+
++
+请参见 link:concept_backup_to_cloud.html#the-schedule-is-daily-weekly-monthly-or-a-combination["现有策略的列表"^]。
+
+. 选择要备份的卷，然后单击 * 激活 * 。
++
+image:screenshot_backup_select_onprem_volumes.png["选择要备份的卷的屏幕截图。"]
+
+
+
+备份到云将开始对每个选定卷进行初始备份。
+
+link:task_managing_backups.html["您可以通过更改备份计划，还原卷等来管理备份"^]。

@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: task_finding_system_id.html 
+keywords: system id, id, cloud manager system id 
+summary: 为了帮助您入门， NetApp 代表可能会要求您提供用于标识 Cloud Manager 系统的系统 ID 。此 ID 通常用于许可和故障排除目的。 
+---
+= 正在查找 Cloud Manager 系统 ID
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+为了帮助您入门， NetApp 代表可能会要求您提供 Cloud Manager 系统 ID 。此 ID 通常用于许可和故障排除目的。
+
+您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
+
+.步骤
+. 在 Cloud Manager 控制台右上角，单击设置图标。
++
+image:screenshot_settings_icon.gif["一个屏幕截图，显示 Cloud Manager 控制台右上角的设置图标。"]
+
+. 单击 * 支持信息板 * 。
++
+您的系统 ID 显示在右上角。
+
++
+* 示例 *
+
++
+image:screenshot_system_id.gif["显示支持信息板中显示的 Cloud Manager 系统 ID 的屏幕截图。"]
+
+

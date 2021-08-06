@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: task_sync_managing_relationships.html 
+keywords: sync, immediate, now, schedule, minutes, hours, on, off, delete, group, accelerate, accelerating, grouping, multiple data brokers, sync now, turn off, turn on, sync schedule, settings, change settings, recently modified files, delete files on target, retries, retry, file types, exclude file type, include file type, delete relationship 
+summary: 您可以通过立即同步数据、更改计划等随时管理同步关系。 
+---
+= 管理同步关系
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+您可以通过立即同步数据、更改计划等随时管理同步关系。
+
+
+
+== 执行即时数据同步
+
+您可以按按钮立即在源和目标之间同步数据，而不是等待下一个计划同步。
+
+.步骤
+. 在 * 同步信息板 * 中，将鼠标悬停在同步关系上，然后单击操作菜单。
++
+image:screenshot_relationship_menu.gif["一个屏幕截图，显示将鼠标悬停在同步关系上时显示的操作菜单。"]
+
+. 单击 * 立即同步 * ，然后单击 * 同步 * 进行确认。
++
+image:screenshot_dashboard_actions.gif["此屏幕截图显示了您可以对同步关系执行的操作。"]
+
+
+
+Cloud Sync 将启动关系的数据同步过程。
+
+
+
+== 加快同步性能
+
+通过向关系中添加其他数据代理来提高同步关系的性能。其他数据代理必须是 _new_ 数据代理。
+
+如果在其他同步关系中使用了关系中的现有数据代理、则 Cloud Sync 会自动将新的数据代理添加到这些关系中。
+
+例如，假设您有三个关系：
+
+* Relationship 1 使用数据代理 A
+* Relationship 2 使用数据代理 B
+* Relationship 3 使用数据代理 A
+
+
+您希望提高关系 1 的性能、以便为该关系添加新的数据代理（数据代理 C ）。由于在关系 3 中也使用了数据代理 A 、因此新的数据代理也会自动添加到关系 3 中。
+
+.步骤
+. 确保关系中至少有一个现有数据代理处于联机状态。
+. 将鼠标悬停在“同步关系”上，然后单击“操作”菜单。
+. 单击 * 加速 * 。
++
+image:screenshot_accelerate.gif["显示同步关系操作菜单的“云同步”屏幕快照。使用鼠标指针突出显示加速。"]
+
+. 按照提示创建新的数据代理。
+
+
+Cloud Sync 将新的数据代理添加到同步关系中。应加快下一个数据同步的性能。
+
+
+
+== 更改同步关系的设置
+
+修改定义源文件和文件夹在目标位置的同步和维护方式的设置。
+
+. 将鼠标悬停在“同步关系”上，然后单击“操作”菜单。
+. 单击 * 设置 * 。
+. 修改任何设置。
++
+image:screenshot_sync_settings.gif["显示同步关系设置的屏幕快照。"]
+
++
+【【 ｛ deleteonsource ｝ 】下面是每个设置的简短问题描述：
+
++
+计划:: 为将来的同步选择重复计划或关闭同步计划。您可以计划一个关系以每 1 分钟同步一次数据。
+重试:: 定义在跳过文件之前、 Cloud Sync 应重试同步文件的次数。
+最近修改的文件:: 选择排除在计划同步之前最近修改的文件。
+删除源上的文件::
++
+--
+如果启用此选项，则还需要更改数据代理上 local.json 文件中的参数。打开文件并将名为 _workers.transferrer.delete-on-source_ 的参数更改为 * true * 。
+
+--
+删除目标上的文件:: 如果文件已从源文件中删除，请选择从目标位置删除这些文件。默认情况下，从不从目标位置删除文件。
+对象标记:: 如果 AWS S3 是同步关系中的目标，则 Cloud Sync 会使用与同步操作相关的元数据对 S3 对象进行标记。如果环境中不需要对 S3 对象进行标记，则可以禁用该标记。如果禁用标记，则不会对 Cloud Sync 产生任何影响— Cloud Sync 只是以不同方式存储同步元数据。
+文件类型:: 定义要包括在每个同步中的文件类型：文件、目录和符号链接。
+排除文件扩展名::
++
+--
+video::video_file_extensions.mp4[width=840,height=240]
+--
+文件大小:: 选择同步所有文件、无论文件大小如何、还是仅同步特定大小范围内的文件。
+修改日期:: 选择所有文件，无论其上次修改日期、在特定日期之后修改的文件、特定日期之前或时间范围之间的文件。
+将访问控制列表复制到目标:: 选择在源 SMB 共享和目标 SMB 共享之间复制访问控制列表（ ACL ）。请注意，此选项仅适用于在 2020 年 2 月 23 日版本之后创建的同步关系。
+
+
+. 单击 * 保存设置 * 。
+
+
+Cloud Sync 会修改与新设置的同步关系。
+
+
+
+== 删除关系
+
+如果不再需要在源和目标之间同步数据，则可以删除同步关系。此操作不会删除数据代理实例、也不会从目标中删除数据。
+
+.步骤
+. 将鼠标悬停在“同步关系”上，然后单击“操作”菜单。
+. 单击 * 删除 * ，然后再次单击 * 删除 * 进行确认。
+
+
+Cloud Sync 会删除同步关系。

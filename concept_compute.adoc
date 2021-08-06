@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: concept_compute.html 
+keywords: concepts, how cloud analyzer works, compute, compute costs, compute savings 
+summary: 通过利用 Spot 的 Cloud Analyzer 服务， Cloud Manager 可以对您的云计算支出进行高级别成本分析，并确定潜在的节省量。 
+---
+= 了解计算服务
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+利用 https://spot.io/products/cloud-analyzer/["Spot 的 Cloud Analyzer 服务"^]， Cloud Manager 可以对您的云计算支出进行高水平的成本分析，并确定潜在的节省量。
+
+Cloud Analyzer 是一种云基础架构管理解决方案，它使用高级分析来提供对云成本的可见性和洞察力。它可以向您展示优化这些成本的位置，并允许您只需单击几下鼠标，即可使用 Spot 的持续优化产品组合来实施这种优化。
+
+
+
+== 功能
+
+* 一种成本分析，用于显示当月的当前成本，预计每月成本以及未实现的节省
+* 按帐户查看支出效率，包括预计的额外节省量
+* 指向 Spot Cloud Analyzer 的链接，可获取有关所有客户支出的更深入详细信息
+
+
+
+
+== 支持的云提供商
+
+AWS 支持此服务。
+
+
+
+== 成本
+
+通过 Cloud Manager 使用此服务无需任何成本。
+
+
+
+== Cloud Analyzer 如何与 Cloud Manager 配合使用
+
+概括地说， Cloud Analyzer 与 Cloud Manager 的集成工作原理如下：
+
+. 单击 * 计算 * 并连接 AWS 主付款人帐户。
+. NetApp 将按照以下方式配置您的环境：
++
+.. 在现场平台中创建组织。
+.. 发送一封电子邮件，欢迎您发现。
++
+您可以使用与 Cloud Central 和 Cloud Manager 相同的单点登录凭据登录到 Spot 服务。
+
+.. Cloud Analyzer 开始处理您的 AWS 帐户数据。
+
+
+. 在 Cloud Manager 中，计算页面会进行更新，您可以使用这些信息深入了解过去，当前和未来的云成本。
+. 您可以随时单击 * 获取完整分析 * 转到 Spot 的 Cloud Analyzer ，其中对您的云支出和节省机会进行了全面分析。
+
+
+
+
+== 数据安全性
+
+Cloud Analyzer 数据会进行空闲加密，不会存储任何帐户的凭据。

@@ -1,0 +1,58 @@
+---
+sidebar: sidebar 
+permalink: task_discovering_ontap.html 
+keywords: ontap, cluster, discover, manage, discovering, fas, aff, discover onprem, discover aff cluster, discover cluster, add cluster 
+summary: Cloud Manager 可以在内部环境、 NetApp 私有存储配置和 IBM Cloud 中发现 ONTAP 集群。通过发现 ONTAP 集群，您可以配置存储，复制数据并将冷数据从内部集群分层到云。 
+---
+= 发现 ONTAP 集群
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+Cloud Manager 可以在内部环境、 NetApp 私有存储配置和 IBM Cloud 中发现 ONTAP 集群。通过发现 ONTAP 集群，您可以配置存储，复制数据，备份数据以及将冷数据从内部集群分层到云。
+
+.您需要什么？ #8217 ；将需要什么
+* 安装在云提供商或内部环境中的 Connector 。
++
+如果您要将冷数据分层到云，则应根据您计划将冷数据分层的位置查看 Connector 的要求。
+
++
+** link:concept_connectors.html["了解连接器"]
+** link:task_managing_connectors.html["在连接器之间切换"]
+** link:concept_cloud_tiering.html["了解 Cloud Tiering"]
+
+
+* 用于将集群添加到 Cloud Manager 的管理员用户帐户的集群管理 IP 地址和密码。
++
+Cloud Manager 使用 HTTPS 发现 ONTAP 集群。如果使用自定义防火墙策略，则它们必须满足以下要求：
+
++
+** Connector 主机必须允许通过端口 443 进行出站 HTTPS 访问。
++
+如果 Connector 位于云中，则预定义的安全组允许所有出站通信。
+
+** ONTAP 集群必须允许通过端口 443 进行入站 HTTPS 访问。
++
+默认的“管理”防火墙策略允许从所有 IP 地址进行入站 HTTPS 访问。如果您修改了此默认策略，或者创建了自己的防火墙策略，则必须将 HTTPS 协议与该策略关联，并启用从 Connector 主机进行访问。
+
+
+
+
+
+.步骤
+. 在工作环境页面上，单击 * 添加工作环境 * 并选择 * 内部部署 ONTAP * 。
+. 如果出现提示，请创建 Connector 。
++
+有关详细信息，请参见上述链接。
+
+. 在 * ONTAP 集群详细信息 * 页面上，输入集群管理 IP 地址，管理员用户帐户的密码以及集群的位置。
++
+image:screenshot_discover_ontap.gif["屏幕截图显示了 ONTAP 集群详细信息页面的示例：集群管理 IP 地址，用户名和密码，以及选择在内部部署作为集群位置。"]
+
+. 在详细信息页面上，输入工作环境的名称和问题描述，然后单击 * 执行 * 。
+
+
+Cloud Manager 可发现集群。现在，您可以创建卷，将数据复制到集群和从集群复制数据，设置云数据分层，将卷备份到云以及启动 System Manager 以执行高级任务。

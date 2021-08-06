@@ -1,0 +1,79 @@
+---
+sidebar: sidebar 
+permalink: task_launching_aws_mktp.html 
+keywords: install connector, create connector, deploy connector, installation, installing, marketplace, aws, launch, launching, ec2 console, iam role 
+summary: 最好直接从 Cloud Manager 创建 Connector ，但如果您不想指定 AWS 访问密钥，则可以从 AWS Marketplace 启动 Connector 。创建并设置 Connector 后， Cloud Manager 将在您创建新的工作环境时自动使用它。 
+---
+= 从 AWS Marketplace 创建连接器
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+最好直接从 Cloud Manager 创建 Connector ，但如果您不想指定 AWS 访问密钥，则可以从 AWS Marketplace 启动 Connector 。创建并设置 Connector 后， Cloud Manager 将在您创建新的工作环境时自动使用它。
+
+.步骤
+. 为 EC2 实例创建 IAM 策略和角色：
++
+.. 从以下位置下载 Cloud Manager IAM 策略：
++
+https://mysupport.netapp.com/site/info/cloud-manager-policies["NetApp Cloud Manager ： AWS ， Azure 和 GCP 策略"^]
+
+.. 从 IAM 控制台，通过从 Cloud Manager IAM 策略复制和粘贴文本来创建您自己的策略。
+.. 创建角色类型为 Amazon EC2 的 IAM 角色，并将您在上一步骤中创建的策略附加到该角色。
+
+
+. 现在转到 https://aws.amazon.com/marketplace/pp/B018REK8QG["AWS Marketplace 上的 Cloud Manager 页面"^] 从 AMI 部署 Cloud Manager 。
++
+IAM 用户必须具有 AWS Marketplace 权限才能订阅和取消订阅。
+
+. 在 Marketplace 页面上，单击 * 继续订阅 * ，然后单击 * 继续配置 * 。
++
+image:screenshot_subscribe_cm.gif["屏幕截图显示了 AWS Marketplace 上的 Continue to Subscribe and Continue to Configuration 按钮。"]
+
+. 更改任何默认选项，然后单击 * 继续启动 * 。
+. 在 * 选择操作 * 下，选择 * 通过 EC2 启动 * ，然后单击 * 启动 * 。
++
+以下步骤介绍了如何从 EC2 控制台启动实例，因为控制台允许您将 IAM 角色附加到 Cloud Manager 实例。使用 * 从网站启动 * 操作无法实现这一点。
+
+. 按照提示配置和部署实例：
++
+** * 选择实例类型 * ：根据区域可用性，选择支持的实例类型之一（建议使用 T3.xlarge ）。
++
+link:reference_cloud_mgr_reqs.html["查看实例要求"]。
+
+** * 配置实例 * ：选择一个 VPC 和子网，选择您在第 1 步中创建的 IAM 角色，启用终止保护（建议），然后选择符合您要求的任何其他配置选项。
++
+image:screenshot_aws_iam_role.gif["显示 AWS 中配置实例页面上的字段的屏幕截图。此时将选择您应在步骤 1 中创建的 IAM 角色。"]
+
+** * 添加存储 * ：保留默认存储选项。
+** * 添加标记 * ：根据需要输入实例的标记。
+** * 配置安全组 * ：指定 Connector 实例所需的连接方法： SSH ， HTTP 和 HTTPS 。
+** * 审阅 * ：查看您选择的内容，然后单击 * 启动 * 。
++
+AWS 使用指定的设置启动软件。Connector 实例和软件应在大约五分钟内运行。
+
+
+
+. 从已连接到 Connector 实例的主机打开 Web 浏览器，然后输入以下 URL ：
++
+http://_ipaddress_:80[]
+
+. 登录后，设置 Connector ：
++
+.. 指定要与 Connector 关联的 Cloud Central 帐户。
++
+link:concept_cloud_central_accounts.html["了解 Cloud Central 帐户"]。
+
+.. 输入系统名称。
++
+image:screenshot_set_up_cloud_manager.gif["屏幕截图显示了 \"Set Up Connector\" 屏幕，可用于选择 Cloud Central 帐户并为系统命名。"]
+
+
+
+
+
+现在，您可以使用 Cloud Central 帐户安装并设置 Connector 。Cloud Manager 将在您创建新的工作环境时自动使用此 Connector 。但是，如果您有多个 Connector ，则需要 link:task_managing_connectors.html["在它们之间切换"]。

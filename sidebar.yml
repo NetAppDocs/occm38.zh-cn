@@ -1,0 +1,422 @@
+---
+entries:
+- title: Cloud Manager 文档
+  url: "/index.html"
+- title: 发行说明
+  entries:
+  - title: 云管理器
+    entries:
+    - title: 新增功能
+      url: "/reference_new_occm.html"
+    - title: 过渡到 SaaS
+      url: "/concept_saas.html"
+    - title: 已知问题
+      url: "/reference_issues.html"
+    - title: 已知限制
+      url: "/reference_limitations.html"
+  - title: Cloud Volumes ONTAP
+    url: https://docs.netapp.com/us-en/cloud-volumes-ontap/
+- title: 重要变更
+  url: "/reference_key_changes.html"
+- title: 开始使用 Cloud Manager
+  entries:
+  - title: 了解 Cloud Manager
+    url: "/concept_overview.html"
+  - title: 网络概述
+    url: "/reference_networking.html"
+  - title: 注册到 Cloud Central
+    url: "/task_signing_up.html"
+  - title: 登录到 Cloud Manager
+    url: "/task_logging_in.html"
+  - title: 设置 Cloud Central 帐户
+    entries:
+    - title: 了解 Cloud Central 帐户
+      url: "/concept_cloud_central_accounts.html"
+    - title: 设置帐户
+      url: "/task_setting_up_cloud_central_accounts.html"
+  - title: 设置连接器
+    entries:
+    - title: 了解连接器
+      url: "/concept_connectors.html"
+    - title: 网络要求
+      url: "/reference_networking_cloud_manager.html"
+    - title: 在 AWS 中创建连接器
+      url: "/task_creating_connectors_aws.html"
+    - title: 在 Azure 中创建连接器
+      url: "/task_creating_connectors_azure.html"
+    - title: 在 GCP 中创建连接器
+      url: "/task_creating_connectors_gcp.html"
+  - title: 下一步行动
+    url: "/reference_whats_next.html"
+- title: 管理 Cloud Volumes ONTAP
+  entries:
+  - title: 了解
+    entries:
+    - title: 概述
+      url: "/concept_overview_cvo.html"
+    - title: 存储
+      entries:
+      - title: 磁盘和聚合
+        url: "/concept_storage.html"
+      - title: 数据分层
+        url: "/concept_data_tiering.html"
+      - title: 存储管理
+        url: "/concept_storage_management.html"
+      - title: Flash Cache
+        url: "/concept_flash_cache.html"
+      - title: WORM 存储
+        url: "/concept_worm.html"
+    - title: 高可用性对
+      entries:
+      - title: AWS 中的 HA 对
+        url: "/concept_ha.html"
+      - title: Azure 中的 HA 对
+        url: "/concept_ha_azure.html"
+    - title: 评估
+      url: "/concept_evaluating.html"
+    - title: 许可
+      url: "/concept_licensing.html"
+    - title: 安全性
+      url: "/concept_security.html"
+    - title: 性能
+      url: "/concept_performance.html"
+    - title: 支持的配置
+      url: https://docs.netapp.com/us-en/cloud-volumes-ontap/index.html
+    - title: 支持的区域
+      url: https://cloud.netapp.com/cloud-volumes-global-regions
+    - title: 默认配置
+      url: "/reference_default_configs.html"
+  - title: 在 AWS 中入门
+    entries:
+    - title: 快速入门
+      url: "/task_getting_started_aws.html"
+    - title: 规划您的配置
+      url: "/task_planning_your_config.html"
+    - title: 设置网络
+      entries:
+      - title: 网络要求
+        url: "/reference_networking_aws.html"
+      - title: 设置 AWS 传输网关
+        url: "/task_setting_up_transit_gateway.html"
+      - title: AWS 的安全组规则
+        url: "/reference_security_groups.html"
+    - title: 设置 AWS KMS
+      url: "/task_setting_up_kms.html"
+    - title: 在 AWS 中启动系统
+      url: "/task_deploying_otc_aws.html"
+    - title: AWS C2S 入门
+      url: https://docs.netapp.com/us-en/occm/media/c2s.pdf
+  - title: 在 Azure 开始
+    entries:
+    - title: 快速入门
+      url: "/task_getting_started_azure.html"
+    - title: 规划您的配置
+      url: "/task_planning_your_config_azure.html"
+    - title: 设置网络
+      url: "/reference_networking_azure.html"
+    - title: 在 Azure 中启动系统
+      url: "/task_deploying_otc_azure.html"
+  - title: 在 GCP 中入门
+    entries:
+    - title: 快速入门
+      url: "/task_getting_started_gcp.html"
+    - title: 规划您的配置
+      url: "/task_planning_your_config_gcp.html"
+    - title: 设置网络
+      url: "/reference_networking_gcp.html"
+    - title: 使用客户管理的加密密钥
+      url: "/task_setting_up_gcp_encryption.html"
+    - title: 在 GCP 中启动系统
+      url: "/task_deploying_gcp.html"
+  - title: 配置和管理存储
+    entries:
+    - title: 创建卷，聚合和 LUN
+      url: "/task_provisioning_storage.html"
+    - title: 管理卷和聚合
+      url: "/task_managing_storage.html"
+    - title: 将非活动数据分层到对象存储
+      url: "/task_tiering.html"
+    - title: 管理 Storage VM
+      url: "/task_managing_svms.html"
+    - title: 使用 ONTAP 作为永久性存储
+      url: "/task_connecting_kubernetes.html"
+    - title: 使用 NetApp 加密对卷进行加密
+      url: "/task_encrypting_volumes.html"
+  - title: 复制数据
+    url: "/task_replicating_data.html"
+  - title: 监控性能
+    entries:
+    - title: 了解监控
+      url: "/concept_monitoring.html"
+    - title: 入门
+      url: "/task_getting_started_monitoring.html"
+  - title: 改进勒索软件保护
+    url: "/task_protecting_ransomware.html"
+  - title: 管理
+    entries:
+    - title: 注册按需购买系统
+      url: "/task_registering.html"
+    - title: 设置 Cloud Volumes ONTAP
+      url: "/task_setting_up_ontap_cloud.html"
+    - title: 管理 BYOL 许可证
+      url: "/task_managing_licenses.html"
+    - title: 更新软件
+      url: "/task_updating_ontap_cloud.html"
+    - title: 修改系统配置
+      url: "/task_modifying_ontap_cloud.html"
+    - title: 停止并启动系统
+      url: "/task_managing_state.html"
+    - title: 监控 AWS 成本
+      url: "/task_monitoring_costs.html"
+    - title: 连接到 Cloud Volumes ONTAP
+      url: "/task_connecting_to_otc.html"
+    - title: 添加现有系统
+      url: "/task_adding_ontap_cloud.html"
+    - title: 删除系统
+      url: "/task_deleting_working_env.html"
+- title: 使用文件服务配置卷
+  entries:
+  - title: Azure NetApp Files
+    entries:
+    - title: 了解 Azure NetApp Files
+      url: "/concept_azure_netapp_files.html"
+    - title: 设置 Azure NetApp Files
+      url: "/task_manage_anf.html"
+    - title: 创建和管理卷
+      url: "/task_manage_anf_volumes.html"
+  - title: 适用于 AWS 的 Cloud Volumes Service
+    entries:
+    - title: 了解适用于 AWS 的 Cloud Volumes Service
+      url: "/concept_cvs_aws.html"
+    - title: 部署和管理云卷
+      url: "/task_manage_cvs_aws.html"
+    - title: 管理云卷快照
+      url: "/task_manage_cloud_volumes_snapshots.html"
+    - title: 参考
+      entries:
+      - title: 服务级别和分配的容量
+        url: "/reference_cvs_service_levels_and_quotas.html"
+      - title: 适用于 Windows AD 服务器的 AWS 安全组设置
+        url: "/reference_security_groups_windows_ad_servers.html"
+  - title: 适用于 GCP 的 Cloud Volumes Service
+    entries:
+    - title: 了解适用于 GCP 的 Cloud Volumes Service
+      url: "/concept_cvs_gcp.html"
+    - title: 为 GCP 设置 Cloud Volumes Service
+      url: "/task_setup_cvs_gcp.html"
+    - title: 创建和管理云卷
+      url: "/task_manage_cvs_gcp.html"
+    - title: 管理云卷快照
+      url: "/task_manage_cloud_volumes_gcp_snapshots.html"
+- title: 管理 ONTAP 集群
+  entries:
+  - title: 发现 ONTAP 集群
+    url: "/task_discovering_ontap.html"
+  - title: 管理 ONTAP 卷
+    url: "/task_provisioning_ontap.html"
+- title: 备份到云
+  entries:
+  - title: 了解有关备份到云的信息
+    url: "/concept_backup_to_cloud.html"
+  - title: 入门
+    entries:
+    - title: 备份到 Amazon S3
+      url: "/task_backup_to_s3.html"
+    - title: 备份到 Azure Blob 存储
+      url: "/task_backup_to_azure.html"
+    - title: 从内部部署的 ONTAP 系统进行备份
+      url: "/task_backup_from_onprem.html"
+  - title: 管理备份和还原数据
+    url: "/task_managing_backups.html"
+- title: 复制和同步数据
+  entries:
+  - title: 了解云同步
+    url: "/concept_cloud_sync.html"
+  - title: 入门
+    entries:
+    - title: 快速入门
+      url: "/task_sync_quick_start.html"
+    - title: 准备源和目标
+      url: "/reference_sync_requirements.html"
+    - title: 准备网络连接
+      url: "/reference_sync_networking.html"
+    - title: 如何安装数据代理
+      entries:
+      - title: 在 AWS 中安装
+        url: "/task_sync_installing_aws.html"
+      - title: 在 Azure 中安装
+        url: "/task_sync_installing_azure.html"
+      - title: 在 GCP 中安装
+        url: "/task_sync_installing_gcp.html"
+      - title: 在 Linux 主机上安装
+        url: "/task_sync_installing_linux.html"
+    - title: 创建同步关系
+      url: "/task_sync_creating_relationships.html"
+    - title: 为同步关系付费
+      url: "/task_sync_licensing.html"
+  - title: 教程
+    entries:
+    - title: 在共享之间复制 ACL
+      url: "/task_sync_copying_acls.html"
+    - title: 对传输中的 NFS 数据进行加密
+      url: "/task_sync_nfs_encryption.html"
+  - title: 管理同步关系
+    url: "/task_sync_managing_relationships.html"
+  - title: API
+    url: "/api_sync.html"
+  - title: 常见问题解答
+    url: "/faq_sync.html"
+- title: 深入了解数据隐私
+  entries:
+  - title: 了解云合规性
+    url: "/concept_cloud_compliance.html"
+  - title: 入门
+    entries:
+    - title: 部署云合规性
+      url: "/task_deploy_cloud_compliance.html"
+    - title: 激活对数据源的扫描
+      entries:
+      - title: Cloud Volumes ONTAP 和 Azure NetApp Files
+        url: "/task_getting_started_compliance.html"
+      - title: Amazon S3 存储分段
+        url: "/task_scanning_s3.html"
+      - title: 数据库架构
+        url: "/task_scanning_databases.html"
+      - title: 内部 ONTAP 数据
+        url: "/task_scanning_onprem.html"
+  - title: 获得数据可见性和控制权
+    url: "/task_controlling_private_data.html"
+  - title: 生成报告
+    url: "/task_generating_compliance_reports.html"
+  - title: 响应 DAR
+    url: "/task_responding_to_dsar.html"
+  - title: 禁用 Cloud Compliance
+    url: "/task_managing_compliance.html"
+  - title: 常见问题解答
+    url: "/faq_cloud_compliance.html"
+- title: 启用实时全局文件共享
+  entries:
+  - title: 了解全局文件缓存
+    url: "/concept_gfc.html"
+  - title: 开始部署全局文件缓存之前
+    url: "/concept_before_you_begin_to_deploy_gfc.html"
+  - title: 入门
+    url: "/task_gfc_getting_started.html"
+  - title: 开始部署全局文件缓存边缘之前
+    url: "/download_gfc_resources.html"
+  - title: 部署全局文件缓存边缘
+    url: "/task_deploy_gfc_edge_instances.html"
+  - title: 最终用户培训
+    url: "/concept_gfc_enduser_training.html"
+  - title: 追加信息
+    url: "/reference_gfc_additional_information.html"
+- title: 优化云计算成本
+  entries:
+  - title: 了解计算服务
+    url: "/concept_compute.html"
+  - title: 入门
+    url: "/task_getting_started_compute.html"
+- title: 将数据分层到云
+  entries:
+  - title: 了解 Cloud Tiering
+    url: "/concept_cloud_tiering.html"
+  - title: 入门
+    entries:
+    - title: 将数据分层到 Amazon S3
+      url: "/task_tiering_onprem_aws.html"
+    - title: 将数据分层到 Azure Blob 存储
+      url: "/task_tiering_onprem_azure.html"
+    - title: 将数据分层到 Google Cloud Storage
+      url: "/task_tiering_onprem_gcp.html"
+    - title: 将数据分层到 StorageGRID
+      url: "/task_tiering_onprem_storagegrid.html"
+  - title: 设置许可
+    url: "/task_licensing_cloud_tiering.html"
+  - title: 管理数据分层
+    url: "/task_managing_tiering.html"
+  - title: 常见问题解答
+    url: "/faq_cloud_tiering.html"
+  - title: 参考
+    entries:
+    - title: 支持的 Amazon S3 存储类和区域
+      url: "/reference_aws_support.html"
+    - title: 支持的 Azure 访问层和区域
+      url: "/reference_azure_support.html"
+    - title: 支持的 Google Cloud 存储类和区域
+      url: "/reference_google_support.html"
+- title: 查看 Amazon S3 存储分段
+  url: "/task_viewing_amazon_s3.html"
+- title: 管理 Cloud Manager
+  entries:
+  - title: 查找您的系统 ID
+    url: "/task_finding_system_id.html"
+  - title: 管理连接器
+    entries:
+    - title: 管理现有连接器
+      url: "/task_managing_connectors.html"
+    - title: 创建连接器的更多方式
+      entries:
+      - title: 连接器主机要求
+        url: "/reference_cloud_mgr_reqs.html"
+      - title: 从 AWS Marketplace 创建
+        url: "/task_launching_aws_mktp.html"
+      - title: 从 Azure Marketplace 创建
+        url: "/task_launching_azure_mktp.html"
+      - title: 手动安装软件
+        url: "/task_installing_linux.html"
+    - title: 默认配置
+      url: "/reference_connector_default_config.html"
+  - title: 管理凭据
+    entries:
+    - title: AWS
+      entries:
+      - title: 了解 AWS 凭据
+        url: "/concept_accounts_aws.html"
+      - title: 管理 AWS 凭据
+        url: "/task_adding_aws_accounts.html"
+    - title: Azure 酒店
+      entries:
+      - title: 了解 Azure 凭据
+        url: "/concept_accounts_azure.html"
+      - title: 管理 Azure 凭据
+        url: "/task_adding_azure_accounts.html"
+    - title: GCP
+      entries:
+      - title: 了解 GCP 凭据
+        url: "/concept_accounts_gcp.html"
+      - title: 管理 GCP 凭据
+        url: "/task_adding_gcp_accounts.html"
+    - title: NetApp 支持站点凭据
+      url: "/task_adding_nss_accounts.html"
+  - title: 管理您的帐户
+    url: "/task_managing_cloud_central_accounts.html"
+  - title: 安装 HTTPS 证书
+    url: "/task_installing_https_cert.html"
+  - title: 删除工作环境
+    url: "/task_removing.html"
+  - title: 配置代理设置
+    url: "/task_configuring_proxy.html"
+  - title: 覆盖 Azure 中的 CIFS 锁定
+    url: "/task_overriding_cifs_locks.html"
+  - title: 参考
+    entries:
+    - title: 用户角色
+      url: "/reference_user_roles.html"
+    - title: 权限
+      url: "/reference_permissions.html"
+    - title: AWS Marketplace 页面
+      url: "/reference_aws_marketplace.html"
+- title: 使用 API 和自动化
+  entries:
+  - title: API 开发人员指南
+    url: https://docs.netapp.com/us-en/occm/api.html
+  - title: 使用 DevOps 工具实现自动化
+    url: "/reference_infrastructure_as_code.html"
+- title: 对问题进行故障排除
+  url: https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services
+- title: 相关链接
+  url: "/reference_additional_info.html"
+- title: 早期版本
+  url: "/reference_earlier_versions.html"
+- title: 法律声明
+  url: "/reference_legal_notices.html"

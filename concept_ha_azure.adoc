@@ -1,0 +1,90 @@
+---
+sidebar: sidebar 
+permalink: concept_ha_azure.html 
+keywords: high availability, HA, concepts, understanding, overview, takeover, giveback, rpo, rto, nondisruptive, ha pairs, node, nodes, recovery point objective, recovery time objective, nas, nfs, cifs, iscsi, mpio, alua, failover, failure, azure, shared storage, active, passive, load balancer, availability set, storage accounts, page blobs 
+summary: Cloud Volumes ONTAP 高可用性（ High Availability ， HA ）对可在云环境发生故障时提供企业级可靠性和持续运行。在 Azure 中，存储在两个节点之间共享。 
+---
+= Azure 中的高可用性对
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Volumes ONTAP 高可用性（ High Availability ， HA ）对可在云环境发生故障时提供企业级可靠性和持续运行。在 Azure 中，存储在两个节点之间共享。
+
+
+
+== HA 组件
+
+Azure 中的 Cloud Volumes ONTAP HA 配置包括以下组件：
+
+image:diagram_ha_azure.png["一个概念映像，其中显示了一个负载平衡器，用于管理来自 Cloud Manager 和客户端的传入流量，一个可用性集中的两个 Cloud Volumes ONTAP 节点，用于启动数据的 SSD 磁盘以及用于客户数据的页面 Blob 。"]
+
+请注意以下有关 Cloud Manager 为您部署的 Azure 组件的信息：
+
+Azure 标准负载平衡器:: 负载平衡器管理传入 Cloud Volumes ONTAP HA 对的流量。
+可用性集:: 可用性集可确保节点位于不同的故障域和更新域中。
+Disks:: 客户数据位于高级存储页面 Blobs 上。每个节点都可以访问另一节点的存储。此外，还需要为提供更多存储 link:reference_default_configs.html#boot-and-root-data-for-cloud-volumes-ontap["启动，根和核心数据"]。
+存储帐户::
++
+--
+* 受管磁盘需要一个存储帐户。
+* 高级存储页面 Blobs 需要一个或多个存储帐户，因为已达到每个存储帐户的磁盘容量限制。
++
+https://docs.microsoft.com/en-us/azure/storage/common/storage-scalability-targets["Azure 文档：存储帐户的 Azure 存储可扩展性和性能目标"^]。
+
+* 要将数据分层到 Azure Blob 存储，需要一个存储帐户。
+* 从 Cloud Volumes ONTAP 9.7 开始， Cloud Manager 为 HA 对创建的存储帐户为通用 v2 存储帐户。
+* 在创建工作环境时，您可以启用从 Cloud Volumes ONTAP 9.7 HA 对到 Azure 存储帐户的 HTTPS 连接。请注意，启用此选项可能会影响写入性能。创建工作环境后，您无法更改此设置。
+
+
+--
+
+
+
+
+== RPO 和 RTO
+
+HA 配置可保持数据的高可用性，如下所示：
+
+* 恢复点目标（ RPO ）为 0 秒。您的数据在传输过程中不会丢失数据。
+* 恢复时间目标（ RTO ）为 60 秒。如果发生中断、数据应在 60 秒或更短的时间内可用。
+
+
+
+
+== 存储接管和恢复
+
+与物理 ONTAP 集群类似， Azure HA 对中的存储在节点之间共享。通过连接到配对节点的存储，可以使每个节点在发生 _takeover_ 时访问另一个节点的存储。网络路径故障转移机制可确保客户端和主机继续与正常运行的节点进行通信。当节点恢复联机时，配对节点 _gives back_ storage 。
+
+对于 NAS 配置，如果发生故障，数据 IP 地址会自动在 HA 节点之间迁移。
+
+对于 iSCSI 、 Cloud Volumes ONTAP 使用多路径 I/O （ MPIO ）和非对称逻辑单元访问（ ALUA ）来管理活动优化路径和非优化路径之间的路径故障转移。
+
+
+NOTE: 有关哪些特定主机配置支持 ALUA 的信息，请参见 http://mysupport.netapp.com/matrix["NetApp 互操作性表工具"^] 以及适用于您的主机操作系统的《 Host Utilities 安装和设置指南》。
+
+
+
+== 存储配置
+
+您可以将 HA 对用作主动 - 主动配置、两个节点都将数据提供给客户端、也可以用作主动 - 被动配置、仅当被动节点接管了主动节点的存储时才响应数据请求。
+
+
+
+== HA 限制
+
+以下限制会影响 Azure 中的 Cloud Volumes ONTAP HA 对：
+
+* Cloud Volumes ONTAP 标准版，高级版和 BYOL 支持 HA 对。不支持浏览。
+* 不支持 NFSv4 。支持 NFSv3 。
+* 某些地区不支持 HA 对。
++
+https://cloud.netapp.com/cloud-volumes-global-regions["请参见支持的 Azure 区域列表"^]。
+
+
+
+link:task_deploying_otc_azure.html["了解如何在 Azure 中部署 HA 系统"]。

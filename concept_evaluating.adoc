@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: concept_evaluating.html 
+keywords: free trial, evaluation, evaluate, eval license, evaluation license, 30-day trial, 30 day trial, 30 day free trial 
+summary: 您可以在为软件付费之前对 Cloud Volumes ONTAP 进行评估。最常见的方法是启动第一个 Cloud Volumes ONTAP 系统的 PAYGO 版本，获得 30 天免费试用。此外，还可以选择评估 BYOL 许可证。 
+---
+= 评估
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以在为软件付费之前对 Cloud Volumes ONTAP 进行评估。最常见的方法是启动第一个 Cloud Volumes ONTAP 系统的 PAYGO 版本，获得 30 天免费试用。此外，还可以选择评估 BYOL 许可证。
+
+如果您需要有关概念验证的帮助，请联系 https://cloud.netapp.com/contact-cds["销售团队"^] 或者通过提供的聊天选项联系 以及 Cloud Manager 中的。
+
+
+
+== PAYGO 30 天免费试用
+
+如果您计划随心购买 Cloud Volumes ONTAP ，可获得 30 天免费试用。您可以通过在付款人的帐户中创建第一个 Cloud Volumes ONTAP 系统，从 Cloud Manager 开始 30 天免费试用 Cloud Volumes ONTAP 。
+
+实例无需按小时付费软件许可证，但云提供商提供的基础架构费用仍然适用。
+
+免费试用版在过期后会自动转换为按小时付费的订阅。如果您在该时间限制内终止此实例，则您部署的下一个实例不属于免费试用（即使它是在这 30 天内部署的）。
+
+按需购买试用版由云提供商提供，不能通过任何方式延长。
+
+
+
+== BYOL 评估许可证
+
+如果客户希望通过从 NetApp 购买称为 " 许可证 " 的方式为 Cloud Volumes ONTAP 付费，则可以选择使用评估版 BYOL 许可证。您可以从客户团队，销售工程师或合作伙伴处获取评估许可证。
+
+评估密钥适合 30 天使用，可以使用多次，每次使用 30 天（无论创建日期如何）。
+
+30 天结束后，每天都会发生关闭，因此最好提前进行规划。您可以在评估版许可证之上应用新的 BYOL 许可证以进行原位升级（这需要重新启动单节点系统）。在试用期结束时，您的托管数据将被 * 未 * 删除。
+
+
+TIP: 使用评估版许可证时，无法升级 Cloud Volumes ONTAP 软件。

@@ -1,0 +1,102 @@
+---
+sidebar: sidebar 
+permalink: task_setting_up_kms.html 
+keywords: encryption, kms, key management service, cmk, customer master key, master key, key, permissions 
+summary: 如果要在 Cloud Volumes ONTAP 中使用 Amazon 加密，则需要设置 AWS 密钥管理服务。 
+---
+= 设置 AWS KMS
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+如果要在 Cloud Volumes ONTAP 中使用 Amazon 加密，则需要设置 AWS 密钥管理服务（ KMS ）。
+
+.步骤
+. 确保存在有效的客户主密钥（ CMK ）。
++
+CMK 可以是 AWS 管理的 CMK 或客户管理的 CMK 。它可以与 Cloud Manager 和 Cloud Volumes ONTAP 位于同一个 AWS 帐户中，也可以位于不同的 AWS 帐户中。
+
++
+https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys["AWS 文档：客户主密钥（ CMK ）"^]
+
+. 通过添加 IAM 角色来修改每个 CMK 的密钥策略，该角色以 _key user__ 的身份为 Cloud Manager 提供权限。
++
+将 IAM 角色添加为密钥用户可为 Cloud Manager 提供在 Cloud Volumes ONTAP 中使用 CMK 的权限。
+
++
+https://docs.aws.amazon.com/kms/latest/developerguide/editing-keys.html["AWS 文档：编辑密钥"^]
+
+. 如果 CMK 位于其他 AWS 帐户中，请完成以下步骤：
++
+.. 从 CMK 所在的帐户转到 KMS 控制台。
+.. 选择密钥。
+.. 在 * 常规配置 * 窗格中，复制密钥的 ARN 。
++
+创建 Cloud Volumes ONTAP 系统时，您需要为 Cloud Manager 提供 ARN 。
+
+.. 在 * 其他 AWS 帐户 * 窗格中，添加为 Cloud Manager 提供权限的 AWS 帐户。
++
+在大多数情况下，这是 Cloud Manager 所在的帐户。如果 Cloud Manager 未安装在 AWS 中，则您会为其提供 Cloud Manager 的 AWS 访问密钥。
+
++
+image:screenshot_cmk_add_accounts.gif["此屏幕截图显示了 AWS KMS 控制台中的 \" 添加其他 AWS 帐户 \" 按钮。"]
+
++
+image:screenshot_cmk_add_accounts_dialog.gif["此屏幕截图显示了 AWS KMS 控制台中的 \" 其他 AWS 帐户 \" 对话框。"]
+
+.. 现在，切换到为 Cloud Manager 提供权限的 AWS 帐户，然后打开 IAM 控制台。
+.. 创建一个包含以下权限的 IAM 策略。
+.. 将策略附加到为 Cloud Manager 提供权限的 IAM 角色或 IAM 用户。
++
+以下策略提供了 Cloud Manager 从外部 AWS 帐户使用 CMK 所需的权限。请务必在 " 资源 " 部分中修改区域和帐户 ID 。
+
++
+[source, json]
+----
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowUseOfTheKey",
+            "Effect": "Allow",
+            "Action": [
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*",
+                "kms:DescribeKey"
+            ],
+            "Resource": [
+                "arn:aws:kms:us-east-1:externalaccountid:key/externalkeyid"
+            ]
+        },
+        {
+            "Sid": "AllowAttachmentOfPersistentResources",
+            "Effect": "Allow",
+            "Action": [
+                "kms:CreateGrant",
+                "kms:ListGrants",
+                "kms:RevokeGrant"
+            ],
+            "Resource": [
+                "arn:aws:kms:us-east-1:externalaccountid:key/externalaccountid"
+            ],
+            "Condition": {
+                "Bool": {
+                    "kms:GrantIsForAWSResource": true
+                }
+            }
+        }
+    ]
+}
+----
++
+有关此过程的其他详细信息，请参见 https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying.html#key-policy-modifying-external-accounts["AWS 文档：允许外部 AWS 帐户访问 CMK"^]。
+
+
+
+

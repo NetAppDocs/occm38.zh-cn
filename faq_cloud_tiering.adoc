@@ -1,0 +1,185 @@
+---
+sidebar: sidebar 
+permalink: faq_cloud_tiering.html 
+keywords: faq, questions, requirements, service connector, object store, object storage, aws, azure, bucket, cluster, aggregate, s3, storage class, standard, inactive data reporting, auto, volume tiering policy, policy, tiering policy, snapshot, cold, inactive, infrequent 
+summary: 如果您只是想快速了解问题解答，此常见问题解答会很有帮助。 
+---
+= Cloud Tiering 技术常见问题解答
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+如果您只是想快速了解问题解答，此常见问题解答会很有帮助。
+
+
+
+== ONTAP
+
+以下问题与 ONTAP 相关。
+
+
+
+=== ONTAP 集群有哪些要求？
+
+这取决于冷数据分层的位置。请参见以下内容：
+
+* link:task_tiering_onprem_aws.html#preparing-your-ontap-clusters["将数据从内部 ONTAP 集群分层到 Amazon S3"]
+* link:task_tiering_onprem_azure.html#preparing-your-ontap-clusters["将数据从内部 ONTAP 集群分层到 Azure Blob 存储"]
+* link:task_tiering_onprem_gcp.html#preparing-your-ontap-clusters["将数据从内部 ONTAP 集群分层到 Google 云存储"]
+* link:task_tiering_onprem_storagegrid.html#preparing-your-ontap-clusters["将数据从内部 ONTAP 集群分层到 StorageGRID"]
+
+
+
+
+=== Cloud Tiering 是否支持非活动数据报告？
+
+可以， Cloud Tiering 支持在每个聚合上报告非活动数据。通过此设置，我们可以确定可分层到低成本对象存储的非活动数据量。
+
+
+
+=== 是否可以对 NAS 卷和 SAN 卷中的数据进行分层？
+
+您可以使用云分层将数据从 NAS 卷分层到公有云，并使用 StorageGRID 将数据从 SAN 卷分层到私有云。
+
+
+
+=== Cloud Volumes ONTAP 如何？
+
+如果您使用的是 Cloud Volumes ONTAP 系统，则可以在集群信息板中找到这些系统，以便您全面了解混合云基础架构中的数据分层。
+
+在集群信息板中，您可以查看类似于内部 ONTAP 集群的分层信息：运行状况，当前节省量，节省机会，卷和聚合的详细信息等。
+
+Cloud Volumes ONTAP 系统是从云分层进行的只读系统。您无法通过云分层在 Cloud Volumes ONTAP 上设置数据分层。您仍然可以在 Cloud Manager 的工作环境中设置相同的分层方式。
+
+
+
+== 对象存储
+
+以下问题与对象存储有关。
+
+
+
+=== 支持哪些对象存储提供程序？
+
+支持使用 S3 协议的 Amazon S3 ， Azure Blob Storage ， Google Cloud Storage 和 StorageGRID 。
+
+
+
+=== 我是否可以使用自己的存储分段 / 容器？
+
+可以。设置数据分层时，您可以选择添加新的分段 / 容器或选择现有分段 / 容器。
+
+
+
+=== 支持哪些地区？
+
+* link:reference_aws_support.html["支持的 AWS 区域"]
+* link:reference_azure_support.html["支持的 Azure 区域"]
+* link:reference_google_support.html["支持的 Google Cloud 地区"]
+
+
+
+
+=== 支持哪些 S3 存储类？
+
+Cloud Tiering 支持将数据分层到 _Standard_ ， _Standard-Infrequent Access_ ， _One Zone-IA_或 _Intelligent _ 存储类。请参见 link:reference_aws_support.html["支持的 S3 存储类"] 有关详细信息：
+
+
+
+=== 支持哪些 Azure Blob 访问层？
+
+Cloud Tiering 会自动对非活动数据使用 _hot_ 访问层。
+
+
+
+=== Google Cloud Storage 支持哪些存储类？
+
+Cloud Tiering 对非活动数据使用 _Standard_ 存储类。
+
+
+
+=== Cloud Tiering 是对整个集群使用一个对象存储还是对每个聚合使用一个对象存储？
+
+整个集群一个对象存储。
+
+
+
+=== 是否可以将策略应用于对象存储，以便在不分层的情况下移动数据？
+
+不支持， Cloud Tiering 不支持通过对象生命周期管理规则来移动或删除对象存储中的数据。
+
+
+
+== 连接器
+
+以下问题与连接器有关。
+
+
+
+=== 连接器需要安装在何处？
+
+* 将数据分层到 S3 时， Connector 可以驻留在 AWS VPC 或内部。
+* 将数据分层到 Blob 存储时， Connector 必须驻留在 Azure vNet 中。
+* 将数据分层到 Google Cloud Storage 时， Connector 必须驻留在 Google Cloud Platform VPC 中。
+* 将数据分层到 StorageGRID 时，连接器必须驻留在内部 Linux 主机上。
+
+
+
+
+== 网络
+
+以下问题与网络连接有关。
+
+
+
+=== 网络连接要求是什么？
+
+* ONTAP 集群通过端口 443 启动与对象存储提供程序的 HTTPS 连接。
++
+ONTAP 可在对象存储之间读取和写入数据。对象存储永远不会启动，而只是响应。
+
+* 对于 StorageGRID ， ONTAP 集群会通过用户指定的端口启动与 StorageGRID 的 HTTPS 连接（此端口可在分层设置期间进行配置）。
+* Connector 需要通过端口 443 与 ONTAP 集群，对象存储和云分层服务建立出站 HTTPS 连接。
+
+
+有关详细信息，请参见：
+
+* link:task_tiering_onprem_aws.html["将数据从内部 ONTAP 集群分层到 Amazon S3"]
+* link:task_tiering_onprem_azure.html["将数据从内部 ONTAP 集群分层到 Azure Blob 存储"]
+* link:task_tiering_onprem_gcp.html["将数据从内部 ONTAP 集群分层到 Google 云存储"]
+* link:task_tiering_onprem_storagegrid.html["将数据从内部 ONTAP 集群分层到 StorageGRID"]
+
+
+
+
+== 权限
+
+以下问题与权限有关。
+
+
+
+=== AWS 需要哪些权限？
+
+权限为必填项 link:task_tiering_onprem_aws#preparing-amazon-s3["以管理 S3 存储分段"]。
+
+
+
+=== Azure 需要哪些权限？
+
+除了您需要为 Cloud Manager 提供的权限之外，不需要任何额外的权限。
+
+
+
+=== Google Cloud Platform 需要哪些权限？
+
+具有存储访问密钥的服务帐户需要存储管理员权限。
+
+
+
+=== StorageGRID 需要哪些权限？
+
+link:task_tiering_onprem_storagegrid.html#preparing-storagegrid["需要 S3 权限"]。

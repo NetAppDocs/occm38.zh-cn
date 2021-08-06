@@ -1,0 +1,99 @@
+---
+sidebar: sidebar 
+permalink: task_adding_gcp_accounts.html 
+keywords: permissions, gcp, data tiering, tiering, setup, requirements, account for data tiering, account for tiering, interoperable, interoperability, interoperable storage access keys, access keys 
+summary: 您可以从 Cloud Manager 管理两种类型的 Google 云平台凭据，即与 Connector VM 实例关联的凭据以及用于数据分层的 Cloud Volumes ONTAP 9.6 系统的存储访问密钥。 
+---
+= 管理 Cloud Manager 的 GCP 凭据和订阅
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以从 Cloud Manager 管理两种类型的 Google 云平台凭据：与 Connector VM 实例关联的凭据以及与 Cloud Volumes ONTAP 9.6 系统一起使用的存储访问密钥 link:concept_data_tiering.html["数据分层"]。
+
+
+
+== 将 Marketplace 订阅与 GCP 凭据关联
+
+在 GCP 中部署 Connector 时， Cloud Manager 会创建一组与 Connector VM 实例关联的默认凭据。这些凭据是 Cloud Manager 用于部署 Cloud Volumes ONTAP 的凭据。
+
+您可以随时更改与这些凭据关联的 Marketplace 订阅。通过订阅，您可以创建按需购买的 Cloud Volumes ONTAP 系统并使用其他 NetApp 云服务。
+
+.步骤
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * 凭据 * 。
+. 将鼠标悬停在一组凭据上，然后单击操作菜单。
+. 从菜单中，单击 * 关联订阅 * 。
++
+image:screenshot_gcp_add_subscription.gif["\" 凭据 \" 页面的屏幕截图，您可以在此菜单中为 GCP 凭据添加订阅。"]
+
+. 从下拉列表中选择一个 Google Cloud 项目和订阅，或者单击 * 添加订阅 * ，然后按照步骤创建新订阅。
++
+image:screenshot_gcp_associate.gif["为 Google Cloud 凭据选择的 Google Cloud 项目和订阅的屏幕截图。"]
+
+. 单击 * 关联 * 。
+
+
+
+
+== 使用 Cloud Volumes ONTAP 9.6 设置和添加用于数据分层的 GCP 帐户
+
+如果要为启用 Cloud Volumes ONTAP 9.6 系统 link:concept_data_tiering.html["数据分层"]，您需要为具有存储管理员权限的服务帐户为 Cloud Manager 提供存储访问密钥。Cloud Manager 可使用访问密钥设置和管理用于数据分层的云存储分段。
+
+
+TIP: 如果要在 Cloud Volumes ONTAP 9.7 中使用数据分层，请按照中的步骤 4 进行操作 link:task_getting_started_gcp.html["在 Google 云平台中开始使用 Cloud Volumes ONTAP"]。
+
+
+
+=== 为 Google Cloud Storage 设置服务帐户和访问密钥
+
+通过服务帐户， Cloud Manager 可以对用于数据分层的云存储分段进行身份验证和访问。需要提供密钥，以便 Google Cloud Storage 知道谁在发出请求。
+
+.步骤
+. 打开 GCP IAM 控制台和 https://cloud.google.com/iam/docs/creating-custom-roles#creating_a_custom_role["创建具有存储管理员角色的服务帐户"^]。
++
+image:screenshot_gcp_service_account_role.gif["GCP IAM 控制台的屏幕截图，其中显示了为服务帐户选择的存储管理员角色。"]
+
+. 转至 https://console.cloud.google.com/storage/settings["GCP 存储设置"^]。
+. 如果出现提示，请选择一个项目。
+. 单击 * 互操作性 * 选项卡。
+. 如果尚未启用互操作性访问，请单击 * 启用互操作性访问 * 。
+. 在 * 服务帐户的访问密钥 * 下，单击 * 为服务帐户创建密钥 * 。
+. 选择您在步骤 1 中创建的服务帐户。
++
+image:screenshot_gcp_access_key.gif["GCP 存储控制台的屏幕截图，其中显示了新访问密钥的选定服务帐户。"]
+
+. 单击 * 创建密钥 * 。
+. 复制访问密钥和密钥。
++
+在添加用于数据分层的 GCP 帐户时，您需要在 Cloud Manager 中输入此信息。
+
+
+
+
+
+=== 将 GCP 帐户添加到 Cloud Manager
+
+现在，您已有服务帐户的访问密钥，您可以将其添加到 Cloud Manager 中。
+
+您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
+
+.步骤
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * 凭据 * 。
++
+image:screenshot_settings_icon.gif["一个屏幕截图，显示 Cloud Manager 控制台右上角的设置图标。"]
+
+. 单击 * 添加凭据 * 并选择 * Google Cloud* 。
+. 输入服务帐户的访问密钥和密钥。
++
+Cloud Manager 可通过这些密钥设置用于数据分层的云存储分段。
+
+. 确认已满足策略要求，然后单击 * 创建帐户 * 。
+
+
+现在，您可以在创建，修改或复制 Cloud Volumes ONTAP 9.6 系统上的各个卷时对其启用数据分层。有关详细信息，请参见 link:task_tiering.html["将非活动数据分层到低成本对象存储"]。
+
+但是，在执行此操作之前，请确保 Cloud Volumes ONTAP 所在的子网已配置为专用 Google 访问。有关说明，请参见 https://cloud.google.com/vpc/docs/configure-private-google-access["Google Cloud 文档：配置私有 Google Access"^]。

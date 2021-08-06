@@ -1,0 +1,226 @@
+---
+sidebar: sidebar 
+permalink: task_deploy_cloud_compliance.html 
+keywords: cloud compliance, get started, deploy cloud compliance, outbound internet, endpoints, cloud compliance internet, web browser connectivity, cloud compliance access, privacy, compliance 
+summary: 完成几个步骤，在 Cloud Manager 工作空间中部署 Cloud Compliance 实例。 
+---
+= 部署云合规性
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+完成几个步骤，在 Cloud Manager 工作空间中部署 Cloud Compliance 实例。
+
+
+
+== 快速入门
+
+按照以下步骤快速入门，或者向下滚动到其余部分以了解完整详细信息。
+
+
+
+==== 创建连接器
+
+[role="quick-margin-para"]
+如果您还没有 Connector ，请在 Azure 或 AWS 中创建 Connector 。请参见 link:task_creating_connectors_aws.html["在 AWS 中创建连接器"] 或 。
+
+
+
+==== 查看前提条件
+
+[role="quick-margin-para"]
+确保您的云环境可以满足以下前提条件：云合规性实例需要 16 个 vCPU ，实例的出站 Internet 访问，通过端口 80 在 Connector 和 Cloud Compliance 之间建立连接等。 <<Reviewing prerequisites,请参见完整列表>>。
+
+
+
+==== 部署云合规性
+
+[role="quick-margin-para"]
+启动安装向导以在 Cloud Manager 中部署 Cloud Compliance 实例。
+
+
+
+==== 订阅 Cloud Compliance 服务
+
+[role="quick-margin-para"]
+Cloud Compliance 在 Cloud Manager 中扫描的前 1 TB 数据是免费的。要在这之后继续扫描数据，需要订阅 AWS 或 Azure Marketplace 。
+
+
+
+== 创建连接器
+
+如果您还没有 Connector ，请在 Azure 或 AWS 中创建 Connector 。请参见 link:task_creating_connectors_aws.html["在 AWS 中创建连接器"] 或 。在大多数情况下，您可能会在尝试激活 Cloud Compliance 之前设置 Connector ，因为大多数情况下都是这样 ，但在某些情况下，您需要立即设置一个。
+
+在某些情况下，您必须在 AWS 或 Azure 中使用 Connector 来实现云合规性。
+
+* 在 AWS 中的 Cloud Volumes ONTAP 或 AWS S3 存储分段中扫描数据时，您可以使用 AWS 中的连接器。
+* 在 Azure 或 Azure NetApp Files 中的 Cloud Volumes ONTAP 中扫描数据时，您可以使用 Azure 中的连接器。
+* 可以使用任一 Connector 扫描数据库。
+
+
+如您所见，在某些情况下可能需要使用 link:concept_connectors.html#when-to-use-multiple-connectors["多个连接器"]。
+
+
+NOTE: 如果您计划扫描 Azure NetApp Files ，则需要确保在与要扫描的卷相同的区域中部署。
+
+
+
+== 查看前提条件
+
+在部署 Cloud Compliance 之前，请查看以下前提条件，以确保您的配置受支持。
+
+启用出站 Internet 访问::
++
+--
+[cols="43,57"]
+|===
+| 端点 | 目的 
+
+
+| https://cloudmanager.cloud.netapp.com | 与 Cloud Manager 服务进行通信，其中包括 Cloud Central 帐户。 
+
+
+| https://netapp-cloud-account.auth0.com \https://auth0.com | 与 NetApp Cloud Central 进行通信以实现集中式用户身份验证。 
+
+
+| https://cloud-compliance-support-netapp.s3.us-west-2.amazonaws.com \https://hub.docker.com \https://auth.docker.io \https://registry-1.docker.io \https://index.docker.io/ \https://dseasb33srnrn.cloudfront.net/ \https://production.cloudflare.docker.com/ | 提供对软件映像、清单和模板的访问。 
+
+
+| https://kinesis.us-east-1.amazonaws.com | 使 NetApp 能够从审计记录流化数据。 
+
+
+| https://cognito-idp.us-east-1.amazonaws.com \https://cognito-identity.us-east-1.amazonaws.com | 支持 Cloud Compliance 访问和下载清单和模板，以及发送日志和指标。 
+|===
+--
+确保 Cloud Manager 具有所需权限:: 确保 Cloud Manager 有权为 Cloud Compliance 实例部署资源并创建安全组。您可以在中找到最新的 Cloud Manager 权限 https://mysupport.netapp.com/site/info/cloud-manager-policies["NetApp 提供的策略"^]。
+检查 vCPU 限制::
++
+--
+在 AWS 中，实例系列为 _On-Demand Standard Instances_ 。在 Azure 中，实例系列为 _Standard Dsv3 Family_ 。
+
+有关 vCPU 限制的详细信息，请参见以下内容：
+
+* https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html["AWS 文档： Amazon EC2 服务限制"^]
+* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quotas["Azure 文档：虚拟机 vCPU 配额"^]
+
+
+--
+确保 Cloud Manager 可以访问 Cloud Compliance::
++
+--
+通过此连接，可以部署 Cloud Compliance 实例，并可在 Compliance 选项卡中查看信息。
+
+--
+设置 Azure NetApp Files 发现:: 在扫描卷中的 Azure NetApp Files 之前， link:task_manage_anf.html["必须设置 Cloud Manager 才能发现配置"^]。
+确保您可以保持 Cloud Compliance 正常运行:: 云合规性实例需要保持运行状态，才能持续扫描数据。
+确保 Web 浏览器连接到 Cloud Compliance::
++
+--
+Cloud Compliance 实例使用专用 IP 地址来确保索引数据无法通过 Internet 访问。因此，用于访问 Cloud Manager 的 Web 浏览器必须连接到该专用 IP 地址。此连接可以来自与 AWS 或 Azure 的直接连接（例如 VPN ），也可以来自与 Cloud Compliance 实例位于同一网络中的主机。
+
+--
+
+
+
+
+== 部署 Cloud Compliance 实例
+
+您可以为每个 Cloud Manager 实例部署一个 Cloud Compliance 实例。
+
+.步骤
+. 在 Cloud Manager 中，单击 * 云合规性 * 。
+. 单击 * 激活云合规性 * 以启动部署向导。
++
+image:screenshot_cloud_compliance_deploy_start.png["选择激活云合规性按钮以部署云合规性的屏幕截图。"]
+
+. 向导将在完成部署步骤时显示进度。如果遇到任何问题，它将停止并请求输入。
++
+image:screenshot_cloud_compliance_wizard_start.png["用于部署新实例的 Cloud Compliance 向导的屏幕截图。"]
+
+. 部署实例后，单击 * 继续配置 * 以转到 _Scan Configuration_ 页面。
+
+
+Cloud Manager 会在您的云提供商中部署 Cloud Compliance 实例。
+
+在扫描配置页面中，您可以选择要扫描的工作环境，卷和分段以确保合规性。您还可以连接到数据库服务器以扫描特定的数据库架构。在任何这些数据源上激活 Cloud Compliance 。
+
+
+
+== 订阅 Cloud Compliance 服务
+
+Cloud Compliance 在 Cloud Manager 工作空间中扫描的前 1 TB 数据是免费的。要在这之后继续扫描数据，需要订阅 AWS 或 Azure Marketplace 。
+
+您可以随时订阅，在数据量超过 1 TB 之前，不会向您收取任何费用。您始终可以从云合规性信息板查看正在扫描的总数据量。现在订阅 _ 按钮可以让您在准备就绪后轻松订阅。
+
+image:screenshot_compliance_subscribe.png["屏幕截图显示了正在扫描的数据量以及用于订阅服务的 \" 订阅 \" 按钮。"]
+
+* 注意： * 如果 Cloud Compliance 提示您订阅，但您已订阅 Azure ，则您可能正在使用旧的 * Cloud Manager* 订阅，需要更改为新的 * NetApp Cloud Manager* 订阅。请参见<<Changing to the new Cloud Manager plan in Azure,在 Azure 中更改为新的 NetApp Cloud Manager 计划>> 了解详细信息。
+
+这些步骤必须由具有 _Account Admin_ 角色的用户完成。
+
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * 凭据 * 。
++
+image:screenshot_settings_icon.gif["Cloud Manager 右上角横幅的屏幕截图，您可以在其中选择 \" 设置 \" 图标。"]
+
+. 查找 AWS 实例配置文件或 Azure 托管服务标识的凭据。
++
+必须将订阅添加到实例配置文件或受管服务标识。否则，充电将不起作用。
+
++
+如果您已经有订阅，那么您就已准备就绪—没有其他需要做的事情。
+
++
+image:screenshot_profile_subscription.gif["\" 凭据 \" 页面中的屏幕截图，其中显示了订阅处于活动状态的实例配置文件。"]
+
+. 如果您尚未订阅，请将鼠标悬停在凭据上，然后单击操作菜单。
+. 单击 * 添加订阅 * 。
++
+image:screenshot_add_subscription.gif["凭据页面中菜单的屏幕截图。此时将显示一个按钮，用于向凭据添加订阅。"]
+
+. 单击 * 添加订阅 * ，单击 * 继续 * ，然后按照步骤进行操作。
++
+以下视频显示了如何将 Marketplace 订阅与 AWS 订阅关联：
+
++
+video::video_subscribing_aws.mp4[width=848,height=480]
++
+以下视频显示了如何将 Marketplace 订阅与 Azure 订阅关联：
+
++
+video::video_subscribing_azure.mp4[width=848,height=480]
+
+
+
+
+== 在 Azure 中更改为新的 Cloud Manager 计划
+
+截至 2020 年 10 月 7 日，已将 Cloud Compliance 添加到名为 * NetApp Cloud Manager* 的 Azure Marketplace 订阅中。如果您已订阅原始 Azure * Cloud Manager* ，则不允许使用 Cloud Compliance 。
+
+您需要按照以下步骤选择新的 * NetApp Cloud Manager* 订阅，然后删除旧的 * Cloud Manager* 订阅。
+
+
+NOTE: 如果您的现有订阅附带了特殊的私人优惠，则您需要联系 NetApp ，以便我们问题描述可以根据合规性申请新的特殊私人优惠。
+
+这些步骤与上述添加新订阅类似，但在某些方面有所不同。
+
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * 凭据 * 。
+. 找到要更改订阅的 Azure 托管服务身份的凭据，并将鼠标悬停在这些凭据上，然后单击 * 关联订阅 * 。
++
+此时将显示当前 Marketplace 订阅的详细信息。
+
+. 单击 * 添加订阅 * ，单击 * 继续 * ，然后按照步骤进行操作。您将重定向到 Azure 门户以创建新订阅。
+. 请务必选择 * NetApp Cloud Manager* 计划，该计划提供对 Cloud Compliance 的访问权限，而不是 * Cloud Manager* 。
+. 浏览视频中的步骤，将 Marketplace 订阅与 Azure 订阅相关联：
++
+video::video_subscribing_azure.mp4[width=848,height=480]
+. 返回 Cloud Manager ，选择新订阅，然后单击 * 关联 * 。
+. 要验证您的订阅是否已更改，请将鼠标悬停在凭据卡中订阅上方的 "i " 上。
++
+现在，您可以从 Azure 门户取消订阅旧订阅。
+
+. 在 Azure 门户中，转到软件即服务（ SaaS ），选择订阅，然后单击 * 取消订阅 * 。
+

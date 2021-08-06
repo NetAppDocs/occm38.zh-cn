@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: concept_gfc_enduser_training.html 
+keywords: global file cache, training 
+summary: 您需要对用户进行有关通过全局文件缓存访问共享文件的最佳实践的培训。 
+---
+= 最终用户培训
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您需要对用户进行有关通过全局文件缓存访问共享文件的最佳实践的培训。
+
+这是全局文件缓存部署的最后阶段，即最终用户实施阶段。
+
+为了准备和简化最终用户的入职流程，请使用下面的电子邮件模板帮助您向最终用户介绍在 " 中央数据 " 环境中工作的意义。这将帮助您的用户充分利用全局文件缓存解决方案的所有优势。我们还发布了一个视频，可在需要时供 " 培训 " 用户共享。
+
+自定义以下资源并将其转发给最终用户，以便为部署做好准备：
+
+* 用户培训视频link:https://www.youtube.com/watch?v=RYvhnTz4bEA["最终用户培训视频"^]
+* 电子邮件模板link:https://repo.cloudsync.netapp.com/gfc/Global%20File%20Cache%20Onboarding%20Email.emltpl["MAC 电子邮件模板（ .emltpl ）"]
++
+link:https://docs.netapp.com/us-en/occm/media/Global_File_Cache_Onboarding_Email.msg["Windows 电子邮件模板（ .msg ）"]
+
+* 入职沟通link:https://repo.cloudsync.netapp.com/gfc/Global%20File%20Cache%20Customer%20Onboarding%20-%20Draft.docx["Word 文档（ .docx ）"]
+
+
+请参见中的第 12 章 link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["《 NetApp 全局文件缓存用户指南》"^] 以获取其他材料。

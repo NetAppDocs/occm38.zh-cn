@@ -1,0 +1,171 @@
+---
+sidebar: sidebar 
+permalink: reference_default_configs.html 
+keywords: svm, LIF, LIFs, configuration backups, attributes, autosize, security style, space guarantee, unix permissions, NTFS, UNIX, boot, root, disks, aggr0, aggr1, svm, svms, storage virtual machine, LIF failover, failover, attributes, volume attributes, boot disk, root disk, licenses, feature licenses, default licenses, ontap licenses, ontap features 
+summary: 了解默认情况下如何配置 Cloud Volumes ONTAP 可以帮助您设置和管理系统、尤其是在您熟悉 ONTAP 的情况下、因为 Cloud Volumes ONTAP 的默认设置不同于 ONTAP 。 
+---
+= Cloud Volumes ONTAP 的默认配置
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+了解默认情况下如何配置 Cloud Volumes ONTAP 可以帮助您设置和管理系统、尤其是在您熟悉 ONTAP 的情况下、因为 Cloud Volumes ONTAP 的默认设置不同于 ONTAP 。
+
+
+
+== 默认值
+
+* Cloud Volumes ONTAP 在 AWS ， Azure 和 GCP 中作为单节点系统提供，在 AWS 和 Azure 中作为 HA 对提供。
+* Cloud Manager 在部署 Cloud Volumes ONTAP 时会创建一个提供数据的 Storage VM 。某些配置支持额外的 Storage VM 。 link:task_managing_svms.html["了解有关管理 Storage VM 的更多信息"]。
+* Cloud Manager 会自动在 Cloud Volumes ONTAP 上安装以下 ONTAP 功能许可证：
++
+** CIFS
+** FlexCache
+** FlexClone
+** iSCSI
+** NetApp 卷加密（仅适用于 BYOL 或已注册的 PAYGO 系统）
+** NFS
+** SnapMirror
+** SnapRestore
+** SnapVault
+
+
+* 默认情况下会创建多个网络接口：
++
+** 集群管理 LIF
+** 集群间 LIF
+** Azure 中 HA 系统上的 SVM 管理 LIF ， AWS 中的单节点系统以及多个 AWS 可用性区域中的 HA 系统上的可选 SVM 管理 LIF
+** 节点管理 LIF
+** iSCSI 数据 LIF
+** CIFS 和 NFS 数据 LIF
++
+
+NOTE: 由于 EC2 要求，默认情况下，对于 Cloud Volumes ONTAP 禁用 LIF 故障转移。将 LIF 迁移到另一个端口会中断实例上 IP 地址和网络接口之间的外部映射、从而使 LIF 无法访问。
+
+
+
+* Cloud Volumes ONTAP 使用 HTTPS 将配置备份发送到连接器。
++
+可从访问这些备份 https://ipaddress/occm/offboxconfig/[] 其中 _ipaddress_ 是 Connector 主机的 IP 地址。
+
+* 与其他管理工具（例如 System Manager 或 CLI ）不同、 Cloud Manager 设置了几个卷属性。
++
+下表列出了 Cloud Manager 设置的与默认设置不同的卷属性：
+
++
+[cols="15,85"]
+|===
+| 属性 | 由 Cloud Manager 设置的价值 
+
+
+| 自动调整模式 | 增长 
+
+
+| 最大自动大小  a| 
+1,000 ％
+
+
+NOTE: 帐户管理员可以从 " 设置 " 页面修改此值。
+
+
+
+| 安全风格 | 适用于 CIFS 卷的 NTFS UNIX （用于 NFS 卷） 
+
+
+| 空间保证风格 | 无 
+
+
+| UNIX 权限（仅限 NFS ） | 777. 
+|===
++
+有关这些属性的信息，请参见 _volume crese_ 手册页。
+
+
+
+
+
+== 适用于 Cloud Volumes ONTAP 的引导和根数据
+
+除了用户数据存储之外、 Cloud Manager 还在每个 Cloud Volumes ONTAP 系统上购买用于引导和根数据的云存储。
+
+
+
+=== AWS
+
+* 每个节点有两个磁盘用于启动和根数据：
++
+** 9.7 ： 160 GB IO1 磁盘用于启动数据， 220 GB GP2 磁盘用于根数据
+** 9.6 ： 93 GB IO1 磁盘用于启动数据， 140 GB GP2 磁盘用于根数据
+** 9.5 ： 45 GB IO1 磁盘用于启动数据， 140 GB GP2 磁盘用于根数据
+
+
+* 每个引导磁盘和根磁盘一个 EBS 快照
+* 对于 HA 对，为调解器实例配置一个 EBS 卷，大约为 8 GB
+
+
+
+
+=== Azure （单节点）
+
+* 三个高级 SSD 磁盘：
++
+** 一个 10 GB 磁盘，用于存储启动数据
+** 一个 140 GB 的根数据磁盘
+** 一个用于 NVRAM 的 128 GB 磁盘
++
+如果您为 Cloud Volumes ONTAP 选择的虚拟机支持超 SSD ，则系统将使用超 SSD 进行 NVRAM ，而不是高级 SSD 。
+
+
+
+* 一个 1024 GB 标准 HDD 磁盘，用于节省核心
+* 每个引导磁盘和根磁盘一个 Azure 快照
+
+
+
+
+=== Azure （ HA 对）
+
+* 两个用于启动卷的 10 GB 高级 SSD 磁盘（每个节点一个）
+* 根卷的两个 140 GB 高级存储页面 Blobs （每个节点一个）
+* 两个 1024 GB 标准 HDD 磁盘，用于节省核心（每个节点一个）
+* 两个用于 NVRAM 的 128 GB 高级 SSD 磁盘（每个节点一个）
+* 每个引导磁盘和根磁盘一个 Azure 快照
+
+
+
+
+=== GCP
+
+* 一个 10 GB 标准永久性磁盘，用于存储启动数据
+* 一个 64 GB 标准永久性磁盘，用于存储根数据
+* 一个用于 NVRAM 的 500 GB 标准永久性磁盘
+* 一个 216 GB 标准永久性磁盘，用于节省核心
+* 启动磁盘和根磁盘各一个 GCP 快照
+
+
+
+
+=== 磁盘驻留的位置
+
+Cloud Manager 将存储布局如下：
+
+* 启动数据驻留在与实例或虚拟机连接的磁盘上。
++
+此磁盘包含引导映像、但不能用于 Cloud Volumes ONTAP 。
+
+* 包含系统配置和日志的根数据驻留在 aggr0 中。
+* 存储虚拟机（ SVM ）根卷驻留在 aggr1 中。
+* 数据卷也驻留在 aggr1 中。
+
+
+
+
+=== 加密
+
+启动和根磁盘在 Azure 和 Google Cloud Platform 中始终加密，因为默认情况下，这些云提供商会启用加密。
+
+如果您在 AWS 中使用密钥管理服务（ KMS ）启用数据加密，则 Cloud Volumes ONTAP 的启动磁盘和根磁盘也会进行加密。这包括 HA 对中调解器实例的启动磁盘。磁盘将使用您在创建工作环境时选择的 CMK 进行加密。

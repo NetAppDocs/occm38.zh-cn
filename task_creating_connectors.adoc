@@ -1,0 +1,163 @@
+---
+sidebar: sidebar 
+permalink: task_creating_connectors.html 
+keywords: create connector in aws, create connector in azure, create connector in gcp, launch connector in aws, launch connector in azure, launch connector in gcp, deploy connector in aws, deploy connector in azure, deploy connector in gcp 
+summary: 客户管理员需要先部署 Connector ，然后才能使用大多数 Cloud Manager 功能。借助此连接器， Cloud Manager 可以管理公有云环境中的资源和流程。此页面介绍如何直接从 Cloud Manager 创建 Connector 。 
+---
+= 使用 Cloud Manager 创建连接器
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+客户管理员需要先部署 _Connector_ ，然后才能使用大多数 Cloud Manager 功能。借助此连接器， Cloud Manager 可以管理公有云环境中的资源和流程。此页面介绍如何直接从 Cloud Manager 创建 Connector 。
+
+这些步骤必须由具有帐户管理员角色的用户完成。Workspace 管理员无法创建 Connector 。
+
+link:concept_connectors.html["了解何时需要连接器"]。
+
+
+TIP: 在创建首个 Cloud Volumes ONTAP 工作环境时，如果您还没有连接器， Cloud Manager 将提示您创建一个连接器。
+
+
+
+== 在 AWS 中创建连接器
+
+您可以通过 Cloud Manager 直接从其用户界面在 AWS 中创建 Connector 。您还可以选择 link:task_launching_aws_mktp.html["从 AWS Marketplace 创建 Connector"]或 。
+
+.您需要什么？ #8217 ；将需要什么
+* 具有的 IAM 用户的 AWS 访问密钥和机密密钥 https://mysupport.netapp.com/site/info/cloud-manager-policies["所需权限"^]。
+* 您选择的 AWS 区域中的 VPC ，子网和密钥对。
+
+
+.步骤
+. 如果要创建首个工作环境，请单击 * 添加工作环境 * 并按照提示进行操作。否则，请单击连接器图标并选择 * 添加连接器 * 。
++
+image:screenshot_connector_add.gif["标题中显示 Connector 图标和 Add Connector 操作的屏幕截图。"]
+
+. 单击 * 开始 * 。
+. 选择 * Amazon Web Services* 作为云提供商。
++
+请记住， Connector 必须与您要创建的工作环境类型以及您计划启用的服务建立网络连接。
+
++
+link:reference_networking_cloud_manager.html["详细了解 Connector 的网络要求"]。
+
+. 查看所需内容，然后单击 * 继续 * 。
+. 提供所需信息：
++
+** * AWS Credentials* ：输入实例的名称，并指定符合权限要求的 AWS 访问密钥和机密密钥。
+** * 位置 * ：指定实例的 AWS 区域， VPC 和子网。
+** * 网络 * ：选择要与实例结合使用的密钥对，是否启用公有 IP 地址，以及是否可选择指定代理配置。
+** * 安全组 * ：选择是创建新的安全组，还是选择允许入站 HTTP ， HTTPS 和 SSH 访问的现有安全组。
++
+
+NOTE: 除非您启动 Connector ，否则不会向其传入流量。HTTP 和 HTTPS 可用于访问 link:concept_connectors.html#the-local-user-interface["本地 UI"]，在极少数情况下使用。只有在需要连接到主机进行故障排除时，才需要使用 SSH 。
+
+
+
+. 单击 * 创建 * 。
++
+此实例应在大约 7 分钟后准备就绪。您应停留在页面上，直到此过程完成。
+
+
+
+
+
+== 在 Azure 中创建连接器
+
+您可以通过 Cloud Manager 直接从其用户界面在 Azure 中创建 Connector 。您还可以选择 link:task_launching_azure_mktp.html["从 Azure Marketplace 创建 Connector"]或 。
+
+.您需要什么？ #8217 ；将需要什么
+* 。 https://mysupport.netapp.com/site/info/cloud-manager-policies["所需权限"^] 适用于您的 Azure 帐户。
+* Azure 订阅。
+* 您选择的 Azure 区域中的 vNet 和子网。
+
+
+.步骤
+. 如果要创建首个工作环境，请单击 * 添加工作环境 * 并按照提示进行操作。否则，请单击连接器图标并选择 * 添加连接器 * 。
++
+image:screenshot_connector_add.gif["标题中显示 Connector 图标和 Add Connector 操作的屏幕截图。"]
+
+. 单击 * 开始 * 。
+. 选择 * Microsoft Azure* 作为云提供商。
++
+请记住， Connector 必须与您要创建的工作环境类型以及您计划启用的服务建立网络连接。
+
++
+link:reference_networking_cloud_manager.html["详细了解 Connector 的网络要求"]。
+
+. 查看所需内容，然后单击 * 继续 * 。
+. 如果出现提示，请登录到您的 Microsoft 帐户，该帐户应具有创建虚拟机所需的权限。
++
+此表由 Microsoft 拥有和托管。您的凭据不会提供给 NetApp 。
+
+. 提供所需信息：
++
+** * 虚拟机身份验证 * ：输入虚拟机的名称以及用户名和密码或公有密钥。
+** * 基本设置 * ：选择 Azure 订阅， Azure 区域以及是创建新资源组还是使用现有资源组。
+** * 网络 * ：选择 vNet 和子网，是否启用公有 IP 地址，并可选择指定代理配置。
+** * 安全组 * ：选择是创建新的安全组，还是选择允许入站 HTTP ， HTTPS 和 SSH 访问的现有安全组。
++
+
+NOTE: 除非您启动 Connector ，否则不会向其传入流量。HTTP 和 HTTPS 可用于访问 link:concept_connectors.html#the-local-user-interface["本地 UI"]，在极少数情况下使用。只有在需要连接到主机进行故障排除时，才需要使用 SSH 。
+
+
+
+. 单击 * 创建 * 。
++
+虚拟机应在大约 7 分钟内准备就绪。您应停留在页面上，直到此过程完成。
+
+
+
+
+
+== 在 GCP 中创建连接器
+
+您可以通过 Cloud Manager 直接从其用户界面在 GCP 中创建 Connector 。您还可以选择 link:task_installing_linux.html["下载软件并将其安装在您自己的主机上"]。
+
+.您需要什么？ #8217 ；将需要什么
+* 。 https://mysupport.netapp.com/site/info/cloud-manager-policies["所需权限"^] 适用于您的 Google Cloud 帐户。
+* Google Cloud 项目。
+* 具有创建和管理 Cloud Volumes ONTAP 所需权限的服务帐户。
+* 您选择的 Google Cloud 区域中的 VPC 和子网。
+
+
+.步骤
+. 如果要创建首个工作环境，请单击 * 添加工作环境 * 并按照提示进行操作。否则，请单击连接器图标并选择 * 添加连接器 * 。
++
+image:screenshot_connector_add.gif["标题中显示 Connector 图标和 Add Connector 操作的屏幕截图。"]
+
+. 单击 * 开始 * 。
+. 选择 * Google Cloud Platform* 作为云提供商。
++
+请记住， Connector 必须与您要创建的工作环境类型以及您计划启用的服务建立网络连接。
+
++
+link:reference_networking_cloud_manager.html["详细了解 Connector 的网络要求"]。
+
+. 查看所需内容，然后单击 * 继续 * 。
+. 如果出现提示，请登录到您的 Google 帐户，该帐户应具有创建虚拟机实例所需的权限。
++
+此表由 Google 拥有和托管。您的凭据不会提供给 NetApp 。
+
+. 提供所需信息：
++
+** * 基本设置 * ：输入虚拟机实例的名称，并指定具有所需权限的项目和服务帐户。
+** * 位置 * ：指定实例的区域，分区， VPC 和子网。
+** * 网络 * ：选择是否启用公有 IP 地址，并可选择指定代理配置。
+** * 防火墙策略 * ：选择是创建新的防火墙策略，还是选择允许入站 HTTP ， HTTPS 和 SSH 访问的现有防火墙策略。
++
+
+NOTE: 除非您启动 Connector ，否则不会向其传入流量。HTTP 和 HTTPS 可用于访问 link:concept_connectors.html#the-local-user-interface["本地 UI"]，在极少数情况下使用。只有在需要连接到主机进行故障排除时，才需要使用 SSH 。
+
+
+
+. 单击 * 创建 * 。
++
+此实例应在大约 7 分钟后准备就绪。您应停留在页面上，直到此过程完成。
+
+

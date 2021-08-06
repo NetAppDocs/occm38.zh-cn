@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: reference_infrastructure_as_code.html 
+keywords: terraform, terraform provider, automation, automating 
+summary: 使用此页面上的资源获取有关将 Cloud Manager 和 Cloud Volumes ONTAP 作为代码与您的基础架构集成的帮助。 
+---
+= 基础架构即代码自动化资源
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+使用此页面上的资源获取有关将 Cloud Manager 和 Cloud Volumes ONTAP 与集成的帮助 https://www.netapp.com/us/info/what-is-infrastructure-as-code-iac.aspx["基础架构即代码"^]。
+
+DevOps 团队可以使用各种工具自动设置新环境，从而将基础架构视为代码。其中一种工具是 Terraform 。我们开发了一家 Terraform 提供商，开发运营团队可以使用 Cloud Manager 自动执行 Cloud Volumes ONTAP 并将其与基础架构即代码集成。
+
+https://registry.terraform.io/providers/NetApp/netapp-cloudmanager/latest["查看 netapp-cloudmmanager 提供程序"^]。
+
+* 相关链接 *
+
+* https://cloud.netapp.com/blog/using-cloud-manager-rest-apis-with-federated-access["NetApp 云博客：将 Cloud Manager REST API 与联合访问结合使用"^]
+* https://cloud.netapp.com/blog/cloud-automation-with-cloud-volumes-ontap-rest["NetApp 云博客：采用 Cloud Volumes ONTAP 和 REST 的云自动化"^]
+* https://cloud.netapp.com/blog/automated-data-cloning-for-cloud-based-testing["NetApp 云博客：自动化数据克隆，用于软件应用程序的基于云的测试"^]
+* https://blog.netapp.com/infrastructure-as-code-accelerated-with-ansible-netapp/["NetApp 博客：《借助 Ansible + NetApp 加速基础架构即代码（ Infrastructure as Code ， IAC ）》"^]
+* https://netapp.io/configuration-management-and-automation/["NetApp thePub ：配置管理和放大；借助 Ansible 实现自动化"^]
+* https://netapp.io/2019/03/25/simplicity-at-its-finest-roles-for-ansible-ontap-use/["NetApp thePub ：适用于 Ansible ONTAP 的角色"^]
+

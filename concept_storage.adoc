@@ -1,0 +1,118 @@
+---
+sidebar: sidebar 
+permalink: concept_storage.html 
+keywords: storage, capacity, volumes, aggregates, raw capacity, usable capacity, aws, azure 
+summary: 了解 Cloud Volumes ONTAP 如何使用云存储可以帮助您了解存储成本。 
+---
+= 磁盘和聚合
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+了解 Cloud Volumes ONTAP 如何使用云存储可以帮助您了解存储成本。
+
+
+IMPORTANT: 必须直接从 Cloud Manager 创建和删除所有磁盘和聚合。不应从其他管理工具执行这些操作。这样做可能会影响系统稳定性、妨碍将来添加磁盘的能力、并可能产生冗余云提供商费用。
+
+
+
+== 概述
+
+Cloud Volumes ONTAP 使用云提供商存储作为磁盘，并将其分组为一个或多个聚合。聚合可为一个或多个卷提供存储。
+
+image:diagram_storage.png["此图显示了由磁盘组成的聚合以及 Cloud Volumes ONTAP 可供主机使用的数据卷。"]
+
+支持多种类型的云磁盘。您可以在创建卷时选择磁盘类型，在部署 Cloud Volumes ONTAP 时选择默认磁盘大小。
+
+
+TIP: 从云提供商购买的存储总量为 _raw capacity_ 。可用容量 _ 较小，因为预留给 Cloud Volumes ONTAP 使用的开销约为 12 到 14% 。例如，如果 Cloud Manager 创建了一个 500 GB 聚合、则可用容量为 442.94 GB 。
+
+
+
+== AWS 存储
+
+在 AWS 中， Cloud Volumes ONTAP 将 EBS 存储用于用户数据，并将本地 NVMe 存储用作某些 EC2 实例类型的 Flash Cache 。
+
+EBS 存储::
++
+--
+底层 EBS 磁盘类型可以是通用 SSD 、配置的 IOPS SSD 、吞吐量优化 HDD 或冷 HDD 。您可以将 EBS 磁盘与 Amazon S3 配对 link:concept_data_tiering.html["将非活动数据分层到低成本对象存储"]。
+
+在较高级别上、 EBS 磁盘类型之间的区别如下所示：
+
+* 通用 SSD_ 磁盘可平衡各种工作负载的成本和性能。性能是根据 IOPS 来定义的。
+* _provisioned IOPS SSD_ 磁盘适用于需要以较高成本获得最高性能的关键应用程序。
+* _Throughput Optimized HDD_ 磁盘适用于经常访问的工作负载，这些工作负载需要以更低的价格实现快速一致的吞吐量。
+* 冷 HDD_ 磁盘用于备份或不常访问的数据，因为性能非常低。与吞吐量优化的 HDD 磁盘一样、性能也是根据吞吐量来定义的。
++
+
+NOTE: HA 配置和数据分层不支持冷 HDD 磁盘。
+
+
+
+--
+本地 NVMe 存储:: 某些 EC2 实例类型包括本地 NVMe 存储， Cloud Volumes ONTAP 将其用作 link:concept_flash_cache.html["Flash Cache"]。
+
+
+* 相关链接 *
+
+* http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html["AWS 文档： EBS 卷类型"^]
+* link:task_planning_your_config.html["了解如何在 AWS 中为您的系统选择磁盘类型和磁盘大小"]
+* https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_aws_97.html["查看 AWS 中 Cloud Volumes ONTAP 的存储限制"^]
+* http://docs.netapp.com/us-en/cloud-volumes-ontap/reference_configs_aws_97.html["查看 AWS 中支持的 Cloud Volumes ONTAP 配置"^]
+
+
+
+
+== Azure 存储
+
+在 Azure 中，一个聚合最多可以包含 12 个大小相同的磁盘。磁盘类型和最大磁盘大小取决于您使用的是单节点系统还是 HA 对：
+
+单节点系统::
++
+--
+* _Premium SSD 受管磁盘 _ 以较高的成本为 I/O 密集型工作负载提供高性能。
+* 标准 SSD 受管磁盘 _ 可为需要低 IOPS 的工作负载提供稳定一致的性能。
+* 如果您不需要高 IOPS 并希望降低成本， _Standard HDD 受管磁盘 _ 是一个不错的选择。
++
+每个受管磁盘类型的最大磁盘大小为 32 TB 。
+
++
+您可以将受管磁盘与 Azure Blob 存储配对 link:concept_data_tiering.html["将非活动数据分层到低成本对象存储"]。
+
+
+
+--
+HA 对:: HA 对使用高级页面 Blobs ，这些页面的最大磁盘大小为 8 TB 。
+
+
+* 相关链接 *
+
+* https://azure.microsoft.com/documentation/articles/storage-introduction/["Microsoft Azure 文档： Microsoft Azure 存储简介"^]
+* link:task_planning_your_config_azure.html["了解如何在 Azure 中为您的系统选择磁盘类型和磁盘大小"]
+* https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_azure_97.html["查看 Azure 中 Cloud Volumes ONTAP 的存储限制"^]
+
+
+
+
+== GCP 存储
+
+在 GCP 中，一个聚合最多可以包含 6 个大小相同的磁盘。最大磁盘大小为 16 TB 。
+
+磁盘类型可以是 _zonal SSD persistent disks_or _zonal standard persistent disks_。您可以将永久性磁盘与 Google 存储分段配对 link:concept_data_tiering.html["将非活动数据分层到低成本对象存储"]。
+
+* 相关链接 *
+
+* https://cloud.google.com/compute/docs/disks/["Google Cloud Platform 文档：存储选项"^]
+* https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_gcp_97.html["查看 GCP 中 Cloud Volumes ONTAP 的存储限制"^]
+
+
+
+
+== RAID 类型
+
+每个 Cloud Volumes ONTAP 聚合的 RAID 类型为 RAID0 （条带化）。不支持其他 RAID 类型。Cloud Volumes ONTAP 依靠云提供商提供磁盘可用性和持久性。

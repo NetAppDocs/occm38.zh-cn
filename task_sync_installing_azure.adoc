@@ -1,0 +1,103 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_azure.html 
+keywords: data broker, install, azure, networking, permissions, regions, install data broker in azure, install in azure, deploy in azure, deploy data broker in azure, networking requirements, port, ports, 443, port 443, ntp, network time protocol, azure data broker 
+summary: 创建同步关系时，请选择 Azure Data Brokers 选项以在 VNet 中的新虚拟机上部署数据代理软件。Cloud Sync 可指导您完成安装过程、但本页中重复了这些要求和步骤以帮助您做好安装准备。 
+---
+= 在 Azure 中安装数据代理
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+创建同步关系时，请选择 Azure Data Brokers 选项以在 VNet 中的新虚拟机上部署数据代理软件。Cloud Sync 可指导您完成安装过程、但本页中重复了这些要求和步骤以帮助您做好安装准备。
+
+您还可以选择在云中的现有 Linux 主机或您的企业中安装数据代理。 link:task_sync_installing_linux.html["了解更多信息。"]。
+
+
+
+== 支持的 Azure 区域
+
+除中国、美国政府和美国国防部地区外，所有地区均受支持。
+
+
+
+== 网络要求
+
+* 数据代理需要出站 Internet 连接、因此可以通过端口 443 轮询 Cloud Sync 服务以了解任务。
++
+当 Cloud Sync 在 Azure 中部署数据代理时，它会创建一个安全组来启用所需的出站通信。
+
++
+如果需要限制出站连接，请参见 link:reference_sync_networking.html["数据代理所联系的端点的列表"]。
+
+* NetApp 建议将源、目标和数据代理配置为使用网络时间协议（ NTP ）服务。三个组件之间的时间差不应超过 5 分钟。
+
+
+
+
+== 身份验证方法
+
+部署数据代理时，您需要选择一种身份验证方法：密码或 SSH 公共 - 私有密钥对。
+
+有关创建密钥对的帮助，请参见 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys["Azure 文档：在 Azure 中为 Linux VM 创建和使用 SSH 公共 - 私有密钥对"^]。
+
+
+
+== 安装数据代理
+
+您可以在创建同步关系时在 Azure 中安装数据代理。
+
+.步骤
+. 单击 * 创建新同步 * 。
+. 在 * 定义同步关系 * 页面上，选择一个源和目标，然后单击 * 继续 * 。
++
+完成这些页面，直到显示 * 数据代理 * 页面为止。
+
+. 在 * 数据代理 * 页面上，单击 * 创建数据代理 * ，然后选择 * Microsoft Azure* 。
++
+如果您已有数据代理，则需要单击 image:screenshot_plus_icon.gif["加号图标的屏幕截图"] 图标优先。
+
++
+image:screenshot_create_data_broker.gif["数据代理页面的屏幕截图，可用于在 AWS ， Azure ， GCP 和内部数据代理之间进行选择。"]
+
+. 输入数据代理的名称，然后单击 * 继续 * 。
+. 如果出现提示，请登录到您的 Microsoft 帐户。如果未出现提示，请单击 * 登录到 Azure* 。
++
+此表由 Microsoft 拥有和托管。您的凭据不会提供给 NetApp 。
+
+. 为数据代理选择一个位置，然后输入有关虚拟机的基本详细信息。
++
+image:screenshot_azure_data_broker.gif["Azure 部署页面的屏幕截图，其中显示了以下字段：订阅， Azure 区域， vNet ，子网，虚拟机名称， 用户名，身份验证方法和资源组。"]
+
+. 单击 * 继续 * 并保持此页面打开，直到部署完成。
++
+此过程可能需要长达 7 分钟。
+
+. 在 Cloud Sync 中，一旦数据代理可用，请单击 * 继续 * 。
+. 完成向导中的页面以创建新的同步关系。
+
+
+您已在 Azure 中部署了数据代理并创建了新的同步关系。您可以将此数据代理与其他同步关系一起使用。
+
+.是否收到有关需要管理员同意的消息？
+****
+如果 Microsoft 通知您需要管理员批准，因为 Cloud Sync 需要您的权限来代表您访问您组织中的资源，则您有两种选择：
+
+. 请您的 AD 管理员为您提供以下权限：
++
+在 Azure 中，转到 * 管理中心 > Azure AD > 用户和组 > 用户设置 * 并启用 * 用户可以同意应用程序代表其访问公司数据 * 。
+
+. 请您的 AD 管理员使用以下 URL 代表您同意使用 * CloudSync-AzureDataBrokerCreator* （这是管理员同意的端点）：
++
+https://login.microsoftonline.com/{FILL 此处为您的租户 ID ｝ /v2.0/adminconsent？ client_id=8ee4ca3a-BAFA-4831 -97CC-5a38923cab85&redirect_uri = https://cloudsync.netapp.com&scope=https://management.azure.com/user_impersonationhttps://graph.microsoft.com/User.Read
+
++
+如 URL 中所示，我们的应用程序 URL 为 \https://cloudsync.netapp.com ，应用程序客户端 ID 为 8ee4ca3a-BAFA-48311-97CC-5a389233cab85 。
+
+
+
+****

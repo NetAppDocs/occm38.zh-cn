@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: task_signing_up.html 
+keywords: netapp cloud central, sign up, sign up to cloud central, create account 
+summary: 注册到 NetApp Cloud Central ，以便您可以访问 NetApp 的云服务。 
+---
+= 注册到 NetApp Cloud Central
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+注册到 NetApp Cloud Central ，以便您可以访问 NetApp 的云服务。
+
+.步骤
+. 打开 Web 浏览器并转到 https://cloud.netapp.com/["NetApp Cloud Central"^]。
+. 单击 * 注册 * 。
+. 填写表单并单击 * 注册 * 。
++
+image:screenshot_cloud_central_signup.gif["Cloud Central 注册表的屏幕截图，您可以在其中输入电子邮件地址，密码，公司，名称和电话号码。"]
+
+. 等待收到 NetApp Cloud Central 发送的电子邮件。
+. 单击电子邮件中的链接以验证您的电子邮件地址。
+
+
+现在，您已有活动的 Cloud Central 用户登录。

@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: task_managing_state.html 
+keywords: schedule, schedules, scheduling, shutdowns, shut down, restart, stop, stopping, turn off, weekday, weekend 
+summary: 您可以从 Cloud Manager 停止并启动 Cloud Volumes ONTAP 来管理您的云计算成本。 
+---
+= 管理 Cloud Volumes ONTAP 的状态
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以从 Cloud Manager 停止并启动 Cloud Volumes ONTAP 来管理您的云计算成本。
+
+
+
+== 计划自动关闭 Cloud Volumes ONTAP
+
+您可能希望在特定时间间隔内关闭 Cloud Volumes ONTAP 以降低计算成本。您可以将 Cloud Manager 配置为在特定时间自动关闭然后重新启动系统，而不是手动执行此操作。
+
+计划自动关闭 Cloud Volumes ONTAP 系统时，如果正在进行活动数据传输，则 Cloud Manager 会推迟关闭。传输完成后， Cloud Manager 将关闭系统。
+
+此任务会安排 HA 对中两个节点的自动关闭。
+
+.步骤
+. 在工作环境中，单击时钟图标：
++
+image:screenshot_shutdown_icon.gif["屏幕抓图：显示加载自动关机页面的图标。"]
+
+. 指定关机计划：
++
+.. 选择是每天、每工作日、每周末还是三个选项的任意组合来关闭系统。
+.. 指定关闭系统的时间以及关闭系统的时间。
++
+* 示例 *
+
++
+下图显示了指示 Cloud Manager 每星期六 12:00 A.M. 关闭系统的计划48 小时。Cloud Manager 每周一上午 12:00 重新启动系统
+
++
+image:screenshot_shutdown.gif["屏幕截图：显示了关闭计划、该计划每周末在上午 12:00 关闭 Cloud Volumes ONTAP 48 小时。"]
+
+
+
+. 单击 * 保存 * 。
+
+
+云管理器可保存计划。时钟图标将发生变化以指示已设置计划： image:screenshot_shutdown_icon_scheduled.gif["屏幕截图：在定义计划后显示自动关机图标。"]
+
+
+
+== 停止 Cloud Volumes ONTAP
+
+停止 Cloud Volumes ONTAP 可以节省计算成本并创建根磁盘和引导磁盘的快照，这有助于排除故障。
+
+当您停止 HA 对时、 Cloud Manager 会关闭两个节点。
+
+.步骤
+. 在工作环境中，单击 * 关闭 * 图标。
++
+image:screenshot_otc_turn_off.gif["屏幕截图：显示关闭 Cloud Volumes ONTAP 系统的图标。"]
+
+. 启用创建快照的选项、因为快照可以启用系统恢复。
+. 单击 * 关闭 * 。
++
+可能需要几分钟才能停止系统。您可以在以后从 " 工作环境 " 页重新启动系统。
+
+

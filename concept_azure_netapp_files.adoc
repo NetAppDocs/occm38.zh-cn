@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: concept_azure_netapp_files.html 
+keywords: azure netapp files, cost, price, features, azure netapp files features, anf, supported regions, azure regions, azure netapp files regions 
+summary: Azure NetApp Files 支持企业在 Azure 中迁移和运行性能密集型且延迟敏感的核心业务关键型应用程序，而无需重新考虑云因素。 
+---
+= 了解 Azure NetApp Files
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Azure NetApp Files 支持企业在 Azure 中迁移和运行性能密集型且延迟敏感的核心业务关键型应用程序，而无需重新考虑云因素。
+
+
+
+== 功能
+
+* 支持多个协议，可以 " 提升和迁移 " Linux 和 Windows 应用程序，以便在 Azure 中无缝运行。
+* 多个性能层可以与工作负载性能要求保持一致。
+* 通过 SAP HANA ， GDPR 和 HIPPA 等领先认证，可以将要求最苛刻的工作负载迁移到 Azure 。
+
+
+
+
+== Cloud Manager 中的其他功能
+
+* 直接从 Cloud Manager 将 NFS 或 SMB 数据迁移到 Azure NetApp Files 。数据迁移由 NetApp 的 Cloud Sync 服务提供支持。 link:concept_cloud_sync.html["了解更多信息。"]。
+* 借助人工智能（ AI ）驱动的技术，云合规性可以帮助您了解数据环境并识别 Azure NetApp Files 帐户中的敏感数据。 link:concept_cloud_compliance.html["了解更多信息。"]。
+
+
+
+
+== 成本
+
+https://azure.microsoft.com/pricing/details/netapp/["查看 Azure NetApp Files 定价"^]。
+
+请注意，您的订阅和费用由 Azure NetApp Files 服务维护，而不是由 Cloud Manager 维护。
+
+
+
+== 支持的区域
+
+https://cloud.netapp.com/cloud-volumes-global-regions["查看支持的 Azure 区域"^]。
+
+
+
+== 请求访问
+
+您需要获得 Azure NetApp Files 的访问权限 https://aka.ms/azurenetappfiles["提交联机请求"^]。您需要等待 Azure NetApp Files 团队的批准，然后才能继续操作。
+
+
+
+== 获取帮助
+
+对于与 Azure NetApp Files 相关的技术支持问题，请使用 Azure 门户将支持请求记录到 Microsoft 。选择关联的 Microsoft 订阅，然后在 * 存储 * 下选择 * Azure NetApp Files * 服务名称。提供创建 Microsoft 支持请求所需的其余信息。
+
+对于与 Cloud Sync 和 Azure NetApp Files 相关的问题，您可以直接从 Cloud Sync 服务使用 Cloud Sync 序列号从 NetApp 开始。您需要通过 Cloud Manager 中的链接访问 Cloud Sync 服务。 https://docs.netapp.com/us-en/cloudsync/reference_additional_info.html["查看启用 Cloud Sync 支持的过程"^]。
+
+
+
+== 相关链接
+
+* https://cloud.netapp.com/azure-netapp-files["NetApp 云中心： Azure NetApp Files"^]
+* https://docs.microsoft.com/azure/azure-netapp-files/["Azure NetApp Files 文档"^]
+* https://docs.netapp.com/us-en/cloudsync/index.html["Cloud Sync 文档"^]
+

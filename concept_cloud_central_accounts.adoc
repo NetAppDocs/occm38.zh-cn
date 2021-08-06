@@ -1,0 +1,109 @@
+---
+sidebar: sidebar 
+permalink: concept_cloud_central_accounts.html 
+keywords: accounts, workspaces, Connector, users, cloud central, admin, Account Admin, Workspace Admin, account settings, workspaces, users, connector, service connector, user accounts, what are users, what is a workspace, users and workspaces 
+summary: Cloud Central 帐户提供多租户功能，您可以在 Cloud Manager 中将用户和资源组织到隔离的工作空间中。 
+---
+= 帐户设置：用户，工作空间，连接器和订阅
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Central 帐户 _ 提供多租户功能，可用于在 Cloud Manager 中将用户和资源组织到隔离的工作空间中。
+
+例如，多个用户可以在称为 _workworkspace 的隔离环境中部署和管理 Cloud Volumes ONTAP 系统。除非共享这些工作空间，否则其他用户不会看到这些工作空间。
+
+首次访问 Cloud Manager 时，系统会提示您选择或创建 Cloud Central 帐户：
+
+image:screenshot_account_selection.gif["Cloud Manager 设置向导的屏幕截图，提示您输入要在其中创建 Cloud Manager 的 Cloud Central 帐户。"]
+
+然后，帐户管理员可以通过管理用户，工作空间，连接器和订阅来修改此帐户的设置：
+
+image:screenshot_account_settings.gif["屏幕截图显示了 \" 帐户设置 \" 小工具，您可以从中管理用户，工作空间和连接器。"]
+
+有关分步说明，请参见 link:task_setting_up_cloud_central_accounts.html["设置 Cloud Central 帐户"]。
+
+
+
+== 帐户设置
+
+通过 Cloud Manager 中的 "Account Settings" 小工具，客户管理员可以管理 Cloud Central 帐户。如果您刚刚创建了帐户，则从头开始。但是，如果您已设置帐户，则会看到与该帐户关联的用户，工作空间，连接器和订阅。
+
+
+
+== 用户
+
+" 帐户设置 " 中显示的用户是您与 Cloud Central 帐户关联的 NetApp Cloud Central 用户。通过将用户与某个帐户以及该帐户中的一个或多个工作空间相关联，这些用户可以在 Cloud Manager 中创建和管理工作环境。
+
+关联用户时，您会为其分配一个角色：
+
+* _Account Admin_ ：可以在 Cloud Manager 中执行任何操作。
+* _Workspace Admin_ ：可以在分配的工作空间中创建和管理资源。
+* _Cloud Compliance Viewer_ ：只能查看其有权访问的系统的合规性信息并生成报告。
+
+
+
+
+== 工作空间
+
+在 Cloud Manager 中，工作空间会将任意数量的 _work2_ 环境与其他工作环境隔离。除非帐户管理员将管理员与工作空间关联，否则 Workspace 管理员无法访问工作空间中的工作环境。
+
+工作环境代表存储系统：
+
+* 单节点 Cloud Volumes ONTAP 系统或 HA 对
+* 网络中的内部 ONTAP 集群
+* NetApp 私有存储配置中的 ONTAP 集群
+
+
+
+
+== 连接器
+
+借助连接器， Cloud Manager 可以管理公有云环境中的资源和流程。连接器在云提供商中部署的虚拟机实例上运行，或者在您配置的内部主机上运行。
+
+您可以将 Connector 与多个 NetApp 云数据服务结合使用。例如，如果您已经有适用于 Cloud Manager 的 Connector ，则可以在设置 Cloud Tiering 服务时选择它。
+
+
+
+== 订阅
+
+"Account Settings" 小工具将显示与选定帐户关联的 NetApp 订阅。
+
+当您从云提供商的市场订阅 Cloud Manager 时，系统会将您重定向到 Cloud Central ，您需要在其中保存订阅并将其与特定帐户关联。
+
+订阅后，每个订阅均可从 " 帐户设置 " 小工具中获取。您将只看到与当前正在查看的帐户关联的订阅。
+
+您可以选择重命名订阅并取消订阅与一个或多个帐户的关联。
+
+例如，假设您有两个帐户，每个帐户都通过单独的订阅付费。您可能会解除某个订阅与某个帐户的关联，以便该帐户中的用户在创建 Cloud Volume ONTAP 工作环境时不会意外选择错误的订阅。
+
+
+
+== 示例
+
+以下示例说明了如何设置帐户。
+
+
+NOTE: 在后面的两个示例映像中， Connector 和 Cloud Volumes ONTAP 系统实际上并不驻留在 NetApp Cloud Central 帐户中，而是在云提供商中运行。这是每个组件之间关系的概念表示。
+
+
+
+=== 示例 1
+
+以下示例显示了一个使用两个工作空间创建隔离环境的帐户。第一个工作空间用于生产环境，第二个工作空间用于开发环境。
+
+image:diagram_cloud_central_accounts_one.png["显示包含两个工作空间的单个 Cloud Central 帐户的示意图。每个工作空间都与同一个连接器相关联，每个工作空间都有自己的工作空间管理员"]
+
+
+
+=== 示例 2.
+
+下面是另一个示例，通过使用两个单独的 Cloud Central 帐户显示了最高的多租户级别。例如，服务提供商可能会在一个帐户中使用 Cloud Manager 为其客户提供服务，而使用另一个帐户为其业务部门之一提供灾难恢复。
+
+请注意，帐户 2 包含两个单独的连接器。如果您的系统位于不同的区域或不同的云提供商中，则可能会发生这种情况。
+
+image:diagram_cloud_central_accounts_two.png["此图显示了两个 Cloud Central 帐户，每个帐户都有多个工作空间及其关联的 Workspace Admins 。"]

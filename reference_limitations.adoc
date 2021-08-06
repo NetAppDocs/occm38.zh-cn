@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: reference_limitations.html 
+keywords: limitations, active directory, ad, iscsi, key managers, ip address, govcloud, cloud manager, Cloud Volumes ONTAP, days, 14 days, running, Connectors should remain running 
+summary: 已知限制确定了本产品版本不支持的平台、设备或功能、或者这些平台、设备或功能无法与产品正确交互操作。仔细审查这些限制。 
+---
+= 已知限制
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+已知限制确定了本产品版本不支持的平台、设备或功能、或者这些平台、设备或功能无法与产品正确交互操作。仔细审查这些限制。
+
+
+
+== 连接器应保持运行状态
+
+连接器应始终保持运行状态。对于您启用的服务的持续运行状况和运行来说，这一点非常重要。
+
+例如，连接器是 Cloud Volumes ONTAP PAYGO 系统运行状况和操作的关键组件。如果某个连接器已关闭，则 Cloud Volumes ONTAP PAYGO 系统将在与某个连接器失去通信超过 14 天之后关闭。
+
+
+
+== 对于政府区域， SaaS 平台已禁用
+
+如果您在 AWS GovCloud 区域， Azure Gov 区域或 Azure DoD 区域部署 Connector ，则只能通过 Connector 的主机 IP 地址访问 Cloud Manager 。对整个帐户禁用对 SaaS 平台的访问。
+
+这意味着，只有能够访问最终用户内部 VPC-vNet 的有权限用户才能使用 Cloud Manager 的 UI 或 API 。
+
+这也意味着 Cloud Manager 不提供以下服务：
+
+* 云合规性
+* Kubernetes
+* 云分层
+* 全局文件缓存
+* 监控（ Cloud Insights ）
+
+
+要使用这些服务，需要使用 SaaS 平台。
+
+
+
+== 不支持共享 Linux 主机
+
+与其他应用程序共享的主机不支持此连接器。主机必须是专用主机。
+
+
+
+== Cloud Manager 不支持 FlexGroup 卷
+
+虽然 Cloud Volumes ONTAP 支持 FlexGroup 卷，但 Cloud Manager 不支持。如果您从 System Manager 或 CLI 创建 FlexGroup 卷，则应将 Cloud Manager 的容量管理模式设置为手动。对于 FlexGroup 卷，自动模式可能无法正常工作。

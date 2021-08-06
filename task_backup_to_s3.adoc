@@ -1,0 +1,169 @@
+---
+sidebar: sidebar 
+permalink: task_backup_to_s3.html 
+keywords: backing up, back up, backup, backup cloud volumes ontap, back up cloud volumes ontap, cloud volumes ontap, aws, aws s3, amazon s3, s3 bucket, back up volumes, Backup to Cloud, cloud backup service 
+summary: 完成几个步骤，开始将数据从 Cloud Volumes ONTAP 备份到 Amazon S3 。 
+---
+= 将数据备份到 Amazon S3
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+完成几个步骤，开始将数据从 Cloud Volumes ONTAP 备份到 Amazon S3 。
+
+
+
+== 快速入门
+
+按照以下步骤快速入门，或者向下滚动到其余部分以了解完整详细信息。
+
+
+
+==== 验证是否支持您的配置
+
+* 您正在 AWS 中运行 Cloud Volumes ONTAP 9.6 或更高版本。
+* 您已订阅 https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Cloud Manager Marketplace Backup 产品"^]或您已购买 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["并激活"^] NetApp 提供的 Backup to Cloud BYOL 许可证。
+* 为 Cloud Manager 提供权限的 IAM 角色包括最新版本的 S3 权限 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 策略"^]。
+
+
+
+
+==== 在新系统或现有系统上启用备份到云
+
+* 新系统：默认情况下，在工作环境向导中启用 " 备份到云 " 。请务必保持此选项处于启用状态。
+* 现有系统：选择工作环境，然后单击右侧面板中备份到云服务旁边的 * 激活 * ，然后按照设置向导进行操作。
++
+image:screenshot_backup_to_s3_icon.gif["屏幕截图显示了 \" 备份到云激活 \" 按钮，该按钮可在您选择工作环境后使用。"]
+
+
+
+
+
+==== 定义备份策略
+
+[role="quick-margin-para"]
+默认策略每天备份卷，并保留每个卷的最新 30 个备份副本。更改为每周或每月备份，或者选择一个提供更多选项的系统定义策略。您还可以更改要保留的备份副本数。
+
+[role="quick-margin-para"]
+image:screenshot_backup_settings.png["显示 Backup to Cloud 设置的屏幕截图，您可以在其中选择备份计划和保留期限。"]
+
+
+
+==== 选择要备份的卷
+
+[role="quick-margin-para"]
+在选择卷页面中确定要备份的卷。
+
+
+
+==== 根据需要还原数据
+
+[role="quick-margin-para"]
+从备份列表中，选择一个卷，选择一个备份，然后将备份中的数据还原到新卷。
+
+[role="quick-margin-para"]
+image:screenshot_backup_to_s3_restore_icon.gif["选择卷后备份的还原图标的屏幕截图。"]
+
+
+
+== 要求
+
+开始将卷备份到 S3 之前，请阅读以下要求，以确保您的配置受支持。
+
+支持的 ONTAP 版本:: Cloud Volumes ONTAP 9.6 及更高版本。
+支持的 AWS 区域:: 所有 AWS 地区均支持备份到云 https://cloud.netapp.com/cloud-volumes-global-regions["支持 Cloud Volumes ONTAP 的位置"^]。
+许可证要求::
++
+--
+对于 Backup to Cloud BYOL 许可，您不需要 AWS Backup to Cloud 订阅。您需要 NetApp 提供的序列号，以便在许可证有效期和容量内使用此服务。请参见 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["添加和更新备份 BYOL 许可证"^]。
+
+您需要为备份所在的存储空间订阅 AWS 。
+
+--
+需要 AWS 权限::
++
+--
+以下是策略中的特定权限：
+
+[source, json]
+----
+{
+            "Sid": "backupPolicy",
+            "Effect": "Allow",
+            "Action": [
+                "s3:DeleteBucket",
+                "s3:GetLifecycleConfiguration",
+                "s3:PutLifecycleConfiguration",
+                "s3:PutBucketTagging",
+                "s3:ListBucketVersions",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketTagging",
+                "s3:GetBucketLocation",
+                "s3:GetBucketPolicyStatus",
+                "s3:GetBucketPublicAccessBlock",
+                "s3:GetBucketAcl",
+                "s3:GetBucketPolicy",
+                "s3:PutBucketPublicAccessBlock"
+            ],
+            "Resource": [
+                "arn:aws:s3:::netapp-backup-*"
+            ]
+        },
+----
+--
+
+
+
+
+== 在新系统上启用备份到云
+
+默认情况下， " 工作环境 " 向导会启用 " 备份到云 " 。请务必保持此选项处于启用状态。
+
+.步骤
+. 单击 * 创建 Cloud Volumes ONTAP * 。
+. 选择 Amazon Web Services 作为云提供商，然后选择单个节点或 HA 系统。
+. 填写详细信息和凭据页面。
+. 在服务页面上，保持服务处于启用状态，然后单击 * 继续 * 。
++
+image:screenshot_backup_to_s3.gif["显示了工作环境向导中的备份到云选项。"]
+
+. 完成向导中的页面以部署系统。
+
+
+系统上启用了 " 备份到云 " ，每天备份卷，并保留最近 30 个备份副本。
+
+link:task_managing_backups.html["您可以通过更改备份计划，还原卷等来管理备份"^]。
+
+
+
+== 在现有系统上启用备份到云
+
+随时直接从工作环境备份到云。
+
+.步骤
+. 选择工作环境，然后单击右侧面板中备份到云服务旁边的 * 激活 * 。
++
+image:screenshot_backup_to_s3_icon.gif["屏幕截图显示了 \" 备份到云设置 \" 按钮，您可以在选择工作环境后使用此按钮。"]
+
+. 定义备份计划和保留值，然后单击 * 继续 * 。
++
+image:screenshot_backup_settings.png["显示 \" 备份到云 \" 设置的屏幕截图，您可以在其中选择计划和备份保留。"]
+
++
+请参见 link:concept_backup_to_cloud.html#the-schedule-is-daily-weekly-monthly-or-a-combination["现有策略的列表"^]。
+
+. 选择要备份的卷，然后单击 * 激活 * 。
++
+image:screenshot_backup_select_volumes.png["选择要备份的卷的屏幕截图。"]
+
+
+
+备份到云将开始对每个选定卷进行初始备份。
+
+link:task_managing_backups.html["您可以通过更改备份计划，还原卷等来管理备份"^]。

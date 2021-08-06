@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_gcp.html 
+keywords: data broker, install, gcp, google, networking, permissions, regions, install data broker in gcp, install in gcp, deploy in gcp, deploy data broker in gcp, install data broker in google, install in google, deploy in google, deploy data broker in google, networking requirements, port, ports, 443, port 443, ntp, network time protocol, gcp data broker, service account 
+summary: 创建同步关系时，请选择 GCP 数据代理选项以在 vPC 中的新虚拟机实例上部署数据代理软件。Cloud Sync 可指导您完成安装过程、但本页中重复了这些要求和步骤以帮助您做好安装准备。 
+---
+= 在 Google Cloud Platform 中安装数据代理
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+创建同步关系时，请选择 GCP 数据代理选项以在 vPC 中的新虚拟机实例上部署数据代理软件。Cloud Sync 可指导您完成安装过程、但本页中重复了这些要求和步骤以帮助您做好安装准备。
+
+您还可以选择在云中的现有 Linux 主机或您的企业中安装数据代理。 link:task_sync_installing_linux.html["了解更多信息。"]。
+
+
+
+== 支持的 GCP 区域
+
+支持所有区域。
+
+
+
+== 网络要求
+
+* 数据代理需要出站 Internet 连接、因此可以通过端口 443 轮询 Cloud Sync 服务以了解任务。
++
+当 Cloud Sync 在 GCP 中部署数据代理时，它会创建一个安全组来启用所需的出站通信。
+
++
+如果需要限制出站连接，请参见 link:reference_sync_networking.html["数据代理所联系的端点的列表"]。
+
+* NetApp 建议将源、目标和数据代理配置为使用网络时间协议（ NTP ）服务。三个组件之间的时间差不应超过 5 分钟。
+
+
+
+
+== 在 GCP 中部署数据代理所需的权限
+
+确保部署数据代理的 GCP 用户具有以下权限：
+
+[source, yaml]
+----
+- compute.networks.list
+- compute.regions.list
+- deploymentmanager.deployments.create
+- deploymentmanager.deployments.delete
+- deploymentmanager.operations.get
+- iam.serviceAccounts.list
+----
+
+
+== 服务帐户所需的权限
+
+部署数据代理时，您需要选择具有以下权限的服务帐户：
+
+[source, yaml]
+----
+- logging.logEntries.create
+- resourcemanager.projects.get
+- storage.buckets.get
+- storage.buckets.list
+- storage.objects.*
+----
+
+
+== 安装数据代理
+
+您可以在创建同步关系时在 GCP 中安装数据代理。
+
+.步骤
+. 单击 * 创建新同步 * 。
+. 在 * 定义同步关系 * 页面上，选择一个源和目标，然后单击 * 继续 * 。
++
+完成这些步骤，直到显示 * 数据代理 * 页面为止。
+
+. 在 * 数据代理 * 页面上，单击 * 创建数据代理 * ，然后选择 * Google Cloud Platform* 。
++
+如果您已有数据代理，则需要单击 image:screenshot_plus_icon.gif["加号图标的屏幕截图"] 图标优先。
+
++
+image:screenshot_create_data_broker.gif["数据代理页面的屏幕截图，可用于在 AWS ， Azure ， GCP 和内部数据代理之间进行选择。"]
+
+. 输入数据代理的名称，然后单击 * 继续 * 。
+. 如果出现提示，请使用 Google 帐户登录。
++
+此表由 Google 拥有和托管。您的凭据不会提供给 NetApp 。
+
+. 选择一个项目和服务帐户，然后为数据代理选择一个位置。
++
+image:screenshot_data_broker_gcp.gif["屏幕截图显示了在 Google Cloud 中部署数据代理所需的信息。"]
+
+. 数据代理可用后，单击 Cloud Sync 中的 * 继续 * 。
++
+部署该实例大约需要 5 到 10 分钟。您可以从 Cloud Sync 服务监控进度、该服务在实例可用时自动刷新。
+
+. 完成向导中的页面以创建新的同步关系。
+
+
+您已在 GCP 中部署数据代理并创建了新的同步关系。您可以将此数据代理与其他同步关系一起使用。

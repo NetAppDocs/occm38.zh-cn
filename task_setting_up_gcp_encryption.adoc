@@ -1,0 +1,37 @@
+---
+sidebar: sidebar 
+permalink: task_setting_up_gcp_encryption.html 
+keywords: encryption, gcp, encryption key, permissions, customer-managed, gcpencryption 
+summary: 虽然 Google Cloud Storage 始终会在数据写入磁盘之前对数据进行加密，但您可以使用 Cloud Manager API 创建使用客户管理的加密密钥的 Cloud Volumes ONTAP 系统。这些密钥可通过云密钥管理服务在 GCP 中生成和管理。 
+---
+= 将客户管理的加密密钥与 Cloud Volumes ONTAP 结合使用
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+虽然 Google Cloud Storage 始终会在数据写入磁盘之前对数据进行加密，但您可以使用 Cloud Manager API 创建使用 _customer-managed encryption keys_ 的 Cloud Volumes ONTAP 系统。这些密钥可通过云密钥管理服务在 GCP 中生成和管理。
+
+.步骤
+. 为 Connector 服务帐户授予使用加密密钥的权限。
++
+image:screenshot_gcp_key.gif[""]
+
+. 通过调用 /GCP/vsa/metadata/GCP-encryption-keys API 的 get 命令来获取密钥的 "id" 。
+. 创建工作环境时，请在 API 请求中使用 "GcpEncryption" 参数。
++
+* 示例 *
+
++
+[source, json]
+----
+"gcpEncryptionParameters": {
+    "key": "projects/tlv-support/locations/us-east4/keyRings/Nikiskeys/cryptoKeys/generatedkey1"
+  }
+----
+
+
+请参见 link:api.html#_creating_systems_in_gcp["API 开发人员指南"^] 有关使用 GcpEncryption 参数的详细信息，请参见。

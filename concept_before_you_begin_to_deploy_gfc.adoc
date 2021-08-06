@@ -1,0 +1,177 @@
+---
+sidebar: sidebar 
+permalink: concept_before_you_begin_to_deploy_gfc.html 
+keywords: global file cache, core, edge, management server 
+summary: 在云和远程办公室中部署全局文件缓存之前，您需要了解许多要求。 
+---
+= 开始部署全局文件缓存之前
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在云和远程办公室中部署全局文件缓存之前，您需要了解许多要求。
+
+
+
+== 全局文件缓存核心设计注意事项
+
+根据您的要求，您可能需要部署一个或多个全局文件缓存核心实例来创建全局文件缓存网络结构。核心实例可用作分布式全局文件缓存边缘实例与数据中心文件服务器资源（例如文件共享，文件夹和文件）之间的流量 COP 。
+
+在设计全局文件缓存部署时，您需要确定在扩展性，资源可用性和冗余方面适合您的环境的因素。全局文件缓存核心可通过以下方式进行部署：
+
+* GFC 核心独立实例
+* GFC 核心负载分布式设计（冷备用）
+
+
+请参见 <<Sizing guidelines>> 要了解每个配置可以支持的最大 Edge 实例数和用户总数，请执行以下操作：
+
+请咨询您的全球文件缓存解决方案工程师，以讨论适用于您的企业部署的最佳方案。
+
+
+
+== 规模估算准则
+
+在配置初始系统时，您需要牢记一些规模估算准则比率。在累积了一些使用历史记录之后，您应重新访问这些比率，以确保以最佳方式使用系统。其中包括：
+
+* 全局文件缓存边缘 / 核心比率
+* 分布式用户 / 全局文件缓存边缘比率
+* 分布式用户 / 全局文件缓存核心比率
+
+
+
+
+=== 每个核心实例的边缘实例数
+
+我们的准则建议，每个全局文件缓存核心实例最多 10 个 Edge 实例，每个全局文件缓存核心实例最多 20 个边缘。这在很大程度上取决于最常见工作负载的类型和平均文件大小。在某些情况下，对于较为常见的工作负载，您可以为每个核心添加更多的边缘实例，但在这些情况下，您应联系 NetApp 支持部门，根据文件集的类型和大小正确调整边缘和核心实例的数量。
+
+
+NOTE: 您可以同时利用多个全局文件缓存边缘和核心实例根据需求横向扩展基础架构。
+
+
+
+=== 每个 Edge 实例的并发用户数
+
+全局文件缓存边缘可处理缓存算法和文件级差分方面的繁重工作。一个全局文件缓存边缘实例可为每个专用物理边缘实例最多 400 个用户提供服务，而对于专用虚拟部署，最多可为 200 个用户提供服务。这在很大程度上取决于最常见工作负载的类型和平均文件大小。对于较大的协作文件类型，请引导每个全局文件缓存边缘的最大用户数的 50% 下限（具体取决于物理或虚拟部署）。对于平均文件大小小于 1 MB 的更常见 Office 项目，请参考每个全局文件缓存边缘的 100% 用户上限（具体取决于物理或虚拟部署）。
+
+
+NOTE: 全局文件缓存边缘会检测它是在虚拟实例还是物理实例上运行，它会将与本地虚拟文件共享的 SMB 连接数限制为最多 200 或 400 个并发连接。
+
+
+
+=== 每个核心实例的并发用户数
+
+全局文件缓存核心实例具有极高的可扩展性，建议每个核心同时使用 3 ， 000 个用户。这在很大程度上取决于最常见工作负载的类型和平均文件大小。
+
+请咨询您的全球文件缓存解决方案工程师，以讨论适用于您的企业部署的最佳方案。
+
+
+
+== 前提条件
+
+本节所述的前提条件适用于云中安装的组件：全局文件缓存管理服务器和全局文件缓存核心。
+
+本节介绍了全局文件缓存边缘前提条件 link:download_gfc_resources.html#global-file-cache-edge-requirements["此处"]。
+
+
+
+=== Cloud Manager 实例
+
+使用适用于 Azure 的 Cloud Volumes ONTAP 作为存储平台时，请确保 Cloud Manager 具有最新所示的权限 https://occm-sample-policies.s3.amazonaws.com/Policy_for_cloud_Manager_Azure_3.8.7.json["适用于 Azure 的 Cloud Manager 策略"^]。
+
+默认情况下，新创建的实例将具有所有所需权限。如果您部署的实例早于 3.8.7 版（ 2020 年 8 月 3 日），则需要添加这些项。
+
+[source, json]
+----
+"Microsoft.Resources/deployments/operationStatuses/read",
+"Microsoft.Insights/Metrics/Read",
+"Microsoft.Compute/virtualMachines/extensions/write",
+"Microsoft.Compute/virtualMachines/extensions/read",
+"Microsoft.Compute/virtualMachines/extensions/delete",
+"Microsoft.Compute/virtualMachines/delete",
+"Microsoft.Network/networkInterfaces/delete",
+"Microsoft.Network/networkSecurityGroups/delete",
+"Microsoft.Resources/deployments/delete",
+----
+
+
+=== 存储平台（卷）
+
+在这种情况下，后端存储平台（即已部署的 Cloud Volumes ONTAP 实例）应显示 SMB 文件共享。要通过全局文件缓存公开的任何共享都必须在共享级别允许 Everyone 组完全控制，同时通过 NTFS 权限限制权限。
+
+如果尚未在 Cloud Volumes ONTAP 实例上至少设置一个 SMB 文件共享，则需要准备好以下信息，以便可以在安装期间配置此信息：
+
+* Active Directory 域名，名称服务器 IP 地址， Active Directory 管理员凭据。
+* 要创建的卷的名称和大小，要创建卷的聚合的名称以及共享名称。
+
+
+建议卷的大小足以容纳应用程序的总数据集，并能够随着数据集的增长相应地进行扩展。如果工作环境中有多个聚合，请参见 link:task_managing_storage.html["管理现有聚合"^] 确定哪个聚合可为新卷提供最多的可用空间。
+
+
+
+=== 全局文件缓存管理服务器
+
+此全局文件缓存管理服务器需要通过 HTTPS （ TCP 端口 443 ）进行外部访问，才能连接到云提供商订阅服务并访问以下 URL ：
+
+* https://talonazuremicroservices.azurewebsites.net["https://talonazuremicroservices.azurewebsites.net"]
+* https://talonlicensing.table.core.windows.net["https://talonlicensing.table.core.windows.net"]
+
+
+要使全局文件缓存软件正常运行，必须从任何 WAN 优化设备或防火墙限制策略中排除此端口。
+
+此外，全局文件缓存管理服务器还要求实例（例如， GFC-MS1 ）具有唯一（地理）的 NetBIOS 名称。
+
+
+NOTE: 一个管理服务器可以支持部署在不同工作环境中的多个全局文件缓存核心实例。从 Cloud Manager 部署时，每个工作环境都有自己单独的后端存储，并且不包含相同的数据。
+
+
+
+=== 全局文件缓存核心
+
+此全局文件缓存核心侦听 TCP 端口范围 6618-6630 。根据您的防火墙或网络安全组（ Network Security Group ， NSG ）配置，您可能需要明确允许通过入站端口规则访问这些端口。此外，要使全局文件缓存软件正常运行，必须从任何 WAN 优化设备或防火墙限制策略中排除这些端口。
+
+全局文件缓存核心要求包括：
+
+* 实例的唯一（地理） NetBIOS 名称（例如， GFC-Core1 ）
+* Active Directory domain name
++
+** 全局文件缓存实例应加入 Active Directory 域。
+** 全局文件缓存实例应在全局文件缓存特定组织单位（ OU ）中进行管理，并从继承的公司 GPO 中排除。
+
+
+* 服务帐户。此全局文件缓存核心上的服务作为特定域用户帐户运行。此帐户（也称为服务帐户）必须在将与全局文件缓存核心实例关联的每个 SMB 服务器上具有以下权限：
++
+** 配置的服务帐户必须是域用户。
+
+
+
+
+根据网络环境中的限制级别和 GPO ，此帐户可能需要域管理员权限。
+
+* 它必须具有 " 运行即服务 " 权限。
+* 密码应设置为 " 永不过期 " 。
+* 应禁用（未选中）帐户选项 " 用户必须在下次登录时更改密码 " 。
+* 它必须是后端文件服务器内置备份操作员组的成员（通过 Cloud Manager 部署时会自动启用此功能）。
+
+
+
+
+=== 许可证管理服务器
+
+* 全球文件缓存许可证管理服务器（ LMS ）应配置在 Microsoft Windows Server 2016 标准版或数据中心版或 Windows Server 2019 标准版或数据中心版上，最好配置在数据中心或云中的全局文件缓存核心实例上。
+* 如果需要单独的全局文件缓存 LMS 实例，则需要在原始 Microsoft Windows Server 实例上安装最新的全局文件缓存软件安装包。
+* LMS 实例需要能够使用 HTTPS （ TCP 端口 443 ）连接到订阅服务（ Azure 服务 / 公有 Internet ）。
+* 核心和边缘实例需要使用 HTTPS （ TCP 端口 443 ）连接到 LMS 实例。
+
+
+
+
+=== 网络
+
+* 防火墙：应允许在全局文件缓存边缘和核心实例之间使用 TCP 端口。
+* 全局文件缓存 TCP 端口： 443 （ HTTPS ）， 6618 – 6630 。
+* 必须将网络优化设备（例如 Riverbed Steelhead ）配置为直通全局文件缓存专用端口（ TCP 6618-6630 ）。
+

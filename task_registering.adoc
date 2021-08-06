@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: task_registering.html 
+keywords: Cloud Volumes ONTAP, register, registering, paygo, pay-as-you-go, registration, instance id, serial number, account id, support 
+summary: Cloud Volumes ONTAP Explore ，标准版和高级版系统均提供 NetApp 支持，但您必须先向 NetApp 注册这些系统，以激活支持。 
+---
+= 注册按需购买的系统
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Volumes ONTAP Explore ，标准版和高级版系统均提供 NetApp 支持，但您必须先向 NetApp 注册这些系统，以激活支持。
+
+.步骤
+. 如果您尚未将 NetApp 支持站点帐户添加到 Cloud Manager ，请转到 * 帐户设置 * 并立即添加。
++
+link:task_adding_nss_accounts.html["了解如何添加 NetApp 支持站点帐户"]。
+
+. 在 " 工作环境 " 页上，双击要注册的系统的名称。
+. 单击菜单图标，然后单击 * 支持注册 * ：
++
+image:screenshot_menu_registration.gif["屏幕截图：显示了在 Cloud Volumes ONTAP 系统的菜单图标中选择的支持注册选项。"]
+
+. 选择一个 NetApp 支持站点帐户，然后单击 * 注册 * 。
+
+
+Cloud Manager 将系统注册到 NetApp 。

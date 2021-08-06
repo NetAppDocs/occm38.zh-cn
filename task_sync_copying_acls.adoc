@@ -1,0 +1,85 @@
+---
+sidebar: sidebar 
+permalink: task_sync_copying_acls.html 
+keywords: permissions, access control list, acls, ntfs, cifs, smb, shares, robocopy, copy, transfer, activate, operating system, os, ram, cpu, networking, copy acls to the target 
+summary: Cloud Sync 可以在源 SMB 共享和目标 SMB 共享之间复制访问控制列表（ ACL ）。如果需要，您可以使用 Robocopy 手动保留 ACL 。 
+---
+= 在 SMB 共享之间复制 ACL
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Sync 可以在源 SMB 共享和目标 SMB 共享之间复制访问控制列表（ ACL ）。如果需要，您可以使用 Robocopy 手动自行保留 ACL 。
+
+.选项
+* <<Setting up Cloud Sync to copy ACLs between SMB servers,设置 Cloud Sync 以自动复制 ACL>>
+* <<Manually copying ACLs,自己手动复制 ACL>>
+
+
+
+
+== 设置 Cloud Sync 以在 SMB 服务器之间复制 ACL
+
+通过在创建关系时或创建关系后启用设置，在 SMB 服务器之间复制 ACL 。
+
+请注意，此功能适用于在 2020 年 2 月 23 日版本之后创建的新同步关系。如果要对该日期之前创建的现有关系使用此功能，则需要重新创建此关系。
+
+.您需要什么？ #8217 ；将需要什么
+* 在 2020 年 2 月 23 日版本之后创建的新同步关系或现有同步关系。
+* 任何类型的数据代理。
++
+此功能适用于 _any_ 类型的数据代理： AWS ， Azure ， Google Cloud Platform 或内部数据代理。内部数据代理可以运行 link:task_sync_installing_linux.html["任何受支持的操作系统"]。
+
+
+
+.新关系的步骤
+. 在 Cloud Sync 中，单击 * 创建新同步 * 。
+. 将 * SMB Server* 拖放到源和目标，然后单击 * 继续 * 。
+. 在 * SMB Server* 页面上：
++
+.. 输入新的 SMB 服务器或选择现有服务器，然后单击 * 继续 * 。
+.. 输入 SMB 服务器的凭据。
+.. 选择 * 将访问控制列表复制到目标 * ，然后单击 * 继续 * 。
++
+image:screenshot_acl_support.gif["屏幕截图显示了为目标启用复制访问控制列表的选项。"]
+
+
+
+. 按照其余提示创建同步关系。
+
+
+.现有关系的步骤
+. 将鼠标悬停在“同步关系”上，然后单击“操作”菜单。
+. 单击 * 设置 * 。
+. 选择 * 将访问控制列表复制到目标 * 。
+. 单击 * 保存设置 * 。
+
+
+同步数据时， Cloud Sync 会保留源共享和目标 SMB 共享之间的 ACL 。
+
+
+
+== 手动复制 ACL
+
+您可以使用 Windows robocopy 命令手动保留 SMB 共享之间的 ACL 。
+
+.步骤
+. 确定具有对 SMB 共享的完全访问权限的 Windows 主机。
+. 如果任一端点需要身份验证，请使用 * 网络使用 * 命令从 Windows 主机连接到这些端点。
++
+在使用 Robocopy 之前，必须执行此步骤。
+
+. 从 Cloud Sync 中，在源设备和目标 SMB 共享之间创建新关系或同步现有关系。
+. 数据同步完成后、从 Windows 主机运行以下命令以同步 ACL 和所有权：
++
+....
+robocopy /E /COPY:SOU /secfix [source] [target] /w:0 /r:0 /XD ~snapshots /UNILOG:”[logfilepath]
+....
++
+源 _sourc_ 和目标 _ 均应使用 UNC 格式指定。例如： \\<server> \<share> \<path>
+
+

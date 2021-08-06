@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: task_configuring_proxy.html 
+keywords: proxy, proxy server, proxy, internet 
+summary: 如果您的公司策略要求您使用代理服务器进行与 Internet 的所有 HTTP 通信、则必须配置 Cloud Manager 以使用该代理服务器。代理服务器可以位于云中或网络中。 
+---
+= 配置 Connector 以使用代理服务器
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+如果您的公司策略要求您使用代理服务器与 Internet 进行所有 HTTP 通信，则必须将您的连接器配置为使用该代理服务器。代理服务器可以位于云中或网络中。
+
+在将 Connector 配置为使用代理服务器时，该连接器及其管理的 Cloud Volumes ONTAP 系统（包括任何 HA 调解器）都会使用代理服务器。
+
+.步骤
+. https://docs.netapp.com/us-en/occm/task_logging_in.html["登录到 Cloud Manager SaaS 界面"^] 从已通过网络连接到 Connector 实例的计算机。
++
+如果此连接器没有公有 IP 地址，您需要 VPN 连接，或者您需要从与此连接器位于同一网络的跳转主机进行连接。
+
+. 单击 * 连接器 * 下拉列表，然后单击 * 转到特定连接器的本地 UID* 。
++
+image:screenshot_connector_local_ui.gif["标题中显示 Connector 图标和 Go to Local UI 操作的屏幕截图。"]
+
++
+在 Connector 上运行的 Cloud Manager 界面将加载到新的浏览器选项卡中。
+
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * Cloud Manager 设置 * 。
++
+image:screenshot_settings_icon.gif["一个屏幕截图，显示 Cloud Manager 控制台右上角的设置图标。"]
+
+. 在 HTTP 代理下，使用语法输入服务器 http://_address:port_[]下，如果服务器需要基本身份验证，请指定用户名和密码，然后单击 * 保存 * 。
++
+
+NOTE: Cloud Manager 不支持包含 @ 字符的密码。
+
+
+
+指定代理服务器后、新的 Cloud Volumes ONTAP 系统会自动配置为在发送 AutoSupport 消息时使用代理服务器。如果在用户创建 Cloud Volumes ONTAP 系统之前未指定代理服务器，则用户必须使用 System Manager 在每个系统的 AutoSupport 选项中手动设置代理服务器。

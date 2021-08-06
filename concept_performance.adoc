@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: concept_performance.html 
+keywords: performance, technical report, TR, workload 
+summary: 您可以查看性能结果、帮助您确定哪些工作负载适合 Cloud Volumes ONTAP 。 
+---
+= 性能
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以查看性能结果、帮助您确定哪些工作负载适合 Cloud Volumes ONTAP 。
+
+* 适用于 AWS 的 Cloud Volumes ONTAP
++
+https://www.netapp.com/us/media/tr-4383.pdf["NetApp 技术报告 4383 ：使用应用程序工作负载在 Amazon Web Services 中对 Cloud Volumes ONTAP 进行性能特征描述"^]。
+
+* 适用于 Microsoft Azure 的 Cloud Volumes ONTAP
++
+https://www.netapp.com/us/media/tr-4671.pdf["NetApp 技术报告 4671 ： Azure 中的 Cloud Volumes ONTAP 的性能特征与应用程序工作负载"^]。
+
+* 适用于 Google Cloud 的 Cloud Volumes ONTAP
++
+https://www.netapp.com/us/media/tr-4816.pdf["NetApp 技术报告 4816 ：《适用于 Google Cloud 的 Cloud Volumes ONTAP 性能特征》"^]。
+
+

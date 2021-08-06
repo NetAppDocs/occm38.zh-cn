@@ -1,0 +1,75 @@
+---
+sidebar: sidebar 
+permalink: concept_overview.html 
+keywords: overview, concepts, features, use case, days, 14 days 
+summary: 借助 Cloud Manager ， IT 专家和云架构师可以使用 NetApp 的云解决方案集中管理其混合多云基础架构。 
+---
+= 了解 Cloud Manager
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+借助 Cloud Manager ， IT 专家和云架构师可以使用 NetApp 的云解决方案集中管理其混合多云基础架构。
+
+
+
+== 功能
+
+Cloud Manager 是一款基于 SaaS 的企业级管理平台，无论数据位于何处，都能让您始终掌控数据。
+
+* 设置和使用 https://cloud.netapp.com/ontap-cloud["Cloud Volumes ONTAP"^] 跨云实现高效的多协议数据管理。
+* 设置和使用文件存储服务： https://cloud.netapp.com/azure-netapp-files["Azure NetApp Files"^]，，和。
+* 通过创建卷，备份到云，跨混合云复制数据以及将冷数据分层到云，发现和管理内部 ONTAP 集群。
+* 支持集成云服务和软件，例如 https://cloud.netapp.com/cloud-compliance["云合规性"^]，，，等。
+
+
+https://cloud.netapp.com/cloud-manager["了解有关 Cloud Manager 的更多信息"^]。
+
+
+
+== 支持的对象存储提供程序
+
+Cloud Manager 支持您在 Amazon Web Services ， Microsoft Azure 和 Google Cloud 中管理云存储并使用云服务。
+
+
+
+== 成本
+
+NetApp 免费提供 Cloud Manager 软件。
+
+对于大多数任务， Cloud Manager 会提示您在云网络中部署 Connector ，这会导致云提供商为计算实例和关联存储收取费用。您可以选择在内部运行 Connector 软件。
+
+
+
+== Cloud Manager 的工作原理
+
+Cloud Manager 包括一个与 NetApp Cloud Central 集成的基于 SaaS 的界面，以及用于管理 Cloud Volumes ONTAP 和其他云服务的 Connectors 。
+
+
+
+=== 软件即服务
+
+Cloud Manager 可通过访问 https://cloudmanager.netapp.com["基于 SaaS 的用户界面"^] 和 API 。通过这种 SaaS 体验，您可以在发布最新功能时自动访问这些功能，并轻松在 Cloud Central 帐户和 Connectors 之间切换。
+
+
+
+=== NetApp Cloud Central
+
+https://cloud.netapp.com["NetApp Cloud Central"^] 提供一个用于访问和管理的集中位置。通过集中式用户身份验证，您可以使用同一组凭据来访问 Cloud Manager 以及 Cloud Insights 等其他云服务。
+
+首次登录到 Cloud Manager 时，系统会提示您创建 _Cloud Central 帐户 _ 。此帐户可提供多租户，并可用于在隔离的 _workworkworkspace _ 中组织用户和资源。
+
+
+
+=== 连接器
+
+大多数情况下，客户管理员需要在云或内部网络中部署 _Connector_ 。借助此连接器， Cloud Manager 可以管理公有云环境中的资源和流程。
+
+连接器应始终保持运行状态。对于您启用的服务的持续运行状况和运行来说，这一点非常重要。
+
+例如，连接器是 Cloud Volumes ONTAP PAYGO 系统运行状况和操作的关键组件。如果某个连接器已关闭，则 Cloud Volumes ONTAP PAYGO 系统将在与某个连接器失去通信超过 14 天之后关闭。
+
+link:concept_connectors.html["详细了解何时需要连接器及其工作原理"]。

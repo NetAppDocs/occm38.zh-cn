@@ -1,0 +1,115 @@
+---
+sidebar: sidebar 
+permalink: concept_storage_management.html 
+keywords: provisioning, capacity management, storage provisioning, manual, automatic, advanced allocation, aggregates, thin provisioning, free space, mode 
+summary: Cloud Manager 可简化和高级管理 Cloud Volumes ONTAP 存储。 
+---
+= 存储管理
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager 可简化和高级管理 Cloud Volumes ONTAP 存储。
+
+
+IMPORTANT: 必须直接从 Cloud Manager 创建和删除所有磁盘和聚合。不应从其他管理工具执行这些操作。这样做可能会影响系统稳定性、妨碍将来添加磁盘的能力、并可能产生冗余云提供商费用。
+
+
+
+== 存储配置
+
+通过为您购买磁盘和管理聚合、 Cloud Manager 可以轻松地为 Cloud Volumes ONTAP 进行存储配置。您只需创建卷即可。如果需要，您可以使用高级分配选项自行配置聚合。
+
+
+
+=== 简化配置
+
+聚合可为卷提供云存储。当您启动实例以及配置其他卷时、 Cloud Manager 会为您创建聚合。
+
+创建卷时、 Cloud Manager 会执行以下三项操作之一：
+
+* 它将卷放置在现有聚合上、该聚合具有足够的可用空间。
+* 它通过为该聚合购买更多磁盘将卷放在现有聚合上。
+* 它为新聚合购买磁盘并将卷置于该聚合上。
+
+
+Cloud Manager 通过查看以下几个因素来确定放置新卷的位置：聚合的最大大小，是否已启用精简配置以及聚合的可用空间阈值。
+
+
+TIP: 帐户管理员可以从 * 设置 * 页面修改可用空间阈值。
+
+
+
+==== AWS 中聚合的磁盘大小选择
+
+当 Cloud Manager 在 AWS 中为 Cloud Volumes ONTAP 创建新聚合时，随着系统中聚合的数量的增加，它会逐渐增加聚合中的磁盘大小。Cloud Manager 这样做是为了确保您可以在系统容量达到 AWS 允许的最大数据磁盘数之前利用系统的最大容量。
+
+例如、 Cloud Manager 可能会为 Cloud Volumes ONTAP Premium 或 BYOL 系统中的聚合选择以下磁盘大小：
+
+[cols="3*"]
+|===
+| 聚合编号 | Disk size | 最大聚合容量 
+
+
+| 1. | 500 MB | 3 TB 
+
+
+| 4. | 1 TB | 6 TB 
+
+
+| 6. | 2 TB | 12 TB 
+|===
+您可以使用高级分配选项自行选择磁盘大小。
+
+
+
+=== 高级分配
+
+您可以自己管理聚合而不是让云管理器为您管理聚合。 link:task_provisioning_storage.html#creating-aggregates["从 * 高级分配 * 页面"]，您可以创建包含特定数量磁盘的新聚合，向现有聚合添加磁盘以及在特定聚合中创建卷。
+
+
+
+== 容量管理
+
+客户管理员可以选择 Cloud Manager 是否通知您存储容量决策，或者 Cloud Manager 是否自动管理您的容量需求。这可能有助于您了解这些模式的工作原理。
+
+
+
+=== 自动容量管理
+
+默认情况下，容量管理模式设置为自动。在此模式下， Cloud Manager 会在需要更多容量时自动为 Cloud Volumes ONTAP 实例购买新磁盘，删除未使用的磁盘集合（聚合），根据需要在聚合之间移动卷以及尝试解除磁盘故障。
+
+以下示例说明了此模式的工作原理：
+
+* 如果具有 5 个或更少 EBS 磁盘的聚合达到容量阈值、则 Cloud Manager 会自动为该聚合购买新磁盘、以便卷可以继续增长。
+* 如果具有 12 个 Azure 磁盘的聚合达到容量阈值、 Cloud Manager 会自动将卷从该聚合移动到具有可用容量的聚合或新聚合。
++
+如果 Cloud Manager 为卷创建新聚合，则它会选择一个可容纳该卷大小的磁盘大小。
+
++
+请注意，可用空间现在在原始聚合上可用。现有卷或新卷可以使用该空间。在这种情况下，此空间无法返回到 AWS ， Azure 或 GCP 。
+
+* 如果聚合包含的卷不超过 12 小时、 Cloud Manager 将删除该卷。
+
+
+
+
+==== 通过自动容量管理来管理 LUN
+
+Cloud Manager 的自动容量管理不适用于 LUN 。当 Cloud Manager 创建 LUN 时，它会禁用自动增长功能。
+
+
+
+==== 通过自动容量管理来管理索引节点
+
+Cloud Manager 可监控卷上的索引节点使用情况。使用 85% 的索引节点时， Cloud Manager 会增加卷的大小以增加可用索引节点的数量。卷可以包含的文件数取决于其包含的索引节点数。
+
+
+
+=== 手动容量管理
+
+如果帐户管理员将容量管理模式设置为手动，则在必须做出容量决策时， Cloud Manager 会显示 Action Required 消息。自动模式中描述的相同示例适用于手动模式，但您可以接受这些操作。

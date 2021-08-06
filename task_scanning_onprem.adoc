@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: task_scanning_onprem.html 
+keywords: cloud compliance, on-prem, scan on prem data, scan on-prem data 
+summary: 您可以通过将内部 ONTAP 数据复制到 Cloud Volumes ONTAP 工作环境并启用合规性来使用云合规功能扫描内部 数据。不支持直接从内部 ONTAP 工作环境扫描数据。 
+---
+= 使用 SnapMirror 使用云合规性扫描内部 ONTAP 数据
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以通过将内部 NFS 或 CIFS 数据复制到 Cloud Volumes ONTAP 工作环境并启用合规性来使用云合规功能扫描内部 ONTAP 数据。不支持直接从内部 ONTAP 工作环境扫描数据。
+
+您必须拥有 link:task_deploy_cloud_compliance.html["已在 Cloud Manager 中部署 Cloud Compliance 实例"^]。
+
+.步骤
+. 在 Cloud Manager 中，在内部 ONTAP 集群和 Cloud Volumes ONTAP 之间创建 SnapMirror 关系。
++
+.. https://docs.netapp.com/us-en/occm/task_discovering_ontap.html["在 Cloud Manager 中发现内部集群"^]。
+.. https://docs.netapp.com/us-en/occm/task_replicating_data.html["通过 Cloud Manager 在内部 ONTAP 集群和 Cloud Volumes ONTAP 之间创建 SnapMirror 复制"^]。
+
+
+. 对于从 SMB 源卷创建的 DP 卷，请从 ONTAP 命令行界面配置 SMB 目标卷以进行数据访问。（ NFS 卷不需要此功能，因为数据访问是通过 Cloud Compliance 自动启用的。）
++
+.. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-cifs-cg/GUID-371B7797-B5BE-4B19-BDE4-BBC938F109BF.html["在目标卷上创建 SMB 共享"^]。
+.. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-cifs-cg/GUID-90FCFDB3-F60C-4685-9BBD-6D648F75701C.html["将相应的 ACL 应用于目标卷上的 SMB 共享"^]。
+
+
+. 在 Cloud Manager 中，在包含 SnapMirror 数据的 Cloud Volumes ONTAP 工作环境中激活云合规性：
++
+.. 单击 * 工作环境 * 。
+.. 选择包含 SnapMirror 数据的工作环境，然后单击 * 启用合规性 * 。
++
+link:task_getting_started_compliance.html["如果您需要有关在 Cloud Volumes ONTAP 系统上启用云合规性的帮助，请单击此处"^]。
+
+.. 单击 _Scan Configuration_ 页面顶部的 * 启用对 DP 卷的访问 * 按钮。
+.. 激活要扫描的每个 DP 卷，或者使用 * 激活所有卷的合规性 * 控件启用所有卷，包括所有 DP 卷。
+
+
+
+
+请参见 link:task_getting_started_compliance.html#scanning-data-protection-volumes["扫描数据保护卷"^] 有关扫描 DP 卷的详细信息。

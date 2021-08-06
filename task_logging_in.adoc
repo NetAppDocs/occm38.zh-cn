@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: task_logging_in.html 
+keywords: logging in, log in, sign in, signing in, cloud central, netapp cloud central, user account 
+summary: Cloud Manager 界面可通过基于 SaaS 的用户界面访问，请访问 https://cloudmanager.netapp.com[]。 
+---
+= 登录到 Cloud Manager
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager 界面可通过基于 SaaS 的用户界面访问，请访问 https://cloudmanager.netapp.com[]。
+
+.步骤
+. 打开 Web 浏览器并转到 https://cloudmanager.netapp.com[]。
+. 使用您的 NetApp Cloud Central 凭据登录。
++
+image:screenshot_login.gif["Cloud Central 的登录屏幕。"]
+
+

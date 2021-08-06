@@ -1,0 +1,536 @@
+---
+sidebar: sidebar 
+permalink: reference_networking_azure.html 
+keywords: networking, network, requirements, connection, connections, vnet, security group, security groups, subnet, vpn, internet, proxy, HTTP, private, proxy server, routing, firewall, autosupport, connection, jump host, outbound, ports, blob, service endpoint 
+summary: 设置 Azure 网络，以便 Cloud Volumes ONTAP 系统可以正常运行。其中包括连接器和 Cloud Volumes ONTAP 的网络连接。 
+---
+= 在 Azure 中部署和管理 Cloud Volumes ONTAP 的网络要求
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+设置 Azure 网络，以便 Cloud Volumes ONTAP 系统可以正常运行。其中包括连接器和 Cloud Volumes ONTAP 的网络连接。
+
+
+
+== Cloud Volumes ONTAP 的要求
+
+在 Azure 中必须满足以下网络连接要求。
+
+Cloud Volumes ONTAP 的出站 Internet 访问::
++
+--
+路由和防火墙策略必须允许通过 HTTP/HTTPS 流量访问以下端点，以便 Cloud Volumes ONTAP 可以发送 AutoSupport 消息：
+
+* https://support.netapp.com/aods/asupmessage
+* https://support.netapp.com/asupprod/post/1.0/postAsup
++
+link:task_setting_up_ontap_cloud.html["了解如何配置 AutoSupport"]。
+
+
+
+--
+安全组:: 您不需要创建安全组，因为 Cloud Manager 可以为您提供这些功能。如果您需要使用自己的，请参阅下面列出的安全组规则。
+IP 地址数::
++
+--
+* 单个节点： 5 个 IP 地址
+* HA 对： 16 个 IP 地址
++
+请注意， Cloud Manager 会在 HA 对上创建 SVM 管理 LIF ，但不会在 Azure 中的单节点系统上创建。
+
++
+
+TIP: LIF 是与物理端口关联的 IP 地址。SnapCenter 等管理工具需要 SVM 管理 LIF 。
+
+
+
+--
+从 Cloud Volumes ONTAP 连接到 Azure Blob 存储以进行数据分层::
++
+--
+[source, json]
+----
+"Microsoft.Network/virtualNetworks/subnets/write",
+"Microsoft.Network/routeTables/join/action",
+----
+这些权限包含在最新版本中 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 策略"]。
+
+有关设置数据分层的详细信息，请参见 link:task_tiering.html["将冷数据分层到低成本对象存储"]。
+
+--
+连接到其他网络中的 ONTAP 系统::
++
+--
+有关说明，请参见 https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal["Microsoft Azure 文档：在 Azure 门户中创建站点到站点连接"^]。
+
+--
+
+
+
+
+== 连接器的要求
+
+设置您的网络，以便 Connector 能够管理公有云环境中的资源和流程。最重要的步骤是确保对各种端点的出站 Internet 访问。
+
+
+TIP: 如果您的网络使用代理服务器与 Internet 进行所有通信，则可以从设置页面指定代理服务器。请参见 link:task_configuring_proxy.html["将 Connector 配置为使用代理服务器"]。
+
+
+
+=== 连接到目标网络
+
+连接器要求与要部署 Cloud Volumes ONTAP 的 VPC 和 VN 集建立网络连接。
+
+例如，如果您在公司网络中安装了连接器，则必须设置与启动 Cloud Volumes ONTAP 的 VPC 或 vNet 的 VPN 连接。
+
+
+
+=== 出站 Internet 访问
+
+连接器需要通过出站 Internet 访问来管理公有云环境中的资源和流程。在 Azure 中管理资源时， Connector 会联系以下端点：
+
+[cols="43,57"]
+|===
+| 端点 | 目的 
+
+
+| https://management.azure.com https://login.microsoftonline.com | 支持 Cloud Manager 在大多数 Azure 区域部署和管理 Cloud Volumes ONTAP 。 
+
+
+| https://management.microsoftazure.de https://login.microsoftonline.de | 支持 Cloud Manager 在 Azure Germany 地区部署和管理 Cloud Volumes ONTAP 。 
+
+
+| https://management.usgovcloudapiNet https://login.microsoftonline.com | 支持 Cloud Manager 在 Azure US Gov 区域部署和管理 Cloud Volumes ONTAP 。 
+
+
+| https://api.services.cloud.netapp.com:443 | 对 NetApp Cloud Central 的 API 请求。 
+
+
+| https://cloud.support.netapp.com.s3.us-west-1.amazonaws.com | 提供对软件映像、清单和模板的访问。 
+
+
+| https://repo.cloud.support.netapp.com | 用于下载 Cloud Manager 依赖关系。 
+
+
+| http://repo.mysql.com/ | 用于下载 MySQL 。 
+
+
+| https://cognito-idp.us-east-1.amazonaws.com \https://cognito-identity.us-east-1.amazonaws.com \https://sts.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.amazonaws.com | 支持 Cloud Manager 访问和下载清单、模板和 Cloud Volumes ONTAP 升级映像。 
+
+
+| https://cloudmanagerinfraprod.azurecr.io | 访问运行 Docker 的基础架构中容器组件的软件映像，并提供解决方案以实现与 Cloud Manager 的服务集成。 
+
+
+| https://kinesis.us-east-1.amazonaws.com | 使 NetApp 能够从审计记录流化数据。 
+
+
+| https://cloudmanager.cloud.netapp.com | 与 Cloud Manager 服务进行通信，其中包括 Cloud Central 帐户。 
+
+
+| https://netapp-cloud-account.auth0.com | 与 NetApp Cloud Central 进行通信以实现集中式用户身份验证。 
+
+
+| https://mysupport.netapp.com | 与 NetApp AutoSupport 通信。 
+
+
+| https://support.netapp.com/svcgw \https://support.netapp.com/ServiceGW/entitlement \https://eval.lic.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com.s3.us-west-1.amazonaws.com | 与 NetApp 沟通以获得系统许可和支持注册。 
+
+
+| https://ipa-signer.cloudmanager.netapp.com | 允许 Cloud Manager 生成许可证（例如，适用于 Cloud Volumes ONTAP 的 FlexCache 许可证） 
+
+
+| https://packages.cloud.google.com/yum \https://github.com/NetApp/trident/releases/download/ | 要将 Cloud Volumes ONTAP 系统连接到 Kubernetes 集群，需要此许可证。这些端点支持安装 NetApp Trident 。 
+
+
+| * .blob.core.windows.net | 使用代理时， HA 对需要此参数。 
+
+
+ a| 
+各种第三方位置，例如：
+
+* https://repo1.maven.org/maven2
+* https://oss.sonatype.org/content/repository
+* https://repo.typesafe.org
+
+
+第三方位置可能会发生变化。
+| 在升级过程中、 Cloud Manager 会下载最新的软件包以满足第三方依赖性。 
+|===
+虽然您应该从 SaaS 用户界面执行几乎所有任务，但连接器上仍提供本地用户界面。运行 Web 浏览器的计算机必须连接到以下端点：
+
+[cols="43,57"]
+|===
+| 端点 | 目的 
+
+
+| Connector 主机  a| 
+要加载 Cloud Manager 控制台，必须从 Web 浏览器输入主机的 IP 地址。
+
+根据您与云提供商的连接，您可以使用分配给主机的专用 IP 或公有 IP ：
+
+* 如果您对虚拟网络具有 VPN 和直接连接访问权限，则专用 IP 可以正常工作
+* 公有 IP 可用于任何网络连接情形
+
+
+在任何情况下，您都应确保安全组规则仅允许从授权的 IP 或子网进行访问，从而确保网络访问的安全。
+
+
+
+| https://auth0.com \https://cdn.auth0.com \https://netapp-cloud-account.auth0.com \https://services.cloud.netapp.com | 您的 Web 浏览器连接到这些端点、以便通过 NetApp Cloud Central 进行集中式用户身份验证。 
+
+
+| https://widget.intercom.io | 用于与 NetApp 云专家交流的产品内聊天。 
+|===
+
+
+== Cloud Volumes ONTAP 的安全组规则
+
+Cloud Manager 可创建包含 Cloud Volumes ONTAP 成功运行所需入站和出站规则的 Azure 安全组。您可能希望参考这些端口进行测试或使用自己的安全组。
+
+Cloud Volumes ONTAP 的安全组需要入站和出站规则。
+
+
+
+=== 单节点系统的入站规则
+
+除非问题描述注意到它会阻止特定入站流量，否则以下规则允许流量。
+
+[cols="4*"]
+|===
+| 优先级和名称 | 端口和协议 | 源和目标 | Description 
+
+
+| 1000 个 inbound_ssh | 22 TCP | 任意到任意 | SSH 访问集群管理 LIF 或节点管理 LIF 的 IP 地址 
+
+
+| 1001inbound_http | 80/TCP | 任意到任意 | 使用集群管理 LIF 的 IP 地址对系统管理器 Web 控制台进行 HTTP 访问 
+
+
+| 1002inbound_111_tcp | 111 TCP | 任意到任意 | 远程过程调用 NFS 
+
+
+| 1003 入站 _111_UDP | 111 UDP | 任意到任意 | 远程过程调用 NFS 
+
+
+| 1004 inbound_139 | 139 TCP | 任意到任意 | 用于 CIFS 的 NetBIOS 服务会话 
+
+
+| 1005 inbound_161-162_TCP | 161-162 TCP | 任意到任意 | 简单网络管理协议 
+
+
+| 1006 inbound_161-162_UDP | 161-162 UDP | 任意到任意 | 简单网络管理协议 
+
+
+| 1007 inbound_443 | 443/TCP | 任意到任意 | 使用集群管理 LIF 的 IP 地址对 System Manager Web 控制台进行 HTTPS 访问 
+
+
+| 1008 inbound_445 | 445 TCP | 任意到任意 | Microsoft SMB/CIFS over TCP （通过 TCP ）和 NetBIOS 成帧 
+
+
+| 1009 inbound_635_tcp | 635 TCP | 任意到任意 | NFS 挂载 
+
+
+| 1010 inbound_635_udp | 635 UDP | 任意到任意 | NFS 挂载 
+
+
+| 1011 inbound_749 | 749 TCP | 任意到任意 | Kerberos 
+
+
+| 1012 inbound_2049_tcp | 2049 TCP | 任意到任意 | NFS 服务器守护进程 
+
+
+| 1013 inbound_2049_udp | 2049 UDP | 任意到任意 | NFS 服务器守护进程 
+
+
+| 1014 inbound_3260 | 3260 TCP | 任意到任意 | 通过 iSCSI 数据 LIF 进行 iSCSI 访问 
+
+
+| 1015 Inbound_4045-4046_tcp | 4045-4046 TCP | 任意到任意 | NFS 锁定守护进程和网络状态监控器 
+
+
+| 1016 inbound_4045-4046_udp | 4045-4046 UDP | 任意到任意 | NFS 锁定守护进程和网络状态监控器 
+
+
+| 1017 inbound_10000 | 10000 TCP | 任意到任意 | 使用 NDMP 备份 
+
+
+| 1018 inbound_11104-11105 | 11104-11105 TCP | 任意到任意 | SnapMirror 数据传输 
+
+
+| 3000 个 inbound_deny _all_tcp | 任何端口 TCP | 任意到任意 | 阻止所有其他 TCP 入站流量 
+
+
+| 3001 inbound_deny _all_udp | 任何端口 UDP | 任意到任意 | 阻止所有其他 UDP 入站流量 
+
+
+| 65000 个 AllowVnetInBound | 任何端口任何协议 | VirtualNetwork 到 VirtualNetwork | vNet 中的入站流量 
+
+
+| 65001 AllowAzureLoad BalancerInBound | 任何端口任何协议 | AzureLoadBalancer 到任何 | 来自 Azure 标准负载平衡器的数据流量 
+
+
+| 65500 DenyAllInBound | 任何端口任何协议 | 任意到任意 | 阻止所有其他入站流量 
+|===
+
+
+=== HA 系统的入站规则
+
+除非问题描述注意到它会阻止特定入站流量，否则以下规则允许流量。
+
+
+NOTE: 与单节点系统相比， HA 系统的入站规则更少，因为入站数据流量通过 Azure 标准负载平衡器。因此，来自负载平衡器的流量应处于打开状态，如 "AllowAzureLoadBalancerInBound" 规则中所示。
+
+[cols="4*"]
+|===
+| 优先级和名称 | 端口和协议 | 源和目标 | Description 
+
+
+| 100 inbound_443 | 443 任何协议 | 任意到任意 | 使用集群管理 LIF 的 IP 地址对 System Manager Web 控制台进行 HTTPS 访问 
+
+
+| 101 inbound_111_tcp | 111 任何协议 | 任意到任意 | 远程过程调用 NFS 
+
+
+| 102 inbound_2049_tcp | 2049 任何协议 | 任意到任意 | NFS 服务器守护进程 
+
+
+| 111 inbound_ssh | 22 任何协议 | 任意到任意 | SSH 访问集群管理 LIF 或节点管理 LIF 的 IP 地址 
+
+
+| 121 inbound_53 | 53 任何协议 | 任意到任意 | DNS 和 CIFS 
+
+
+| 65000 个 AllowVnetInBound | 任何端口任何协议 | VirtualNetwork 到 VirtualNetwork | vNet 中的入站流量 
+
+
+| 65001 AllowAzureLoad BalancerInBound | 任何端口任何协议 | AzureLoadBalancer 到任何 | 来自 Azure 标准负载平衡器的数据流量 
+
+
+| 65500 DenyAllInBound | 任何端口任何协议 | 任意到任意 | 阻止所有其他入站流量 
+|===
+
+
+=== 出站规则
+
+为 Cloud Volumes ONTAP 预定义的安全组将打开所有出站流量。如果可以接受，请遵循基本出站规则。如果您需要更严格的规则、请使用高级出站规则。
+
+
+
+==== 基本外向规则
+
+为 Cloud Volumes ONTAP 预定义的安全组包括以下出站规则。
+
+[cols="3*"]
+|===
+| Port | 协议 | 目的 
+
+
+| 全部 | 所有 TCP | 所有出站流量 
+
+
+| 全部 | 所有 UDP | 所有出站流量 
+|===
+
+
+==== 高级出站规则
+
+如果您需要严格的出站流量规则、则可以使用以下信息仅打开 Cloud Volumes ONTAP 出站通信所需的端口。
+
+
+NOTE: 源是 Cloud Volumes ONTAP 系统上的接口（ IP 地址）。
+
+[cols="10,10,6,20,20,34"]
+|===
+| 服务 | Port | 协议 | 源 | 目标 | 目的 
+
+
+.18+| Active Directory | 88 | TCP | 节点管理 LIF | Active Directory 目录林 | Kerberos V 身份验证 
+
+
+| 137. | UDP | 节点管理 LIF | Active Directory 目录林 | NetBIOS 名称服务 
+
+
+| 138. | UDP | 节点管理 LIF | Active Directory 目录林 | NetBIOS 数据报服务 
+
+
+| 139. | TCP | 节点管理 LIF | Active Directory 目录林 | NetBIOS 服务会话 
+
+
+| 389. | TCP 和 UDP | 节点管理 LIF | Active Directory 目录林 | LDAP 
+
+
+| 445 | TCP | 节点管理 LIF | Active Directory 目录林 | Microsoft SMB/CIFS over TCP （通过 TCP ）和 NetBIOS 成帧 
+
+
+| 464. | TCP | 节点管理 LIF | Active Directory 目录林 | Kerberos V 更改和设置密码（ set_change ） 
+
+
+| 464. | UDP | 节点管理 LIF | Active Directory 目录林 | Kerberos 密钥管理 
+
+
+| 749 | TCP | 节点管理 LIF | Active Directory 目录林 | Kerberos V 更改和设置密码（ RPCSEC_GSS ） 
+
+
+| 88 | TCP | 数据 LIF （ NFS ， CIFS ， iSCSI ） | Active Directory 目录林 | Kerberos V 身份验证 
+
+
+| 137. | UDP | 数据 LIF （ NFS 、 CIFS ） | Active Directory 目录林 | NetBIOS 名称服务 
+
+
+| 138. | UDP | 数据 LIF （ NFS 、 CIFS ） | Active Directory 目录林 | NetBIOS 数据报服务 
+
+
+| 139. | TCP | 数据 LIF （ NFS 、 CIFS ） | Active Directory 目录林 | NetBIOS 服务会话 
+
+
+| 389. | TCP 和 UDP | 数据 LIF （ NFS 、 CIFS ） | Active Directory 目录林 | LDAP 
+
+
+| 445 | TCP | 数据 LIF （ NFS 、 CIFS ） | Active Directory 目录林 | Microsoft SMB/CIFS over TCP （通过 TCP ）和 NetBIOS 成帧 
+
+
+| 464. | TCP | 数据 LIF （ NFS 、 CIFS ） | Active Directory 目录林 | Kerberos V 更改和设置密码（ set_change ） 
+
+
+| 464. | UDP | 数据 LIF （ NFS 、 CIFS ） | Active Directory 目录林 | Kerberos 密钥管理 
+
+
+| 749 | TCP | 数据 LIF （ NFS 、 CIFS ） | Active Directory 目录林 | Kerberos V 更改和设置密码（ RPCSEC_GSS ） 
+
+
+| DHCP | 68 | UDP | 节点管理 LIF | DHCP | 首次设置 DHCP 客户端 
+
+
+| DHCP | 67 | UDP | 节点管理 LIF | DHCP | DHCP 服务器 
+
+
+| DNS | 53. | UDP | 节点管理 LIF 和数据 LIF （ NFS 、 CIFS ） | DNS | DNS 
+
+
+| NDMP | 18600 – 18699 | TCP | 节点管理 LIF | 目标服务器 | NDMP 副本 
+
+
+| SMTP | 25. | TCP | 节点管理 LIF | 邮件服务器 | SMTP 警报、可用于 AutoSupport 
+
+
+.4+| SNMP | 161. | TCP | 节点管理 LIF | 监控服务器 | 通过 SNMP 陷阱进行监控 
+
+
+| 161. | UDP | 节点管理 LIF | 监控服务器 | 通过 SNMP 陷阱进行监控 
+
+
+| 162. | TCP | 节点管理 LIF | 监控服务器 | 通过 SNMP 陷阱进行监控 
+
+
+| 162. | UDP | 节点管理 LIF | 监控服务器 | 通过 SNMP 陷阱进行监控 
+
+
+.2+| SnapMirror | 11104. | TCP | 集群间 LIF | ONTAP 集群间 LIF | 管理 SnapMirror 的集群间通信会话 
+
+
+| 11105. | TCP | 集群间 LIF | ONTAP 集群间 LIF | SnapMirror 数据传输 
+
+
+| 系统日志 | 514. | UDP | 节点管理 LIF | 系统日志服务器 | 系统日志转发消息 
+|===
+
+
+== Connector 的安全组规则
+
+Connector 的安全组需要入站和出站规则。
+
+
+
+=== 入站规则
+
+预定义安全组中入站规则的源代码为 0.0.0.0/0 。
+
+[cols="3*"]
+|===
+| Port | 协议 | 目的 
+
+
+| 22. | SSH | 提供对 Connector 主机的 SSH 访问 
+
+
+| 80 | HTTP | 提供从客户端 Web 浏览器到本地用户界面的 HTTP 访问 
+
+
+| 443. | HTTPS | 提供从客户端 Web 浏览器到本地用户界面的 HTTPS 访问 
+|===
+
+
+=== 出站规则
+
+连接器的预定义安全组将打开所有出站流量。如果可以接受，请遵循基本出站规则。如果您需要更严格的规则、请使用高级出站规则。
+
+
+
+==== 基本外向规则
+
+Connector 的预定义安全组包括以下出站规则。
+
+[cols="3*"]
+|===
+| Port | 协议 | 目的 
+
+
+| 全部 | 所有 TCP | 所有出站流量 
+
+
+| 全部 | 所有 UDP | 所有出站流量 
+|===
+
+
+==== 高级出站规则
+
+如果您需要对出站流量设置严格的规则，则可以使用以下信息仅打开 Connector 进行出站通信所需的端口。
+
+
+NOTE: 源 IP 地址是 Connector 主机。
+
+[cols="5*"]
+|===
+| 服务 | Port | 协议 | 目标 | 目的 
+
+
+.9+| Active Directory | 88 | TCP | Active Directory 目录林 | Kerberos V 身份验证 
+
+
+| 139. | TCP | Active Directory 目录林 | NetBIOS 服务会话 
+
+
+| 389. | TCP | Active Directory 目录林 | LDAP 
+
+
+| 445 | TCP | Active Directory 目录林 | Microsoft SMB/CIFS over TCP （通过 TCP ）和 NetBIOS 成帧 
+
+
+| 464. | TCP | Active Directory 目录林 | Kerberos V 更改和设置密码（ set_change ） 
+
+
+| 749 | TCP | Active Directory 目录林 | Active Directory Kerberos V 更改和设置密码（ RPCSEC_GSS ） 
+
+
+| 137. | UDP | Active Directory 目录林 | NetBIOS 名称服务 
+
+
+| 138. | UDP | Active Directory 目录林 | NetBIOS 数据报服务 
+
+
+| 464. | UDP | Active Directory 目录林 | Kerberos 密钥管理 
+
+
+| API 调用和 AutoSupport | 443. | HTTPS | 出站 Internet 和 ONTAP 集群管理 LIF | API 调用 AWS 和 ONTAP 、并将 AutoSupport 消息发送到 NetApp 
+
+
+| API 调用 | 3000 | TCP | ONTAP 集群管理 LIF | API 调用 ONTAP 
+
+
+| DNS | 53. | UDP | DNS | 用于云管理器进行 DNS 解析 
+|===

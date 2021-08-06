@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: concept_saas.html 
+keywords: cloud manager, Connector, user interface, ui, interface, cloud, saas, saas interface 
+summary: 我们为 Cloud Manager 引入了软件即服务体验。这种全新体验让您可以更轻松地使用 Cloud Manager ，并使我们能够提供更多功能来管理您的混合云基础架构。 
+---
+= Cloud Manager 过渡到 SaaS
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+我们为 Cloud Manager 引入了软件即服务体验。这种全新体验让您可以更轻松地使用 Cloud Manager ，并使我们能够提供更多功能来管理您的混合云基础架构。
+
+
+
+== 以前的 Cloud Manager 体验
+
+Cloud Manager 软件以前由一个用户界面和一个管理层组成，用于向云提供商发送请求。首先，您需要在云网络或内部网络中部署 Cloud Manager ，然后访问在该实例上运行的用户界面。
+
+这种体验发生了变化。
+
+
+
+== 全新 SaaS 体验
+
+Cloud Manager 界面现在可通过您从 NetApp Cloud Central 登录到的基于 SaaS 的用户界面进行访问。您不再需要从网络中运行的软件访问用户界面。
+
+大多数情况下，您需要在云或内部网络中部署 _Connector_ 。Connector 是管理 Cloud Volumes ONTAP 和其他云数据服务所需的软件。（此连接器实际上与您安装的现有 Cloud Manager 软件相同。）
+
+
+
+== 优势
+
+这种基于 SaaS 的方法具有以下优势：
+
+* 它使我们能够为 Azure NetApp Files 和 Cloud Volumes Service 提供额外的管理功能，而无需在您的环境中部署软件。
+* 您可以轻松地在 Cloud Central 帐户之间切换。
++
+如果用户与多个 Cloud Central 帐户关联，则可以随时从用户设置菜单更改为其他帐户。然后，他们可以查看与该帐户关联的连接器和工作环境。
+
++
+image:screenshot_switch_account.gif[""]
+
+* 您可以轻松地在安装在不同网络或不同云提供商中的连接器（您目前所知道的 Cloud Manager 软件）之间进行切换。
++
+image:screenshot_switch_service_connector.gif[""]
+
+
+
+
+
+== 本地用户界面
+
+虽然您应该从 SaaS 用户界面执行几乎所有任务，但连接器上仍提供本地用户界面。需要从连接器本身执行的几项任务需要使用此接口：
+
+* 设置代理服务器
+* 安装修补程序
+* 正在下载 AutoSupport 消息
+
+
+您可以直接从 SaaS 用户界面访问本地用户界面：
+
+image:screenshot_local_ui.gif[""]
+
+
+
+== 实例，虚拟机和计算机类型更改
+
+为了确保为 Cloud Manager 中的新增功能和即将推出的功能提供充足的资源，我们对所需的最低实例，虚拟机和计算机类型进行了如下更改：
+
+* AWS ： T3.xlarge
+* Azure ： DS3 v2
+* GCP ： N1-standard-4
+
+
+升级此计算机类型后，您将可以访问各种功能，例如全新 Kubernetes 体验，全局文件缓存，监控等。
+
+这些默认大小为支持的最小值 link:reference_cloud_mgr_reqs.html["基于 CPU 和 RAM 要求"]。
+
+Cloud Manager 将提示您更改 Connector 的计算机类型。

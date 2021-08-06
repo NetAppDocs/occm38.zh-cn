@@ -1,0 +1,114 @@
+---
+sidebar: sidebar 
+permalink: task_managing_licenses.html 
+keywords: license, licensing, install, updating license, system license, add system license, adding a system license, byol license, add byol license, update byol license, nlf, license generator, backup license, add backup license, update backup license 
+summary: 添加 Cloud Volumes ONTAP BYOL 系统许可证以添加额外容量，更新现有系统许可证以及管理 " 备份到云 " 的 BYOL 许可证。 
+---
+= 管理 Cloud Volumes ONTAP 的 BYOL 许可证
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+添加 Cloud Volumes ONTAP BYOL 系统许可证以添加额外容量，更新现有系统许可证以及管理 " 备份到云 " 的 BYOL 许可证。
+
+
+
+== 管理系统许可证
+
+您可以为 Cloud Volumes ONTAP BYOL 系统购买多个许可证，以分配超过 368 TB 的容量。例如，您可以购买两个许可证，以便为 Cloud Volumes ONTAP 分配高达 736 TB 的容量。或者，您也可以购买四个许可证，以获得高达 1.4 PB 的容量。
+
+您可以为单节点系统或 HA 对购买的许可证数量不受限制。
+
+
+
+=== 获取系统许可证文件
+
+在大多数情况下， Cloud Manager 可以使用您的 NetApp 支持站点帐户自动获取您的许可证文件。但是，如果无法上传，则需要手动上传许可证文件。如果您没有许可证文件，可以从 netapp.com 获取该文件。
+
+.步骤
+. 转至 https://register.netapp.com/register/getlicensefile["NetApp 许可证文件生成器"^] 并使用您的 NetApp 支持站点凭据登录。
+. 输入密码，选择您的产品，输入序列号，确认您已阅读并接受隐私策略，然后单击 * 提交 * 。
++
+* 示例 *
+
++
+image:screenshot_license_generator.gif["屏幕截图：显示填写的 NetApp 许可证文件生成器网页示例，包括密码，产品（ NetApp Cloud Volumes ONTAP BYOL for AWS ）和产品序列号。"]
+
+. 选择是通过电子邮件还是直接下载接收 serialnumber.nlf JSON 文件。
+
+
+
+
+=== 添加新的系统许可证
+
+随时添加新的 BYOL 系统许可证，以便为 Cloud Volumes ONTAP BYOL 系统额外分配 368 TB 的容量。
+
+.步骤
+. 在 Cloud Manager 中，打开 Cloud Volumes ONTAP BYOL 工作环境。
+. 单击菜单图标，然后单击 * 许可证 * 。
++
+image:screenshot_menu_license.gif["在工作环境中显示菜单图标的屏幕截图。使用许可证选项可以上传许可证文件。"]
+
+. 单击 * 添加 CVO 系统许可证 * 。
++
+image:screenshot_system_license.gif["Cloud Volumes ONTAP 系统许可证的屏幕截图，其中显示了用于添加系统许可证和更新系统许可证的按钮。"]
+
+. 选择输入序列号或上传许可证文件。
+. 单击 * 添加许可证 * 。
+
+
+Cloud Manager 会在 Cloud Volumes ONTAP 系统上安装新的许可证文件。
+
+
+
+=== 更新系统许可证
+
+当您通过联系 NetApp 代表续订 BYOL 订阅时、 Cloud Manager 会自动从 NetApp 获取新许可证并将其安装在 Cloud Volumes ONTAP 系统上。
+
+如果 Cloud Manager 无法通过安全 Internet 连接访问许可证文件，您可以自行获取此文件，然后手动将此文件上传到 Cloud Manager 。
+
+.步骤
+. 在 Cloud Manager 中，打开 Cloud Volumes ONTAP BYOL 工作环境。
+. 单击菜单图标，然后单击 * 许可证 * 。
+. 单击 * 更新 CVO 系统许可证 * 。
++
+image:screenshot_system_license.gif["Cloud Volumes ONTAP 系统许可证的屏幕截图，其中显示了用于添加系统许可证和更新系统许可证的按钮。"]
+
+. 单击 * 上传文件 * 并选择许可证文件。
+. 单击 * 更新许可证 * 。
+
+
+Cloud Manager 将更新 Cloud Volumes ONTAP 系统上的许可证。
+
+
+
+== 添加和更新备份 BYOL 许可证
+
+您可以使用 BYOL 许可证页面添加或更新备份 BYOL 许可证。
+
+.步骤
+. 在 Cloud Manager 中，打开 Cloud Volumes ONTAP BYOL 工作环境。
+. 单击菜单图标，然后单击 * 许可证 * 。
++
+image:screenshot_menu_license.gif["在工作环境中显示菜单图标的屏幕截图。使用许可证选项可以上传许可证文件。"]
+
+. 根据您是添加新许可证还是更新现有许可证，单击 * 添加备份许可证 * 或 * 更新备份许可证 * 。
++
+image:screenshot_backup_byol_license.png["屏幕截图显示了 BYOL 许可页面，其中包含用于添加和更新备份许可证的按钮"]
+
+. 输入许可证信息并单击 * 添加许可证 * ：
++
+** 如果您有序列号，请选择 * 输入备份 BYOL 序列号 * 选项并输入序列号。
+** 如果您有备份许可证文件，请选择 * 上传备份 BYOL 许可证 * 选项，然后按照提示附加该文件。
++
+image:screenshot_backup_byol_license_add.png["显示用于添加备份 BYOL 许可证的页面的屏幕截图。"]
+
+
+
+
+
+Cloud Manager 会添加或更新许可证，以使您的备份到云服务处于活动状态。

@@ -1,0 +1,58 @@
+---
+sidebar: sidebar 
+permalink: concept_overview_cvo.html 
+keywords: what is cloud volumes ontap, cloud volumes ontap features, features, cloud volumes ontap overview, overview of cloud volumes ontap 
+summary: 借助 Cloud Volumes ONTAP ，您可以优化云存储成本和性能，同时增强数据保护，安全性和合规性。 
+---
+= 了解 Cloud Volumes ONTAP
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+借助 Cloud Volumes ONTAP ，您可以优化云存储成本和性能，同时增强数据保护，安全性和合规性。
+
+Cloud Volumes ONTAP 是一款纯软件存储设备，可在云中运行 ONTAP 数据管理软件。它提供具有以下主要功能的企业级存储：
+
+* 存储效率
++
+利用内置的重复数据删除，数据压缩，精简配置和克隆功能最大限度地降低存储成本。
+
+* 高可用性
++
+在云环境发生故障时，确保企业级可靠性和持续运行。
+
+* 数据保护
++
+Cloud Volumes ONTAP 利用 NetApp 行业领先的复制技术 SnapMirror 将内部数据复制到云，以便可以轻松地为多种使用情形提供二级副本。
+
++
+Cloud Volumes ONTAP 还与 Cloud Backup Service 集成，提供备份和还原功能，以保护云数据并对其进行长期归档。
+
+* 数据分层
++
+按需在高性能和低性能存储池之间切换，而无需使应用程序脱机。
+
+* 应用程序一致性
++
+使用 NetApp SnapCenter 确保 NetApp Snapshot 副本的一致性。
+
+* 数据安全性
++
+Cloud Volumes ONTAP 支持数据加密，并提供防病毒和勒索软件保护。
+
+* 隐私合规性控制
++
+与云合规性集成有助于您了解数据环境并识别敏感数据。
+
+
+
+
+NOTE: Cloud Volumes ONTAP 中包含 ONTAP 功能的许可证。
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/index.html["查看支持的 Cloud Volumes ONTAP 配置"^]
+
+https://cloud.netapp.com/ontap-cloud["了解有关 Cloud Volumes ONTAP 的更多信息"^]

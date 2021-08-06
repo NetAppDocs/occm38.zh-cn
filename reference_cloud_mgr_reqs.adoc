@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: reference_cloud_mgr_reqs.html 
+keywords: configurations, ec2, vm, ports, ram, operating system, os, host, requirement, requirements, hypervisor, disk, space, mysql, centos, rhel, red hat, cpu, disk space, 3306 
+summary: 连接器软件必须在满足特定操作系统要求， RAM 要求，端口要求等要求的主机上运行。 
+---
+= 连接器主机要求
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+连接器软件必须在满足特定操作系统要求， RAM 要求，端口要求等要求的主机上运行。
+
+需要一个专用主机:: 与其他应用程序共享的主机不支持此连接器。主机必须是专用主机。
+CPU:: 4 个核心或 4 个 vCPU
+RAM:: 14 GB
+AWS EC2 实例类型:: 满足上述 CPU 和 RAM 要求的实例类型。我们建议使用 T3.xlarge ，并在直接从 Cloud Manager 部署 Connector 时使用该实例类型。
+Azure 虚拟机大小:: 满足上述 CPU 和 RAM 要求的实例类型。我们建议使用 DS3 v2 ，并在直接从 Cloud Manager 部署 Connector 时使用该 VM 大小。
+GCP 计算机类型:: 满足上述 CPU 和 RAM 要求的实例类型。我们建议使用 n1-standard-4 ，并在直接从 Cloud Manager 部署 Connector 时使用该计算机类型。
+支持的操作系统::
++
+--
+* CentOS 7.6
+* CentOS 7.7
+* Red Hat Enterprise Linux 7.6
+* Red Hat Enterprise Linux 7.7
++
+Red Hat Enterprise Linux 系统必须在 Red Hat 订购管理中注册。如果未注册，则在安装 Connector 期间，系统无法访问存储库来更新所需的第三方软件。
+
++
+这些操作系统的英语版本支持 Connector 。
+
+
+
+--
+虚拟机管理程序:: 经过认证可运行 CentOS 或 Red Hat Enterprise Linux 的裸机或托管虚拟机管理程序https://access.redhat.com/certified-hypervisors["Red Hat 解决方案：哪些虚拟机管理程序已通过认证，可以运行 Red Hat Enterprise Linux ？"^]
+/opt 中的磁盘空间:: 必须有 100 GB 的可用空间
+出站 Internet 访问:: 要安装 Connector ，需要进行出站 Internet 访问，而要使 Connector 能够管理公有云环境中的资源和流程，则需要进行出站 Internet 访问。有关端点列表，请参见 link:reference_networking_cloud_manager.html["连接器的网络连接要求"]。
+

@@ -1,0 +1,212 @@
+---
+sidebar: sidebar 
+permalink: task_provisioning_storage.html 
+keywords: storage, provisioning, iscsi, nfs, cifs, volumes, aggregates, provision, create, quotas, nas, san, LUNs, quotas, qtree, add, advanced allocation, create a volume, add a volume, create volumes, add volumes, creating a volume, adding a volume, creating aggregates, adding an aggregate, add an aggregate, create an aggregate, provision volume, provision a volume, provisioning volumes, create a LUN, create LUNs, create LUN, provision LUNs, add volume to second node, add volume to node 2, flexcache, flexcache volumes, create a flexcache volume, provision flexcache, create flexcache volume 
+summary: 您可以通过管理卷和聚合从 Cloud Manager 为 Cloud Volumes ONTAP 系统配置额外的 NFS ， CIFS 和 iSCSI 存储。 
+---
+= 配置存储
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以通过管理卷和聚合从 Cloud Manager 为 Cloud Volumes ONTAP 系统配置额外存储。
+
+
+IMPORTANT: 必须直接从 Cloud Manager 创建和删除所有磁盘和聚合。不应从其他管理工具执行这些操作。这样做可能会影响系统稳定性、妨碍将来添加磁盘的能力、并可能产生冗余云提供商费用。
+
+
+
+== 创建 FlexVol 卷
+
+如果在启动 Cloud Volumes ONTAP 系统后需要更多存储，则可以从 Cloud Manager 为 NFS ， CIFS 或 iSCSI 创建新的 FlexVol 卷。
+
+创建 iSCSI 卷时， Cloud Manager 会自动为您创建 LUN 。我们通过为每个卷仅创建一个 LUN 来简化此过程，因此无需进行管理。创建卷后， <<Connecting a LUN to a host,使用 IQN 从主机连接到 LUN>>。
+
+
+NOTE: 您可以从 System Manager 或 CLI 创建其他 LUN 。
+
+如果要在 AWS 中使用 CIFS 、则必须设置 DNS 和 Active Directory 。有关详细信息，请参见 link:reference_networking_aws.html["Cloud Volumes ONTAP for AWS 的网络要求"]。
+
+.步骤
+. 在工作环境页面上，双击要配置 FlexVol 卷的 Cloud Volumes ONTAP 系统的名称。
+. 在任何聚合或特定聚合上创建新卷：
++
+[cols="30,70"]
+|===
+| Action | 步骤 
+
+
+| 创建新卷并让云管理器选择包含的聚合 | 单击 * 添加新卷 * 。 
+
+
+| 在特定聚合上创建新卷  a| 
+.. 单击菜单图标，然后单击 * 高级 > 高级分配 * 。
+.. 单击聚合的菜单。
+.. 单击 * 创建卷 * 。
+
+
+|===
+. 输入新卷的详细信息，然后单击 * 继续 * 。
++
+本页中的某些字段是不言自明的。下表介绍了可能需要指导的字段：
+
++
+[cols="25,75"]
+|===
+| 字段 | Description 
+
+
+| Size | 您可以输入的最大大小在很大程度上取决于您是否启用精简配置、这样您就可以创建一个大于当前可用物理存储的卷。 
+
+
+| 访问控制（仅适用于 NFS ） | 导出策略定义子网中可以访问卷的客户端。默认情况下， Cloud Manager 会输入一个值、用于访问子网中的所有实例。 
+
+
+| 权限和用户 / 组（仅限 CIFS ） | 这些字段使您能够控制用户和组对共享的访问级别（也称为访问控制列表或 ACL ）。您可以指定本地或域 Windows 用户或组、 UNIX 用户或组。如果指定域 Windows 用户名，则必须使用 domain\username 格式包含用户的域。 
+
+
+| 快照策略 | Snapshot 副本策略指定自动创建的 NetApp Snapshot 副本的频率和数量。NetApp Snapshot 副本是一个时间点文件系统映像、对性能没有影响、并且只需要极少的存储。您可以选择默认策略或无。您可以为瞬态数据选择无：例如， Microsoft SQL Server 的 tempdb 。 
+
+
+| 高级选项（仅适用于 NFS ） | 为卷选择 NFS 版本： NFSv3 或 NFSv4 。 
+
+
+| 启动程序组和 IQN （仅适用于 iSCSI ） | iSCSI 存储目标称为 LUN （逻辑单元），并作为标准块设备提供给主机。启动程序组是包含 iSCSI 主机节点名称的表，用于控制哪些启动程序可以访问哪些 LUN 。iSCSI 目标通过标准以太网网络适配器（ NIC ），带软件启动程序的 TCP 卸载引擎（ TOE ）卡，融合网络适配器（ CNA ）或专用主机总线适配器（ HBA ）连接到网络，并通过 iSCSI 限定名称（ IQN ）进行标识。创建 iSCSI 卷时， Cloud Manager 会自动为您创建 LUN 。我们通过为每个卷仅创建一个 LUN 来简化此过程，因此无需进行管理。创建卷后， link:task_provisioning_storage.html#connecting-a-lun-to-a-host["使用 IQN 从主机连接到 LUN"]。 
+|===
+. 如果您选择了 CIFS 协议并且 CIFS 服务器尚未设置，请在创建 CIFS 服务器对话框中指定该服务器的详细信息，然后单击 * 保存并继续 * ：
++
+[cols="30,70"]
+|===
+| 字段 | Description 
+
+
+| DNS 主 IP 地址和次 IP 地址 | 为 CIFS 服务器提供名称解析的 DNS 服务器的 IP 地址。列出的 DNS 服务器必须包含为 CIFS 服务器将加入的域定位 Active Directory LDAP 服务器和域控制器所需的服务位置记录（服务位置记录）。 
+
+
+| 要加入的 Active Directory 域 | 您希望 CIFS 服务器加入的 Active Directory （ AD ）域的 FQDN 。 
+
+
+| 授权加入域的凭据 | 具有足够权限将计算机添加到 AD 域中指定组织单位 (OU) 的 Windows 帐户的名称和密码。 
+
+
+| CIFS server NetBIOS name | 在 AD 域中唯一的 CIFS 服务器名称。 
+
+
+| 组织单位  a| 
+AD 域中要与 CIFS 服务器关联的组织单元。默认值为 cn = computers 。
+
+** 要将 AWS 托管 Microsoft AD 配置为 Cloud Volumes ONTAP 的 AD 服务器，您应在此字段中输入 * OU=Computers ， OU=corp* 。
+** 要将 Azure AD 域服务配置为 Cloud Volumes ONTAP 的 AD 服务器，应在此字段中输入 * OU=ADDC Computers * 或 * OU=ADDC Users* 。https://docs.microsoft.com/en-us/azure/active-directory-domain-services/create-ou["Azure 文档：在 Azure AD 域服务托管域中创建组织单位（ OU ）"^]
+
+
+
+
+| DNS 域 | Cloud Volumes ONTAP Storage Virtual Machine （ SVM ）的 DNS 域。在大多数情况下，域与 AD 域相同。 
+
+
+| NTP 服务器 | 选择 * 使用 Active Directory 域 * 以使用 Active Directory DNS 配置 NTP 服务器。如果需要使用其他地址配置 NTP 服务器，则应使用 API 。请参见 link:api.html["Cloud Manager API 开发人员指南"^] 了解详细信息。 
+|===
+. 在使用情况配置文件，磁盘类型和分层策略页面上，选择是否要启用存储效率功能，选择磁盘类型，并根据需要编辑分层策略。
++
+有关帮助信息，请参阅以下内容：
+
++
+** link:task_planning_your_config.html#choosing-a-volume-usage-profile["了解卷使用情况配置文件"]
+** link:task_planning_your_config.html#sizing-your-system-in-aws["在 AWS 中估算系统规模"]
+** link:task_planning_your_config.html#sizing-your-system-in-azure["在 Azure 中估算系统规模"]
+** link:concept_data_tiering.html["数据分层概述"]
+
+
+. 单击 * 执行 * 。
+
+
+Cloud Volumes ONTAP 配置卷。
+
+如果配置了 CIFS 共享、请授予用户或组对文件和文件夹的权限、并验证这些用户是否可以访问该共享并创建文件。
+
+如果要对卷应用配额、则必须使用系统管理器或 CLI 。配额允许您限制或跟踪用户、组或 qtree 使用的磁盘空间和文件数量。
+
+
+
+== 在 HA 配置中的第二个节点上创建 FlexVol 卷
+
+默认情况下， Cloud Manager 会在 HA 配置中的第一个节点上创建卷。如果需要双活动配置（两个节点都将数据提供给客户端）、则必须在第二个节点上创建聚合和卷。
+
+.步骤
+. 在“工作环境”页面上，双击要管理聚合的 Cloud Volumes ONTAP 工作环境的名称。
+. 单击菜单图标，然后单击 * 高级 > 高级分配 * 。
+. 单击 * 添加聚合 * ，然后创建聚合。
+. 对于主节点，请在 HA 对中选择第二个节点。
+. Cloud Manager 创建聚合后，选择该聚合，然后单击 * 创建卷 * 。
+. 输入新卷的详细信息，然后单击 * 创建 * 。
+
+
+如果需要，您可以在此聚合上创建其他卷。
+
+
+IMPORTANT: 对于部署在多个 AWS 可用性区域中的 HA 对，您必须使用卷所在节点的浮动 IP 地址将卷挂载到客户端。
+
+
+
+== 创建聚合
+
+您可以自己创建聚合或让 Cloud Manager 在创建卷时为您执行此操作。自行创建聚合的优势在于，您可以选择底层磁盘大小，从而根据需要的容量或性能对聚合进行大小调整。
+
+.步骤
+. 在“工作环境”页面上，双击要管理聚合的 Cloud Volumes ONTAP 实例的名称。
+. 单击菜单图标，然后单击 * 高级 > 高级分配 * 。
+. 单击 * 添加聚合 * ，然后指定聚合的详细信息。
++
+有关磁盘类型和磁盘大小的帮助，请参见 link:task_planning_your_config.html["规划配置"]。
+
+. 单击 * 执行 * ，然后单击 * 批准和购买 * 。
+
+
+
+
+== 将 LUN 连接到主机
+
+创建 iSCSI 卷时， Cloud Manager 会自动为您创建 LUN 。我们通过为每个卷仅创建一个 LUN 来简化此过程，因此无需进行管理。创建卷后，请使用 IQN 从主机连接到 LUN 。
+
+请注意以下事项：
+
+. Cloud Manager 的自动容量管理不适用于 LUN 。当 Cloud Manager 创建 LUN 时，它会禁用自动增长功能。
+. 您可以从 System Manager 或 CLI 创建其他 LUN 。
+
+
+.步骤
+. 在“工作环境”页面上，双击要管理卷的 Cloud Volumes ONTAP 工作环境。
+. 选择一个卷，然后单击 * 目标 IQN* 。
+. 单击 * 复制 * 以复制 IQN 名称。
+. 设置从主机到 LUN 的 iSCSI 连接。
++
+** http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-iscsi-rhel-cg/GUID-15E8C226-BED5-46D0-BAED-379EA4311340.html["适用于 Red Hat Enterprise Linux 的 ONTAP 9 iSCSI 快速配置：启动与目标的 iSCSI 会话"^]
+** http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-iscsi-cpg/GUID-857453EC-90E9-4AB6-B543-83827CF374BF.html["适用于 Windows 的 ONTAP 9 iSCSI 快速配置：启动与目标的 iSCSI 会话"^]
+
+
+
+
+
+
+== 使用 FlexCache 卷加速数据访问
+
+FlexCache 卷是一种存储卷，用于缓存原始（或源）卷中的 NFS 读取数据。后续读取缓存的数据会加快对该数据的访问速度。
+
+您可以使用 FlexCache 卷加快数据访问速度，或者从访问量较多的卷卸载流量。FlexCache 卷有助于提高性能，尤其是在客户端需要重复访问相同数据时，因为可以直接提供数据，而无需访问原始卷。FlexCache 卷非常适合读取密集型系统工作负载。
+
+Cloud Manager 目前不提供 FlexCache 卷的管理，但您可以使用 ONTAP 命令行界面或 ONTAP 系统管理器创建和管理 FlexCache 卷：
+
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html["《 FlexCache 卷加快数据访问高级指南》"^]
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.onc-sm-help-960/GUID-07F4C213-076D-4FE8-A8E3-410F49498D49.html["在 System Manager 中创建 FlexCache 卷"^]
+
+
+从 3.7.2 版开始， Cloud Manager 将为所有新的 Cloud Volumes ONTAP 系统生成 FlexCache 许可证。此许可证包含 500 GB 的使用量限制。
+
+
+NOTE: 要生成许可证， Cloud Manager 需要访问 \https://ipa-signer.cloudmanager.netapp.com 。确保此 URL 可从防火墙访问。
+
+video::PBNPVRUeT1o[youtube, width=848,height=480]

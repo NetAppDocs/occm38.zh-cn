@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: reference_aws_marketplace.html 
+keywords: aws marketplace, marketplace pages, marketplace offerings, subscribe, subscribing 
+summary: AWS Marketplace for Cloud Manager 和 Cloud Volumes ONTAP 提供了多种产品。如果您不确定需要使用哪个页面，请阅读下面的内容，我们将根据您的目标引导您转到正确的页面。 
+---
+= 适用于 Cloud Manager 和 Cloud Volumes ONTAP 的 AWS Marketplace 页面
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+AWS Marketplace for Cloud Manager 和 Cloud Volumes ONTAP 提供了多种产品。如果需要了解每个页面的用途方面的帮助，请阅读以下说明。
+
+在所有情况下，请记住，您不能从 AWS Marketplace 在 AWS 中启动 Cloud Volumes ONTAP 。您需要直接从 Cloud Manager 启动它。
+
+[cols="34,33,33"]
+|===
+| 目标 | 要使用的 AWS Marketplace 页面 | 更多信息 
+
+
+| 支持使用 Cloud Volumes ONTAP PAYGO ，云分层，云合规性和其他附加服务 | https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Cloud Manager —部署和管理 NetApp 云数据服务"^] | 通过此订阅，可以为 Cloud Volumes ONTAP 9.6 及更高版本的 PAYGO 版本收取费用。它还支持为 Cloud Tiering ， Cloud Compliance 和其他附加服务收费。当 Cloud Manager 提示您并将您重定向到页面时，您应订阅此服务。Cloud Manager 会在 " 工作环境 " 向导中或在 " 设置 " 中添加新凭据时提示您。此页面无法在 AWS 中启动 Cloud Manager 。此操作应通过完成 https://cloud.netapp.com["NetApp Cloud Central"^]或使用此表第 3 行列出的 AMI 。 
+
+
+| 使用年度合同 _ 使用 Cloud Volumes ONTAP PAYGO ，云分层，云合规性和其他附加服务 | https://aws.amazon.com/marketplace/pp/B086PDWSS8["Cloud Manager （合同）—部署和管理 NetApp 云数据服务"^] | 此订阅是第一行中订阅的替代方案。您可以通过它获得商品的年度预付款。主要面向 NetApp 合作伙伴。 
+
+
+| 使用 AMI 从 AWS Marketplace 部署 Cloud Manager | https://aws.amazon.com/marketplace/pp/B018REK8QG["Cloud Manager —不使用访问密钥手动安装"^] | 我们建议您从中启动 AWS 中的 Cloud Manager https://cloud.netapp.com["NetApp Cloud Central"^]，但您可以根据需要从此 AWS Marketplace 页面启动它。 
+
+
+| 启用 Cloud Volumes ONTAP PAYGO （ 9.5 或更早版本）的部署  a| 
+* https://aws.amazon.com/marketplace/pp/B011KEZ734["适用于 AWS 的 Cloud Volumes ONTAP"^]
+* https://aws.amazon.com/marketplace/pp/B01H4LVJ84["适用于 AWS 的 Cloud Volumes ONTAP —高可用性"^]
+
+| 您可以通过这些 AWS Marketplace 页面订阅 Cloud Volumes ONTAP PAYGO 9.5 及更早版本的单节点或 HA 版本。从 9.6 版开始，您需要通过此表第 1 行列出的 AWS Marketplace 页面为 PAYGO 部署订阅。 
+|===

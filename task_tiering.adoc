@@ -1,0 +1,207 @@
+---
+sidebar: sidebar 
+permalink: task_tiering.html 
+keywords: tier, tiering, cold data, hot data, storage tiering, data tiering, S3 tiering, fabricpool, fabric pool, s3 endpoint, endpoint, connection, performance tier, capacity tier, object store, azure tiering, blob tiering, azure blob, container, inactive, gcp, tiering in gcp, tiering requirements 
+summary: 通过将热数据的 SSD 或 HDD 性能层与非活动数据的对象存储容量层相结合，您可以降低 Cloud Volumes ONTAP 的存储成本。 
+---
+= 将非活动数据分层到低成本对象存储
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+通过将热数据的 SSD 或 HDD 性能层与非活动数据的对象存储容量层相结合，您可以降低 Cloud Volumes ONTAP 的存储成本。有关简要概述，请参见 link:concept_data_tiering.html["数据分层概述"]。
+
+要设置数据分层、您只需执行以下操作：
+
+
+
+==== 选择支持的配置
+
+[role="quick-margin-para"]
+支持大多数配置。如果您的 Cloud Volumes ONTAP 标准版，高级版或 BYOL 系统运行的是最新版本，则最好继续操作。 link:task_tiering.html#configurations-that-support-data-tiering["了解更多信息。"]。
+
+
+
+==== 确保 Cloud Volumes ONTAP 与对象存储之间的连接
+
+* 对于 AWS ， S3 需要一个 VPC 端点。 <<Requirements to tier cold data to AWS S3,了解更多信息。>>。
+* 对于 Azure ，只要 Cloud Manager 具有所需权限，您就无需执行任何操作。 <<Requirements to tier cold data to Azure Blob storage,了解更多信息。>>。
+* 对于 GCP ，您需要为 Private Google Access 配置子网并设置服务帐户。 <<Requirements to tier cold data to a Google Cloud Storage bucket,了解更多信息。>>。
+
+
+
+
+==== 创建，修改或复制卷时，请选择分层策略
+
+[role="quick-margin-para"]
+在创建，修改或复制卷时， Cloud Manager 会提示您选择分层策略。
+
+* link:task_tiering.html#tiering-data-from-read-write-volumes["对读写卷上的数据进行分层"]
+* link:task_tiering.html#tiering-data-from-data-protection-volumes["分层数据保护卷上的数据"]
+
+
+[NOTE]
+.数据分层不需要什么？
+====
+* 您无需安装功能许可证即可启用数据分层。
+* 您无需创建容量层（ S3 存储分段， Azure Blob 容器或 GCP 存储分段）。云管理器可以为您提供这种功能。
+
+
+====
+
+
+== 支持数据分层的配置
+
+您可以在使用特定配置和功能时启用数据分层：
+
+* Cloud Volumes ONTAP 标准版，高级版和 BYOL 支持数据分层，从以下版本开始：
++
+** AWS 中的 9.2 版
+** 采用单节点系统的 Azure 中的 9.4 版
+** 使用 HA 对的 Azure 中的 9.6 版
+** GCP 中的 9.6 版
++
+
+NOTE: 采用 DS3_v2 虚拟机类型的 Azure 不支持数据分层。
+
+
+
+* 在 AWS 中，性能层可以是通用 SSD 、配置的 IOPS SSD 或吞吐量优化 HDD 。
+* 在 Azure 中，性能层可以是高级 SSD 受管磁盘，标准 SSD 受管磁盘或标准 HDD 受管磁盘。
+* 在 GCP 中，性能层可以是 SSD 或 HDD （标准磁盘）。
+* 加密技术支持数据分层。
+* 必须在卷上启用精简配置。
+
+
+
+
+== 将冷数据分层到 AWS S3 的要求
+
+确保 Cloud Volumes ONTAP 已连接到 S3 。提供该连接的最佳方法是创建到 S3 服务的 VPC 端点。有关说明，请参见 https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-gateway.html#create-gateway-endpoint["AWS 文档：创建网关端点"^]。
+
+创建 VPC 端点时，请确保选择与 Cloud Volumes ONTAP 实例对应的区域、 VPC 和路由表。您还必须修改安全组才能添加出站 HTTPS 规则、该规则允许通信到 S3 端点。否则， Cloud Volumes ONTAP 无法连接到 S3 服务。
+
+如果遇到任何问题，请参见 https://aws.amazon.com/premiumsupport/knowledge-center/connect-s3-vpc-endpoint/["AWS 支持知识中心：为什么我无法使用网关 VPC 端点连接到 S3 存储分段？"^]。
+
+
+
+== 将冷数据分层到 Azure Blob 存储的要求
+
+只要 Cloud Manager 具有所需权限，您就无需在性能层和容量层之间设置连接。如果 Cloud Manager 策略具有以下权限，则 Cloud Manager 将为您启用 vNet 服务端点：
+
+[source, json]
+----
+"Microsoft.Network/virtualNetworks/subnets/write",
+"Microsoft.Network/routeTables/join/action",
+----
+权限包含在最新版本中 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 策略"]。
+
+
+
+== 将冷数据分层到 Google Cloud 存储分段的要求
+
+* 必须为 Cloud Volumes ONTAP 所在的子网配置专用 Google 访问。有关说明，请参见 https://cloud.google.com/vpc/docs/configure-private-google-access["Google Cloud 文档：配置私有 Google Access"^]。
+* 您需要具有预定义的存储管理员角色的服务帐户。创建 Cloud Volumes ONTAP 工作环境时，您需要选择此服务帐户。
++
+https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["按如下所示设置此分层服务帐户"^]：
+
++
+.. 将预定义的 _Storage Admin_ 角色分配给分层服务帐户。
+.. 将 Connector 服务帐户作为 _Service Account User_ 添加到分层服务帐户。
++
+您可以提供用户角色 https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["在创建分层服务帐户时，请执行向导的第 3 步"]或。
+
++
+稍后在创建 Cloud Volumes ONTAP 工作环境时，您需要选择分层服务帐户。
+
++
+如果在创建 Cloud Volumes ONTAP 系统时未启用数据分层并选择服务帐户，则需要关闭系统并从 GCP 控制台将服务帐户添加到 Cloud Volumes ONTAP 。
+
+
+
+
+
+
+
+== 对读写卷中的数据进行分层
+
+Cloud Volumes ONTAP 可以将读写卷上的非活动数据分层到经济高效的对象存储中，从而腾出性能层来存储热数据。
+
+.步骤
+. 在工作环境中、创建新卷或更改现有卷的层：
++
+[cols="30,70"]
+|===
+| 任务 | Action 
+
+
+| 创建新卷 | 单击 * 添加新卷 * 。 
+
+
+| 修改现有卷 | 选择卷并单击 * 更改磁盘类型和分层策略 * 。 
+|===
+. 选择分层策略。
++
+有关这些策略的问题描述，请参见 link:concept_data_tiering.html["数据分层概述"]。
+
++
+* 示例 *
+
++
+image:screenshot_tiered_storage.gif["屏幕快照，显示了启用对对象存储分层的图标。"]
+
++
+如果启用数据分层的聚合尚未存在，则 Cloud Manager 会为该卷创建一个新聚合。
+
++
+
+TIP: 如果您希望自己创建聚合、则可以在创建聚合时对聚合启用数据分层。
+
+
+
+
+
+== 对数据保护卷中的数据进行分层
+
+Cloud Volumes ONTAP 可以将数据从数据保护卷分层到容量层。如果激活目标卷、则数据将在读取时逐渐移动到性能层。
+
+.步骤
+. 在 " 工作环境 " 页上、选择包含源卷的工作环境、然后将其拖到要将卷复制到的工作环境中。
+. 按照提示操作、直至到达分层页面并启用到对象存储的数据分层。
++
+* 示例 *
+
++
+image:screenshot_replication_tiering.gif["复制卷时显示 S3 分层选项的屏幕快照。"]
+
++
+有关复制数据的帮助，请参见 link:task_replicating_data.html["将数据复制到云中或从云中复制数据"]。
+
+
+
+
+
+== 更改分层数据的存储类
+
+部署 Cloud Volumes ONTAP 后，您可以通过更改 30 天内未访问的非活动数据的存储类来降低存储成本。如果您确实访问数据，访问成本会更高，因此在更改存储类之前，必须考虑到这一点。
+
+分层数据的存储类在系统范围内—不是每个卷的 ​it 。
+
+有关支持的存储类的信息，请参见 link:concept_data_tiering.html["数据分层概述"]。
+
+.步骤
+. 在工作环境中，单击菜单图标，然后单击 * 存储类 * 或 * Blob 存储分层 * 。
+. 选择一个存储类，然后单击 * 保存 * 。
+
+
+
+
+== 是否可以在现有聚合上启用数据分层？
+
+不可以，您无法在现有聚合上启用数据分层。您只能对新聚合启用数据分层。
+
+您也可以在新聚合上启用数据分层 link:task_provisioning_storage.html#creating-aggregates["自行创建聚合"] 或 <<Tiering data from read-write volumes,创建启用了数据分层的新卷>>。如果启用了数据分层的聚合尚不存在，则 Cloud Manager 将为卷创建新聚合。

@@ -1,0 +1,278 @@
+---
+sidebar: sidebar 
+permalink: task_adding_azure_accounts.html 
+keywords: permissions, microsoft, azure, permissions, custom role, role, json, active directory, ad, service principal, key, tenant id, application key, application id, operator role, managed identity, iam, operator, role, virtual machine 
+summary: 创建 Cloud Volumes ONTAP 系统时，您需要选择要用于该系统的 Azure 凭据和 Marketplace 订阅。如果您管理多个 Azure Marketplace 订阅，则可以从 " 凭据 " 页面将其中每个订阅分配给不同的 Azure 凭据。 
+---
+= 管理 Cloud Manager 的 Azure 凭据和订阅
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+创建 Cloud Volumes ONTAP 系统时，您需要选择要用于该系统的 Azure 凭据和 Marketplace 订阅。如果您管理多个 Azure Marketplace 订阅，则可以从 " 凭据 " 页面将其中每个订阅分配给不同的 Azure 凭据。
+
+在 Cloud Manager 中管理 Azure 凭据的方法有两种。首先，如果要在不同的 Azure 帐户中部署 Cloud Volumes ONTAP ，则需要提供所需权限并将凭据添加到 Cloud Manager 。第二种方法是将其他订阅与 Azure 托管身份关联。
+
+
+NOTE: 从 Cloud Manager 部署 Connector 时， Cloud Manager 会自动添加部署此 Connector 的 Azure 帐户。如果在现有系统上手动安装 Connector 软件，则不会添加初始帐户。 link:concept_accounts_azure.html["了解 Azure 帐户和权限"]。
+
+
+
+== 使用服务主体授予 Azure 权限
+
+Cloud Manager 需要权限才能在 Azure 中执行操作。您可以通过在 Azure Active Directory 中创建和设置服务主体以及获取 Cloud Manager 所需的 Azure 凭据来为 Azure 帐户授予所需权限。
+
+下图描述了 Cloud Manager 如何获得在 Azure 中执行操作的权限。与一个或多个 Azure 订阅绑定的服务主体对象表示 Azure Active Directory 中的 Cloud Manager 并分配给允许所需权限的自定义角色。
+
+image:diagram_azure_authentication.png["概念映像，显示云管理器在进行 API 调用之前从 Azure Active Directory 获取身份验证和授权。在 Active Directory 中， Cloud Manager 操作员角色定义权限。它与一个或多个 Azure 订阅以及一个表示 Cloud Manger 应用程序的服务主体对象相关联。"]
+
+.步骤
+. <<Creating an Azure Active Directory application,创建 Azure Active Directory 应用程序>>。
+. <<Assigning the application to a role,将应用程序分配给角色>>。
+. <<Adding Windows Azure Service Management API permissions,添加 Windows Azure 服务管理 API 权限>>。
+. <<Getting the application ID and directory ID,获取应用程序 ID 和目录 ID>>。
+. <<Creating a client secret,创建客户端密钥>>。
+
+
+
+
+=== 创建 Azure Active Directory 应用程序
+
+创建一个 Azure Active Directory （ AD ）应用程序和服务主体， Cloud Manager 可使用该应用程序和服务主体进行基于角色的访问控制。
+
+要创建 Active Directory 应用程序并将此应用程序分配给角色，您必须在 Azure 中拥有适当的权限。有关详细信息，请参见 https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#required-permissions/["Microsoft Azure 文档：所需权限"^]。
+
+.步骤
+. 从 Azure 门户中，打开 * Azure Active Directory* 服务。
++
+image:screenshot_azure_ad.gif["显示了 Microsoft Azure 中的 Active Directory 服务。"]
+
+. 在菜单中，单击 * 应用程序注册 * 。
+. 单击 * 新建注册 * 。
+. 指定有关应用程序的详细信息：
++
+** * 名称 * ：输入应用程序的名称。
+** * 帐户类型 * ：选择帐户类型（任何将适用于 Cloud Manager ）。
+** * 重定向 URI* ：选择 * 网络 * ，然后输入任何 URL ，例如 \https://url
+
+
+. 单击 * 注册 * 。
+
+
+您已创建 AD 应用程序和服务主体。
+
+
+
+=== 将应用程序分配给角色
+
+您必须将服务主体绑定到一个或多个 OnCommand 订阅，并为其分配自定义 "Cloud Manager 操作员 " 角色，以便 管理器在 Azure 中具有权限。
+
+.步骤
+. 创建自定义角色：
++
+.. 下载 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager Azure 策略"^]。
+.. 通过将 Azure 订阅 ID 添加到可分配范围来修改 JSON 文件。
++
+您应该为每个 Azure 订阅添加 ID 、用户将从中创建 Cloud Volumes ONTAP 系统。
+
++
+* 示例 *
+
++
+[source, json]
+----
+"AssignableScopes": [
+"/subscriptions/d333af45-0d07-4154-943d-c25fbzzzzzzz",
+"/subscriptions/54b91999-b3e6-4599-908e-416e0zzzzzzz",
+"/subscriptions/398e471c-3b42-4ae7-9b59-ce5bbzzzzzzz"
+----
+.. 使用 JSON 文件在 Azure 中创建自定义角色。
++
+以下示例说明了如何使用 Azure CLI 2.0 创建自定义角色：
+
++
+`AZ role definition create -role-definition C ： \Policy_for_cloud Manager_Azure_3.8.7.json`
+
++
+现在，您应具有一个名为 _Cloud Manager Operator_ 的自定义角色。
+
+
+
+. 将应用程序分配给角色：
++
+.. 从 Azure 门户中，打开 * 订阅 * 服务。
+.. 选择订阅。
+.. 单击 * 访问控制（ IAM ） > 添加 > 添加角色分配 * 。
+.. 选择 * Cloud Manager Operator* 角色。
+.. 保持选择 * Azure AD 用户，组或服务主体 * 。
+.. 搜索应用程序的名称（滚动无法在列表中找到）。
++
+image:screenshot_azure_service_principal_role.gif["显示 Azure 门户中的添加角色分配表单的屏幕截图。"]
+
+.. 选择应用程序并单击 * 保存 * 。
++
+Cloud Manager 的服务主体现在具有该订阅所需的 Azure 权限。
+
++
+如果要从多个 Azure 订阅部署 Cloud Volumes ONTAP ，则必须将服务主体绑定到每个订阅。使用 Cloud Manager ，您可以选择部署 Cloud Volumes ONTAP 时要使用的订阅。
+
+
+
+
+
+
+
+=== 添加 Windows Azure 服务管理 API 权限
+
+服务主体必须具有 "Windows Azure 服务管理 API" 权限。
+
+.步骤
+. 在 * Azure Active Directory* 服务中，单击 * 应用程序注册 * 并选择应用程序。
+. 单击 * API 权限 > 添加权限 * 。
+. 在 * Microsoft APIs* 下，选择 * Azure Service Management* 。
++
+image:screenshot_azure_service_mgmt_apis.gif["Azure 门户的屏幕截图，其中显示了 Azure 服务管理 API 权限。"]
+
+. 单击 * 以组织用户身份访问 Azure 服务管理 * ，然后单击 * 添加权限 * 。
++
+image:screenshot_azure_service_mgmt_apis_add.gif["Azure 门户的屏幕截图，显示如何添加 Azure 服务管理 API 。"]
+
+
+
+
+
+=== 获取应用程序 ID 和目录 ID
+
+将 Azure 帐户添加到 Cloud Manager 时，您需要提供应用程序（客户端） ID 和目录（租户） ID 。Cloud Manager 使用 ID 以编程方式登录。
+
+.步骤
+. 在 * Azure Active Directory* 服务中，单击 * 应用程序注册 * 并选择应用程序。
+. 复制 * 应用程序（客户端） ID* 和 * 目录（租户） ID* 。
++
+image:screenshot_azure_app_ids.gif["显示 Azure Active Directory 中某个应用程序的应用程序（客户端） ID 和目录（租户） ID 的屏幕截图。"]
+
+
+
+
+
+=== 创建客户端密钥
+
+您需要创建客户端密钥，然后向 Cloud Manager 提供该密钥的值，以便 Cloud Manager 可以使用它向 Azure AD 进行身份验证。
+
+
+NOTE: 将帐户添加到 Cloud Manager 时， Cloud Manager 会将客户端密钥称为应用程序密钥。
+
+.步骤
+. 打开 * Azure Active Directory* 服务。
+. 单击 * 应用程序注册 * 并选择您的应用程序。
+. 单击 * 证书和密码 > 新客户端密钥 * 。
+. 提供密钥和持续时间的问题描述。
+. 单击 * 添加 * 。
+. 复制客户端密钥的值。
++
+image:screenshot_azure_client_secret.gif["Azure 门户的屏幕截图，其中显示了 Azure AD 服务主体的客户端密钥。"]
+
+
+
+此时，您的服务主体已设置完毕，您应已复制应用程序（客户端） ID ，目录（租户） ID 和客户端密钥值。添加 Azure 帐户时，您需要在 Cloud Manager 中输入此信息。
+
+
+
+== 将 Azure 凭据添加到 Cloud Manager
+
+在为 Azure 帐户提供所需权限后，您可以将该帐户的凭据添加到 Cloud Manager 中。这样，您就可以在该帐户中启动 Cloud Volumes ONTAP 系统。
+
+您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
+
+.步骤
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * 凭据 * 。
++
+image:screenshot_settings_icon.gif["一个屏幕截图，显示 Cloud Manager 控制台右上角的设置图标。"]
+
+. 单击 * 添加凭据 * 并选择 * Microsoft Azure* 。
+. 输入有关授予所需权限的 Azure Active Directory 服务主体的信息：
++
+** 应用程序（客户端） ID ：请参见 <<Getting the application ID and directory ID>>。
+** 目录（租户） ID ：请参见 <<Getting the application ID and directory ID>>。
+** 客户端密钥：请参见 <<Creating a client secret>>。
+
+
+. 确认已满足策略要求，然后单击 * 继续 * 。
+. 选择要与凭据关联的 " 按需购买 " 订阅，如果尚未订阅，请单击 * 添加订阅 * 。
++
+要创建按需购买 Cloud Volumes ONTAP 系统， Azure 凭据必须与 Azure Marketplace 中的 Cloud Volumes ONTAP 订阅相关联。
+
+. 单击 * 添加 * 。
+
+
+现在，您可以从 " 详细信息和凭据 " 页面切换到不同的凭据集 link:task_deploying_otc_azure.html["创建新的工作环境时"]：
+
+image:screenshot_accounts_switch_azure.gif["一个屏幕截图，显示在单击 Details &amp ； Credentials 页面中的 Edit Credentials 后在凭据之间进行选择的情况。"]
+
+
+
+== 将 Azure Marketplace 订阅与凭据关联
+
+将 Azure 凭据添加到 Cloud Manager 后，您可以将 Azure Marketplace 订阅与这些凭据相关联。通过订阅，您可以创建按需购买的 Cloud Volumes ONTAP 系统并使用其他 NetApp 云服务。
+
+在以下两种情况下，您可能会在将凭据添加到 Cloud Manager 后关联 Azure Marketplace 订阅：
+
+* 最初将凭据添加到 Cloud Manager 时，您未关联订阅。
+* 您希望将现有 Azure Marketplace 订阅替换为新订阅。
+
+
+您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
+
+.步骤
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * 凭据 * 。
+. 将鼠标悬停在一组凭据上，然后单击操作菜单。
+. 从菜单中，单击 * 关联订阅 * 。
++
+image:screenshot_azure_add_subscription.gif["\" 凭据 \" 页面的屏幕截图，您可以从菜单中为 Azure 凭据添加订阅。"]
+
+. 从下拉列表中选择订阅或单击 * 添加订阅 * ，然后按照步骤创建新订阅。
++
+以下视频从工作环境向导的上下文中启动，但在您单击 * 添加订阅 * 后显示相同的工作流：
+
++
+video::video_subscribing_azure.mp4[width=848,height=480]
+
+
+
+
+== 将其他 Azure 订阅与受管身份关联
+
+通过 Cloud Manager ，您可以选择要在其中部署 Cloud Volumes ONTAP 的 Azure 凭据和 Azure 订阅。除非关联，否则您无法为托管身份配置文件选择其他 Azure 订阅 https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview["托管身份"^] 这些订阅。
+
+托管身份为 link:concept_accounts_azure.html["初始 Azure 帐户"] 从 Cloud Manager 部署 Connector 时。部署 Connector 时， Cloud Manager 会创建 Cloud Manager 操作员角色并将其分配给 Connector 虚拟机。
+
+.步骤
+. 登录 Azure 门户。
+. 打开 * 订阅 * 服务，然后选择要部署 Cloud Volumes ONTAP 的订阅。
+. 单击 * 访问控制（ IAM ） * 。
++
+.. 单击 * 添加 * > * 添加角色分配 * ，然后添加权限：
++
+*** 选择 * Cloud Manager Operator* 角色。
++
+
+NOTE: Cloud Manager Operator 是中提供的默认名称 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 策略"]。如果您为角色选择了其他名称，请选择该名称。
+
+*** 分配对 * 虚拟机 * 的访问权限。
+*** 选择创建 Connector 虚拟机的订阅。
+*** 选择 Connector 虚拟机。
+*** 单击 * 保存 * 。
+
+
+
+
+. 对其他订阅重复这些步骤。
+
+
+创建新的工作环境时，您现在应该能够为托管身份配置文件从多个 Azure 订阅中进行选择。
+
+image:screenshot_accounts_switch_azure_subscription.gif["屏幕截图显示了在选择 Microsoft Azure Provider 帐户时可以选择多个 Azure 订阅的功能。"]

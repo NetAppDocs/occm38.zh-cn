@@ -1,0 +1,75 @@
+---
+sidebar: sidebar 
+permalink: concept_cvs_gcp.html 
+keywords: cloud volumes service for gcp, google cloud, cloud volumes, cloud volumes service subscription 
+summary: 借助适用于 Google Cloud 的 NetApp Cloud Volumes Service ，您可以快速添加多协议工作负载，以及构建和部署基于 Windows 和基于 UNIX 的应用程序。 
+---
+= 了解适用于 Google Cloud 的 Cloud Volumes Service
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+借助适用于 Google Cloud 的 NetApp Cloud Volumes Service ，您可以快速添加多协议工作负载，以及构建和部署基于 Windows 和基于 UNIX 的应用程序。
+
+
+
+== 主要功能：
+
+* 在内部部署和 Google Cloud 之间迁移数据。
+* 只需几秒钟即可配置 1 到 100 TiB 的卷。
+* 多协议支持（您可以创建 NFS 或 SMB 卷）。
+* 利用高效的自动化快照保护数据。
+* 通过快速克隆加快应用程序开发速度。
+
+
+
+
+== 成本
+
+Cloud Volumes Service for Google Cloud 创建的卷将计入您的服务订阅费用，而不是通过 Cloud Manager 收取费用。
+
+link:https://console.cloud.google.com/marketplace/product/endpoints/cloudvolumesgcp-api.netapp.com?q=cloud%20volumes%20service["查看定价"^]
+
+从 Cloud Manager 发现适用于 Google Cloud 的 Cloud Volumes Service 区域或卷不收取任何费用。
+
+
+
+== 支持的区域
+
+link:https://cloud.google.com/solutions/partners/netapp-cloud-volumes/regional-availability["查看支持的 Google Cloud 区域"^]
+
+
+
+== 开始之前
+
+Cloud Manager 可以发现现有的 Cloud Volumes Service for GCP 订阅和卷。请参见 https://cloud.google.com/solutions/partners/netapp-cloud-volumes/["NetApp Cloud Volumes Service for Google Cloud 文档"^] 如果您尚未设置订阅。
+
+
+
+== 获取帮助
+
+有关 Cloud Manager 中 Cloud Volumes Service 操作的一般问题，请使用 Cloud Manager 聊天工具。
+
+有关适用于 Google Cloud 的 Cloud Volumes Service 的一般问题，请发送电子邮件至 NetApp 的 Google Cloud 团队： gcinfo@netapp.com 。
+
+对于与云卷相关的技术问题，您可以从 Google Cloud Console 创建技术支持案例。请参见 link:https://cloud.google.com/solutions/partners/netapp-cloud-volumes/support["获取支持"^] 了解详细信息。
+
+
+
+== 限制
+
+* 使用 Cloud Volumes Service 卷时， Cloud Manager 不支持在工作环境之间进行数据复制。
+* 不支持从 Cloud Manager 中删除 Cloud Volumes Service for Google Cloud 订阅。您只能通过 Google Cloud Console 执行此操作。
+
+
+
+
+== 相关链接
+
+* https://cloud.netapp.com/cloud-volumes-service-for-gcp["NetApp Cloud Central ：适用于 Google Cloud 的 Cloud Volumes Service"^]
+* https://cloud.google.com/solutions/partners/netapp-cloud-volumes/["NetApp Cloud Volumes Service for Google Cloud 文档"^]
+

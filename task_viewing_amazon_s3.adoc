@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: task_viewing_amazon_s3.html 
+keywords: s3 buckets, s3 storage, s3 working environment, amazon s3 buckets, amazon s3 working environment 
+summary: 在 AWS 中安装 Connector 后， Cloud Manager 可以自动发现有关安装该连接器的 AWS 帐户中的 Amazon S3 存储分段的信息。 
+---
+= 查看 Amazon S3 存储分段
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在 AWS 中安装 Connector 后， Cloud Manager 可以自动发现有关安装该连接器的 AWS 帐户中的 Amazon S3 存储分段的信息。
+
+您可以查看有关 S3 存储分段的详细信息，包括区域，访问级别，存储类以及存储分段是与 Cloud Volumes ONTAP 结合使用进行备份还是数据分层。您可以使用 Cloud Compliance 扫描 S3 存储分段。
+
+.步骤
+. link:task_creating_connectors_aws.html["安装连接器"] 在要查看 Amazon S3 存储分段的 AWS 帐户中。
++
+之后不久，您将自动看到 Amazon S3 工作环境。
+
++
+image:screenshot_s3_we.gif["Amazon S3 工作环境的屏幕截图。"]
+
+. 单击工作环境，然后从右窗格中选择一项操作。
++
+image:screenshot_s3_actions.gif["选择 Amazon S3 工作环境后显示操作窗格的屏幕截图。此窗格显示有关 S3 的信息：分段和区域的数量。此窗格还包含两个操作：启用合规性和查看分段。"]
+
+. 单击 * 启用合规性 * 以扫描 S3 存储分段中的个人数据和敏感数据。
++
+有关详细信息，请参见 link:task_scanning_s3.html["Amazon S3 云合规性入门"]。
+
+. 单击 * 查看分段 * 可查看 AWS 帐户中 S3 分段的详细信息。
++
+image:screenshot_amazon_s3.gif["显示 Amazon S3 工作环境详细信息的屏幕截图：存储分段总数和区域总数，具有活动服务的存储分段数量，以及显示每个 S3 存储分段详细信息的表。"]
+
+

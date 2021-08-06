@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: task_setting_up_ontap_cloud.html 
+keywords: set up, setting up, ntp, time, synch, autosupport, asup, ems, lif, svm, backup, configuration files, config, snapcenter, snapdrive, ntp server, svm management lif, management lif 
+summary: 部署 Cloud Volumes ONTAP 后、您可以通过使用 NTP 同步系统时间以及从系统管理器或 CLI 执行几项可选任务来对其进行设置。 
+---
+= 设置 Cloud Volumes ONTAP
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+部署 Cloud Volumes ONTAP 后、您可以通过使用 NTP 同步系统时间以及从系统管理器或 CLI 执行几项可选任务来对其进行设置。
+
+[cols="30,70"]
+|===
+| 任务 | Description 
+
+
+| 使用 NTP 同步系统时间  a| 
+指定 NTP 服务器可同步网络中各个系统之间的时间，这有助于防止因时间差异而出现问题。
+
+在设置 CIFS 服务器时，使用 Cloud Manager API 或从用户界面指定 NTP 服务器。
+
+* link:task_managing_storage.html#modifying-the-cifs-server["修改 CIFS 服务器"]
+* link:api.html["Cloud Manager API 开发人员指南"^]
+
+
+例如，下面是 AWS 中单节点系统的 API ：
+
+image:screenshot_ntp_server_api.gif["Swagger 界面的屏幕截图，其中显示了 NTP API 调用。"]
+
+
+
+| 可选：配置 AutoSupport | AutoSupport 会主动监控系统的运行状况，并在默认情况下自动将消息发送给 NetApp 技术支持。如果帐户管理员在启动实例之前向 Cloud Manager 添加了代理服务器，则 Cloud Volumes ONTAP 会配置为使用该代理服务器处理 AutoSupport 消息。您应该测试 AutoSupport 以确保它可以发送消息。有关说明，请参见 System Manager 帮助或 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["《 ONTAP 9 系统管理参考》"^]。 
+
+
+| 可选：将 Cloud Manager 配置为 AutoSupport 代理  a| 
+如果您的环境需要代理服务器来发送 AutoSupport 消息，则可以将 Cloud Manager 配置为充当代理。除了 Internet 访问之外，不需要为 Cloud Manager 进行任何配置。您只需转到 Cloud Volumes ONTAP 的命令行界面并运行以下命令：
+
+....
+system node autosupport modify -proxy-url <cloud-manager-ip-address>
+....
+
+
+| 可选：配置 EMS | 事件管理系统 (EMS) 收集并显示有关在 Cloud Volumes ONTAP 系统上发生的事件的信息。要接收事件通知、您可以为特定事件严重性设置事件目标（电子邮件地址、 SNMP 陷阱主机或系统日志服务器）和事件路由。您可以使用 CLI 配置 EMS 。有关说明，请参见 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-ems/home.html["《 ONTAP 9 EMS 配置快速指南》"^]。 
+
+
+| 可选：为多个 AWS 可用性区域中的 HA 系统创建 SVM 管理网络接口（ LIF ）  a| 
+如果要将 SnapCenter 或 SnapDrive for Windows 与 HA 对一起使用、则需要存储虚拟机（ SVM ）管理网络接口（ LIF ）。在多个 AWS 可用性区域之间使用 HA 对时， SVM 管理 LIF 必须使用 _float_ IP 地址。
+
+启动 HA 对时， Cloud Manager 会提示您指定浮动 IP 地址。如果未指定 IP 地址、则可以通过 System Manager 或 CLI 自行创建 SVM 管理 LIF 。以下示例说明了如何从 CLI 创建 LIF ：
+
+....
+network interface create -vserver svm_cloud -lif svm_mgmt -role data -data-protocol none -home-node cloud-01 -home-port e0a -address 10.0.2.126 -netmask 255.255.255.0 -status-admin up -firewall-policy mgmt
+....
+
+
+| 可选：更改配置文件的备份位置 | Cloud Volumes ONTAP 会自动创建配置备份文件、其中包含有关其正常运行所需的可配置选项的信息。默认情况下， Cloud Volumes ONTAP 每八小时将文件备份到 Connector 主机。如果要将备份发送到备用位置、可以将位置更改为数据中心或 AWS 中的 FTP 或 HTTP 服务器。例如，您可能已经拥有 FAS 存储系统的备份位置。您可以使用 CLI 更改备份位置。请参见 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["《 ONTAP 9 系统管理参考》"^]。 
+|===

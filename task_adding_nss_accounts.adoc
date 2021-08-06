@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: task_adding_nss_accounts.html 
+keywords: adding, creating, netapp support site account, nss 
+summary: 要部署 BYOL 系统，需要将 NetApp 支持站点帐户添加到 Cloud Manager 。此外，还需要注册按需购买系统并升级 ONTAP 软件。 
+---
+= 将 NetApp 支持站点帐户添加到 Cloud Manager
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+要部署 BYOL 系统，需要将 NetApp 支持站点帐户添加到 Cloud Manager 。此外，还需要注册按需购买系统并升级 ONTAP 软件。
+
+观看以下视频，了解如何将 NetApp 支持站点帐户添加到 Cloud Manager 。或向下滚动以阅读步骤。
+
+video::V2fLTyztqYQ[youtube, width=848,height=480]
+您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
+
+.步骤
+. 如果您还没有 NetApp 支持站点帐户， http://now.netapp.com/newuser/["注册一个"^]。
+. 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * 凭据 * 。
++
+image:screenshot_settings_icon.gif["一个屏幕截图，显示 Cloud Manager 控制台右上角的设置图标。"]
+
+. 单击 * 添加凭据 * 并选择 * NetApp 支持站点 * 。
+. 指定帐户的名称，然后输入用户名和密码。
++
+** 此帐户必须是客户级别的帐户（而不是来宾或临时帐户）。
+** 如果您计划部署 BYOL 系统：
++
+*** 帐户必须获得访问 BYOL 系统序列号的授权。
+*** 如果您购买了安全的 BYOL 订阅，则需要安全的 NSS 帐户。
+
+
+
+
+. 单击 * 创建帐户。 *
+
+
+现在，用户可以在创建新 Cloud Volumes ONTAP 系统和注册现有系统时选择帐户。
+
+* link:task_deploying_otc_aws.html["在 AWS 中启动 Cloud Volumes ONTAP"]
+* link:task_deploying_otc_azure.html["在 Azure 中启动 Cloud Volumes ONTAP"]
+* link:task_registering.html["注册按需购买的系统"]
+* link:concept_licensing.html["了解 Cloud Manager 如何管理许可证文件"]
+

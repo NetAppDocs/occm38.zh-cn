@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: task_managing_svms.html 
+keywords: storage virtual machine, vserver, svm, storage vm, supported number, number supported 
+summary: Storage VM 是在 ONTAP 中运行的虚拟机，可为客户端提供存储和数据服务。您可能会将其视为 SVM 或 SVM 。默认情况下， Cloud Volumes ONTAP 配置有一个 Storage VM ，但某些配置支持额外的 Storage VM 。 
+---
+= 管理 Storage VM
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Storage VM 是在 ONTAP 中运行的虚拟机，可为客户端提供存储和数据服务。您可能会将其识别为 _svm_ 或 _vserver_ 。默认情况下， Cloud Volumes ONTAP 配置有一个 Storage VM ，但某些配置支持额外的 Storage VM 。
+
+
+
+== 支持的 Storage VM 数量
+
+Cloud Volumes ONTAP 9.7 支持 AWS 中具有特定配置和附加许可证的多个 Storage VM 。 https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_aws_97.html#logical-storage-limits["查看 AWS 中支持的 Storage VM 数量"^]。请联系您的客户团队以获取 SVM 附加许可证。
+
+所有其他 Cloud Volumes ONTAP 配置均支持一个提供数据的 Storage VM 和一个用于灾难恢复的目标 Storage VM 。如果源 Storage VM 发生中断，您可以激活目标 Storage VM 以进行数据访问。
+
+一个 Storage VM 可跨越整个 Cloud Volumes ONTAP 系统（ HA 对或单个节点）。
+
+
+
+== 创建其他 Storage VM
+
+如果您的配置支持此功能，则可以使用创建其他 Storage VM link:task_connecting_to_otc.html["System Manager 或 CLI"]。
+
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-cifs-cg/GUID-CE5DE09F-3B48-48FE-A41C-9D69C3D0C402.html["创建 SVM 以进行 SMB 访问"^]
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nfs-cg/GUID-CE5DE09F-3B48-48FE-A41C-9D69C3D0C402.html["创建用于 NFS 访问的 SVM"^]
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-iscsi-cpg/GUID-0FCB46AA-DA18-417B-A9EF-B6A665DB77FC.html["创建用于 iSCSI 访问的 SVM"^]
+* https://library.netapp.com/ecm/ecm_get_file/ECMLP2839856["创建用于灾难恢复的目标 SVM"^]
+
+
+
+
+== 在 Cloud Manager 中使用多个 Storage VM
+
+Cloud Manager 支持您通过 System Manager 或 CLI 创建的任何其他 Storage VM 。
+
+例如，下图显示了在创建卷时如何选择 Storage VM 。
+
+image:screenshot_create_volume_svm.gif["屏幕截图显示了选择要在其中创建卷的 Storage VM 的功能。"]
+
+下图显示了在将卷复制到其他系统时如何选择 Storage VM 。
+
+image:screenshot_replicate_volume_svm.gif["屏幕截图显示了选择要复制卷的 Storage VM 的功能。"]
+
+
+
+== 管理 Storage VM 灾难恢复
+
+Cloud Manager 不为 Storage VM 灾难恢复提供任何设置或编排支持。您必须使用 System Manager 或 CLI 。
+
+* https://library.netapp.com/ecm/ecm_get_file/ECMLP2839856["《 SVM 灾难恢复准备快速指南》"^]
+* https://library.netapp.com/ecm/ecm_get_file/ECMLP2839857["《 SVM 灾难恢复快速指南》"^]
+
+
+
+
+== 修改 Storage VM 名称
+
+Cloud Manager 会自动为其为 Cloud Volumes ONTAP 创建的单个 Storage VM 命名。如果具有严格的命名标准，则可以修改 Storage VM 的名称。例如，您可能希望此名称与您为 ONTAP 集群命名 Storage VM 的方式一致。
+
+如果您为 Cloud Volumes ONTAP 创建了任何其他 Storage VM ，则不能从 Cloud Manager 重命名这些 Storage VM 。您需要使用 System Manager 或命令行界面直接从 Cloud Volumes ONTAP 执行此操作。
+
+.步骤
+. 在工作环境中，单击菜单图标，然后单击 * 信息 * 。
+. 单击 Storage VM 名称右侧的编辑图标。
++
+image:screenshot_svm.gif["屏幕抓图：显示 SVM 名称字段和必须单击以修改 SVM 名称的编辑图标。"]
+
+. 在修改 SVM 名称对话框中，更改名称，然后单击 * 保存 * 。
+
