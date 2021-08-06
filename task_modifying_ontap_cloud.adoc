@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: task_modifying_ontap_cloud.html 
 keywords: license, licensing, install, instance type, virtual machine type, VM type, change, modify, configuration, subscription, paygo, pay-as-you-go, pay as you go, byol, password, MTU, jumbo frames, c4.xlarge, c4.8xlarge, HA pair, file, license file, install, upload, change, modify, svm, storage virtual machine, password, route tables, nlf, gcp, machine type, virtual machine type, vm instance, write speed, high write speed, normal write speed, storage VM, storage virtual machine, SVM, modify SVM name, change SVM name 
-summary: 随着存储需求的变化，您可能需要更改 Cloud Volumes ONTAP 系统的配置。例如，您可以在 " 按需购买 " 配置之间进行更改，更改实例或 VM 类型等。 
+summary: '随着存储需求的变化，您可能需要更改 Cloud Volumes ONTAP 系统的配置。例如，您可以在 " 按需购买 " 配置之间进行更改，更改实例或 VM 类型等。' 
 ---
 = 修改 Cloud Volumes ONTAP 系统
 :hardbreaks:

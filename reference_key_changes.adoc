@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: reference_key_changes.html 
 keywords: what's new, key changes, saas, accounts, workspaces, users, connectors, endpoints, urls, permissions, permission changes 
-summary: 此页面重点介绍了 Cloud Manager 中的 _important_ 更改，这些更改可以帮助您在引入新增强功能时使用此服务。您应继续阅读 " 新增功能 " 页面，了解所有新增功能和增强功能。 
+summary: '此页面重点介绍了 Cloud Manager 中的 _important_ 更改，这些更改可以帮助您在引入新增强功能时使用此服务。您应继续阅读 " 新增功能 " 页面，了解所有新增功能和增强功能。' 
 ---
 = Cloud Manager 中的重要变更
 :hardbreaks:

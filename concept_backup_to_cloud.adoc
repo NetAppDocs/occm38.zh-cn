@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: concept_backup_to_cloud.html 
 keywords: backing up, restoring, back up, backup, restore, cloud volumes ontap, aws, azure, s3, blob, back up volumes, Backup to Cloud, restore volumes, billing, cost, on-premises ONTAP, onprem 
-summary: " 备份到云 " 是一项适用于 Cloud Volumes ONTAP 和内部 ONTAP 集群的附加服务，可提供备份和还原功能来保护云数据并对其进行长期归档。备份存储在云帐户的对象存储中，与用于近期恢复或克隆的卷 Snapshot 副本无关。 
+summary: '" 备份到云 " 是一项适用于 Cloud Volumes ONTAP 和内部 ONTAP 集群的附加服务，可提供备份和还原功能来保护云数据并对其进行长期归档。备份存储在云帐户的对象存储中，与用于近期恢复或克隆的卷 Snapshot 副本无关。' 
 ---
 = 了解有关备份到云的信息
 :hardbreaks:

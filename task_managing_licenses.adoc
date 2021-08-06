@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: task_managing_licenses.html 
 keywords: license, licensing, install, updating license, system license, add system license, adding a system license, byol license, add byol license, update byol license, nlf, license generator, backup license, add backup license, update backup license 
-summary: 添加 Cloud Volumes ONTAP BYOL 系统许可证以添加额外容量，更新现有系统许可证以及管理 " 备份到云 " 的 BYOL 许可证。 
+summary: '添加 Cloud Volumes ONTAP BYOL 系统许可证以添加额外容量，更新现有系统许可证以及管理 " 备份到云 " 的 BYOL 许可证。' 
 ---
 = 管理 Cloud Volumes ONTAP 的 BYOL 许可证
 :hardbreaks:

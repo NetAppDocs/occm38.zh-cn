@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: reference_user_roles.html 
 keywords: user, users, roles, role, task, permission, permissions, tasks, admin, Account Admin, Workspace Admin, Cloud Compliance Viewer 
-summary: " 帐户管理员 " ， " 工作空间管理员 " 和 " 云合规性查看器 " 角色可为用户提供特定权限。 
+summary: '" 帐户管理员 " ， " 工作空间管理员 " 和 " 云合规性查看器 " 角色可为用户提供特定权限。' 
 ---
 = 角色
 :hardbreaks:
