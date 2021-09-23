@@ -52,14 +52,10 @@ NOTE: 如果要在 Google Cloud 中创建 Cloud Volumes ONTAP 系统，则必须
 * 示例 *
 
 +
-....
-chmod +x OnCommandCloudManager-V3.8.4.sh
-....
+ chmod +x OnCommandCloudManager-V3.8.4.sh
 . 运行安装脚本：
 +
-....
-./OnCommandCloudManager-V3.8.4.sh [silent] [proxy=ipaddress] [proxyport=port] [proxyuser=user_name] [proxypwd=password]
-....
+ ./OnCommandCloudManager-V3.8.4.sh [silent] [proxy=ipaddress] [proxyport=port] [proxyuser=user_name] [proxypwd=password]
 +
 _silent_ 运行安装时不提示您提供信息。
 

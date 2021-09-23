@@ -81,14 +81,10 @@ https://cg0c586a-ee05-45rb-a5ac-333b5ae7718d7.c01.cloudinsights.netapp.com
 连接器的网络连接::
 +
 --
-....
-https://<your-short-tenant-ID>.<Cloud Insights Domain>
-....
+ https://<your-short-tenant-ID>.<Cloud Insights Domain>
 例如：
 
-....
-https://abcd12345.c01.cloudinsights.netapp.com
-....
+ https://abcd12345.c01.cloudinsights.netapp.com
 同样，如果您需要帮助确定租户主机 URL ，您可以通过产品内聊天与我们联系。
 
 --

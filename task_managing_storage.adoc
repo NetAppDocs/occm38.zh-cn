@@ -283,9 +283,7 @@ image:screenshot_aggr_volumes.gif["屏幕抓图：显示聚合中聚合中卷的
 
 您可以按照此任务中的步骤更正以下需要执行的操作消息：
 
-....
-Moving a volume is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you because the system has reached the disk limit.
-....
+ Moving a volume is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you because the system has reached the disk limit.
 .步骤
 . 确定具有可用容量的 Cloud Volumes ONTAP 系统或部署新系统。
 . 将源工作环境拖放到目标工作环境中以执行卷的一次性数据复制。
@@ -314,9 +312,7 @@ Moving a volume is necessary to avoid capacity issues; however, Cloud Manager ca
 
 您可以按照此任务中的步骤更正以下需要执行的操作消息：
 
-....
-Moving two or more volumes is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you.
-....
+ Moving two or more volumes is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you.
 .步骤
 . 验证现有聚合是否具有需要移动的卷的可用容量：
 +

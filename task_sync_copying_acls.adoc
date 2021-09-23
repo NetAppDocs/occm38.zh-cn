@@ -76,9 +76,7 @@ image:screenshot_acl_support.gif["屏幕截图显示了为目标启用复制访�
 . 从 Cloud Sync 中，在源设备和目标 SMB 共享之间创建新关系或同步现有关系。
 . 数据同步完成后、从 Windows 主机运行以下命令以同步 ACL 和所有权：
 +
-....
-robocopy /E /COPY:SOU /secfix [source] [target] /w:0 /r:0 /XD ~snapshots /UNILOG:”[logfilepath]
-....
+ robocopy /E /COPY:SOU /secfix [source] [target] /w:0 /r:0 /XD ~snapshots /UNILOG:”[logfilepath]
 +
 源 _sourc_ 和目标 _ 均应使用 UNC 格式指定。例如： \\<server> \<share> \<path>
 
