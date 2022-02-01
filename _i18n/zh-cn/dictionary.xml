@@ -3919,7 +3919,6 @@
   <block id="27bf96ea2dd4c98f397498424680c167" category="list-text">键入工作环境的名称，然后单击 * 删除 * 。</block>
   <block id="7d73be13421466d5cf5d832329f74c79" category="paragraph">删除工作环境最多可能需要 5 分钟。</block>
   <block id="f409c45ef3441d0b1d871fe92d39f327" category="summary">Cloud Manager 通常会每月推出一个新版本，为您提供新功能，增强功能和错误修复。</block>
-  <block id="f4690a50e12cd7434b164d86bc64d916" category="doc">Cloud Manager 3.8 中的新增功能和功能</block>
   <block id="5f8eaa243d627eba439cca6060513858" category="inline-link-macro">3.7 中的新增功能</block>
   <block id="d890aaed652251570941e063d4c94057" category="inline-link-macro">3.6 中的新增功能</block>
   <block id="d82f7659524336d21b67ae8a490bd7a1" category="inline-link-macro">3.5 中的新增功能</block>
@@ -8107,4 +8106,5 @@
   <block id="20bcee4b46f64e2ca105ae61831c7509" category="sidebar">使用 DevOps 工具实现自动化</block>
   <block id="7a4e5e5bc542eae2d10e3506f839f2ae" category="sidebar">对问题进行故障排除</block>
   <block id="93168a8084b3e838d2932c4734bd234e" category="sidebar">早期版本</block>
+  <block id="a2094a820fb2286793839bfc11f36fa6" category="doc">Cloud Manager 3.8 中的新增功能</block>
 </blocks>
