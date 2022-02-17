@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: reference_new_occm.html 
-keywords: what\'s new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes 
+keywords: 'what"s new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes' 
 summary: Cloud Manager 通常会每月推出一个新版本，为您提供新功能，增强功能和错误修复。 
 ---
 = Cloud Manager 3.8 中的新增功能

@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: concept_connectors.html 
-keywords: concept, connectors, learn about connectors, service connectors, what are connectors, what is a connector, what\'s a connector, days, 14 days 
+keywords: 'concept, connectors, learn about connectors, service connectors, what are connectors, what is a connector, what"s a connector, days, 14 days' 
 summary: 大多数情况下，您需要在云或内部网络中部署 Connector 。借助此连接器， Cloud Manager 可以管理公有云环境中的资源和流程。 
 ---
 = 了解连接器
