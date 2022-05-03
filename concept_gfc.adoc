@@ -6,6 +6,7 @@ summary: 借助 NetApp 全局文件缓存，您可以将分布式文件服务器
 ---
 = 了解全局文件缓存
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

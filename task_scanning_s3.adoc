@@ -6,6 +6,7 @@ summary: Cloud Compliance 可以扫描 Amazon S3 存储分段，以确定 S3 对
 ---
 = Amazon S3 云合规性入门
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -56,7 +57,7 @@ link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compli
 以下要求特定于扫描 S3 存储分段。
 
 [[policy-requirements]]
-为 Cloud Compliance 实例设置 IAM 角色::
+为 Cloud Compliance 实例设置 IAM 角色:: Cloud Compliance 需要有权连接到您帐户中的 S3 存储分段并对其进行扫描。设置一个包含以下权限的 IAM 角色。在 Amazon S3 工作环境中启用 Cloud Compliance 后， Cloud Manager 会提示您选择 IAM 角色。
 +
 --
 [source, json]
@@ -89,7 +90,7 @@ link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compli
 }
 ----
 --
-提供从 Cloud Compliance 到 Amazon S3 的连接::
+提供从 Cloud Compliance 到 Amazon S3 的连接:: Cloud Compliance 需要连接到 Amazon S3 。提供此连接的最佳方式是通过 VPC 端点连接到 S3 服务。有关说明，请参见 https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-gateway.html#create-gateway-endpoint["AWS 文档：创建网关端点"^]。
 +
 --
 创建 VPC 端点时，请务必选择与 Cloud Compliance 实例对应的区域， VPC 和路由表。您还必须修改安全组才能添加出站 HTTPS 规则、该规则允许通信到 S3 端点。否则， Cloud Compliance 将无法连接到 S3 服务。

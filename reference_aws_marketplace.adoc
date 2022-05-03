@@ -6,6 +6,7 @@ summary: AWS Marketplace for Cloud Manager 和 Cloud Volumes ONTAP 提供了多�
 ---
 = 适用于 Cloud Manager 和 Cloud Volumes ONTAP 的 AWS Marketplace 页面
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 您可以通过创建工作环境在 GCP 中启动单节点 Cloud Volum
 ---
 = 在 GCP 中启动 Cloud Volumes ONTAP
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -200,7 +201,7 @@ image:screenshot_cot_vol.gif["屏幕截图：显示为 Cloud Volumes ONTAP 实�
 |===
 . * 使用情况配置文件，磁盘类型和分层策略 * ：选择是否要启用存储效率功能，并根据需要更改卷分层策略。
 +
-有关详细信息，请参见 link:task_planning_your_config_gcp.html#choosing-a-volume-usage-profile["了解卷使用情况配置文件"] 和 。
+有关详细信息，请参见 link:task_planning_your_config_gcp.html#choosing-a-volume-usage-profile["了解卷使用情况配置文件"] 和 link:concept_data_tiering.html["数据分层概述"]。
 
 . * 审核并批准 * ：审核并确认您的选择。
 +

@@ -6,6 +6,7 @@ summary: 通过更改备份计划，还原卷，删除备份等方式管理 Clou
 ---
 = 管理 Cloud Volumes ONTAP 和内部 ONTAP 系统的备份
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

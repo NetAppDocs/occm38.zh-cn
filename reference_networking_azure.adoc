@@ -6,6 +6,7 @@ summary: 设置 Azure 网络，以便 Cloud Volumes ONTAP 系统可以正常运�
 ---
 = 在 Azure 中部署和管理 Cloud Volumes ONTAP 的网络要求
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -21,7 +22,7 @@ summary: 设置 Azure 网络，以便 Cloud Volumes ONTAP 系统可以正常运�
 
 在 Azure 中必须满足以下网络连接要求。
 
-Cloud Volumes ONTAP 的出站 Internet 访问::
+Cloud Volumes ONTAP 的出站 Internet 访问:: Cloud Volumes ONTAP 要求出站 Internet 访问向 NetApp AutoSupport 发送消息、 NetApp AutoSupport 主动监控存储的运行状况。
 +
 --
 路由和防火墙策略必须允许通过 HTTP/HTTPS 流量访问以下端点，以便 Cloud Volumes ONTAP 可以发送 AutoSupport 消息：
@@ -35,7 +36,7 @@ link:task_setting_up_ontap_cloud.html["了解如何配置 AutoSupport"]。
 
 --
 安全组:: 您不需要创建安全组，因为 Cloud Manager 可以为您提供这些功能。如果您需要使用自己的，请参阅下面列出的安全组规则。
-IP 地址数::
+IP 地址数:: Cloud Manager 会将以下数量的 IP 地址分配给 Azure 中的 Cloud Volumes ONTAP ：
 +
 --
 * 单个节点： 5 个 IP 地址
@@ -50,7 +51,7 @@ TIP: LIF 是与物理端口关联的 IP 地址。SnapCenter 等管理工具需�
 
 
 --
-从 Cloud Volumes ONTAP 连接到 Azure Blob 存储以进行数据分层::
+从 Cloud Volumes ONTAP 连接到 Azure Blob 存储以进行数据分层:: 如果要将冷数据分层到 Azure Blob 存储，只要 Cloud Manager 具有所需权限，您就无需在性能层和容量层之间设置连接。如果 Cloud Manager 策略具有以下权限，则 Cloud Manager 将为您启用 vNet 服务端点：
 +
 --
 [source, json]
@@ -63,7 +64,7 @@ TIP: LIF 是与物理端口关联的 IP 地址。SnapCenter 等管理工具需�
 有关设置数据分层的详细信息，请参见 link:task_tiering.html["将冷数据分层到低成本对象存储"]。
 
 --
-连接到其他网络中的 ONTAP 系统::
+连接到其他网络中的 ONTAP 系统:: 要在 Azure 和 ONTAP 系统中的 Cloud Volumes ONTAP 系统之间复制数据、您必须在 Azure VNet 和其他网络之间建立 VPN 连接—例如 AWS VPC 或您的公司网络。
 +
 --
 有关说明，请参见 https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal["Microsoft Azure 文档：在 Azure 门户中创建站点到站点连接"^]。

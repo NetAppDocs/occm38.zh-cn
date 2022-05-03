@@ -6,6 +6,7 @@ summary: 默认情况下， Cloud Manager 使用自签名证书对 Web 控制台
 ---
 = 管理 HTTPS 证书以实现安全访问
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

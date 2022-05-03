@@ -6,6 +6,7 @@ summary: 您可以使用 Google Cloud 帐户在项目中部署 Cloud Manager 。
 ---
 = Google Cloud 项目，权限和帐户
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

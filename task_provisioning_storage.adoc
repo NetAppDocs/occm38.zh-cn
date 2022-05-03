@@ -6,6 +6,7 @@ summary: 您可以通过管理卷和聚合从 Cloud Manager 为 Cloud Volumes ON
 ---
 = 配置存储
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

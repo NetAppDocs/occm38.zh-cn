@@ -4381,7 +4381,6 @@
   <block id="15791d531460b4c275e03017399fcd1a" category="inline-link">了解有关 IP 空间的更多信息</block>
   <block id="cfff9c55ea85b0db9b604bdef2f48d4d" category="paragraph">IP 空间可实现网络流量隔离，从而可以隔离客户端流量，以确保隐私和安全。<block ref="099fdf6e8ad70f15bd41fe67513de18c" category="inline-link-rx"></block>。</block>
   <block id="96788f015626d24d63f6f02843be51c3" category="paragraph">设置数据分层时， Cloud Tiering 会提示您输入要使用的 IP 空间。您应选择与每个 LIF 关联的 IP 空间。这可能是您创建的 " 默认 "IP 空间或自定义 IP 空间。</block>
-  <block id="5256a5fac0172e085440941ea452e8ce" category="paragraph"><block ref="5256a5fac0172e085440941ea452e8ce" category="inline-link-macro-rx"></block></block>
   <block id="c3fb869301bdf0050425864a1c816fd8" category="admonition">云分层支持 FlexGroup 卷。安装程序的工作方式与任何其他卷相同。</block>
   <block id="d32e4305e9f04e1cbc37d3e892619ee7" category="section-title">创建或切换连接器</block>
   <block id="6f8de70a130cd2e986950accf1528a82" category="paragraph">要将数据分层到云，需要使用 Connector 。将数据分层到 Google Cloud Storage 时，必须在 Google Cloud Platform VPC 中提供 Connector 。您需要创建一个新的连接器，或者确保当前选定的连接器位于 GCP 中。</block>
@@ -8107,4 +8106,7 @@
   <block id="7a4e5e5bc542eae2d10e3506f839f2ae" category="sidebar">对问题进行故障排除</block>
   <block id="93168a8084b3e838d2932c4734bd234e" category="sidebar">早期版本</block>
   <block id="a2094a820fb2286793839bfc11f36fa6" category="doc">Cloud Manager 3.8 中的新增功能</block>
+  <block id="ac711435545c1b14c721179de8ab94a0" category="list-text">支持的卷和聚合</block>
+  <block id="cbd3171b775ecc9b275479726c41ccec" category="inline-link-macro">FabricPool 不支持的功能</block>
+  <block id="80be9dc982f371739dd1f289a1ea008c" category="list-text">云分层可分层的卷总数可能小于 ONTAP 系统上的卷数。这是因为无法从某些聚合对卷进行分层。例如，您不能对 SnapLock 卷或 MetroCluster 配置中的数据进行分层。有关信息，请参见 ONTAP 文档 <block ref="735d4f7c28454cb31dcb5e7ad1dd69d6" category="inline-link-macro-rx"></block>。</block>
 </blocks>

@@ -6,6 +6,7 @@ summary: 完成几个步骤，开始将数据从 Cloud Volumes ONTAP 备份到 A
 ---
 = 将数据备份到 Azure Blob 存储
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -86,7 +87,7 @@ image:screenshot_backup_to_s3_restore_icon.gif["选择卷后备份的还原图�
 
 支持的 ONTAP 版本:: Cloud Volumes ONTAP 9.7 及更高版本。
 支持的 Azure 区域:: 所有 Azure 地区均支持备份到云 https://cloud.netapp.com/cloud-volumes-global-regions["支持 Cloud Volumes ONTAP 的位置"^]。
-许可证要求::
+许可证要求:: 要获得 Backup to Cloud PAYGO 许可，在启用 Backup to Cloud 之前，需要通过 Azure Marketplace 订阅。备份到云的计费通过此订阅完成。 link:task_deploying_otc_azure.html["您可以从工作环境向导的详细信息和 amp ；凭据页面订阅"^]。
 +
 --
 对于 Backup to Cloud BYOL 许可，您需要 NetApp 提供的序列号，以便在许可证有效期和容量内使用此服务。请参见 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["添加和更新备份 BYOL 许可证"^]。

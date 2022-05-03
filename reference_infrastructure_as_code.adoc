@@ -6,6 +6,7 @@ summary: 使用此页面上的资源获取有关将 Cloud Manager 和 Cloud Volu
 ---
 = 基础架构即代码自动化资源
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

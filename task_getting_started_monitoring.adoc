@@ -6,6 +6,7 @@ summary: 完成几个步骤以开始监控 Cloud Volumes ONTAP 性能。
 ---
 = 在 AWS 中监控 Cloud Volumes ONTAP
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -60,7 +61,7 @@ summary: 完成几个步骤以开始监控 Cloud Volumes ONTAP 性能。
 支持的 Cloud Volumes ONTAP 版本:: AWS 中的任何 Cloud Volumes ONTAP 版本。
 Cloud Insights 要求:: 您必须是新的 Cloud Insights 客户。如果您已有 Cloud Insights 租户，则不支持监控。
 Cloud Central 的电子邮件地址:: Cloud Central 用户帐户的电子邮件地址应为您的业务电子邮件地址。创建 Cloud Insights 租户时，不支持 Gmail 和 Hotmail. 等免费电子邮件域。
-采集单元的网络连接::
+采集单元的网络连接:: 采集单元使用双向 / 相互身份验证连接到 Cloud Insights 服务器。客户端证书必须传递到 Cloud Insights 服务器，才能进行身份验证。为此，必须设置代理，以便将 http 请求转发到 Cloud Insights 服务器，而无需对数据进行解密。
 +
 --
 采集单元使用以下两个端点与 Cloud Insights 进行通信。如果您在采集单元服务器和 Cloud Insights 之间设置了防火墙，则在配置防火墙规则时需要使用以下端点：
@@ -78,7 +79,7 @@ https://cg0c586a-ee05-45rb-a5ac-333b5ae7718d7.c01.cloudinsights.netapp.com
 如果您需要帮助确定 Cloud Insights 域和租户 ID ，请通过产品聊天联系我们。
 
 --
-连接器的网络连接::
+连接器的网络连接:: 与采集单元类似，连接器必须与 Cloud Insights 租户建立出站连接。但 Connector 所接触的端点略有不同。它使用缩短后的租户 ID 联系租户主机 URL ：
 +
 --
  https://<your-short-tenant-ID>.<Cloud Insights Domain>

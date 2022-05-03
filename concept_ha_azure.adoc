@@ -6,6 +6,7 @@ summary: Cloud Volumes ONTAP 高可用性（ High Availability ， HA ）对可�
 ---
 = Azure 中的高可用性对
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

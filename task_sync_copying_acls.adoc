@@ -6,6 +6,7 @@ summary: Cloud Sync 可以在源 SMB 共享和目标 SMB 共享之间复制访�
 ---
 = 在 SMB 共享之间复制 ACL
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

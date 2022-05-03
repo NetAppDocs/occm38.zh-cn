@@ -6,6 +6,7 @@ summary: 设置您的网络，以便 Connector 能够管理公有云环境中的
 ---
 = 连接器的网络连接要求
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

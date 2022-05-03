@@ -6,6 +6,7 @@ summary: 客户管理员需要先部署 Connector ，然后才能使用大多数
 ---
 = 通过 Cloud Manager 在 GCP 中创建连接器
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -38,7 +39,7 @@ https://cloud.google.com/iam/docs/creating-custom-roles#iam-custom-roles-create-
 在从 Cloud Manager 创建此服务帐户时，您需要将此服务帐户与 Connector VM 相关联。
 
 +
-.. https://cloud.google.com/iam/docs/creating-custom-roles#iam-custom-roles-create-gcloud["在 GCP 中创建角色"^] 其中包括中定义的权限。同样，您需要使用 gcloud 命令行。
+.. https://cloud.google.com/iam/docs/creating-custom-roles#iam-custom-roles-create-gcloud["在 GCP 中创建角色"^] 其中包括中定义的权限 https://occm-sample-policies.s3.amazonaws.com/Policy_for_Cloud_Manager_3.8.0_GCP.yaml["适用于 GCP 的 Cloud Manager 策略"^]。同样，您需要使用 gcloud 命令行。
 +
 此 YAML 文件中包含的权限与步骤 2a 中的权限不同。
 

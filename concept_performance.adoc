@@ -6,6 +6,7 @@ summary: 您可以查看性能结果、帮助您确定哪些工作负载适合 C
 ---
 = 性能
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

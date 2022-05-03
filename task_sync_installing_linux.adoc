@@ -6,6 +6,7 @@ summary: 创建同步关系时，请选择高级数据代理选项以在内部 L
 ---
 = 在 Linux 主机上安装数据代理
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -60,7 +61,7 @@ SELinux 会强制实施一种策略，该策略会阻止数据代理软件更新
 如果您计划使用包含 S3 存储分段的同步关系中的数据代理，则应准备 Linux 主机以进行 AWS 访问。安装数据代理时，您需要为具有编程访问权限和特定权限的 AWS 用户提供 AWS 密钥。
 
 .步骤
-. 使用创建 IAM 策略 https://s3.amazonaws.com/metadata.datafabric.io/docs/on_prem_iam_policy.json["此 NetApp 提供的策略"^]。。
+. 使用创建 IAM 策略 https://s3.amazonaws.com/metadata.datafabric.io/docs/on_prem_iam_policy.json["此 NetApp 提供的策略"^]。 https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html["查看 AWS 说明。"^]。
 . 创建具有编程访问权限的 IAM 用户。 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html["查看 AWS 说明。"^]。
 +
 请务必复制 AWS 密钥，因为您需要在安装数据代理软件时指定这些密钥。

@@ -6,6 +6,7 @@ summary: 最好直接从 Cloud Manager 创建 Connector ，但如果您不想指
 ---
 = 从 AWS Marketplace 创建连接器
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

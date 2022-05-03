@@ -6,6 +6,7 @@ summary: Cloud Manager 可以在 Kubernetes 集群上自动部署 NetApp Trident
 ---
 = 使用 Cloud Volumes ONTAP 作为 Kubernetes 的永久性存储
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

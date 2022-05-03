@@ -6,6 +6,7 @@ summary: 客户管理员需要先部署 Connector ，然后才能使用大多数
 ---
 = 使用 Cloud Manager 创建连接器
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -26,7 +27,7 @@ TIP: 在创建首个 Cloud Volumes ONTAP 工作环境时，如果您还没有连
 
 == 在 AWS 中创建连接器
 
-您可以通过 Cloud Manager 直接从其用户界面在 AWS 中创建 Connector 。您还可以选择 link:task_launching_aws_mktp.html["从 AWS Marketplace 创建 Connector"]或 。
+您可以通过 Cloud Manager 直接从其用户界面在 AWS 中创建 Connector 。您还可以选择 link:task_launching_aws_mktp.html["从 AWS Marketplace 创建 Connector"]或 link:task_installing_linux.html["下载软件并将其安装在您自己的主机上"]。
 
 .您需要什么？ #8217 ；将需要什么
 * 具有的 IAM 用户的 AWS 访问密钥和机密密钥 https://mysupport.netapp.com/site/info/cloud-manager-policies["所需权限"^]。
@@ -69,7 +70,7 @@ NOTE: 除非您启动 Connector ，否则不会向其传入流量。HTTP 和 HTT
 
 == 在 Azure 中创建连接器
 
-您可以通过 Cloud Manager 直接从其用户界面在 Azure 中创建 Connector 。您还可以选择 link:task_launching_azure_mktp.html["从 Azure Marketplace 创建 Connector"]或 。
+您可以通过 Cloud Manager 直接从其用户界面在 Azure 中创建 Connector 。您还可以选择 link:task_launching_azure_mktp.html["从 Azure Marketplace 创建 Connector"]或 link:task_installing_linux.html["下载软件并将其安装在您自己的主机上"]。
 
 .您需要什么？ #8217 ；将需要什么
 * 。 https://mysupport.netapp.com/site/info/cloud-manager-policies["所需权限"^] 适用于您的 Azure 帐户。

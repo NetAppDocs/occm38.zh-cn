@@ -6,6 +6,7 @@ summary: 如果要在 Cloud Volumes ONTAP 中使用 Amazon 加密，则需要设
 ---
 = 设置 AWS KMS
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 在用户登录到 Cloud Manager 之前，您需要确保其 Web 浏览
 ---
 = 网络概述
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

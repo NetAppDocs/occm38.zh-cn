@@ -6,6 +6,7 @@ summary: Cloud Manager 创建了包含 Cloud Manager 和 Cloud Volumes ONTAP 成
 ---
 = AWS 的安全组规则
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

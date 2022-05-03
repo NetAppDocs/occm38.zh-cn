@@ -6,6 +6,7 @@ summary: 通过将冷数据自动分层到低成本的对象存储，降低存�
 ---
 = 数据分层概述
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -29,14 +30,14 @@ NOTE: 您无需安装功能许可证即可启用数据分层（ FabricPool ）�
 在 AWS 中启用数据分层时， Cloud Volumes ONTAP 会将 EBS 用作热数据的性能层，而将 AWS S3 用作非活动数据的容量层。
 
 性能层:: 性能层可以是通用 SSD 、配置的 IOPS SSD 或吞吐量优化的 HDD 。
-Capacity tier::
+Capacity tier:: Cloud Volumes ONTAP 系统使用 _Standard_ 存储类将非活动数据分层到一个 S3 存储分段。Standard 是存储在多个可用性区域中的频繁访问数据的理想选择。
 +
 --
 
 NOTE: Cloud Manager 会为每个工作环境创建一个 S3 存储分段，并将其命名为 fabric-pool-_cluster unique identifier_ 。不会为每个卷创建不同的 S3 存储分段。
 
 --
-存储类::
+存储类:: AWS 中分层数据的默认存储类为 _Standard_ 。如果您不打算访问非活动数据，可以通过将存储类更改为以下类型之一来降低存储成本： _Intelligent Tierage_ ， _one-Zone Inrequent Access_ 或 _Standard-Inrequent Access_ 。更改存储类时，如果 30 天后未访问非活动数据，则非活动数据将从标准存储类开始，并过渡到选定的存储类。
 +
 --
 如果您确实访问数据，访问成本会更高，因此在更改存储类之前，请考虑这一点。 https://aws.amazon.com/s3/storage-classes["了解有关 Amazon S3 存储类的更多信息"^]。
@@ -55,14 +56,14 @@ NOTE: Cloud Manager 会为每个工作环境创建一个 S3 存储分段，并�
 在 Azure 中启用数据分层后， Cloud Volumes ONTAP 会将 Azure 托管磁盘用作热数据的性能层，并将 Azure Blob 存储用作非活动数据的容量层。
 
 性能层:: 性能层可以是 SSD 或 HDD 。
-Capacity tier::
+Capacity tier:: Cloud Volumes ONTAP 系统会使用 Azure _hot_ 存储层将非活动数据分层到一个 Blob 容器中。热层非常适合经常访问的数据。
 +
 --
 
 NOTE: Cloud Manager 会为每个 Cloud Volumes ONTAP 工作环境创建一个新的存储帐户，其中包含一个容器。存储帐户的名称是随机的。不会为每个卷创建不同的容器。
 
 --
-存储访问层::
+存储访问层:: Azure 中分层数据的默认存储访问层为 _hot_ 层。如果您不打算访问非活动数据，可以通过更改为 _cool_ 存储层来降低存储成本。更改存储层时，如果 30 天后未访问非活动数据，则非活动数据将从热存储层开始，并过渡到冷存储层。
 +
 --
 如果您确实访问数据，访问成本会更高，因此在更改存储层之前，请考虑这一点。 https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-storage-tiers["详细了解 Azure Blob 存储访问层"^]。
@@ -81,14 +82,14 @@ NOTE: Cloud Manager 会为每个 Cloud Volumes ONTAP 工作环境创建一个新
 在 GCP 中启用数据分层时， Cloud Volumes ONTAP 会使用永久性磁盘作为热数据的性能层，并使用 Google 云存储分段作为非活动数据的容量层。
 
 性能层:: 性能层可以是 SSD 或 HDD （标准磁盘）。
-Capacity tier::
+Capacity tier:: Cloud Volumes ONTAP 系统使用 _Region_ 存储类将非活动数据分层到一个 Google Cloud 存储分段。
 +
 --
 
 NOTE: Cloud Manager 会为每个工作环境创建一个分段，并将其命名为 fabric-pool-_cluster unique identifier_ 。不会为每个卷创建不同的存储分段。
 
 --
-存储类::
+存储类:: 分层数据的默认存储类为 _Standard Storage_ 类。如果数据不常访问，您可以通过更改为 _Nearline Storage_ 或 _Coldline Storage_ 来降低存储成本。更改存储类时，如果 30 天后未访问非活动数据，则非活动数据将从标准存储类开始，并过渡到选定的存储类。
 +
 --
 如果您确实访问数据，访问成本会更高，因此在更改存储类之前，请考虑这一点。 https://cloud.google.com/storage/docs/storage-classes["了解有关 Google Cloud Storage 存储类的更多信息"^]。
@@ -116,19 +117,19 @@ NOTE: Cloud Manager 会为每个工作环境创建一个分段，并将其命名
 
 通过 Cloud Manager ，您可以在创建或修改卷时从以下卷分层策略中进行选择：
 
-仅快照::
+仅快照:: 在聚合达到 50% 容量后、 Cloud Volumes ONTAP 将不与活动文件系统关联的 Snapshot 副本的冷用户数据分层到容量层。冷却时间约为 2 天。
 +
 --
 如果已读取、则容量层上的冷数据块会变得很热并移动到性能层。
 
 --
-全部::
+全部:: 所有数据（不包括元数据）都会立即标记为冷数据，并尽快分层到对象存储。无需等待 48 小时，卷中的新块就会变冷。请注意，在设置所有策略之前，卷中的块需要 48 小时才能变冷。
 +
 --
 如果读取，则云层上的冷数据块将保持冷状态，不会回写到性能层。此策略从 ONTAP 9.6 开始可用。
 
 --
-自动::
+自动:: 在聚合达到 50% 容量后、 Cloud Volumes ONTAP 会将卷中的冷数据块分层到容量层。冷数据不仅包括 Snapshot 副本、还包括来自活动文件系统的冷用户数据。冷却期约为 31 天。
 +
 --
 从 Cloud Volumes ONTAP 9.4 开始支持此策略。

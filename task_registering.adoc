@@ -6,6 +6,7 @@ summary: Cloud Volumes ONTAP Explore ，标准版和高级版系统均提供 Net
 ---
 = 注册按需购买的系统
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

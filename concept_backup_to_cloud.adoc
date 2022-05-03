@@ -6,6 +6,7 @@ summary: '" 备份到云 " 是一项适用于 Cloud Volumes ONTAP 和内部 ONTA
 ---
 = 了解有关备份到云的信息
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -49,7 +50,7 @@ NOTE: 您必须使用 Cloud Manager 执行所有备份和还原操作。直接�
 
 备份到云有两种定价选项：自带许可证（ BYOL ）和按需购买（ PAYGO ）。
 
-对于 BYOL ，您需要向 NetApp 支付费用，使其在一段时间内（如 6 个月）使用此服务，并为最大备份容量（如 10 GB ）（在存储效率之前）支付费用，您需要向云提供商支付对象存储成本。您将收到一个序列号，您可以在 Cloud Manager 的 " 许可 " 页面中输入此序列号来启用此服务。达到任一限制后，您需要续订许可证。请参见 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["添加和更新备份 BYOL 许可证"^]。备份 BYOL 许可证适用场景与关联的所有 Cloud Volumes ONTAP 系统 。
+对于 BYOL ，您需要向 NetApp 支付费用，使其在一段时间内（如 6 个月）使用此服务，并为最大备份容量（如 10 GB ）（在存储效率之前）支付费用，您需要向云提供商支付对象存储成本。您将收到一个序列号，您可以在 Cloud Manager 的 " 许可 " 页面中输入此序列号来启用此服务。达到任一限制后，您需要续订许可证。请参见 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["添加和更新备份 BYOL 许可证"^]。备份 BYOL 许可证适用场景与关联的所有 Cloud Volumes ONTAP 系统 link:concept_cloud_central_accounts.html["Cloud Central 帐户"^]。
 
 对于 PAYGO ，您需要为云提供商支付对象存储成本，并为 NetApp 支付备份许可成本。许可成本基于已用容量（未达到存储效率）：
 

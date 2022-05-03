@@ -6,6 +6,7 @@ summary: 已知限制确定了本产品版本不支持的平台、设备或功�
 ---
 = 已知限制
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

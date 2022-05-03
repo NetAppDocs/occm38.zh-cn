@@ -6,6 +6,7 @@ summary: 如果您的公司策略要求您使用代理服务器进行与 Interne
 ---
 = 配置 Connector 以使用代理服务器
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

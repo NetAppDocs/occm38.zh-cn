@@ -6,6 +6,7 @@ summary: 借助适用于 Google Cloud 的 NetApp Cloud Volumes Service ，您可
 ---
 = 了解适用于 Google Cloud 的 Cloud Volumes Service
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

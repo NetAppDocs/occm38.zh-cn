@@ -6,6 +6,7 @@ summary: 通过利用 Spot 的 Cloud Analyzer 服务， Cloud Manager 可以对�
 ---
 = 了解计算服务
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

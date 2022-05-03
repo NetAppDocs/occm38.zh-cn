@@ -6,6 +6,7 @@ summary: 您可以从 Cloud Manager 管理两种类型的 Google 云平台凭据
 ---
 = 管理 Cloud Manager 的 GCP 凭据和订阅
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

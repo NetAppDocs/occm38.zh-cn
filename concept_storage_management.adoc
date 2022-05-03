@@ -6,6 +6,7 @@ summary: Cloud Manager 可简化和高级管理 Cloud Volumes ONTAP 存储。
 ---
 = 存储管理
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

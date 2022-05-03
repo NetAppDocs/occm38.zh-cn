@@ -6,6 +6,7 @@ summary: 'Cloud Manager 界面可通过基于 SaaS 的用户界面访问，请�
 ---
 = 登录到 Cloud Manager
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -5,6 +5,7 @@ summary: 借助 Cloud Manager ， IT 专家和云架构师可以使用 NetApp �
 ---
 = Cloud Manager 和 Cloud Volumes ONTAP 文档
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

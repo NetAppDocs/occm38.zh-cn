@@ -6,6 +6,7 @@ summary: 如果您只是想快速了解问题解答，此常见问题解答会�
 ---
 = Cloud Tiering 技术常见问题解答
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 如果要在不同的 AWS 帐户中部署 Cloud Volumes ONTAP ，则需
 ---
 = 管理 Cloud Manager 的 AWS 凭据和订阅
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

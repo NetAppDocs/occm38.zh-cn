@@ -6,6 +6,7 @@ summary: 您可以在 Cloud Volumes ONTAP 系统上激活一次写入、多次�
 ---
 = WORM 存储
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

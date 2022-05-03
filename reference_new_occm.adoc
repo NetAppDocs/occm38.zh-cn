@@ -6,6 +6,7 @@ summary: Cloud Manager 通常会每月推出一个新版本，为您提供新功
 ---
 = Cloud Manager 3.8 中的新增功能
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -17,8 +18,8 @@ Cloud Manager 通常会每月推出一个新版本，为您提供新功能，增
 
 
 TIP: 正在查找先前版本？link:https://docs.netapp.com/us-en/occm37/reference_new_occm.html["3.7 中的新增功能"^]
-
-
+link:https://docs.netapp.com/us-en/occm36/reference_new_occm.html["3.6 中的新增功能"^]
+link:https://docs.netapp.com/us-en/occm35/reference_new_occm.html["3.5 中的新增功能"^]
 
 
 
@@ -230,7 +231,7 @@ image:screenshot_connector_remove.gif["Connector 小工具的屏幕截图，您�
 
 * 现在，您可以替换当前与您的云提供商凭据关联的 Marketplace 订阅。如果您需要更改收费方式，此更改可以帮助您确保通过正确的 Marketplace 订阅向您收取费用。
 +
-了解如何操作 link:task_adding_aws_accounts.html["在 AWS 中"]， ，和 。
+了解如何操作 link:task_adding_aws_accounts.html["在 AWS 中"]， link:task_adding_azure_accounts.html["在 Azure 中"]，和 link:task_adding_gcp_accounts.html["在 GCP 中"]。
 
 
 

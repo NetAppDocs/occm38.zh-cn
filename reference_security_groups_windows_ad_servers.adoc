@@ -7,6 +7,7 @@ summary: 如果您将 Windows Active Directory （ AD ）服务器与云卷结�
 = 适用于 Windows AD 服务器的 AWS 安全组设置
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font

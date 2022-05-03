@@ -6,6 +6,7 @@ summary: 通过 Cloud Manager ，您可以查看与在 AWS 中运行 Cloud Volum
 ---
 = 监控 AWS 资源成本
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

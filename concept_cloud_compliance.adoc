@@ -6,6 +6,7 @@ summary: Cloud Compliance 是 Cloud Manager 的一项数据隐私和合规服务
 ---
 = 了解云合规性
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -119,7 +120,7 @@ image:diagram_cloud_compliance_scan.png["显示云提供商中运行的 Cloud Ma
 
 在初始扫描之后， Cloud Compliance 会持续扫描每个卷以检测增量更改（因此，保持实例运行非常重要）。
 
-您可以在中启用和禁用扫描 link:task_getting_started_compliance.html#enabling-and-disabling-compliance-scans-on-volumes["卷级别"^]，位于 和 。
+您可以在中启用和禁用扫描 link:task_getting_started_compliance.html#enabling-and-disabling-compliance-scans-on-volumes["卷级别"^]，位于 link:task_scanning_s3.html#enabling-and-disabling-compliance-scans-on-s3-buckets["存储分段级别"^]和 link:task_scanning_databases.html#enabling-and-disabling-compliance-scans-on-database-schemas["数据库架构级别"^]。
 
 
 
@@ -159,4 +160,4 @@ Cloud Manager 将 Cloud Compliance 实例部署为一个安全组，该安全组
 * 具有 * 云合规性查看器 * 角色的用户只能查看其有权访问的系统的合规性信息并生成报告。这些用户无法启用 / 禁用卷，分段或数据库架构的扫描。
 
 
-link:reference_user_roles.html["了解有关 Cloud Manager 角色的更多信息"^] 以及操作方法 。
+link:reference_user_roles.html["了解有关 Cloud Manager 角色的更多信息"^] 以及操作方法 link:task_managing_cloud_central_accounts.html#adding-users["添加具有特定角色的用户"^]。

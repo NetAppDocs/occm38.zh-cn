@@ -6,6 +6,7 @@ summary: 在 AWS 中部署 Cloud Volumes ONTAP 时，您可以选择符合工作
 ---
 = 在 AWS 中规划 Cloud Volumes ONTAP 配置
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -52,7 +53,7 @@ Instance type::
 
 --
 EBS 磁盘类型:: 通用 SSD 是 Cloud Volumes ONTAP 最常见的磁盘类型。要查看 EBS 磁盘的使用情形，请参见 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html["AWS 文档： EBS 卷类型"^]。
-EBS 磁盘大小::
+EBS 磁盘大小:: 启动 Cloud Volumes ONTAP 系统时，您需要选择初始磁盘大小。之后，您可以 link:concept_storage_management.html["让 Cloud Manager 为您管理系统的容量"]，但如果需要 link:task_provisioning_storage.html#creating-aggregates["自行构建聚合"]，请注意以下事项：
 +
 --
 * 聚合中的所有磁盘大小必须相同。

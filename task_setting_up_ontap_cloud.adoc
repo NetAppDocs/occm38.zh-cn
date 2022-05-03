@@ -6,6 +6,7 @@ summary: 部署 Cloud Volumes ONTAP 后、您可以通过使用 NTP 同步系统
 ---
 = 设置 Cloud Volumes ONTAP
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

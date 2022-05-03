@@ -6,6 +6,7 @@ summary: 您可以使用 Cloud Manager 在工作环境中部署全局文件缓�
 ---
 = 入门
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -34,7 +35,7 @@ summary: 您可以使用 Cloud Manager 在工作环境中部署全局文件缓�
 ==== 部署 Cloud Volumes ONTAP
 
 [role="quick-margin-para"]
-在 Azure 或 AWS 中部署 Cloud Volumes ONTAP 并配置 SMB 文件共享。有关详细信息，请参见 link:task_deploying_otc_azure.html["在 Azure 中启动 Cloud Volumes ONTAP"^] 或 。
+在 Azure 或 AWS 中部署 Cloud Volumes ONTAP 并配置 SMB 文件共享。有关详细信息，请参见 link:task_deploying_otc_azure.html["在 Azure 中启动 Cloud Volumes ONTAP"^] 或 link:task_deploying_otc_aws.html["在 AWS 中启动 Cloud Volumes ONTAP"^]。
 
 
 
@@ -68,7 +69,7 @@ summary: 您可以使用 Cloud Manager 在工作环境中部署全局文件缓�
 
 === 将 Cloud Volumes ONTAP 部署为您的存储平台
 
-在当前版本中，全局文件缓存支持在 Azure 或 AWS 中部署 Cloud Volumes ONTAP 。有关详细的前提条件，要求和部署说明，请参见 link:task_deploying_otc_azure.html["在 Azure 中启动 Cloud Volumes ONTAP"^] 或 。
+在当前版本中，全局文件缓存支持在 Azure 或 AWS 中部署 Cloud Volumes ONTAP 。有关详细的前提条件，要求和部署说明，请参见 link:task_deploying_otc_azure.html["在 Azure 中启动 Cloud Volumes ONTAP"^] 或 link:task_deploying_otc_aws.html["在 AWS 中启动 Cloud Volumes ONTAP"^]。
 
 请注意以下其他全局文件缓存要求：
 

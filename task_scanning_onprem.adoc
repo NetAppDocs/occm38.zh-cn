@@ -6,6 +6,7 @@ summary: 您可以通过将内部 ONTAP 数据复制到 Cloud Volumes ONTAP 工�
 ---
 = 使用 SnapMirror 使用云合规性扫描内部 ONTAP 数据
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

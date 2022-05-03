@@ -6,6 +6,7 @@ summary: 连接器软件必须在满足特定操作系统要求， RAM 要求，
 ---
 = 连接器主机要求
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

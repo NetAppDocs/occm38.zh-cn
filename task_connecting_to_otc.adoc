@@ -6,6 +6,7 @@ summary: 如果您需要对 Cloud Volumes ONTAP 执行高级管理、则可以�
 ---
 = 连接到 Cloud Volumes ONTAP
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

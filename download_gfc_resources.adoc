@@ -6,6 +6,7 @@ summary: 在远程办公室安装全局文件缓存边缘软件之前，您需�
 ---
 = 开始部署全局文件缓存边缘实例之前
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -24,12 +25,12 @@ summary: 在远程办公室安装全局文件缓存边缘软件之前，您需�
 * Windows Server 2016 虚拟模板：
 +
 https://repo.cloudsync.netapp.com/gfc/2K16_GFC_1_0_18_OVF.zip["包括 NetApp GFC （ VMware vSphere 6.5 及更高版本）的 Windows Server 2016 .OVA"^]
-
+https://repo.cloudsync.netapp.com/gfc/2k16_GFC_1_0_0_18_VHD.zip["包括 NetApp GFC （ Microsoft Hyper-V ）的 Windows Server 2016 .vhdx"^]
 
 * Windows Server 2019 虚拟模板：
 +
 https://repo.cloudsync.netapp.com/gfc/2K19_GFC_1_0_18_OVF.zip["包括 NetApp GFC （ VMware vSphere 6.5 及更高版本）的 Windows Server 2019 .OVA"^]
-
+https://repo.cloudsync.netapp.com/gfc/2k19_GFC_1_0_0_18_VHD.zip["包括 NetApp GFC （ Microsoft Hyper-V ）的 Windows Server 2019 .vhdx"^]
 
 * 全局文件缓存边缘软件：
 +

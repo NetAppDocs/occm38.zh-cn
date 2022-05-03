@@ -6,6 +6,7 @@ summary: 在 Cloud Manager 中创建适用于 Google Cloud 的 Cloud Volumes Ser
 ---
 = 设置适用于 Google Cloud 的 Cloud Volumes Service
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -85,7 +86,7 @@ summary: 在 Cloud Manager 中创建适用于 Google Cloud 的 Cloud Volumes Ser
 
 
 
-有关详细步骤，请参见 Google Cloud 主题 link:https://cloud.google.com/iam/docs/creating-managing-service-accounts["创建和管理服务帐户"^]， ，和 。
+有关详细步骤，请参见 Google Cloud 主题 link:https://cloud.google.com/iam/docs/creating-managing-service-accounts["创建和管理服务帐户"^]， link:https://cloud.google.com/iam/docs/granting-changing-revoking-access["授予，更改和撤消对资源的访问权限"^]，和 link:https://cloud.google.com/iam/docs/creating-managing-service-account-keys["创建和管理服务帐户密钥"^]。
 
 
 

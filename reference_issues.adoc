@@ -6,6 +6,7 @@ summary: 已知问题可确定可能妨碍您成功使用此版本产品的问�
 ---
 = 已知问题
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -17,4 +18,4 @@ summary: 已知问题可确定可能妨碍您成功使用此版本产品的问�
 
 此版本的 Cloud Manager 中没有已知问题。
 
-您可以在中找到 Cloud Volumes ONTAP 的已知问题 https://docs.netapp.com/us-en/cloud-volumes-ontap/["《 Cloud Volumes ONTAP 发行说明》"^] 和 ONTAP 软件的一般信息。
+您可以在中找到 Cloud Volumes ONTAP 的已知问题 https://docs.netapp.com/us-en/cloud-volumes-ontap/["《 Cloud Volumes ONTAP 发行说明》"^] 和 ONTAP 软件的一般信息 https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["《 ONTAP 发行说明》"^]。

@@ -6,6 +6,7 @@ summary: 如果需要，您可以阻止 Cloud Compliance 扫描一个或多个�
 ---
 = 禁用 Cloud Compliance
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

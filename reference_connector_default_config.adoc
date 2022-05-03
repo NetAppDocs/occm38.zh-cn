@@ -6,6 +6,7 @@ summary: 如果您需要对连接器进行故障排除，了解其配置方式�
 ---
 = Connector 的默认配置
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

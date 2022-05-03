@@ -6,6 +6,7 @@ summary: Cloud Compliance 提供报告，您可以使用这些报告更好地了
 ---
 = 查看合规性报告
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

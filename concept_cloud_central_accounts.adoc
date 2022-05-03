@@ -6,6 +6,7 @@ summary: Cloud Central 帐户提供多租户功能，您可以在 Cloud Manager 
 ---
 = 帐户设置：用户，工作空间，连接器和订阅
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 帐户管理员可以在 Cloud Manager 中启用一项设置，以防�
 ---
 = 覆盖 Azure 中 Cloud Volumes ONTAP HA 的 CIFS 锁定
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

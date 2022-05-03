@@ -6,6 +6,7 @@ summary: 通过 Cloud Manager ，您可以选择部署 Cloud Volumes ONTAP 时�
 ---
 = Azure 凭据和权限
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -51,7 +52,7 @@ image:screenshot_accounts_switch_azure.gif["单击详细信息和 amp ；凭据�
 
 .市场部署和内部部署如何？
 ****
-以上各节介绍了从 NetApp Cloud Central 为 Connector 推荐的部署方法。您也可以从在 Azure 中部署 Connector link:task_launching_azure_mktp.html["Azure Marketplace"]，您可以 。
+以上各节介绍了从 NetApp Cloud Central 为 Connector 推荐的部署方法。您也可以从在 Azure 中部署 Connector link:task_launching_azure_mktp.html["Azure Marketplace"]，您可以 link:task_installing_linux.html["在内部安装 Connector"]。
 
 如果您使用 Marketplace ，则会以相同方式提供权限。您只需手动创建并设置 Connector 的托管身份，然后为任何其他帐户提供权限即可。
 

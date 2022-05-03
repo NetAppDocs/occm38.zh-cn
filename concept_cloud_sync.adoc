@@ -6,6 +6,7 @@ summary: NetApp Cloud Sync 服务提供了一种简单、安全且自动化的�
 ---
 = Cloud Sync 概述
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -75,7 +76,7 @@ link:reference_sync_requirements.html["查看支持的同步关系"]。
 
 通过从 AWS 或 Azure 订阅 Cloud Sync 服务、您可以按小时付费或每年付款。 link:task_sync_licensing.html["您可以通过 AWS 或 Azure 订阅"]，具体取决于您要向何处付费。
 
-每小时订阅::
+每小时订阅:: 对于每小时按需购买订阅， Cloud Sync 服务会根据您创建的同步关系数量按小时收费。
 +
 --
 * https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-sync-service?tab=PlansAndPrice["查看 Azure 中的定价"^]
@@ -83,7 +84,7 @@ link:reference_sync_requirements.html["查看支持的同步关系"]。
 
 
 --
-年度订阅::
+年度订阅:: 年度订阅为 20 种同步关系提供许可、您可以预先支付费用。如果您的同步关系超过 20 个，并且您已通过 Azure 订阅，则可以按小时支付额外的关系费用。
 +
 --
 https://aws.amazon.com/marketplace/pp/B06XX5V3M2["查看 AWS 中的年度定价"^]

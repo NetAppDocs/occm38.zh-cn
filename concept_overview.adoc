@@ -6,6 +6,7 @@ summary: 借助 Cloud Manager ， IT 专家和云架构师可以使用 NetApp �
 ---
 = 了解 Cloud Manager
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -21,9 +22,9 @@ summary: 借助 Cloud Manager ， IT 专家和云架构师可以使用 NetApp �
 Cloud Manager 是一款基于 SaaS 的企业级管理平台，无论数据位于何处，都能让您始终掌控数据。
 
 * 设置和使用 https://cloud.netapp.com/ontap-cloud["Cloud Volumes ONTAP"^] 跨云实现高效的多协议数据管理。
-* 设置和使用文件存储服务： https://cloud.netapp.com/azure-netapp-files["Azure NetApp Files"^]，，和。
+* 设置和使用文件存储服务： https://cloud.netapp.com/azure-netapp-files["Azure NetApp Files"^]， https://cloud.netapp.com/cloud-volumes-service-for-aws["适用于 AWS 的 Cloud Volumes Service"^]，和 https://cloud.netapp.com/cloud-volumes-service-for-gcp["适用于 Google Cloud 的 Cloud Volumes Service"^]。
 * 通过创建卷，备份到云，跨混合云复制数据以及将冷数据分层到云，发现和管理内部 ONTAP 集群。
-* 支持集成云服务和软件，例如 https://cloud.netapp.com/cloud-compliance["云合规性"^]，，，等。
+* 支持集成云服务和软件，例如 https://cloud.netapp.com/cloud-compliance["云合规性"^]， https://cloud.netapp.com/cloud-insights["Cloud Insights"^]， https://cloud.netapp.com/cloud-backup-service["Cloud Backup Service"^]， https://netapp.io/persistent-storage-provisioner-for-kubernetes/["Trident"^]等。
 
 
 https://cloud.netapp.com/cloud-manager["了解有关 Cloud Manager 的更多信息"^]。
@@ -58,7 +59,7 @@ Cloud Manager 可通过访问 https://cloudmanager.netapp.com["基于 SaaS 的�
 
 === NetApp Cloud Central
 
-https://cloud.netapp.com["NetApp Cloud Central"^] 提供一个用于访问和管理的集中位置。通过集中式用户身份验证，您可以使用同一组凭据来访问 Cloud Manager 以及 Cloud Insights 等其他云服务。
+https://cloud.netapp.com["NetApp Cloud Central"^] 提供一个用于访问和管理的集中位置 https://www.netapp.com/us/products/cloud-services/use-cases-for-netapp-cloud-services.aspx["NetApp 云服务"^]。通过集中式用户身份验证，您可以使用同一组凭据来访问 Cloud Manager 以及 Cloud Insights 等其他云服务。
 
 首次登录到 Cloud Manager 时，系统会提示您创建 _Cloud Central 帐户 _ 。此帐户可提供多租户，并可用于在隔离的 _workworkworkspace _ 中组织用户和资源。
 

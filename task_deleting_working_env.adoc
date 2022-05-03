@@ -6,6 +6,7 @@ summary: 最好从 Cloud Manager 中删除 Cloud Volumes ONTAP 系统、而不�
 ---
 = 删除 Cloud Volumes ONTAP 工作环境
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: Cloud Volumes Service for AWS 的成本取决于您选择的服务级�
 ---
 = 服务级别和分配的容量
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -112,7 +113,7 @@ Cloud Volumes Service for AWS 支持三种服务级别。您可以在创建或�
 
 最左侧列表示容量，其他列则根据服务级别定义每个容量点的可用 MB/ 秒。
 
-请参见 link:https://aws.amazon.com/marketplace/pp/B07MF4GHYW?qid=1595869056263&sr=0-2&ref_=srh_res_product_title["合同订阅定价"] 和  有关定价的完整详细信息。
+请参见 link:https://aws.amazon.com/marketplace/pp/B07MF4GHYW?qid=1595869056263&sr=0-2&ref_=srh_res_product_title["合同订阅定价"] 和 link:https://aws.amazon.com/marketplace/pp/B0848MXK74?qid=1595869056263&sr=0-1&ref_=srh_res_product_title["按计量的订阅定价"^] 有关定价的完整详细信息。
 
 [cols="15,15,15,15"]
 |===

@@ -6,6 +6,7 @@ summary: 完成几个步骤，开始在 AWS 或 Azure 中使用适用于 Azure N
 ---
 = Cloud Volumes ONTAP 和 Azure NetApp Files 云合规性入门
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

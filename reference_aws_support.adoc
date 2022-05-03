@@ -6,6 +6,7 @@ summary: Cloud Tiering 支持多个 S3 存储类和大多数地区。
 ---
 = 支持的 S3 存储类和区域
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 首次登录到 Cloud Manager 时，系统会提示您创建 NetApp Clo
 ---
 = 在 Cloud Central 帐户中设置工作空间和用户
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

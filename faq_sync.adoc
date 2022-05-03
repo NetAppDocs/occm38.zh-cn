@@ -6,6 +6,7 @@ summary: 您可以获得有关 Cloud Sync 的帮助，并通过论坛，聊天�
 ---
 = Cloud Sync 技术常见问题解答
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

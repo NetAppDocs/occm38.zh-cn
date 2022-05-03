@@ -6,6 +6,7 @@ summary: 通过 Web UI 提供的云同步功能也可通过 REST 风格的 API �
 ---
 = 云同步 API
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

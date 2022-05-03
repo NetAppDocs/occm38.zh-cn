@@ -6,6 +6,7 @@ summary: Cloud Sync 服务入门包括几个步骤。
 ---
 = Cloud Sync 快速入门
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: '" 帐户管理员 " ， " 工作空间管理员 " 和 " 云合规性�
 ---
 = 角色
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 注册到 NetApp Cloud Central ，以便您可以访问 NetApp 的云�
 ---
 = 注册到 NetApp Cloud Central
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

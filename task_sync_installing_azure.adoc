@@ -6,6 +6,7 @@ summary: 创建同步关系时，请选择 Azure Data Brokers 选项以在 VNet 
 ---
 = 在 Azure 中安装数据代理
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

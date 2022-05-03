@@ -6,6 +6,7 @@ summary: 每个 Cloud Volumes ONTAP BYOL 系统都必须在有效订阅中安装
 ---
 = 许可
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

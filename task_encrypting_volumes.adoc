@@ -7,6 +7,7 @@ summary: Cloud Volumes ONTAP 通过外部密钥管理器同时支持 NetApp 卷�
 = 使用 NetApp 加密解决方案对卷进行加密
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font

@@ -6,6 +6,7 @@ summary: 要部署 BYOL 系统，需要将 NetApp 支持站点帐户添加到 Cl
 ---
 = 将 NetApp 支持站点帐户添加到 Cloud Manager
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

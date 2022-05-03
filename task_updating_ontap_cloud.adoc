@@ -6,6 +6,7 @@ summary: Cloud Manager 包括多个选项、您可以使用这些选项升级到
 ---
 = 更新 Cloud Volumes ONTAP 软件
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

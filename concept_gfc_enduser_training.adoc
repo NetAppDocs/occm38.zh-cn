@@ -6,6 +6,7 @@ summary: 您需要对用户进行有关通过全局文件缓存访问共享文�
 ---
 = 最终用户培训
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

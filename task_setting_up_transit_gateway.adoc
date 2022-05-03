@@ -6,6 +6,7 @@ summary: 设置 AWS 传输网关，以使 NAS 客户端能够从 Cloud Volumes O
 ---
 = 为多个 AZs 中的 HA 对设置 AWS 传输网关
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

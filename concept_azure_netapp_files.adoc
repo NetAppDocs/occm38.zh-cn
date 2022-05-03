@@ -6,6 +6,7 @@ summary: Azure NetApp Files 支持企业在 Azure 中迁移和运行性能密集
 ---
 = 了解 Azure NetApp Files
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

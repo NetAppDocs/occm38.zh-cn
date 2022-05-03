@@ -6,6 +6,7 @@ summary: 使用以下链接可了解有关全局文件缓存和其他 NetApp 产
 ---
 = 追加信息
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

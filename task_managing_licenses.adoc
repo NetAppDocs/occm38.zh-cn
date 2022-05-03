@@ -6,6 +6,7 @@ summary: '添加 Cloud Volumes ONTAP BYOL 系统许可证以添加额外容量�
 ---
 = 管理 Cloud Volumes ONTAP 的 BYOL 许可证
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

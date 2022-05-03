@@ -6,6 +6,7 @@ summary: 我们为 Cloud Manager 引入了软件即服务体验。这种全新�
 ---
 = Cloud Manager 过渡到 SaaS
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

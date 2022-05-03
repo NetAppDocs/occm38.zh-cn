@@ -6,6 +6,7 @@ summary: 通过利用 NetApp 的 Cloud Insights 服务， Cloud Manager 可以�
 ---
 = 了解监控服务
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

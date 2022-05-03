@@ -6,6 +6,7 @@ summary: 只需几步即可开始使用适用于 Azure 的 Cloud Volumes ONTAP �
 ---
 = Cloud Volumes ONTAP for Azure 入门
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -20,7 +21,7 @@ summary: 只需几步即可开始使用适用于 Azure 的 Cloud Volumes ONTAP �
 ==== 创建连接器
 
 [role="quick-margin-para"]
-如果您没有 link:concept_connectors.html["连接器"] 但是，客户管理员需要创建一个。 。
+如果您没有 link:concept_connectors.html["连接器"] 但是，客户管理员需要创建一个。 link:task_creating_connectors_azure.html["了解如何在 Azure 中创建 Connector"]。
 
 [role="quick-margin-para"]
 在创建首个 Cloud Volumes ONTAP 工作环境时，如果尚未部署 Connector ，则 Cloud Manager 会提示您部署一个。

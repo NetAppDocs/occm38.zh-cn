@@ -6,6 +6,7 @@ summary: 借助 Cloud Volumes ONTAP ，您可以优化云存储成本和性能�
 ---
 = 了解 Cloud Volumes ONTAP
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

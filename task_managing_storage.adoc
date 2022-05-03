@@ -6,6 +6,7 @@ summary: 利用 Cloud Manager ，您可以管理卷、聚合和 CIFS 服务器�
 ---
 = 管理现有存储
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

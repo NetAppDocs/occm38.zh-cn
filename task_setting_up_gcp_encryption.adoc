@@ -6,6 +6,7 @@ summary: 虽然 Google Cloud Storage 始终会在数据写入磁盘之前对数�
 ---
 = 将客户管理的加密密钥与 Cloud Volumes ONTAP 结合使用
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 设置工作环境后，您可以开始创建和管理 Azure NetApp Fil
 ---
 = 为 Azure NetApp Files 创建和管理卷
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

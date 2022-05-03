@@ -6,6 +6,7 @@ summary: 只需几步即可开始使用适用于 AWS 的 Cloud Volumes ONTAP 。
 ---
 = Cloud Volumes ONTAP for AWS 入门
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -20,7 +21,7 @@ summary: 只需几步即可开始使用适用于 AWS 的 Cloud Volumes ONTAP 。
 ==== 创建连接器
 
 [role="quick-margin-para"]
-如果您没有 link:concept_connectors.html["连接器"] 但是，客户管理员需要创建一个。 。
+如果您没有 link:concept_connectors.html["连接器"] 但是，客户管理员需要创建一个。 link:task_creating_connectors_aws.html["了解如何在 AWS 中创建连接器"]。
 
 [role="quick-margin-para"]
 在创建首个 Cloud Volumes ONTAP 工作环境时，如果尚未部署 Connector ，则 Cloud Manager 会提示您部署一个。

@@ -6,6 +6,7 @@ summary: Cloud Sync 网络包括数据代理与源位置和目标位置之间的
 ---
 = Cloud Sync 网络概述
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

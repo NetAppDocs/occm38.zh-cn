@@ -6,6 +6,7 @@ summary: 创建同步关系时，请选择 GCP 数据代理选项以在 vPC 中�
 ---
 = 在 Google Cloud Platform 中安装数据代理
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

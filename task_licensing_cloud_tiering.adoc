@@ -6,6 +6,7 @@ summary: 通过按需购买订阅，名为 FabricPool 的 ONTAP 分层许可证�
 ---
 = 为 Cloud Tiering 设置许可
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: '创建 Cloud Volumes ONTAP 系统时，您需要选择要用于该系�
 ---
 = 管理 Cloud Manager 的 Azure 凭据和订阅
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

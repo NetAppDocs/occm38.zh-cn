@@ -6,6 +6,7 @@ summary: Cloud Manager 可以在内部环境、 NetApp 私有存储配置和 IBM
 ---
 = 发现 ONTAP 集群
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

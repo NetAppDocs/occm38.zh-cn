@@ -6,6 +6,7 @@ summary: '此页面重点介绍了 Cloud Manager 中的 _important_ 更改，这
 ---
 = Cloud Manager 中的重要变更
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -159,7 +160,7 @@ Cloud Manager 在引入新功能和增强功能时偶尔需要额外的云提供
 
 连接器需要通过出站 Internet 访问来管理公有云环境中的资源和流程。本节确定了现在需要的新端点。
 
-您可以找到 link:reference_networking.html["此处列出从 Web 浏览器访问的端点的完整列表"] 和 。
+您可以找到 link:reference_networking.html["此处列出从 Web 浏览器访问的端点的完整列表"] 和 link:reference_networking_cloud_manager.html#outbound-internet-access["此处列出了 Connector 访问的端点的完整列表"]。
 
 * 用户需要通过访问以下端点从 Web 浏览器访问 Cloud Manager ：
 +

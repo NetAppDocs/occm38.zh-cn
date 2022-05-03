@@ -6,6 +6,7 @@ summary: Cloud Volumes ONTAP 支持数据加密，并提供防病毒和勒索软
 ---
 = 安全性
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

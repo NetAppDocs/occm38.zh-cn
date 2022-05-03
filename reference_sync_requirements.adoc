@@ -6,6 +6,7 @@ summary: 通过验证是否支持和设置源和目标来准备同步数据。
 ---
 = 准备源和目标
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 本常见问题解答解答解答了与全新 Cloud Manager SaaS 版本
 ---
 = 有关 Cloud Manager SaaS 的常见问题解答
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 为了帮助您入门， NetApp 代表可能会要求您提供用于标
 ---
 = 正在查找 Cloud Manager 系统 ID
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 请完成几个步骤，开始使用 Cloud Compliance 扫描数据库�
 ---
 = 正在扫描数据库架构
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

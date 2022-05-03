@@ -7,6 +7,7 @@ summary: Storage VM 是在 ONTAP 中运行的虚拟机，可为客户端提供�
 = 管理 Storage VM
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font

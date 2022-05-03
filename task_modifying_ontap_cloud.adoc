@@ -6,6 +6,7 @@ summary: '随着存储需求的变化，您可能需要更改 Cloud Volumes ONTA
 ---
 = 修改 Cloud Volumes ONTAP 系统
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -86,8 +87,8 @@ Cloud Volumes ONTAP 将使用新许可证，实例类型或计算机类型或这
 . 创建新的 Cloud Volumes ONTAP 工作环境。
 +
 link:task_deploying_otc_aws.html["在 AWS 中启动 Cloud Volumes ONTAP"]
-
-
+link:task_deploying_otc_azure.html["在 Azure 中启动 Cloud Volumes ONTAP"]
+link:task_deploying_gcp.html["在 GCP 中启动 Cloud Volumes ONTAP"]
 
 . link:task_replicating_data.html["设置一次性数据复制"] 必须复制的每个卷的系统之间。
 . 终止不再需要的 Cloud Volumes ONTAP 系统 link:task_deleting_working_env.html["删除原始工作环境"]。

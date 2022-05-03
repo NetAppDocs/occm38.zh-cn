@@ -6,6 +6,7 @@ summary: 您可以通过 Cloud Manager 根据 Cloud Volumes Service for AWS 订�
 ---
 = 管理适用于 AWS 的 Cloud Volumes Service
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

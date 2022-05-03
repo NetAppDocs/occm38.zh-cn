@@ -6,6 +6,7 @@ summary: 了解默认情况下如何配置 Cloud Volumes ONTAP 可以帮助您�
 ---
 = Cloud Volumes ONTAP 的默认配置
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

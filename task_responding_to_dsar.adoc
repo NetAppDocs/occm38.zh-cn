@@ -6,6 +6,7 @@ summary: 通过搜索主题的全名或已知标识符（例如电子邮件地�
 ---
 = 响应数据主体访问请求
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

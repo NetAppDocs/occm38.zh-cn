@@ -6,6 +6,7 @@ summary: 您可以在 Cloud Manager 工作环境之间复制数据。您可以�
 ---
 = 在系统之间复制数据
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

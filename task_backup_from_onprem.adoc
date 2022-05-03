@@ -6,6 +6,7 @@ summary: 完成几个步骤，开始将数据从内部 ONTAP 系统备份到云�
 ---
 = 将数据从内部 ONTAP 系统备份到云
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -85,14 +86,14 @@ image:screenshot_backup_to_s3_restore_icon.gif["选择卷后备份的还原图�
 在开始将卷备份到 Azure Blob 存储之前，请阅读以下要求，以确保您的配置受支持。
 
 支持的 ONTAP 版本:: ONTAP 9.7P5 及更高版本。
-集群网络连接要求::
+集群网络连接要求:: 托管要备份的卷的每个 ONTAP 节点都需要一个集群间 LIF 。LIF 必须与 _IP 空间 _ 关联， ONTAP 应使用此 _IP 空间 _ 连接到对象存储。管理 SVM 必须驻留在 IP 空间上。 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html["了解有关 IP 空间的更多信息"^]。
 +
 --
 在设置到云的备份时，系统会提示您使用 IP 空间。您应选择与每个 LIF 关联的 IP 空间。这可能是您创建的 " 默认 "IP 空间或自定义 IP 空间。
 
 --
 支持的 Azure 区域:: 所有 Azure 地区均支持备份到云 https://cloud.netapp.com/cloud-volumes-global-regions["支持云卷的位置"^]。
-许可证要求::
+许可证要求:: 对于 Backup to Cloud PAYGO 许可，是的订阅 https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Azure Marketplace Cloud Manager 备份产品"^] 在启用备份到云之前为必填项。备份到云的计费通过此订阅完成。
 +
 --
 对于 Backup to Cloud BYOL 许可，您需要 NetApp 提供的序列号，以便在许可证有效期和容量内使用此服务。请参见 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["添加和更新备份 BYOL 许可证"^]。

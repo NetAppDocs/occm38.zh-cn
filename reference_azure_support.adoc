@@ -6,6 +6,7 @@ summary: Cloud Tiering 支持热访问层和大多数地区。
 ---
 = 支持的 Azure Blob 访问层和区域
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 最好直接从 Cloud Manager 创建 Connector ，但如果愿意，您
 ---
 = 从 Azure Marketplace 创建 Connector
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 创建一个或多个连接器后，您可以通过在连接器之间�
 ---
 = 管理现有连接器
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

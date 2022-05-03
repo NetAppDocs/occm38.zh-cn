@@ -6,6 +6,7 @@ summary: 通过将热数据的 SSD 或 HDD 性能层与非活动数据的对象�
 ---
 = 将非活动数据分层到低成本对象存储
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -113,7 +114,7 @@ https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_
 .. 将预定义的 _Storage Admin_ 角色分配给分层服务帐户。
 .. 将 Connector 服务帐户作为 _Service Account User_ 添加到分层服务帐户。
 +
-您可以提供用户角色 https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["在创建分层服务帐户时，请执行向导的第 3 步"]或。
+您可以提供用户角色 https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["在创建分层服务帐户时，请执行向导的第 3 步"]或 https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_user_for_a_service_account["创建服务帐户后授予角色"^]。
 
 +
 稍后在创建 Cloud Volumes ONTAP 工作环境时，您需要选择分层服务帐户。

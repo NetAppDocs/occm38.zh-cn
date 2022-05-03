@@ -6,6 +6,7 @@ summary: Cloud Manager 需要在云提供商中执行操作的权限。这些权
 ---
 = Cloud Manager 如何使用云提供商权限
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

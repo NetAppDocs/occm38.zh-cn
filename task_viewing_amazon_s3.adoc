@@ -6,6 +6,7 @@ summary: 在 AWS 中安装 Connector 后， Cloud Manager 可以自动发现有�
 ---
 = 查看 Amazon S3 存储分段
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

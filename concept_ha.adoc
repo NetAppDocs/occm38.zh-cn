@@ -6,6 +6,7 @@ summary: Cloud Volumes ONTAP High Availability （ HA ）配置提供无中断�
 ---
 = AWS 中的高可用性对
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: 大多数情况下，您需要在云或内部网络中部署 Connector 
 ---
 = 了解连接器
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

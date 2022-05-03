@@ -6,6 +6,7 @@ summary: 登录并设置 Cloud Manager 后，用户便可开始创建和发现�
 ---
 = 下一步行动
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

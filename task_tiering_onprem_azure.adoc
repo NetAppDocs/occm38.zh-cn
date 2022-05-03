@@ -6,6 +6,7 @@ summary: 通过将数据分层到 Azure Blob 存储，在内部 ONTAP 集群上�
 ---
 = 将数据从内部 ONTAP 集群分层到 Azure Blob 存储
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -48,7 +49,7 @@ summary: 通过将数据分层到 Azure Blob 存储，在内部 ONTAP 集群上�
 免费试用结束后，通过按需购买订阅， ONTAP 分层许可证或两者的组合为云分层付费：
 
 * 要从 Azure Marketplace 订阅，请单击 * 分层 > 许可 * ，单击 * 订阅 * ，然后按照提示进行操作。
-* 要添加分层许可证，请发送电子邮件至： ng-cloud-tiering@netapp.com ？ Subject=Licensing[ 如果需要购买许可证，请联系我们 ] ，然后发送电子邮件至 。
+* 要添加分层许可证，请发送电子邮件至： ng-cloud-tiering@netapp.com ？ Subject=Licensing[ 如果需要购买许可证，请联系我们 ] ，然后发送电子邮件至 link:task_licensing_cloud_tiering.html["从 Cloud Tiering 将其添加到集群中"]。
 
 
 
@@ -96,9 +97,8 @@ IP 空间可实现网络流量隔离，从而可以隔离客户端流量，以�
 
 
 --
+支持的卷和聚合:: 云分层可分层的卷总数可能小于 ONTAP 系统上的卷数。这是因为无法从某些聚合对卷进行分层。例如，您不能对 SnapLock 卷或 MetroCluster 配置中的数据进行分层。有关信息，请参见 ONTAP 文档 link:http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/GUID-8E421CC9-1DE1-492F-A84C-9EB1B0177807.html["FabricPool 不支持的功能"^]。
 
-
-link:https://raw.githubusercontent.com/NetAppDocs/cloud-tiering/master/_include/supported_volumes.adoc[""]
 
 
 NOTE: 从 ONTAP 9.5 开始，云分层支持 FlexGroup 卷。安装程序的工作方式与任何其他卷相同。

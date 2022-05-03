@@ -6,6 +6,7 @@ summary: 您可以发现现有的 Cloud Volumes ONTAP 系统并将其添加到 C
 ---
 = 将现有 Cloud Volumes ONTAP 系统添加到 Cloud Manager
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

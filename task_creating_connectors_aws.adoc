@@ -6,6 +6,7 @@ summary: 客户管理员需要先部署 Connector ，然后才能使用大多数
 ---
 = 通过 Cloud Manager 在 AWS 中创建连接器
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -15,7 +16,7 @@ summary: 客户管理员需要先部署 Connector ，然后才能使用大多数
 [role="lead"]
 客户管理员需要先部署 _Connector_ ，然后才能使用大多数 Cloud Manager 功能。 link:concept_connectors.html["了解何时需要连接器"]。借助此连接器， Cloud Manager 可以管理公有云环境中的资源和流程。
 
-此页面介绍如何直接从 Cloud Manager 在 AWS 中创建 Connector 。您还可以选择 link:task_launching_aws_mktp.html["从 AWS Marketplace 创建 Connector"]或 。
+此页面介绍如何直接从 Cloud Manager 在 AWS 中创建 Connector 。您还可以选择 link:task_launching_aws_mktp.html["从 AWS Marketplace 创建 Connector"]或 link:task_installing_linux.html["下载软件并将其安装在您自己的主机上"]。
 
 这些步骤必须由具有帐户管理员角色的用户完成。Workspace 管理员无法创建 Connector 。
 

@@ -6,6 +6,7 @@ summary: 您可以在为软件付费之前对 Cloud Volumes ONTAP 进行评估�
 ---
 = 评估
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -15,7 +16,7 @@ summary: 您可以在为软件付费之前对 Cloud Volumes ONTAP 进行评估�
 [role="lead"]
 您可以在为软件付费之前对 Cloud Volumes ONTAP 进行评估。最常见的方法是启动第一个 Cloud Volumes ONTAP 系统的 PAYGO 版本，获得 30 天免费试用。此外，还可以选择评估 BYOL 许可证。
 
-如果您需要有关概念验证的帮助，请联系 https://cloud.netapp.com/contact-cds["销售团队"^] 或者通过提供的聊天选项联系 以及 Cloud Manager 中的。
+如果您需要有关概念验证的帮助，请联系 https://cloud.netapp.com/contact-cds["销售团队"^] 或者通过提供的聊天选项联系 https://cloud.netapp.com["NetApp Cloud Central"^] 以及 Cloud Manager 中的。
 
 
 

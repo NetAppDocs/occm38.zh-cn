@@ -6,6 +6,7 @@ summary: 在 Azure 中部署 Cloud Volumes ONTAP 时，您可以选择符合工�
 ---
 = 在 Azure 中规划 Cloud Volumes ONTAP 配置
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -37,7 +38,7 @@ https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_azure_97.html
 
 对 Cloud Volumes ONTAP 系统进行规模估算有助于满足性能和容量要求。在选择虚拟机类型，磁盘类型和磁盘大小时，您应注意几个要点：
 
-虚拟机类型::
+虚拟机类型:: 在中查看支持的虚拟机类型 http://docs.netapp.com/cloud-volumes-ontap/us-en/index.html["《 Cloud Volumes ONTAP 发行说明》"^] 然后查看有关每个受支持 VM 类型的详细信息。请注意，每种 VM 类型都支持特定数量的数据磁盘。
 +
 --
 * https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes-general#dsv2-series["Azure 文档：通用虚拟机大小"^]
@@ -45,7 +46,7 @@ https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_azure_97.html
 
 
 --
-Azure 磁盘类型::
+Azure 磁盘类型:: 当您为 Cloud Volumes ONTAP 创建卷时、需要选择 Cloud Volumes ONTAP 用作磁盘的底层云存储。
 +
 --
 HA 系统使用高级页面 Blobs 。同时，单节点系统可以使用两种类型的 Azure 受管磁盘：
@@ -59,7 +60,7 @@ HA 系统使用高级页面 Blobs 。同时，单节点系统可以使用两种�
 
 
 --
-Azure 磁盘大小::
+Azure 磁盘大小:: 启动 Cloud Volumes ONTAP 实例时，必须为聚合选择默认磁盘大小。Cloud Manager 将此磁盘大小用于初始聚合以及在您使用简单配置选项时创建的任何其他聚合。您可以创建使用与默认大小不同的磁盘大小的聚合 link:task_provisioning_storage.html#creating-aggregates["使用高级分配选项"]。
 +
 --
 

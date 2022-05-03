@@ -6,6 +6,7 @@ summary: 您可以从 Cloud Manager 停止并启动 Cloud Volumes ONTAP 来管�
 ---
 = 管理 Cloud Volumes ONTAP 的状态
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
