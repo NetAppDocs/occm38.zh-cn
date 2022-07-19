@@ -70,7 +70,7 @@ EBS 磁盘大小:: 启动 Cloud Volumes ONTAP 系统时，您需要选择初始�
 
 有关在 AWS 中调整 Cloud Volumes ONTAP 系统规模的更多详细信息，请观看以下视频：
 
-video::GELcXmOuYPw[youtube, width=848,height=480]
+video::GELcXmOuYPw[youtube,width=848,height=480]
 
 
 == 选择支持 Flash Cache 的配置

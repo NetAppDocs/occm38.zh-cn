@@ -210,4 +210,4 @@ Cloud Manager 目前不提供 FlexCache 卷的管理，但您可以使用 ONTAP 
 
 NOTE: 要生成许可证， Cloud Manager 需要访问 \https://ipa-signer.cloudmanager.netapp.com 。确保此 URL 可从防火墙访问。
 
-video::PBNPVRUeT1o[youtube, width=848,height=480]
+video::PBNPVRUeT1o[youtube,width=848,height=480]

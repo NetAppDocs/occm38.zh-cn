@@ -18,7 +18,7 @@ summary: 要部署 BYOL 系统，需要将 NetApp 支持站点帐户添加到 Cl
 
 观看以下视频，了解如何将 NetApp 支持站点帐户添加到 Cloud Manager 。或向下滚动以阅读步骤。
 
-video::V2fLTyztqYQ[youtube, width=848,height=480]
+video::V2fLTyztqYQ[youtube,width=848,height=480]
 您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
 
 .步骤

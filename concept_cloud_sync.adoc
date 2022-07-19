@@ -22,7 +22,7 @@ NetApp Cloud Sync 服务提供了一种简单、安全且自动化的方式、�
 
 观看以下视频以了解 Cloud Sync 的概述：
 
-video::oZNJtLvgNfQ[youtube, width=848,height=480]
+video::oZNJtLvgNfQ[youtube,width=848,height=480]
 
 
 == Cloud Sync 的工作原理
