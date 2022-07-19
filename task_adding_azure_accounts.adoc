@@ -32,11 +32,11 @@ Cloud Manager 需要权限才能在 Azure 中执行操作。您可以通过在 A
 image:diagram_azure_authentication.png["概念映像，显示云管理器在进行 API 调用之前从 Azure Active Directory 获取身份验证和授权。在 Active Directory 中， Cloud Manager 操作员角色定义权限。它与一个或多个 Azure 订阅以及一个表示 Cloud Manger 应用程序的服务主体对象相关联。"]
 
 .步骤
-. <<Creating an Azure Active Directory application,创建 Azure Active Directory 应用程序>>。
-. <<Assigning the application to a role,将应用程序分配给角色>>。
-. <<Adding Windows Azure Service Management API permissions,添加 Windows Azure 服务管理 API 权限>>。
-. <<Getting the application ID and directory ID,获取应用程序 ID 和目录 ID>>。
-. <<Creating a client secret,创建客户端密钥>>。
+.  an Azure Active Directory application,创建 Azure Active Directory 应用程序。
+.  the application to a role,将应用程序分配给角色。
+.  Windows Azure Service Management API permissions,添加 Windows Azure 服务管理 API 权限。
+.  the application ID and directory ID,获取应用程序 ID 和目录 ID。
+.  a client secret,创建客户端密钥。
 
 
 
@@ -197,9 +197,9 @@ image:screenshot_settings_icon.gif["一个屏幕截图，显示 Cloud Manager �
 . 单击 * 添加凭据 * 并选择 * Microsoft Azure* 。
 . 输入有关授予所需权限的 Azure Active Directory 服务主体的信息：
 +
-** 应用程序（客户端） ID ：请参见 <<Getting the application ID and directory ID>>。
-** 目录（租户） ID ：请参见 <<Getting the application ID and directory ID>>。
-** 客户端密钥：请参见 <<Creating a client secret>>。
+** 应用程序（客户端） ID ：请参见  the application ID and directory ID。
+** 目录（租户） ID ：请参见  the application ID and directory ID。
+** 客户端密钥：请参见  a client secret。
 
 
 . 确认已满足策略要求，然后单击 * 继续 * 。
@@ -212,7 +212,7 @@ image:screenshot_settings_icon.gif["一个屏幕截图，显示 Cloud Manager �
 
 现在，您可以从 " 详细信息和凭据 " 页面切换到不同的凭据集 link:task_deploying_otc_azure.html["创建新的工作环境时"]：
 
-image:screenshot_accounts_switch_azure.gif["一个屏幕截图，显示在单击 Details &amp ； Credentials 页面中的 Edit Credentials 后在凭据之间进行选择的情况。"]
+image:screenshot_accounts_switch_azure.gif["一个屏幕截图，显示在单击 Details  ； Credentials 页面中的 Edit Credentials 后在凭据之间进行选择的情况。"]
 
 
 

@@ -29,9 +29,9 @@ summary: 通过将热数据的 SSD 或 HDD 性能层与非活动数据的对象�
 
 ==== 确保 Cloud Volumes ONTAP 与对象存储之间的连接
 
-* 对于 AWS ， S3 需要一个 VPC 端点。 <<Requirements to tier cold data to AWS S3,了解更多信息。>>。
-* 对于 Azure ，只要 Cloud Manager 具有所需权限，您就无需执行任何操作。 <<Requirements to tier cold data to Azure Blob storage,了解更多信息。>>。
-* 对于 GCP ，您需要为 Private Google Access 配置子网并设置服务帐户。 <<Requirements to tier cold data to a Google Cloud Storage bucket,了解更多信息。>>。
+* 对于 AWS ， S3 需要一个 VPC 端点。  to tier cold data to AWS S3,了解更多信息。。
+* 对于 Azure ，只要 Cloud Manager 具有所需权限，您就无需执行任何操作。  to tier cold data to Azure Blob storage,了解更多信息。。
+* 对于 GCP ，您需要为 Private Google Access 配置子网并设置服务帐户。  to tier cold data to a Google Cloud Storage bucket,了解更多信息。。
 
 
 
@@ -205,4 +205,4 @@ image:screenshot_replication_tiering.gif["复制卷时显示 S3 分层选项的�
 
 不可以，您无法在现有聚合上启用数据分层。您只能对新聚合启用数据分层。
 
-您也可以在新聚合上启用数据分层 link:task_provisioning_storage.html#creating-aggregates["自行创建聚合"] 或 <<Tiering data from read-write volumes,创建启用了数据分层的新卷>>。如果启用了数据分层的聚合尚不存在，则 Cloud Manager 将为卷创建新聚合。
+您也可以在新聚合上启用数据分层 link:task_provisioning_storage.html#creating-aggregates["自行创建聚合"] 或  data from read-write volumes,创建启用了数据分层的新卷。如果启用了数据分层的聚合尚不存在，则 Cloud Manager 将为卷创建新聚合。

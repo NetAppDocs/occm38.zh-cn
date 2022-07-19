@@ -104,7 +104,7 @@ image:screenshot_backup_to_s3_restore_icon.gif["选择卷后备份的还原图�
 默认情况下， " 工作环境 " 向导会启用 " 备份到云 " 。请务必保持此选项处于启用状态。
 
 
-NOTE: 如果要选择资源组的名称，请在部署 Cloud Volumes ONTAP 时 * 禁用 * 备份到云。按照的步骤进行操作 <<enabling-backup-to-cloud-on-an-existing-system,在现有系统上启用到云的备份>> 启用备份到云并选择资源组。
+NOTE: 如果要选择资源组的名称，请在部署 Cloud Volumes ONTAP 时 * 禁用 * 备份到云。按照的步骤进行操作 ,在现有系统上启用到云的备份 启用备份到云并选择资源组。
 
 .步骤
 . 单击 * 创建 Cloud Volumes ONTAP * 。

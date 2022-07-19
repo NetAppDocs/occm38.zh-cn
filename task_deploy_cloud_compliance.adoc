@@ -34,7 +34,7 @@ summary: 完成几个步骤，在 Cloud Manager 工作空间中部署 Cloud Comp
 ==== 查看前提条件
 
 [role="quick-margin-para"]
-确保您的云环境可以满足以下前提条件：云合规性实例需要 16 个 vCPU ，实例的出站 Internet 访问，通过端口 80 在 Connector 和 Cloud Compliance 之间建立连接等。 <<Reviewing prerequisites,请参见完整列表>>。
+确保您的云环境可以满足以下前提条件：云合规性实例需要 16 个 vCPU ，实例的出站 Internet 访问，通过端口 80 在 Connector 和 Cloud Compliance 之间建立连接等。  prerequisites,请参见完整列表。
 
 
 
@@ -159,7 +159,7 @@ Cloud Compliance 在 Cloud Manager 工作空间中扫描的前 1 TB 数据是免
 
 image:screenshot_compliance_subscribe.png["屏幕截图显示了正在扫描的数据量以及用于订阅服务的 \" 订阅 \" 按钮。"]
 
-* 注意： * 如果 Cloud Compliance 提示您订阅，但您已订阅 Azure ，则您可能正在使用旧的 * Cloud Manager* 订阅，需要更改为新的 * NetApp Cloud Manager* 订阅。请参见<<Changing to the new Cloud Manager plan in Azure,在 Azure 中更改为新的 NetApp Cloud Manager 计划>> 了解详细信息。
+* 注意： * 如果 Cloud Compliance 提示您订阅，但您已订阅 Azure ，则您可能正在使用旧的 * Cloud Manager* 订阅，需要更改为新的 * NetApp Cloud Manager* 订阅。请参见 to the new Cloud Manager plan in Azure,在 Azure 中更改为新的 NetApp Cloud Manager 计划 了解详细信息。
 
 这些步骤必须由具有 _Account Admin_ 角色的用户完成。
 

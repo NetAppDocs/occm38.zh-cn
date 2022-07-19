@@ -32,7 +32,7 @@ NOTE: 内部 ONTAP 集群不支持 Kubernetes 功能。仅 Cloud Volumes ONTAP �
 ==== 查看前提条件
 
 [role="quick-margin-para"]
-确保您的环境可以满足以下前提条件： Kubernetes 集群和 Cloud Volumes ONTAP 之间的连接， Kubernetes 集群和 Connector 之间的连接，最低 Kubernetes 版本 1.14 ，集群中至少有一个工作节点等。 <<Reviewing prerequisites,请参见完整列表>>。
+确保您的环境可以满足以下前提条件： Kubernetes 集群和 Cloud Volumes ONTAP 之间的连接， Kubernetes 集群和 Connector 之间的连接，最低 Kubernetes 版本 1.14 ，集群中至少有一个工作节点等。  prerequisites,请参见完整列表。
 
 
 

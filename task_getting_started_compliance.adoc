@@ -79,7 +79,7 @@ image:screenshot_cloud_compliance_we_scan_config.png["部署 Cloud Compliance �
 
 
 
-请参见 <<Enabling and disabling compliance scans on volumes,在卷上启用和禁用合规性扫描>> 了解详细信息。
+请参见  and disabling compliance scans on volumes,在卷上启用和禁用合规性扫描 了解详细信息。
 
 Cloud Compliance 开始扫描每个工作环境中的数据。一旦 Cloud Compliance 完成初始扫描，结果就会显示在合规性信息板中。所需时间取决于数据量—可能需要几分钟或几小时。
 

@@ -17,8 +17,8 @@ summary: Cloud Sync 可以在源 SMB 共享和目标 SMB 共享之间复制访�
 Cloud Sync 可以在源 SMB 共享和目标 SMB 共享之间复制访问控制列表（ ACL ）。如果需要，您可以使用 Robocopy 手动自行保留 ACL 。
 
 .选项
-* <<Setting up Cloud Sync to copy ACLs between SMB servers,设置 Cloud Sync 以自动复制 ACL>>
-* <<Manually copying ACLs,自己手动复制 ACL>>
+*  up Cloud Sync to copy ACLs between SMB servers,设置 Cloud Sync 以自动复制 ACL
+*  copying ACLs,自己手动复制 ACL
 
 
 

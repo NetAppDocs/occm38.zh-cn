@@ -30,7 +30,7 @@ summary: 通过将数据分层到 Amazon S3 ，在内部 ONTAP 集群上释放�
 您需要满足以下要求：
 
 * 一种使用纯 SSD 聚合的 AFF 或 FAS 系统，该系统运行的是 ONTAP 9.2 或更高版本，并与 Amazon S3 建立 HTTPS 连接。
-* 具有访问密钥和的 AWS 帐户 <<Preparing Amazon S3,所需权限>> 因此， ONTAP 集群可以对 S3 中的非活动数据进行分层。
+* 具有访问密钥和的 AWS 帐户  Amazon S3,所需权限 因此， ONTAP 集群可以对 S3 中的非活动数据进行分层。
 * 安装在 AWS VPC 或内部环境中的连接器。
 * 用于 Connector 的网络连接，用于启用与 ONTAP 集群， S3 存储和 Cloud Tiering 服务的出站 HTTPS 连接。
 

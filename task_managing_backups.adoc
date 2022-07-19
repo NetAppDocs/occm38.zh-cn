@@ -63,7 +63,7 @@ image:screenshot_backup_manage_volumes_page.png["管理卷页面，您可以在�
 
 
 
-* 注意： * 停止备份卷时，云提供商会继续为备份所用容量收取对象存储成本，除非您这样做 <<Deleting backups,删除备份>>。
+* 注意： * 停止备份卷时，云提供商会继续为备份所用容量收取对象存储成本，除非您这样做  backups,删除备份。
 
 
 

@@ -25,7 +25,7 @@ IMPORTANT: 必须直接从 Cloud Manager 创建和删除所有磁盘和聚合。
 
 如果在启动 Cloud Volumes ONTAP 系统后需要更多存储，则可以从 Cloud Manager 为 NFS ， CIFS 或 iSCSI 创建新的 FlexVol 卷。
 
-创建 iSCSI 卷时， Cloud Manager 会自动为您创建 LUN 。我们通过为每个卷仅创建一个 LUN 来简化此过程，因此无需进行管理。创建卷后， <<Connecting a LUN to a host,使用 IQN 从主机连接到 LUN>>。
+创建 iSCSI 卷时， Cloud Manager 会自动为您创建 LUN 。我们通过为每个卷仅创建一个 LUN 来简化此过程，因此无需进行管理。创建卷后，  a LUN to a host,使用 IQN 从主机连接到 LUN。
 
 
 NOTE: 您可以从 System Manager 或 CLI 创建其他 LUN 。

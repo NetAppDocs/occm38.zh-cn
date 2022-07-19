@@ -92,7 +92,7 @@ image:screenshot_create_data_broker.gif["数据代理页面的屏幕截图，可
 video::video_cloud_sync.mp4[width=848,height=480]
 . 如果您输入了 AWS 访问密钥，请为实例选择一个位置，选择一个密钥对，选择是否启用公有 IP 地址，然后选择现有的 IAM 角色，或者将此字段留空，以便 Cloud Sync 为您创建角色。
 +
-如果您选择自己的 IAM 角色， <<iam,您需要提供所需的权限>>。
+如果您选择自己的 IAM 角色， ,您需要提供所需的权限。
 
 +
 image:screenshot_aws_data_broker.gif["在 AWS 中部署数据代理时需要提供的信息的屏幕截图。"]

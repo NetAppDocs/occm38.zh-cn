@@ -223,11 +223,11 @@ Cloud Volumes ONTAP 会根据更改更新 CIFS 服务器。
 云管理器可能会显示一条需要执行的操作消息、指出需要移动卷以避免容量问题、但无法提供解决问题的建议。如果发生这种情况，您需要确定如何更正问题、然后移动一个或多个卷。
 
 .步骤
-. <<Identifying how to correct capacity issues,确定如何解决此问题。>>。
+.  how to correct capacity issues,确定如何解决此问题。。
 . 根据您的分析、移动卷以避免容量问题：
 +
-** <<Moving volumes to another system to avoid capacity issues,将卷移动到另一个系统。>>。
-** <<Moving volumes to another aggregate to avoid capacity issues,将卷移动到同一系统上的另一个聚合。>>。
+**  volumes to another system to avoid capacity issues,将卷移动到另一个系统。。
+**  volumes to another aggregate to avoid capacity issues,将卷移动到同一系统上的另一个聚合。。
 
 
 
