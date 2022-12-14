@@ -16,6 +16,7 @@ summary: 帐户管理员可以在 Cloud Manager 中启用一项设置，以防�
 [role="lead"]
 帐户管理员可以在 Cloud Manager 中启用一项设置，以防止在 Azure 维护事件期间出现 Cloud Volumes ONTAP 存储故障转移问题。启用此设置后， Cloud Volumes ONTAP 将否决 CIFS 锁定并重置活动 CIFS 会话。
 
+.关于此任务
 Microsoft Azure 会在其虚拟机上计划定期维护事件。当 Cloud Volumes ONTAP HA 对中的节点发生维护事件时， HA 对将启动存储接管。如果在此维护事件期间存在活动的 CIFS 会话，则锁定 CIFS 文件可能会阻止存储故障转移。
 
 如果启用此设置， Cloud Volumes ONTAP 将否决锁定并重置活动的 CIFS 会话。因此， HA 对可以在这些维护事件期间完成存储故障转移。
@@ -23,6 +24,7 @@ Microsoft Azure 会在其虚拟机上计划定期维护事件。当 Cloud Volume
 
 IMPORTANT: 此过程可能会对 CIFS 客户端造成中断。未从 CIFS 客户端提交的数据可能会丢失。
 
+.您需要的内容
 您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
 
 .步骤

@@ -26,7 +26,7 @@ link:concept_cloud_sync.html["了解有关许可证工作原理的更多信息�
 ****
 
 
-== 从 AWS 订阅
+== 【AWS】从AWS订阅
 
 AWS 使您可以按需付费或每年支付。
 
@@ -50,10 +50,11 @@ video::video_cloud_sync_registering.mp4[width=848,height=480]
 
 
 
-== 从 Azure 订阅
+== 【订阅】从Azure订阅
 
 Azure 使您可以按需付费或每年支付。
 
+.您需要的内容
 在相关订阅中具有“贡献者”或“所有者”权限的 Azure 用户帐户。
 
 .步骤
@@ -75,7 +76,7 @@ video::video_cloud_sync_registering_azure.mp4[width=848,height=480]
 
 
 
-== 从 NetApp 购买许可证并将其添加到 Cloud Sync
+== 【许可】从NetApp购买许可证并将其添加到Cloud Sync
 
 要预先支付同步关系的费用、您必须购买一个或多个许可证并将其添加到 Cloud Sync 服务。
 

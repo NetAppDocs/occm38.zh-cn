@@ -29,28 +29,28 @@ NOTE: 内部 ONTAP 集群不支持 Kubernetes 功能。仅 Cloud Volumes ONTAP �
 
 
 
-==== 查看前提条件
+==== image:number1.png["数字 1"] 查看前提条件
 
 [role="quick-margin-para"]
-确保您的环境可以满足以下前提条件： Kubernetes 集群和 Cloud Volumes ONTAP 之间的连接， Kubernetes 集群和 Connector 之间的连接，最低 Kubernetes 版本 1.14 ，集群中至少有一个工作节点等。  prerequisites,请参见完整列表。
+确保您的环境可以满足以下前提条件： Kubernetes 集群和 Cloud Volumes ONTAP 之间的连接， Kubernetes 集群和 Connector 之间的连接，最低 Kubernetes 版本 1.14 ，集群中至少有一个工作节点等。 <<查看前提条件,请参见完整列表>>。
 
 
 
-==== 将 Kubernetes 集群添加到 Cloud Manager
+==== image:number2.png["第2个"] 将 Kubernetes 集群添加到 Cloud Manager
 
 [role="quick-margin-para"]
 在 Cloud Manager 中，单击 * Kubernetes * 并直接从云提供商的托管服务发现集群，或者通过提供 kubeconfig 文件导入集群。
 
 
 
-==== 将集群连接到 Cloud Volumes ONTAP
+==== image:number3.png["第3个"] 将集群连接到 Cloud Volumes ONTAP
 
 [role="quick-margin-para"]
 添加 Kubernetes 集群后，单击 * 连接到工作环境 * 将集群连接到一个或多个 Cloud Volumes ONTAP 系统。
 
 
 
-==== 开始配置永久性卷
+==== image:number4.png["第4个"] 开始配置永久性卷
 
 [role="quick-margin-para"]
 使用原生 Kubernetes 接口和构造请求和管理永久性卷。Cloud Manager 可创建 NFS 和 iSCSI 存储类，您可以在配置永久性卷时使用这些存储类。
@@ -174,6 +174,7 @@ image:diagram_kubernetes.png["在 AWS 中运行的 Kubernetes 集群的架构图
 
 
 
+.结果
 Cloud Manager 将添加 Kubernetes 集群。现在，您可以将集群连接到 Cloud Volumes ONTAP 。
 
 
@@ -200,6 +201,7 @@ image:screenshot_kubernetes_confirm.gif["确认页面的屏幕截图，您可以
 . 单击 * 添加工作环境 * 。
 
 
+.结果
 Cloud Manager 可将工作环境连接到集群，最长可能需要 15 分钟。
 
 
@@ -252,6 +254,7 @@ image:screenshot_kubernetes_upgrade.gif["集群详细信息页面的屏幕截图
 . 当 Web 浏览器出现提示时，选择更新后的 kubeconfig 文件，然后单击 * 打开 * 。
 
 
+.结果
 Cloud Manager 会根据最新的 kubeconfig 文件更新 Kubernetes 集群的相关信息。
 
 
@@ -270,6 +273,7 @@ image:screenshot_kubernetes_disconnect.gif["单击工作环境表最右侧的菜
 . 单击 * 断开连接 * 。
 
 
+.结果
 Cloud Manager 会断开集群与 Cloud Volumes ONTAP 系统的连接。
 
 

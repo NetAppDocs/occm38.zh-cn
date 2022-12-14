@@ -80,6 +80,7 @@ image:screenshot_connector_remove.gif["Connector 小工具的屏幕截图，您�
 . 输入 Connector 的名称进行确认，然后单击删除。
 
 
+.结果
 Cloud Manager 将从其记录中删除 Connector 。
 
 

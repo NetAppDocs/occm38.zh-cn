@@ -25,11 +25,13 @@ IMPORTANT: 必须直接从 Cloud Manager 创建和删除所有磁盘和聚合。
 
 如果在启动 Cloud Volumes ONTAP 系统后需要更多存储，则可以从 Cloud Manager 为 NFS ， CIFS 或 iSCSI 创建新的 FlexVol 卷。
 
-创建 iSCSI 卷时， Cloud Manager 会自动为您创建 LUN 。我们通过为每个卷仅创建一个 LUN 来简化此过程，因此无需进行管理。创建卷后，  a LUN to a host,使用 IQN 从主机连接到 LUN。
+.关于此任务
+创建 iSCSI 卷时， Cloud Manager 会自动为您创建 LUN 。我们通过为每个卷仅创建一个 LUN 来简化此过程，因此无需进行管理。创建卷后， <<将 LUN 连接到主机,使用 IQN 从主机连接到 LUN>>。
 
 
 NOTE: 您可以从 System Manager 或 CLI 创建其他 LUN 。
 
+.开始之前
 如果要在 AWS 中使用 CIFS 、则必须设置 DNS 和 Active Directory 。有关详细信息，请参见 link:reference_networking_aws.html["Cloud Volumes ONTAP for AWS 的网络要求"]。
 
 .步骤
@@ -125,8 +127,10 @@ AD 域中要与 CIFS 服务器关联的组织单元。默认值为 cn = computer
 . 单击 * 执行 * 。
 
 
+.结果
 Cloud Volumes ONTAP 配置卷。
 
+.完成后
 如果配置了 CIFS 共享、请授予用户或组对文件和文件夹的权限、并验证这些用户是否可以访问该共享并创建文件。
 
 如果要对卷应用配额、则必须使用系统管理器或 CLI 。配额允许您限制或跟踪用户、组或 qtree 使用的磁盘空间和文件数量。
@@ -146,6 +150,7 @@ Cloud Volumes ONTAP 配置卷。
 . 输入新卷的详细信息，然后单击 * 创建 * 。
 
 
+.完成后
 如果需要，您可以在此聚合上创建其他卷。
 
 

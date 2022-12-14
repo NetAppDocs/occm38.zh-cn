@@ -15,7 +15,7 @@ summary: Cloud Manager 可以在内部环境、 NetApp 私有存储配置和 IBM
 
 Cloud Manager 可以在内部环境、 NetApp 私有存储配置和 IBM Cloud 中发现 ONTAP 集群。通过发现 ONTAP 集群，您可以配置存储，复制数据，备份数据以及将冷数据从内部集群分层到云。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * 安装在云提供商或内部环境中的 Connector 。
 +
 如果您要将冷数据分层到云，则应根据您计划将冷数据分层的位置查看 Connector 的要求。
@@ -56,4 +56,5 @@ image:screenshot_discover_ontap.gif["屏幕截图显示了 ONTAP 集群详细信
 . 在详细信息页面上，输入工作环境的名称和问题描述，然后单击 * 执行 * 。
 
 
+.结果
 Cloud Manager 可发现集群。现在，您可以创建卷，将数据复制到集群和从集群复制数据，设置云数据分层，将卷备份到云以及启动 System Manager 以执行高级任务。

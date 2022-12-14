@@ -95,6 +95,8 @@ image:screenshot_activate_license.gif["\" 许可 \" 页面的屏幕截图，您�
 . 单击 * 激活许可证 * 。
 
 
+.结果
 Cloud Tiering 会注册许可证并将其安装在集群上。
 
+.完成后
 如果您稍后再购买附加容量，则集群上的许可证将自动使用新容量更新。无需将新的 NetApp 许可证文件（ NLF ）应用于集群。

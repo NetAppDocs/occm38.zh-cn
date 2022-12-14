@@ -51,7 +51,7 @@ image:diagram_nfs_encryption.gif["图中显示了两个 NFS 服务器和两个�
 
 
 
-== 您将需要什么才能开始
+== 入门所需的内容
 
 请确保具有以下内容：
 
@@ -136,4 +136,5 @@ image:screenshot_nfs_encryption_review.gif["屏幕截图显示了“回顾”屏
 
 
 
+.结果
 Cloud Sync 开始创建新的同步关系。完成后，单击 * 在信息板中查看 * 以查看有关新关系的详细信息。

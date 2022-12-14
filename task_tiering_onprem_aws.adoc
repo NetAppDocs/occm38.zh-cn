@@ -24,31 +24,33 @@ summary: 通过将数据分层到 Amazon S3 ，在内部 ONTAP 集群上释放�
 
 
 
-==== 准备将数据分层到 Amazon S3
+==== image:number1.png["数字 1"] 准备将数据分层到 Amazon S3
 
 [role="quick-margin-para"]
 您需要满足以下要求：
 
+[role="quick-margin-list"]
 * 一种使用纯 SSD 聚合的 AFF 或 FAS 系统，该系统运行的是 ONTAP 9.2 或更高版本，并与 Amazon S3 建立 HTTPS 连接。
-* 具有访问密钥和的 AWS 帐户  Amazon S3,所需权限 因此， ONTAP 集群可以对 S3 中的非活动数据进行分层。
+* 具有访问密钥和的 AWS 帐户 <<正在准备 Amazon S3,所需权限>> 因此， ONTAP 集群可以对 S3 中的非活动数据进行分层。
 * 安装在 AWS VPC 或内部环境中的连接器。
 * 用于 Connector 的网络连接，用于启用与 ONTAP 集群， S3 存储和 Cloud Tiering 服务的出站 HTTPS 连接。
 
 
 
 
-==== 设置分层
+==== image:number2.png["数字 2"] 设置分层
 
 [role="quick-margin-para"]
 在 Cloud Manager 中，选择一个内部工作环境，单击 * 设置分层 * ，然后按照提示将数据分层到 Amazon S3 。
 
 
 
-==== 设置许可
+==== image:number3.png["第3个"] 设置许可
 
 [role="quick-margin-para"]
 免费试用结束后，通过按需购买订阅， ONTAP 分层许可证或两者的组合为云分层付费：
 
+[role="quick-margin-list"]
 * 要从 AWS Marketplace 订阅，请单击 * 分层 > 许可 * ，单击 * 订阅 * ，然后按照提示进行操作。
 * 要使用分层许可证付费，请发送电子邮件至： ng-cloud-tiering@netapp.com ？ Subject=Licensing[ 如果需要购买许可证，请联系我们 ] ，然后发送电子邮件至 link:task_licensing_cloud_tiering.html["从 Cloud Tiering 将其添加到集群中"]。
 
@@ -175,7 +177,7 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
 
 准备好 AWS 环境后，开始对第一个集群中的非活动数据进行分层。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * link:task_discovering_ontap.html["内部工作环境"]。
 * IAM 用户的 AWS 访问密钥，该用户具有所需的 S3 权限。
 
@@ -223,8 +225,10 @@ image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_selec
 
 
 
+.结果
 您已成功设置从集群上的卷到 S3 对象存储的数据分层。
 
+.下一步是什么？
 link:task_licensing_cloud_tiering.html["请务必从 Cloud Tiering 服务订阅"]。
 
 您还可以添加其他集群或查看有关集群上活动和非活动数据的信息。有关详细信息，请参见 link:task_managing_tiering.html["从集群管理数据分层"]。

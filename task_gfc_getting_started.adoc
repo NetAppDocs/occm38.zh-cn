@@ -32,35 +32,35 @@ summary: 您可以使用 Cloud Manager 在工作环境中部署全局文件缓�
 
 
 
-==== 部署 Cloud Volumes ONTAP
+==== image:number1.png["数字 1"] 部署 Cloud Volumes ONTAP
 
 [role="quick-margin-para"]
 在 Azure 或 AWS 中部署 Cloud Volumes ONTAP 并配置 SMB 文件共享。有关详细信息，请参见 link:task_deploying_otc_azure.html["在 Azure 中启动 Cloud Volumes ONTAP"^] 或 link:task_deploying_otc_aws.html["在 AWS 中启动 Cloud Volumes ONTAP"^]。
 
 
 
-==== 部署全局文件缓存管理服务器
+==== image:number2.png["第2个"] 部署全局文件缓存管理服务器
 
 [role="quick-margin-para"]
 在与 Cloud Volumes ONTAP 实例相同的工作环境中部署全局文件缓存管理服务器的实例。
 
 
 
-==== 部署全局文件缓存核心
+==== image:number3.png["第3个"] 部署全局文件缓存核心
 
 [role="quick-margin-para"]
 在与 Cloud Volumes ONTAP 实例相同的工作环境中部署全局文件缓存核心的一个或多个实例，并将其加入到 Active Directory 域中。
 
 
 
-==== 许可证全局文件缓存
+==== image:number4.png["第4个"] 许可证全局文件缓存
 
 [role="quick-margin-para"]
 在全局文件缓存核心实例上配置全局文件缓存许可证管理服务器（ LMS ）服务。要激活您的订阅，您需要使用您的 NSS 凭据或 NetApp 提供的客户 ID 。
 
 
 
-==== 部署全局文件缓存边缘实例
+==== image:number5.png["第5个"] 部署全局文件缓存边缘实例
 
 [role="quick-margin-para"]
 请参见 link:task_deploy_gfc_edge_instances.html["部署全局文件缓存边缘实例"^] 在每个远程位置部署全局文件缓存边缘实例。此步骤不能使用 Cloud Manager 完成。
@@ -162,6 +162,7 @@ image:screenshot_gfc_license2.png["在全局文件缓存许可证注册页面中
 
 
 
+.下一步是什么？
 如果您确定需要部署多个全局文件缓存核心来支持您的配置，请单击信息板中的 * 添加核心实例 * ，然后按照部署向导进行操作。
 
 完成核心部署后，您需要 link:download_gfc_resources.html["部署全局文件缓存边缘实例"^] 在每个远程办公室中。

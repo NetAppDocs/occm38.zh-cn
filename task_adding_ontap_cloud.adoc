@@ -16,6 +16,7 @@ summary: 您可以发现现有的 Cloud Volumes ONTAP 系统并将其添加到 C
 [role="lead"]
 您可以发现现有的 Cloud Volumes ONTAP 系统并将其添加到 Cloud Manager 中。如果您部署了新的 Cloud Manager 系统，则可以执行此操作。
 
+.开始之前
 您必须知道 Cloud Volumes ONTAP 管理员用户帐户的密码。
 
 .步骤
@@ -30,4 +31,5 @@ image:screenshot_discover.gif["屏幕截图显示了用于发现现有 Cloud Vol
 . 在凭据页面上，输入 Cloud Volumes ONTAP 管理员用户的密码，然后单击 * 执行 * 。
 
 
+.结果
 Cloud Manager 会将 Cloud Volumes ONTAP 实例添加到工作空间。

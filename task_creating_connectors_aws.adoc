@@ -38,6 +38,7 @@ https://mysupport.netapp.com/site/info/cloud-manager-policies["NetApp Cloud Mana
 . 将上一步中创建的策略附加到要从 Cloud Manager 创建 Connector 的 IAM 用户。
 
 
+.结果
 AWS 用户现在具有从 Cloud Manager 创建 Connector 所需的权限。在 Cloud Manager 提示时，您需要为此用户指定 AWS 访问密钥。
 
 
@@ -46,7 +47,7 @@ AWS 用户现在具有从 Cloud Manager 创建 Connector 所需的权限。在 C
 
 您可以通过 Cloud Manager 直接从其用户界面在 AWS 中创建 Connector 。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * 具有的 IAM 用户的 AWS 访问密钥和机密密钥 https://mysupport.netapp.com/site/info/cloud-manager-policies["所需权限"^]。
 * 您选择的 AWS 区域中的 VPC ，子网和密钥对。
 
@@ -83,4 +84,5 @@ NOTE: 除非您启动 Connector ，否则不会向其传入流量。HTTP 和 HTT
 
 
 
+.完成后
 您需要将连接器与工作空间关联，以便 Workspace 管理员可以使用这些连接器创建 Cloud Volumes ONTAP 系统。如果您只有帐户管理员，则不需要将 Connector 与工作空间相关联。默认情况下，帐户管理员可以访问 Cloud Manager 中的所有工作空间。 link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["了解更多信息。"]。

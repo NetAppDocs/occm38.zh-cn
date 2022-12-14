@@ -17,14 +17,14 @@ Cloud Sync 服务入门包括几个步骤。
 
 
 
-==== 准备您的源和目标
+==== image:number1.png["数字 1"] 准备您的源和目标
 
 [role="quick-margin-para"]
 验证您的源和目标是否受支持和设置。最重要的要求是验证数据代理与源位置和目标位置之间的连通性。 link:reference_sync_requirements.html["了解更多信息。"]。
 
 
 
-==== 为 NetApp 数据代理准备位置
+==== image:number2.png["数字 2"] 为 NetApp 数据代理准备位置
 
 [role="quick-margin-para"]
 NetApp 数据代理软件会将数据从源同步到目标（称为 _sync relationship_ ）。您可以在 AWS 、 Azure 、 Google Cloud 平台或内部运行数据代理。数据代理需要通过端口 443 建立出站 Internet 连接、以便与 Cloud Sync 服务进行通信、并与其他一些服务和存储库联系。 link:reference_sync_networking.html["查看端点列表。"]。
@@ -32,6 +32,7 @@ NetApp 数据代理软件会将数据从源同步到目标（称为 _sync relati
 [role="quick-margin-para"]
 当您创建同步关系时、 Cloud Sync 会指导您完成安装过程、此时您可以在云中部署数据代理或为自己的 Linux 主机下载安装脚本。
 
+[role="quick-margin-list"]
 * link:task_sync_installing_aws.html["查看 AWS 安装"]
 * link:task_sync_installing_azure.html["查看 Azure 安装"]
 * link:task_sync_installing_gcp.html["查看 GCP 安装"]
@@ -40,14 +41,14 @@ NetApp 数据代理软件会将数据从源同步到目标（称为 _sync relati
 
 
 
-==== 创建您的第一个同步关系
+==== image:number3.png["第 3 项"] 创建您的第一个同步关系
 
 [role="quick-margin-para"]
 登录到 https://cloudmanager.netapp.com/["云管理器"^]，单击 * 同步 * ，然后拖放您为源和目标选择的内容。按照提示完成设置。 link:task_sync_creating_relationships.html["了解更多信息。"]。
 
 
 
-==== 免费试用结束后支付同步关系费用
+==== image:number4.png["第 4 项"] 免费试用结束后支付同步关系费用
 
 [role="quick-margin-para"]
 从 AWS 或 Azure 订阅以按需购买或每年支付。或直接从 NetApp 购买许可证。只需转到 Cloud Sync 中的“许可证设置”页面即可进行设置。 link:task_sync_licensing.html["了解更多信息。"]。

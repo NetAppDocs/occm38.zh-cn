@@ -24,28 +24,28 @@ Cloud Compliance 可以扫描 Amazon S3 存储分段，以确定 S3 对象存储
 
 
 
-==== 在云环境中设置 S3 要求
+==== image:number1.png["数字 1"] 在云环境中设置 S3 要求
 
 [role="quick-margin-para"]
-确保您的云环境能够满足云合规性的要求，包括准备 IAM 角色以及设置从 Cloud Compliance 到 S3 的连接。  S3 prerequisites,请参见完整列表。
+确保您的云环境能够满足云合规性的要求，包括准备 IAM 角色以及设置从 Cloud Compliance 到 S3 的连接。 <<查看 S3 前提条件,请参见完整列表>>。
 
 
 
-==== 部署 Cloud Compliance 实例
+==== image:number2.png["第2个"] 部署 Cloud Compliance 实例
 
 [role="quick-margin-para"]
 link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compliance"^] 如果尚未部署实例。
 
 
 
-==== 在 S3 工作环境中激活合规性
+==== image:number3.png["第3个"] 在 S3 工作环境中激活合规性
 
 [role="quick-margin-para"]
 选择 Amazon S3 工作环境，单击 * 启用合规性 * ，然后选择一个包含所需权限的 IAM 角色。
 
 
 
-==== 选择要扫描的分段
+==== image:number4.png["第4个"] 选择要扫描的分段
 
 [role="quick-margin-para"]
 选择要扫描的存储分段， Cloud Compliance 将开始扫描这些存储分段。
@@ -129,7 +129,7 @@ image:screenshot_s3_we.gif["Amazon S3 工作环境图标的屏幕截图"]
 +
 image:screenshot_s3_enable_compliance.gif["从 \" 服务 \" 面板启用 Cloud Compliance 服务的屏幕截图"]
 
-. 出现提示时，将 IAM 角色分配给已有的 Cloud Compliance 实例  specific to S3,所需权限。
+. 出现提示时，将 IAM 角色分配给已有的 Cloud Compliance 实例 <<Requirements specific to S3,所需权限>>。
 +
 image:screenshot_s3_compliance_iam_role.gif["为 Cloud Compliance 输入 AWS IAM 角色的屏幕截图"]
 
@@ -139,6 +139,7 @@ image:screenshot_s3_compliance_iam_role.gif["为 Cloud Compliance 输入 AWS IAM
 
 TIP: 此外，您还可以通过单击在扫描配置页面中为工作环境启用合规性扫描 image:screenshot_gallery_options.gif[""] 按钮并选择 * 激活合规性 * 。
 
+.结果
 Cloud Manager 将 IAM 角色分配给实例。
 
 
@@ -149,7 +150,7 @@ Cloud Manager 将 IAM 角色分配给实例。
 
 如果 Cloud Manager 运行在包含要扫描的 S3 存储分段的 AWS 帐户中，则它会发现这些存储分段并将其显示在 Amazon S3 工作环境中。
 
-云合规性也可以  buckets from additional AWS accounts,扫描位于不同 AWS 帐户中的 S3 存储分段。
+云合规性也可以 <<从其他 AWS 帐户扫描存储分段,扫描位于不同 AWS 帐户中的 S3 存储分段>>。
 
 .步骤
 . 选择 Amazon S3 工作环境。
@@ -163,6 +164,7 @@ image:screenshot_s3_select_buckets.gif["选择要扫描的 S3 存储分段的屏
 
 
 
+.结果
 Cloud Compliance 将开始扫描您启用的 S3 存储分段。如果存在任何错误，它们将显示在状态列中，并显示修复此错误所需的操作。
 
 
@@ -246,4 +248,5 @@ image:screenshot_activate_and_select_buckets.png[""]
 . 单击 * 激活合规性并选择分段 * ，然后选择要扫描的分段。
 
 
+.结果
 Cloud Compliance 将开始扫描您启用的新 S3 存储分段。

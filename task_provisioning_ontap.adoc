@@ -21,8 +21,10 @@ summary: 从 Cloud Manager 发现内部 ONTAP 集群后，您可以打开工作�
 
 您可以使用 Cloud Manager 在 ONTAP 集群上配置 NFS ， CIFS 和 iSCSI 卷。
 
+.开始之前
 必须使用 System Manager 或 CLI 在集群上设置数据协议。
 
+.关于此任务
 您可以在现有聚合上创建卷。您无法从 Cloud Manager 创建新聚合。
 
 .步骤

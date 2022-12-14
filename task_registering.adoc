@@ -29,4 +29,5 @@ image:screenshot_menu_registration.gif["屏幕截图：显示了在 Cloud Volume
 . 选择一个 NetApp 支持站点帐户，然后单击 * 注册 * 。
 
 
+.结果
 Cloud Manager 将系统注册到 NetApp 。

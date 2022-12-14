@@ -22,6 +22,7 @@ summary: 如果需要，您可以阻止 Cloud Compliance 扫描一个或多个�
 
 停用扫描后， Cloud Compliance 将不再扫描系统上的数据，并从 Cloud Compliance 实例中删除索引的合规性洞察（不会删除工作环境或数据库本身中的数据）。
 
+.步骤
 在 _Scan Configuration_ 页面中，单击 image:screenshot_gallery_options.gif["更多按钮"] 按钮，然后单击 * 停用合规性 * 。
 
 image:screenshot_deactivate_compliance_scan.png["操作图标的屏幕截图，您可以在其中选择停用扫描。从 \" 工作环境 \" 页面选择工作环境后，可以使用此选项。"]

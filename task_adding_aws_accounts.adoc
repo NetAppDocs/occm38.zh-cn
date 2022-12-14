@@ -23,8 +23,8 @@ NOTE: 从 Cloud Manager 部署 Connector 时， Cloud Manager 会自动为部署
 
 * 选项 *
 
-*  permissions by providing AWS keys
-*  permissions by assuming IAM roles in other accounts
+* <<通过提供 AWS 密钥授予权限>>
+* <<在其他帐户中使用 IAM 角色来授予权限>>
 
 
 .如何安全地轮换 AWS 凭据？
@@ -56,7 +56,8 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html["AW
 
 
 
-现在，此帐户具有所需权限。  AWS credentials to Cloud Manager,现在，您可以将其添加到 Cloud Manager 中。
+.结果
+现在，此帐户具有所需权限。 <<将 AWS 凭据添加到 Cloud Manager,现在，您可以将其添加到 Cloud Manager 中>>。
 
 
 
@@ -100,7 +101,8 @@ image:screenshot_iam_create_role.gif["屏幕截图显示了 AWS IAM 控制台中
 
 
 
-现在，此帐户具有所需权限。  AWS credentials to Cloud Manager,现在，您可以将其添加到 Cloud Manager 中。
+.结果
+现在，此帐户具有所需权限。 <<将 AWS 凭据添加到 Cloud Manager,现在，您可以将其添加到 Cloud Manager 中>>。
 
 
 
@@ -123,6 +125,7 @@ image:screenshot_settings_icon.gif["一个屏幕截图，显示 Cloud Manager �
 . 单击 * 添加 * 。
 
 
+.结果
 现在，在创建新的工作环境时，您可以从 " 详细信息和凭据 " 页面切换到另一组凭据：
 
 image:screenshot_accounts_switch_aws.gif["单击详细信息和 amp ；凭据页面中的切换帐户后，显示在云提供商帐户之间进行选择的屏幕截图。"]
@@ -139,6 +142,7 @@ image:screenshot_accounts_switch_aws.gif["单击详细信息和 amp ；凭据页
 * 您希望将现有 AWS Marketplace 订阅替换为新订阅。
 
 
+.您需要的内容
 您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
 
 .步骤

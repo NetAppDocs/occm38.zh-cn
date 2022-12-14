@@ -77,4 +77,5 @@ image:screenshot_set_up_cloud_manager.gif["屏幕截图显示了 \"Set Up Connec
 
 
 
+.结果
 现在，您可以使用 Cloud Central 帐户安装并设置 Connector 。Cloud Manager 将在您创建新的工作环境时自动使用此 Connector 。但是，如果您有多个 Connector ，则需要 link:task_managing_connectors.html["在它们之间切换"]。

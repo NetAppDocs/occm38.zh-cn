@@ -16,6 +16,7 @@ summary: 为了帮助您入门， NetApp 代表可能会要求您提供用于标
 [role="lead"]
 为了帮助您入门， NetApp 代表可能会要求您提供 Cloud Manager 系统 ID 。此 ID 通常用于许可和故障排除目的。
 
+.您需要的内容
 您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
 
 .步骤

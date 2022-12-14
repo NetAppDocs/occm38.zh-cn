@@ -116,4 +116,5 @@ image:screenshot_cvs_restore_snapshot.png["选择要还原到新卷的快照副�
 
 
 
+.完成后
 继续 link:task_manage_cvs_gcp.html#mount-cloud-volumes["挂载云卷"^]。

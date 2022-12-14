@@ -16,7 +16,7 @@ summary: 借助 Cloud Manager ， IT 专家和云架构师可以使用 NetApp �
 
 
 
-== 了解新功能
+== 了解新增功能
 
 * link:reference_key_changes.html["Cloud Manager 中的重要变更"]
 * link:reference_new_occm.html["Cloud Manager 中的新增功能"]

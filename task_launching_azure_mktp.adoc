@@ -67,6 +67,7 @@ image:screenshot_set_up_cloud_manager.gif["屏幕截图显示了设置 Cloud Man
 
 
 
+.结果
 现在，已安装并设置 Connector 。您必须先授予 Azure 权限，然后用户才能在 Azure 中部署 Cloud Volumes ONTAP 。
 
 
@@ -123,4 +124,5 @@ NOTE: Cloud Manager Operator 是中提供的默认名称 https://mysupport.netap
 
 
 
+.结果
 现在， Connector 拥有管理公有云环境中的资源和流程所需的权限。Cloud Manager 将在您创建新的工作环境时自动使用此 Connector 。但是，如果您有多个 Connector ，则需要 link:task_managing_connectors.html["在它们之间切换"]。

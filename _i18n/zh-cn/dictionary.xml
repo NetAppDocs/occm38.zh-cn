@@ -43,28 +43,22 @@
   <block id="a2339cfda7d84d9a5669a786d1bfae4a" category="doc">将数据备份到 Azure Blob 存储</block>
   <block id="06ad314b340900d226b1196e1fe289e9" category="section-title">快速入门</block>
   <block id="2433628c53fed80ea9d352a1bcd9ce45" category="paragraph">按照以下步骤快速入门，或者向下滚动到其余部分以了解完整详细信息。</block>
-  <block id="b70f6a951e89b0cf19d78de39f9fd2ce" category="section-title">验证是否支持您的配置</block>
   <block id="a9dc386f711cf9e3429428a37297513b" category="list-text">您正在 Azure 中运行 Cloud Volumes ONTAP 9.7 或更高版本。</block>
   <block id="fc054407571c2d4dfcfbb5057d24c238" category="list-text">您已为备份所在的存储空间订阅了有效的云提供商。</block>
   <block id="e44764e5848db6ece6d5d4bce23a85b7" category="inline-link-macro">并激活</block>
   <block id="d8041f5f7cbb5dd5c2cd0da050735190" category="inline-link">Cloud Manager Marketplace Backup 产品</block>
   <block id="7caa7d84d6547188e47ffcb0be6f2373" category="list-text">您已订阅<block ref="98d4a0895eea9c88efbf5ab4a5fd7d0d" category="inline-link-rx"></block>或您已购买 <block ref="c942a36ea33b164eca0107356f810d5d" category="inline-link-macro-rx"></block> NetApp 提供的 Backup to Cloud BYOL 许可证。</block>
-  <block id="21141a322ad2040a54d2c2957607307b" category="section-title">在新系统或现有系统上启用备份到云</block>
   <block id="67ad4c40f95c49285697342cebd0af58" category="list-text">新系统：默认情况下，在工作环境向导中启用 " 备份到云 " 。请务必保持此选项处于启用状态。</block>
   <block id="ef39f67c43eadad86d27163809a329fc" category="list-text">现有系统：选择工作环境，然后单击右侧面板中备份到云服务旁边的 * 激活 * ，然后按照设置向导进行操作。</block>
   <block id="c7ecc14f8fa26e1d6657e9a01121e29f" category="inline-image-macro">屏幕截图显示了 " 备份到云激活 " 按钮，该按钮可在您选择工作环境后使用。</block>
   <block id="556ce68392a2e140efc2991cd6ddccb1" category="paragraph"><block ref="556ce68392a2e140efc2991cd6ddccb1" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="fa355815803dc5765178ceb1a5091ac0" category="section-title">输入提供程序详细信息</block>
   <block id="35c50ff2b0fba9cbb66e1c842e12a18b" category="paragraph">选择提供程序订阅，然后选择是要创建新资源组还是使用已有的资源组。</block>
   <block id="b3687d4bedfe2e9ab363a8d2ef4b5fdc" category="inline-image-macro">显示将卷从内部集群备份到 Azure Blob 层时云提供商详细信息的屏幕截图</block>
   <block id="fa0d193d29fc897ab8a709518824c7a6" category="paragraph"><block ref="fa0d193d29fc897ab8a709518824c7a6" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="8c7aea6416cccda4e0738853d382a1a2" category="section-title">定义备份策略</block>
   <block id="5d18ed69da47d4e04504b49903b39651" category="paragraph">默认策略每天备份卷，并保留每个卷的最新 30 个备份副本。更改为每周或每月备份，或者选择一个提供更多选项的系统定义策略。</block>
   <block id="b4f3e4fd8965718a9b0fdc725d353fdd" category="inline-image-macro">显示 Backup to Cloud 设置的屏幕截图，您可以在其中启用或禁用此功能，然后选择备份保留。</block>
   <block id="809fab9725736c8c10eeae3c9a8f1692" category="paragraph"><block ref="809fab9725736c8c10eeae3c9a8f1692" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="cf91ffe6a0830c1180e10ae661bd5c8f" category="section-title">选择要备份的卷</block>
   <block id="5cde40f10c1d60503db5310912101a08" category="paragraph">在选择卷页面中确定要备份的卷。</block>
-  <block id="813dc01dbd6a87212ea12478d22b116a" category="section-title">根据需要还原数据</block>
   <block id="fa9c85c73a4cedafbdb19abab91af3de" category="paragraph">从备份列表中，选择一个卷，选择一个备份，然后将备份中的数据还原到新卷。</block>
   <block id="e73b6f86fed29437a1aff0fcd7855fdd" category="inline-image-macro">选择卷后备份的还原图标的屏幕截图。</block>
   <block id="64ba49ffeb3c11e2c16eee272880a790" category="paragraph"><block ref="64ba49ffeb3c11e2c16eee272880a790" category="inline-image-macro-rx" type="image"></block></block>
@@ -927,12 +921,9 @@
   <block id="3b6a33cf0809abb96a9b60d73429a5d2" category="paragraph">Cloud Manager 将提示您更改 Connector 的计算机类型。</block>
   <block id="0f38e94111b0a99c65034e5b5ced0468" category="summary">在 Cloud Manager 中创建 Azure NetApp Files 工作环境，以创建和管理 NetApp 帐户，容量池，卷和快照。</block>
   <block id="269d61ef3d753fded2f13b5270f8abc6" category="doc">设置 Azure NetApp Files</block>
-  <block id="5f6b33406fc95573e988fe8daabf4cb4" category="section-title">请求访问</block>
   <block id="49b6b023bfe8fe3809444ab0e4497bf2" category="inline-link">提交联机请求</block>
   <block id="1caa8ec9d5d4510ddcd593ec35fdc1cc" category="paragraph"><block ref="a88de637f412a55aeae4f759550b1584" category="inline-link-rx"></block> 要授予对 Azure NetApp Files 的访问权限。</block>
-  <block id="9f6195430155a4712fbd4733de1876ca" category="section-title">设置 Azure AD 应用程序</block>
   <block id="5ef8b3581bd08eb7bd7df9da47cee4d9" category="paragraph">从 Azure 中，向 Azure AD 应用程序授予权限，并复制应用程序（客户端） ID ，目录（租户） ID 和客户端密钥值。</block>
-  <block id="c5c12e22be965b4ae0e9fc5e1618bdbe" category="section-title">创建 Azure NetApp Files 工作环境</block>
   <block id="2ce12157a5c44e5f94e50d438ab296af" category="paragraph">在 Cloud Manager 中，单击 * 添加工作环境 * &gt; * Microsoft Azure* &gt; * Azure NetApp Files * ，然后提供有关 AD 应用程序的详细信息。</block>
   <block id="e3aa2722b812f0aa7a19ceb76f107e90" category="section-title">请求访问</block>
   <block id="bd797c387b743ce2a482b731a0134c98" category="inline-link">提交联机请求</block>
@@ -1028,7 +1019,6 @@
   <block id="c41bec28a27c5fd23d2f1cff69d7c0e5" category="inline-link-macro">从 AWS Marketplace 创建 Connector</block>
   <block id="12d154e96ea07eeb54a28022d8488170" category="inline-link-macro">下载软件并将其安装在您自己的主机上</block>
   <block id="eca70e93ee18367f7ae09ed47f9b099e" category="paragraph">您可以通过 Cloud Manager 直接从其用户界面在 AWS 中创建 Connector 。您还可以选择 <block ref="fe9076ecc1b2642d0fbb2a7b96074339" category="inline-link-macro-rx"></block>或 <block ref="66a10ea6ad2e5c9bab6bcd2bf789a40b" category="inline-link-macro-rx"></block>。</block>
-  <block id="a711863513c11f3a6d86294acc7be0ba" category="list-title">您需要什么？ #8217 ；将需要什么</block>
   <block id="21c199e82e474a9a5607a2b9ccb8e66f" category="inline-link">所需权限</block>
   <block id="bd76e6e4e18e9fc3af923fc3437df23d" category="list-text">具有的 IAM 用户的 AWS 访问密钥和机密密钥<block ref="a18b1518901620e43c44c260945ff7cb" category="inline-link-rx"></block>。</block>
   <block id="696168c9b9e3d6be0b4ff452721f4186" category="list-text">您选择的 AWS 区域中的 VPC ，子网和密钥对。</block>
@@ -1812,7 +1802,6 @@
   <block id="4f6582928260ec95d5382830f415104b" category="section-title">支持的 NFS 版本</block>
   <block id="30fe527571ab3736d66f7bc649438aab" category="list-text">对于 NFS 服务器， NFS 版本 3 ， 4.0 ， 4.1 和 4.2 支持传输中数据加密。</block>
   <block id="e58f770a9e62d5d72c5f922745500d31" category="list-text">对于 Azure NetApp Files ， NFS 版本 3 和 4.1 支持传输中数据加密。</block>
-  <block id="5dd0043a7a3026397ee9f077316f20ec" category="section-title">您将需要什么才能开始</block>
   <block id="361bdd51b5ace70652d40497007eff5d" category="paragraph">请确保具有以下内容：</block>
   <block id="174c6b9a002fb36254a3e4a0f2937473" category="inline-link-macro">源和目标要求</block>
   <block id="fa9cb864928bd5610ae849ad0340a933" category="list-text">两个 NFS 服务器相结合 <block ref="f046c01b012d351b8011cc50a30a4534" category="inline-link-macro-rx"></block> 或 Azure NetApp Files 。</block>
@@ -2670,7 +2659,6 @@
   <block id="61bf906af45af325c7dfcb3a82074169" category="paragraph">例如，如果 NFS 服务器位于数据中心且数据代理位于 AWS 中、则需要从网络到 VPC 的网络连接（ VPN 或直接连接）。</block>
   <block id="39bb21e67daf5fcfbc9e0955f8a7891a" category="section-title">源和目标要求</block>
   <block id="f549fa5a7b8a70265d3f6f6fc5ae1943" category="paragraph">验证源和目标是否满足以下要求。</block>
-  <block id="9cfdc815b5ee8427850a411b9e071aa5" category="section-title">AWS S3 存储桶要求</block>
   <block id="776b1b85621fb63162558ee8334e89d2" category="paragraph">确保 AWS S3 桶满足以下要求。</block>
   <block id="1bd06867721151f8850b5c1bed8ed410" category="section-title">AWS S3 支持的数据代理位置</block>
   <block id="8b10287f56fdcb032a0d3824c6e3f4d2" category="paragraph">包含 S3 存储的同步关系需要在 AWS 或您的内部部署数据代理。在这两种情况下、 Cloud Sync 都会提示您在安装期间将数据代理与 AWS 帐户关联。</block>
@@ -2691,7 +2679,6 @@
   <block id="e12f2cb93ea8b0df53b39ccf052346cd" category="paragraph">您可以通过转至 EC2 控制台、选择数据代理实例并从“描述”选项卡中单击 IAM 角色来查找角色 ARN 。然后，应在 IAM 控制台中查看包含角色 ARN 的“摘要”页面。</block>
   <block id="27b29b1148f0a8d10712b93a6b2f07c0" category="inline-image-macro">AWS IAM 控制台的屏幕快照，其中显示了角色 ARN 。</block>
   <block id="5413d4eaee8e3ec886af67b45688f61a" category="paragraph"><block ref="5413d4eaee8e3ec886af67b45688f61a" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="35db9398dd8bb61e970e384239370f98" category="section-title">Azure Blob 存储要求</block>
   <block id="7e2fc8b47c3caa089d5e9782e7d982d2" category="paragraph">确保 Azure Blob 存储满足以下要求。</block>
   <block id="47a68bd0994db3020f105c7c17c88fc6" category="section-title">Azure Blob 支持的数据代理位置</block>
   <block id="d99926e63a4ae2a389096fce59c51d2a" category="paragraph">当同步关系包括 Azure Blob 存储时、数据代理可以驻留在任何位置。</block>
@@ -2871,15 +2858,12 @@
   <block id="8d4073fa4a8e186f65d9241d17413d18" category="paragraph">如果您在 AWS 中使用密钥管理服务（ KMS ）启用数据加密，则 Cloud Volumes ONTAP 的启动磁盘和根磁盘也会进行加密。这包括 HA 对中调解器实例的启动磁盘。磁盘将使用您在创建工作环境时选择的 CMK 进行加密。</block>
   <block id="935ed33d4f306c34257930e1dcd058f4" category="summary">完成几个步骤，在 Cloud Manager 工作空间中部署 Cloud Compliance 实例。</block>
   <block id="dea350e011f009a1445aafaebacfa743" category="doc">部署云合规性</block>
-  <block id="94ee7072c2750da1997438a715efb7d4" category="section-title">创建连接器</block>
   <block id="211751cb447d335f31ff23a277ab83a3" category="inline-link-macro">在 AWS 中创建连接器</block>
   <block id="b51a9186f236269e0e1206fe364d56ee" category="inline-link-macro">在 Azure 中创建连接器</block>
   <block id="a6ec169424c876a3beafbf48ef478e20" category="paragraph">如果您还没有 Connector ，请在 Azure 或 AWS 中创建 Connector 。请参见 <block ref="ebbb74ad45f7f249f717d2bdfaffc41f" category="inline-link-macro-rx"></block> 或 <block ref="a403263a6ad418baf07244cc239ebdf2" category="inline-link-macro-rx"></block>。</block>
-  <block id="5de07b40dee2a8b07f30a0fd66bd33fa" category="section-title">查看前提条件</block>
   <block id="259ae55ab8dda4624f19d41ec0f1fb11" category="inline-xref">请参见完整列表</block>
   <block id="c200489a33ca47a799d7f09bc8d22aa4" category="paragraph">确保您的云环境可以满足以下前提条件：云合规性实例需要 16 个 vCPU ，实例的出站 Internet 访问，通过端口 80 在 Connector 和 Cloud Compliance 之间建立连接等。 <block ref="b4daa5ef39b091baf7fa2ac3acaf6a75" category="inline-xref-macro-rx"></block>。</block>
   <block id="4a1f512b650a2696f3108087546bc9a2" category="paragraph">启动安装向导以在 Cloud Manager 中部署 Cloud Compliance 实例。</block>
-  <block id="d563ee05b8dfe14ffc988a80f0520984" category="section-title">订阅 Cloud Compliance 服务</block>
   <block id="001e2613757158acc9ab68d34ce92c4c" category="paragraph">Cloud Compliance 在 Cloud Manager 中扫描的前 1 TB 数据是免费的。要在这之后继续扫描数据，需要订阅 AWS 或 Azure Marketplace 。</block>
   <block id="fac538f9dd8e319a064b204550937d1a" category="section-title">创建连接器</block>
   <block id="0dcd3a9f547bb6d7aade262e1f3e6add" category="inline-link-macro">Cloud Manager 功能需要使用 Connector</block>
@@ -3114,14 +3098,10 @@
   <block id="7093690eb19793c1f2d3b8debc16191d" category="summary">Cloud Compliance 可以扫描 Amazon S3 存储分段，以确定 S3 对象存储中的个人和敏感数据。Cloud Compliance 可以扫描帐户中的任何存储分段，而不管它是否是为 NetApp 解决方案创建的。</block>
   <block id="5e12fa55096bdeb19e73dc97e7a71822" category="doc">Amazon S3 云合规性入门</block>
   <block id="91e06e9a9ef97681b798e2e5e007ba97" category="paragraph">按照以下步骤快速入门，或者向下滚动到其余部分以了解完整详细信息。</block>
-  <block id="4e15cc0de53e4cc5b4b6be1bee6ff91e" category="section-title">在云环境中设置 S3 要求</block>
   <block id="35906e1717c463c928eabc55bf99a87e" category="paragraph">确保您的云环境能够满足云合规性的要求，包括准备 IAM 角色以及设置从 Cloud Compliance 到 S3 的连接。 <block ref="3183643dfde9368e67ddf4561a2d0e52" category="inline-xref-macro-rx"></block>。</block>
-  <block id="20868b225962de2036ef9d5bc2678295" category="section-title">部署 Cloud Compliance 实例</block>
   <block id="d20957b20cd100706f96215595e04a0e" category="inline-link-macro">在 Cloud Manager 中部署 Cloud Compliance</block>
   <block id="9fcf5dbe9e6e262a016db06b59ec063e" category="paragraph"><block ref="fe08894adea8140c6d78c094e4fdf668" category="inline-link-macro-rx"></block> 如果尚未部署实例。</block>
-  <block id="6a37db457059d4175170168e250fc5d5" category="section-title">在 S3 工作环境中激活合规性</block>
   <block id="5bc7a12136c721946cb4d5a297752b0c" category="paragraph">选择 Amazon S3 工作环境，单击 * 启用合规性 * ，然后选择一个包含所需权限的 IAM 角色。</block>
-  <block id="09162861892ebffb9d1ff29eb7a64066" category="section-title">选择要扫描的分段</block>
   <block id="345547811becbe9f20242ffdb6da631b" category="paragraph">选择要扫描的存储分段， Cloud Compliance 将开始扫描这些存储分段。</block>
   <block id="70288fd34cd20f5ab81e3765cff993f7" category="section-title">查看 S3 前提条件</block>
   <block id="4e1dce91c337b5a8e7c199fe4f5f642e" category="paragraph">以下要求特定于扫描 S3 存储分段。</block>
@@ -3192,7 +3172,6 @@
   <block id="3c2924f934a5661e0d497d5b738270dd" category="paragraph">此步骤非常重要，因为没有出站 Internet 访问， Connector 无法管理 Cloud Volumes ONTAP 。如果需要限制出站连接，请参阅的端点列表 <block ref="7f949044ebce431b43c6da5a49601340" category="inline-link-macro-rx"></block>。</block>
   <block id="a5ee79c4e6a740f92d76e4ae26f7efd9" category="inline-link-macro">详细了解网络要求</block>
   <block id="4395343556860da8f9b10c4effd627d0" category="paragraph"><block ref="5d8e04475b5a217fce7982022e91e25c" category="inline-link-macro-rx"></block>。</block>
-  <block id="161814f2b49992da7596b7b7fc9f77ae" category="section-title">使用 Cloud Manager 启动 Cloud Volumes ONTAP</block>
   <block id="7e78cd436b6c8706972ddd93ac6ab72e" category="inline-link-macro">阅读分步说明</block>
   <block id="06130a67754ac90a776306a609d2731d" category="paragraph">单击 * 添加工作环境 * ，选择要部署的系统类型，然后完成向导中的步骤。 <block ref="51e8dfe79755b4e903e07f2a6b336caf" category="inline-link-macro-rx"></block>。</block>
   <block id="d3d4bcd36068d41a0acad7e8aad646db" category="list-text"><block ref="d3d4bcd36068d41a0acad7e8aad646db" category="inline-link-macro-rx"></block></block>
@@ -3207,7 +3186,6 @@
   <block id="53cf3c056570348be98fa2dc2bea3446" category="paragraph">按照以下步骤快速入门，或者转到下一节了解完整详细信息。</block>
   <block id="c0d5abaa52a2adc8b50cf6748143a972" category="section-title">启用 Cloud Volumes Service API</block>
   <block id="51854a19c4259f68487a6142b24a127b" category="paragraph">在 Google 中，启用适用于 GCP 的 Cloud Volumes Service API ，以便 Cloud Manager 可以管理订阅和云卷。</block>
-  <block id="941f4f6727d625e704ae685f2dee59f4" category="section-title">创建 GCP 服务帐户并下载凭据</block>
   <block id="5cbc65380785f69030370a41f6765916" category="paragraph">在 Google 中，创建一个 GCP 服务帐户和角色，以便 Cloud Manager 可以访问您的 Cloud Volumes Service for GCP 帐户。</block>
   <block id="f4bbf329a370fd1140750ec443f5389d" category="section-title">创建适用于 GCP 的 Cloud Volumes Service 工作环境</block>
   <block id="dd50973260de02b147ef0408f27d7b00" category="paragraph">在 Cloud Volumes Service 中，单击 * 添加工作环境 * &gt; * Google Cloud* &gt; * * ，然后提供有关服务帐户和 Google Cloud 项目的详细信息。</block>
@@ -3348,7 +3326,6 @@
   <block id="572539efea3b8fc37d4d9f01097ce1b1" category="section-title">在 AWS 中部署数据代理所需的权限</block>
   <block id="0c976b99165500ae45a3c855e25dcab9" category="inline-link">此 NetApp 提供的策略</block>
   <block id="e07a5562f4316c82f42f0cceadb85346" category="paragraph">用于部署数据代理的 AWS 用户帐户必须具有中包含的权限<block ref="7a75c423e60de35145dc973b82d7b871" category="inline-link-rx"></block>。</block>
-  <block id="9b99759f27fdd4623c9ea015c92207fd" category="section-title">在 AWS 数据代理中使用您自己的 IAM 角色的要求</block>
   <block id="da5c81a4026a6c0e492776683df14992" category="paragraph">当 Cloud Sync 部署数据代理时、它会为数据代理实例创建 IAM 角色。如果您愿意，可以使用自己的 IAM 角色部署数据代理。如果您的组织具有严格的安全策略，则可以使用此选项。</block>
   <block id="b8e7ab2062cb997e59199b1b7597c950" category="paragraph">IAM 角色必须满足以下要求：</block>
   <block id="187f2d3a34ab7f9d7fce1966c39206fe" category="list-text">必须允许 EC2 服务作为受信任实体承担 IAM 角色。</block>
@@ -3390,9 +3367,7 @@
   <block id="5771fdfd9f843a750efdbb13e9276704" category="paragraph">您已为 Cloud Volumes Service 设置 AWS ，并且必须已订阅其中一个<block ref="b4e3d74af85b05fca693589abeec4d57" category="inline-link-rx"></block>。</block>
   <block id="b25b082dfd6039e04b4f5fd22b71aa52" category="section-title">添加 Cloud Volumes Service for AWS 订阅</block>
   <block id="2884a4df3fcc2ab401c11924d9c37a56" category="paragraph">您必须根据 Cloud Volumes Service for AWS 订阅为卷创建一个工作环境。</block>
-  <block id="a1f56b5f789fb3d6a8912a9e44ce80c0" category="section-title">创建云卷</block>
   <block id="e531c745388dcb9070304217129aba70" category="paragraph">此订阅已存在的云卷将显示在新的工作环境中。否则，您将从 Cloud Manager 创建新卷。</block>
-  <block id="a9d788be36d21df25c24362c907e546a" category="section-title">挂载云卷</block>
   <block id="3def1478f4fe2be6d30bdb324c05d4a4" category="paragraph">将新的云卷挂载到 AWS 实例，以便用户可以开始使用存储。</block>
   <block id="17bcf93007944955856f301d4559f3f8" category="paragraph">有关一般服务问题，请使用 Cloud Manager 聊天工具。</block>
   <block id="5165f8dcc441652561153c961b6647c1" category="inline-link">此处将介绍这些步骤</block>
@@ -3908,7 +3883,6 @@
   <block id="9e704e76a760053c0baca32c96d9c6a3" category="list-text">单击 * 连接器 * 。</block>
   <block id="33e248648a845f8d6e538dfb02e4620f" category="list-text">单击要关联的 Connector 的 * 管理工作空间 * 。</block>
   <block id="211c1a963db0ec4433679bba9d1a1973" category="paragraph">Workspace 管理员现在可以使用这些连接器创建 Cloud Volumes ONTAP 系统。</block>
-  <block id="3f297ef15cde0668e93b35f2752fd4fd" category="section-title">下一步是什么？</block>
   <block id="d299a01ec99cf98082c28b6218d90b06" category="paragraph">现在，您已经设置了帐户，您可以随时通过删除用户，管理工作空间，连接器和订阅来对其进行管理。 <block ref="0db15a5a390b8cb62ea5abfd884f0980" category="inline-link-macro-rx"></block>。</block>
   <block id="6e870d10dae7f08688e7811df5bd21fe" category="summary">最好从 Cloud Manager 中删除 Cloud Volumes ONTAP 系统、而不是从 AWS 或 Azure 中删除。</block>
   <block id="fa2caa41abfbcb236c5dbbf27fc28912" category="doc">删除 Cloud Volumes ONTAP 工作环境</block>
@@ -4348,13 +4322,11 @@
   <block id="9b26c9f1ff8d3d31b65ece96e6593fe6" category="list-text"><block ref="9b26c9f1ff8d3d31b65ece96e6593fe6" category="inline-link-macro-rx"></block></block>
   <block id="b6122ca66d45c4dd150f5506ae4e690e" category="summary">通过将数据分层到 Google 云存储，释放内部 ONTAP 集群上的空间。数据分层由 NetApp 的 Cloud Tiering 服务提供支持。</block>
   <block id="be0b62dd35badd1c098da00c97d5157d" category="doc">将数据从内部 ONTAP 集群分层到 Google 云存储</block>
-  <block id="049f952b8e6cf7689afa066f1a9ea7ed" category="section-title">准备将数据分层到 Google Cloud Storage</block>
   <block id="4c6a9048ac276eb9391ebe2abd8e0c0d" category="paragraph">您需要满足以下要求：</block>
   <block id="8f2cf469fa541e24cda5b515b8a77670" category="list-text">一种使用纯 SSD 聚合的 AFF 或 FAS 系统，该系统运行的是 ONTAP 9.6 或更高版本，并与 Google 云存储建立 HTTPS 连接。</block>
   <block id="2deaed2300671ee7d90104d75a9f9c41" category="list-text">具有预定义的存储管理员角色和存储访问密钥的服务帐户。</block>
   <block id="e020f6db5f627706b6bc9c4d66d7c52f" category="list-text">安装在 Google Cloud Platform VPC 中的连接器。</block>
   <block id="01c6106eee9f2585bce4736ffc82f921" category="list-text">Connector 的网络连接，可通过 HTTPS 出站连接到数据中心中的 ONTAP 集群， Google 云存储和云分层服务。</block>
-  <block id="9a5f1dcfa03032ee140f73e2673dd4ad" category="section-title">设置分层</block>
   <block id="09ea182ec53d591f63fdf78f1f7a84ae" category="paragraph">在 Cloud Manager 中，选择一个内部工作环境，单击 * 设置分层 * ，然后按照提示将数据分层到 Google Cloud Storage 。</block>
   <block id="e907b41f5f3d7332bee5a43fbbf78a08" category="section-title">设置许可</block>
   <block id="ab2e64321f63b7ea8e6f487c9c08aa1f" category="paragraph">免费试用结束后，通过按需购买订阅， ONTAP 分层许可证或两者的组合为云分层付费：</block>
@@ -4798,7 +4770,6 @@
   <block id="9a3287fcb26e5124ab289087c07c9388" category="list-text">从目标 VPC 启用出站 Internet 访问，以便连接器和 Cloud Volumes ONTAP 可以联系多个端点。</block>
   <block id="b2348a11f357c3478ffbcf0aab0b00ab" category="paragraph">此步骤非常重要，因为没有出站 Internet 访问， Connector 无法管理 Cloud Volumes ONTAP 。如果需要限制出站连接，请参阅的端点列表 <block ref="35fe9d5e499257a6c44e06c4316bf36f" category="inline-link-macro-rx"></block>。</block>
   <block id="f5f464565133d38cee4612464168ff9d" category="paragraph"><block ref="e5981a2578175836e4b7ae06337a00cd" category="inline-link-macro-rx"></block>。</block>
-  <block id="b2640d276819894e87137588e21cb75b" category="section-title">设置用于数据分层的 GCP</block>
   <block id="56396a2ffd04b4ec56fea522b8f0838c" category="paragraph">要将冷数据从 Cloud Volumes ONTAP 分层到低成本对象存储（ Google 云存储分段），必须满足两项要求。</block>
   <block id="d6add8b6d1573dc2b0d456edec6d82cd" category="inline-link">为专用 Google 访问配置 Cloud Volumes ONTAP 子网</block>
   <block id="d2907cc9adcfbea41e4dd52371c016a4" category="list-text"><block ref="2435466b99ebb077da49570ea0f39e4b" category="inline-link-rx"></block>。</block>
@@ -4811,7 +4782,6 @@
   <block id="05a09a4b4e485b8e6f4ba6e9b009933b" category="paragraph">您可以提供用户角色<block ref="8db44a13d0cd753c4bcc888127c4cd1e" category="inline-link-rx"></block>或<block ref="6bfcdb29c715b11ada48d3406b906ce0" category="inline-link-rx"></block>。</block>
   <block id="4efe66d06f786832274780be4c27d3de" category="paragraph">稍后在创建 Cloud Volumes ONTAP 工作环境时，您需要选择分层服务帐户。</block>
   <block id="70d18c6bed52dda8e071726bae44945d" category="paragraph">如果在创建 Cloud Volumes ONTAP 系统时未启用数据分层并选择服务帐户，则需要关闭系统并从 GCP 控制台将服务帐户添加到 Cloud Volumes ONTAP 。</block>
-  <block id="3824876226172edfe0f17e8022b60fda" category="section-title">启用 Google Cloud API</block>
   <block id="e478bf49f8034f2197e96520fa338da6" category="inline-link">在项目中启用以下 Google Cloud API</block>
   <block id="37f0d0c26633509f71da353ca5443b0a" category="paragraph"><block ref="dc5737502524148f78bf03ba18318700" category="inline-link-rx"></block>。部署连接器和 Cloud Volumes ONTAP 需要使用这些 API 。</block>
   <block id="d82c8fcef9b6dd8fb6808c96dcbc5bb5" category="list-text">Cloud Deployment Manager V2 API</block>
@@ -4824,7 +4794,6 @@
   <block id="017c088f941f62cdbecfbf34e99a536d" category="list-text"><block ref="017c088f941f62cdbecfbf34e99a536d" category="inline-link-macro-rx"></block></block>
   <block id="2079bc33153a98975920a0db7f19f315" category="summary">AWS 和 Azure 中的某些 Cloud Volumes ONTAP 配置包括本地 NVMe 存储， Cloud Volumes ONTAP 将其用作 Flash Cache 以提高性能。</block>
   <block id="f1826d507ec43590779916360d0985cf" category="paragraph">AWS 和 Azure 中的某些 Cloud Volumes ONTAP 配置包括本地 NVMe 存储， Cloud Volumes ONTAP 使用这些存储作为 _Flash Cache_ 来提高性能。</block>
-  <block id="e0c8b3ee252e2f32575e8c863dbc2dd2" category="section-title">什么是 Flash Cache ？</block>
   <block id="3a36e6b466e0265c25d241c486f64e02" category="paragraph">Flash Cache 通过实时智能缓存最近读取的用户数据和 NetApp 元数据来加快数据访问速度。它适用于随机读取密集型工作负载，包括数据库，电子邮件和文件服务。</block>
   <block id="6cfcb94c758c3cb2f0daca06a93d0312" category="section-title">AWS 中支持的实例</block>
   <block id="cb9e3f8f6cb940e28841b92208cae9c3" category="paragraph">使用新的或现有的 Cloud Volumes ONTAP 高级版或 BYOL 系统选择以下 EC2 实例类型之一：</block>
@@ -4901,16 +4870,13 @@
   <block id="64641b49197c5612464b74e30b52791b" category="summary">完成几个步骤，开始在 AWS 或 Azure 中使用适用于 Azure NetApp Files 或 Cloud Volumes ONTAP 的云合规性。</block>
   <block id="f70bfb39126c31965fa3b9e676fa2baa" category="doc">Cloud Volumes ONTAP 和 Azure NetApp Files 云合规性入门</block>
   <block id="d02a38f2893ab97ea331478720eb7f7e" category="paragraph">完成几个步骤，开始使用适用于 Cloud Volumes ONTAP 或 Azure NetApp Files 的云合规性。</block>
-  <block id="4d6fbfc1238abdfcbb45f1a08058ff2f" category="section-title">在您的工作环境中实现云合规性</block>
   <block id="7c4cd17fe03266da8794f081c6b061da" category="paragraph">单击 * 云合规性 * ，选择 * 配置 * 选项卡，然后为特定工作环境激活合规性扫描。</block>
-  <block id="40733d51554cd03755a3c45936e9ba72" category="section-title">确保能够访问卷</block>
   <block id="cb69f1cc4d6db8aa9d9848f2243024a2" category="paragraph">现在已启用 Cloud Compliance ，请确保它可以访问卷。</block>
   <block id="e3fc305a932d3d2abd174bac9b42732d" category="list-text">云合规性实例需要与每个 Cloud Volumes ONTAP 子网或 Azure NetApp Files 子网建立网络连接。</block>
   <block id="7c7226e9a80bf0a4032888ef63440547" category="list-text">Cloud Volumes ONTAP 的安全组必须允许来自云合规性实例的入站连接。</block>
   <block id="34be4e847de3dc44a23f3545d879c123" category="list-text">NFS 卷导出策略必须允许从 Cloud Compliance 实例进行访问。</block>
   <block id="b1c46e2accf63f430648a32bfa04dfe5" category="list-text">Cloud Compliance 需要 Active Directory 凭据才能扫描 CIFS 卷。</block>
   <block id="f437c4bbc48bf53c1c5228d68edf507d" category="paragraph">单击 * 云合规性 * &gt; * 扫描配置 * &gt; * 编辑 CIFS 凭据 * 并提供凭据。凭据可以是只读的，但提供管理员凭据可确保 Cloud Compliance 可以读取需要提升权限的数据。</block>
-  <block id="b27f23d88cbeb8bf2a0d9c5fdd02bb11" category="section-title">配置要扫描的卷</block>
   <block id="bd6a0b4fe58c55d7e22a01cfd8c474a6" category="paragraph">选择要扫描的卷， Cloud Compliance 将开始扫描这些卷。</block>
   <block id="a2ee3d69ca5431c2c6eae01551523699" category="section-title">在您的工作环境中实现云合规性</block>
   <block id="cf4cb9aed3c0c0747130cf6cf29c6ce3" category="list-text">在 Cloud Manager 顶部，单击 * 云合规性 * ，然后选择 * 配置 * 选项卡。</block>
@@ -4991,7 +4957,6 @@
   <block id="8298547bbbd227879ca27d72eedeb07a" category="list-text">将鼠标悬停在卷上，然后选择 * 挂载卷 * 。</block>
   <block id="14f7ba4cf15060bd06652c615c66c92e" category="paragraph"><block ref="14f7ba4cf15060bd06652c615c66c92e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="38aa5b57f82843fe74bb954a343bf4e0" category="list-text">按照说明挂载卷。</block>
-  <block id="93bed5a9ef977c118d1838ee3b9ad3dd" category="section-title">编辑卷的大小和标记</block>
   <block id="8cbb6213062bff0f8ae5d9232049a4ae" category="paragraph">创建卷后，您可以随时修改其大小和标记。</block>
   <block id="8acb095feb0a7824e13dd4cff484b450" category="list-text">将鼠标悬停在卷上并选择 * 编辑 * 。</block>
   <block id="c94fd6f55752bbd9d6ff1d91b90b2493" category="list-text">根据需要修改大小和标记。</block>
@@ -5154,7 +5119,6 @@
   <block id="9a036c7eaca0f0813d22bd59bd333dc4" category="list-text">您的提供商可通过标准支持为使用 Cloud Volumes Services 和 Azure NetApp Files 的全局文件缓存用户提供客户支持。请分别联系 Google 客户支持或 Microsoft 客户支持。</block>
   <block id="36c3a2947091078a94e6fda78dee8606" category="summary">借助 Cloud Manager ， IT 专家和云架构师可以使用 NetApp 的云解决方案集中管理其混合多云基础架构。</block>
   <block id="684c574c7f4f96c8a8169a7ac2bda18e" category="doc">Cloud Manager 和 Cloud Volumes ONTAP 文档</block>
-  <block id="1fde0727b387439572ade83eecff4f68" category="section-title">了解新功能</block>
   <block id="674992420d1621f658d033fe6c1cb4fa" category="list-text"><block ref="674992420d1621f658d033fe6c1cb4fa" category="inline-link-macro-rx"></block></block>
   <block id="dcc605ce865f82b52df30a38895a0a28" category="inline-link-macro">Cloud Manager 中的新增功能</block>
   <block id="edb072b4e9ed25ee40010488a956934f" category="list-text"><block ref="edb072b4e9ed25ee40010488a956934f" category="inline-link-macro-rx"></block></block>
@@ -5192,11 +5156,8 @@
   <block id="4272c70c15d6dbaad262853f7847bead" category="paragraph">Trident 是由 NetApp 维护的一个受全面支持的开源项目。Trident 与 Kubernetes 及其永久性卷框架本机集成，可从运行 NetApp 存储平台任意组合的系统无缝配置和管理卷。<block ref="8f1593831c6eb1f5af4cabdfeaa8b8ff" category="inline-link-rx"></block>。</block>
   <block id="21acf0236d5d1edafd3b71b711bde1e6" category="admonition">内部 ONTAP 集群不支持 Kubernetes 功能。仅 Cloud Volumes ONTAP 支持此功能。</block>
   <block id="862dc153087687c59f8f0e5557334a93" category="paragraph">确保您的环境可以满足以下前提条件： Kubernetes 集群和 Cloud Volumes ONTAP 之间的连接， Kubernetes 集群和 Connector 之间的连接，最低 Kubernetes 版本 1.14 ，集群中至少有一个工作节点等。 <block ref="b4daa5ef39b091baf7fa2ac3acaf6a75" category="inline-xref-macro-rx"></block>。</block>
-  <block id="f91c9e4115b16af2cd2ce338b54a61bc" category="section-title">将 Kubernetes 集群添加到 Cloud Manager</block>
   <block id="078cfadf948fabde9d843c0725281900" category="paragraph">在 Cloud Manager 中，单击 * Kubernetes * 并直接从云提供商的托管服务发现集群，或者通过提供 kubeconfig 文件导入集群。</block>
-  <block id="a05f5ad82e28c9eb27573925fc851dc3" category="section-title">将集群连接到 Cloud Volumes ONTAP</block>
   <block id="ed10e82b70c8870cbc66e299150d450b" category="paragraph">添加 Kubernetes 集群后，单击 * 连接到工作环境 * 将集群连接到一个或多个 Cloud Volumes ONTAP 系统。</block>
-  <block id="3131838ab26e8cd5c452aaac1467f3b4" category="section-title">开始配置永久性卷</block>
   <block id="c5ea1d5f2f35adec1d872ec686a8c040" category="paragraph">使用原生 Kubernetes 接口和构造请求和管理永久性卷。Cloud Manager 可创建 NFS 和 iSCSI 存储类，您可以在配置永久性卷时使用这些存储类。</block>
   <block id="02cc5fd16c59479a0130566a88ade673" category="inline-link">了解有关使用适用于 Kubernetes 的 Trident 配置第一个卷的更多信息</block>
   <block id="b74e632fe213e6a2cd41d58fc6a3f9f4" category="paragraph"><block ref="d2c3102c16ee7ee6f7e5a01248fa7b5b" category="inline-link-rx"></block>。</block>
@@ -5797,12 +5758,9 @@
   <block id="e64a5fa09317d9145adf970bf6d4d2c0" category="summary">完成几个步骤以开始监控 Cloud Volumes ONTAP 性能。</block>
   <block id="ccaec1ec24b1c04fa3bf1d6e8b9aeb76" category="doc">在 AWS 中监控 Cloud Volumes ONTAP</block>
   <block id="69a63f79de6b6cfe74003e252355c5e7" category="paragraph">您需要在 AWS 中全新安装 Cloud Manager 3.8.4 或更高版本，在 AWS 中安装 Cloud Volumes ONTAP ，并且您必须是新的 Cloud Insights 客户。</block>
-  <block id="dc5d04044d27e0192aacefbd185d4f35" category="section-title">在新系统或现有系统上启用监控</block>
   <block id="81cf96b7a3a7a2208f9d0015459ae5bb" category="list-text">新的工作环境：在创建工作环境时，请确保始终启用监控（默认情况下处于启用状态）。</block>
   <block id="7177e20d9e879af87a3791ebd8267cd4" category="list-text">现有工作环境：选择一个工作环境，然后单击 * 启动监控 * 。</block>
-  <block id="fc78fae55edd9650c6455e58681d3aae" category="section-title">查看性能数据</block>
   <block id="e9505bfa1fdf9d5b80a391f1e2afc220" category="paragraph">单击 * 监控 * 并查看卷的性能数据。</block>
-  <block id="163980d29cf36a56560287c1eeccee06" category="section-title">订阅 Cloud Insights</block>
   <block id="efc0f6b4c0cfb4f34dc9d7959a182ab8" category="paragraph">在 30 天免费试用结束之前订阅，继续在 Cloud Manager 和 Cloud Insights 中查看性能数据。<block ref="d10ae9a3e7f2768fab70c99eb20e74f8" category="inline-link-rx"></block>。</block>
   <block id="4b09bdd4ca435f6a4b77b142f9481573" category="paragraph">请阅读以下要求，以确保您的配置受支持。</block>
   <block id="2b78fc23921b0cd7de2d7e6e5ebc2b1a" category="list-text">支持的 Cloud Manager 版本</block>
@@ -5980,7 +5938,6 @@
   <block id="18b234c5237750d23cdb75cb7c8d1b79" category="list-text"><block ref="18b234c5237750d23cdb75cb7c8d1b79" category="inline-link-rx"></block></block>
   <block id="097ccfbc39e7fb1f5073ac423983cad1" category="summary">通过将数据分层到 StorageGRID ，在内部 ONTAP 集群上释放空间。数据分层由 NetApp 的 Cloud Tiering 服务提供支持。</block>
   <block id="075a50bfdbc0e76c495036f6c78ac1fb" category="doc">将数据从内部 ONTAP 集群分层到 StorageGRID</block>
-  <block id="24c40467d64d6258e4b21601d2694195" category="section-title">准备将数据分层到 StorageGRID</block>
   <block id="0c455fd03a923d322dc7b39d2a7892db" category="list-text">一种 AFF 或 FAS 系统，其中包含运行 ONTAP 9.4 或更高版本的纯 SSD 聚合，并通过用户指定的端口连接到 StorageGRID 。</block>
   <block id="5fce56af1e1158cc023bf250fa9ab688" category="list-text">具有 S3 权限的 AWS 访问密钥的 StorageGRID 10.3 或更高版本。</block>
   <block id="576fdb5dd15e14e6977927216a394612" category="list-text">内部安装的连接器。</block>
@@ -6107,7 +6064,6 @@
   <block id="d1ac9671b7bcf06bf5d1080fe70853b0" category="paragraph">以下问题与云同步性能有关。</block>
   <block id="678b59fd02ed47602217c203bce0f237" category="section-title">同步关系的进度指示符代表什么？</block>
   <block id="792670d867962b1447fd0fc6a9a3969e" category="paragraph">同步关系显示数据代理的网络适配器的吞吐量。如果使用多个数据代理提高同步性能、则吞吐量是所有流量的总和。此吞吐量每 20 秒刷新一次。</block>
-  <block id="d2e5af98d120641c3665f862d5107d9e" category="section-title">我遇到了性能问题。我们是否可以限制并发传输的数量？</block>
   <block id="a776e72f8845cd90953586e05ee36f50" category="paragraph">数据代理一次可以同步 4 个文件。如果您有非常大的文件（每个 TB 数）、则可能需要很长时间才能完成传输过程、并且性能可能会受到影响。</block>
   <block id="753322bfc209704e3ab17c5cfe5d42d0" category="paragraph">限制并发传输的数量有助于实现这一目标。mailto ： ng-cloudsync-support@netapp.com 。</block>
   <block id="161df7898613d68dd3106bed369ab957" category="section-title">为什么使用 Azure NetApp Files 时性能较低？</block>
@@ -6151,9 +6107,7 @@
   <block id="5b7a625a0e8411e1ab6be1e4747af0df" category="doc">将数据从内部 ONTAP 系统备份到云</block>
   <block id="6f6a5a1139d8932914706890fc98d832" category="list-text">您已发现内部集群并将其添加到 Cloud Manager 中的工作环境中。请参见 <block ref="06e4d8f0b3ee668a3847b90d3a3a58a0" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="bb52c786e9272a71b9868576e595093b" category="list-text">您正在集群上运行 ONTAP 9.7P5 或更高版本。</block>
-  <block id="d215bc4594bc6d7d5d9f0650ad866cc9" category="section-title">在系统上启用备份到云</block>
   <block id="387fa05ceb8a9c93b8e3c53dcf20c55f" category="paragraph">选择工作环境，然后单击右侧面板中备份到云服务旁边的 * 激活 * ，然后按照设置向导进行操作。</block>
-  <block id="d1ae916754af40a1752ffa49097de18d" category="section-title">选择云提供商并输入提供商详细信息</block>
   <block id="120aa059e2b93f0841b70c7976b0544b" category="paragraph">选择提供程序，然后选择提供程序订阅，区域和资源组。您还需要在卷所在的 ONTAP 集群中指定 IP 空间。</block>
   <block id="2c5e573e396419ad3626bb25942af86c" category="paragraph"><block ref="2c5e573e396419ad3626bb25942af86c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="6a6f01cb73a44097eab7942c341b9682" category="inline-image-macro">显示 Backup to Cloud 设置的屏幕截图，您可以在其中选择备份计划和保留期限。</block>
@@ -6229,7 +6183,6 @@
   <block id="136b9225629ddcb41ca0287acd73c865" category="paragraph">Cloud Manager 会添加或更新许可证，以使您的备份到云服务处于活动状态。</block>
   <block id="337d77a3955619de9a544f1026a547bf" category="summary">通过将数据分层到 Amazon S3 ，在内部 ONTAP 集群上释放空间。数据分层由 NetApp 的 Cloud Tiering 服务提供支持。</block>
   <block id="eebeeaff2ab28fb4166c53926ad0d0cb" category="doc">将数据从内部 ONTAP 集群分层到 Amazon S3</block>
-  <block id="3b7749dd39ee760804c668772e669bbe" category="section-title">准备将数据分层到 Amazon S3</block>
   <block id="d85305653518282e5b530ccef866e6e8" category="list-text">一种使用纯 SSD 聚合的 AFF 或 FAS 系统，该系统运行的是 ONTAP 9.2 或更高版本，并与 Amazon S3 建立 HTTPS 连接。</block>
   <block id="88874fce87dd9edf63db978923d2d604" category="list-text">具有访问密钥和的 AWS 帐户 <block ref="c2b6a8c656d0c1ec20241b37b67a788f" category="inline-xref-macro-rx"></block> 因此， ONTAP 集群可以对 S3 中的非活动数据进行分层。</block>
   <block id="8a906cdd797b7e3c6078a36f69907caa" category="list-text">安装在 AWS VPC 或内部环境中的连接器。</block>
@@ -6278,15 +6231,10 @@
   <block id="201e09e85ad81db8a19ef9f20c05d1a5" category="inline-link-macro">此视频</block>
   <block id="81b4cc67e8f60e41997293efceba160b" category="paragraph">观看 <block ref="182ef5a05e7c682b0210b8852ec20646" category="inline-link-macro-rx"></block> 以查看从开始到结束的步骤。</block>
   <block id="990f23665d21283cae7ae6a6366d2e03" category="paragraph">按照以下步骤快速入门，或者向下滚动到其余部分以了解完整详细信息。</block>
-  <block id="6382283fd45b13b5c983745731fec990" category="section-title">部署 Cloud Volumes ONTAP</block>
   <block id="68a259a2f899389b305545678d80e0ea" category="paragraph">在 Azure 或 AWS 中部署 Cloud Volumes ONTAP 并配置 SMB 文件共享。有关详细信息，请参见 <block ref="832a60a506926eaf40d71cc932044a5c" category="inline-link-macro-rx"></block> 或 <block ref="532bd026da9bcfd63efcb038941245ef" category="inline-link-macro-rx"></block>。</block>
-  <block id="406f62aa251fe088702d090da0faf7a1" category="section-title">部署全局文件缓存管理服务器</block>
   <block id="0877004cfc484438f5a264dde3bb7914" category="paragraph">在与 Cloud Volumes ONTAP 实例相同的工作环境中部署全局文件缓存管理服务器的实例。</block>
-  <block id="d9b762ee5151400d1727e25846f5bedb" category="section-title">部署全局文件缓存核心</block>
   <block id="0e7c4b1d0864abab13fd8a086a179f5b" category="paragraph">在与 Cloud Volumes ONTAP 实例相同的工作环境中部署全局文件缓存核心的一个或多个实例，并将其加入到 Active Directory 域中。</block>
-  <block id="80d8c12664fdf01751e882f7cd7d4f5f" category="section-title">许可证全局文件缓存</block>
   <block id="76ae4e1d88f70d49cbfb4c3ed7d5a033" category="paragraph">在全局文件缓存核心实例上配置全局文件缓存许可证管理服务器（ LMS ）服务。要激活您的订阅，您需要使用您的 NSS 凭据或 NetApp 提供的客户 ID 。</block>
-  <block id="87122bbb40136e36662081a0db5c63fd" category="section-title">部署全局文件缓存边缘实例</block>
   <block id="175d4a7fba1f2c02d227a7916d20ff9d" category="inline-link-macro">部署全局文件缓存边缘实例</block>
   <block id="fd9151016bdd942df929d46c957077f0" category="paragraph">请参见 <block ref="507bdf5d9b69207409e6515279753df9" category="inline-link-macro-rx"></block> 在每个远程位置部署全局文件缓存边缘实例。此步骤不能使用 Cloud Manager 完成。</block>
   <block id="7be40d2cd621549d68e8fff4ffead179" category="section-title">将 Cloud Volumes ONTAP 部署为您的存储平台</block>
@@ -6747,7 +6695,6 @@
   <block id="22414d0d0453cad56ad23381bf2640df" category="list-text">对于每个卷，单击 <block ref="8a7b4d9eeceba80332a45bd9abdd9ed5" category="inline-image-macro-rx" type="image"></block> 图标，选择分层策略，也可以调整散热天数，然后单击 * 应用 * 。</block>
   <block id="495bc0e676e5d8cea46f01a061d72f09" category="admonition">您无需配置对象存储，因为在最初为集群设置分层时已对其进行配置。ONTAP 会将这些卷中的非活动数据分层到同一对象存储。</block>
   <block id="b00f226fba029156e204faa0a32e13da" category="list-text">完成后，单击 * 关闭 * 。</block>
-  <block id="6e4c88586fed564c2a533a5be0ddcf91" category="section-title">更改卷的分层策略</block>
   <block id="ce5f253a7ab4076c754ecee500408697" category="paragraph">更改卷的分层策略会更改 ONTAP 将冷数据分层到对象存储的方式。更改从更改策略开始—它仅更改卷的后续分层行为。</block>
   <block id="94c1e378d2c595d604fab0fc844d14b8" category="list-text">单击 <block ref="8a7b4d9eeceba80332a45bd9abdd9ed5" category="inline-image-macro-rx" type="image"></block> 图标，选择分层策略，也可以调整散热天数，然后单击 * 应用 * 。</block>
   <block id="176eb530d68328d73cd752bcf53ad2be" category="section-title">管理聚合上的分层设置</block>
@@ -6802,13 +6749,10 @@
   <block id="952fab111baf3c2e73cf437b7cd22a55" category="summary">通过将热数据的 SSD 或 HDD 性能层与非活动数据的对象存储容量层相结合，您可以降低 Cloud Volumes ONTAP 的存储成本。</block>
   <block id="f4487922db30b6b199d60571e92576f1" category="paragraph">通过将热数据的 SSD 或 HDD 性能层与非活动数据的对象存储容量层相结合，您可以降低 Cloud Volumes ONTAP 的存储成本。有关简要概述，请参见 <block ref="c724ee9f84bb0e8fa565112910275d83" category="inline-link-macro-rx"></block>。</block>
   <block id="386a88fbab9b8c50cfcb5d0bba67b30f" category="paragraph">要设置数据分层、您只需执行以下操作：</block>
-  <block id="86ad5905cc5b5dcbf6a3ff485ec8d229" category="section-title">选择支持的配置</block>
   <block id="ba918ba698486ee8a89a9f897fe04f16" category="paragraph">支持大多数配置。如果您的 Cloud Volumes ONTAP 标准版，高级版或 BYOL 系统运行的是最新版本，则最好继续操作。 <block ref="0b0938edb8c7beded03783521b9fb004" category="inline-link-macro-rx"></block>。</block>
-  <block id="06d3481607558231341deee573470e0b" category="section-title">确保 Cloud Volumes ONTAP 与对象存储之间的连接</block>
   <block id="dfa5ec33cd56c8ec3ba7043cbe7164b5" category="list-text">对于 AWS ， S3 需要一个 VPC 端点。 <block ref="8bf18368a4d50e7d264c6ce0821cc35b" category="inline-xref-macro-rx"></block>。</block>
   <block id="551809d438dbf4c69bd03236f59465cb" category="list-text">对于 Azure ，只要 Cloud Manager 具有所需权限，您就无需执行任何操作。 <block ref="b95ed179d0a0b66246f2db10d9eda033" category="inline-xref-macro-rx"></block>。</block>
   <block id="b14188d12bf71a82c40e0277be844f22" category="list-text">对于 GCP ，您需要为 Private Google Access 配置子网并设置服务帐户。 <block ref="ae7c1d949803baa5d291fbd909b9d2e1" category="inline-xref-macro-rx"></block>。</block>
-  <block id="1eabdf61d5d5290de86aa1ce83194c03" category="section-title">创建，修改或复制卷时，请选择分层策略</block>
   <block id="1a9e931f53a32cc1b5ceeebef21b8880" category="paragraph">在创建，修改或复制卷时， Cloud Manager 会提示您选择分层策略。</block>
   <block id="aee34f99cc65679272b711e8a3804b3b" category="inline-link-macro">对读写卷上的数据进行分层</block>
   <block id="3161de5db0fdecb5c470d6a56eb5afee" category="list-text"><block ref="3161de5db0fdecb5c470d6a56eb5afee" category="inline-link-macro-rx"></block></block>
@@ -6874,13 +6818,9 @@
   <block id="5852b40c6f0b7bd4c3c86ecf8d8c1c84" category="paragraph">您也可以在新聚合上启用数据分层 <block ref="2177406352e5d01920db26f37f47363d" category="inline-link-macro-rx"></block> 或 <block ref="7669f8a3497eadac8f23ab7642a95bca" category="inline-xref-macro-rx"></block>。如果启用了数据分层的聚合尚不存在，则 Cloud Manager 将为卷创建新聚合。</block>
   <block id="fbaae2c51a88c361540d75265f1ae460" category="summary">Cloud Sync 服务入门包括几个步骤。</block>
   <block id="7552e2b54a17a33019d48e352cbe77a4" category="doc">Cloud Sync 快速入门</block>
-  <block id="ea20f7d50c69fd6c3c01c329f9319239" category="section-title">准备您的源和目标</block>
   <block id="f143dbcd4f35e1f63b6b7e9657115198" category="paragraph">验证您的源和目标是否受支持和设置。最重要的要求是验证数据代理与源位置和目标位置之间的连通性。 <block ref="f6f1e8e1ed286c7a006df4ad07baf80b" category="inline-link-macro-rx"></block>。</block>
-  <block id="3825d25fbdd8bfa73bea9dccd3b52c26" category="section-title">为 NetApp 数据代理准备位置</block>
   <block id="6a640d6007996215b3ac26284458adbe" category="paragraph">当您创建同步关系时、 Cloud Sync 会指导您完成安装过程、此时您可以在云中部署数据代理或为自己的 Linux 主机下载安装脚本。</block>
-  <block id="fd95beb937f9d641ec539cf4878ef48d" category="section-title">创建您的第一个同步关系</block>
   <block id="210dd2b798a973801744b2b280c5beb1" category="paragraph">登录到<block ref="be757cbeb024c9da5b8b367da3bb80a9" category="inline-link-rx"></block>，单击 * 同步 * ，然后拖放您为源和目标选择的内容。按照提示完成设置。 <block ref="c56a9e8c0d1e6cf66a040ca3b581e64c" category="inline-link-macro-rx"></block>。</block>
-  <block id="4502c9acaffeed98eaa8ad35ff290bd7" category="section-title">免费试用结束后支付同步关系费用</block>
   <block id="e5821905c970aab72824bfe3f9f493d7" category="paragraph">从 AWS 或 Azure 订阅以按需购买或每年支付。或直接从 NetApp 购买许可证。只需转到 Cloud Sync 中的“许可证设置”页面即可进行设置。 <block ref="cf22383872a2f13a42a2e3b7746abe03" category="inline-link-macro-rx"></block>。</block>
   <block id="47a9dec41b05cb9452bf85a6b7a24260" category="summary">只需几步即可开始使用适用于 AWS 的 Cloud Volumes ONTAP 。</block>
   <block id="2d951aeb8e37abb43416705103a35132" category="doc">Cloud Volumes ONTAP for AWS 入门</block>
@@ -7520,7 +7460,6 @@
   <block id="be5b9196af1aaf35b4c37010db0b83b3" category="paragraph"><block ref="5c62373201416362de8292e16990a23c" category="inline-link-macro-rx"></block>。</block>
   <block id="d04dfaa744331ac37502cd7e1da7e4cb" category="sidebar-title">如果在免费试用结束后，我不能立即支付费用，该怎么办？</block>
   <block id="06396044ae8f00acb30bd57de4d6bf59" category="paragraph">您将无法创建任何其他关系。现有关系不会被删除、但您必须订阅或输入许可证才能对其进行任何更改。</block>
-  <block id="6f3effbced02bf6278e3a16bc56601b0" category="section-title">从 AWS 订阅</block>
   <block id="7f1e5fcf21192da891eea1c1f4f6e6f0" category="paragraph">AWS 使您可以按需付费或每年支付。</block>
   <block id="f06e94914580a228484d54783ffeb2bb" category="list-title">按需购买的步骤</block>
   <block id="f4e86f9d0f6800384c773bd03834297d" category="list-text">单击 * 同步 &gt; 许可 * 。</block>
@@ -7532,7 +7471,6 @@
   <block id="b84483eacee20411f642e9b32a1532d3" category="list-text"><block ref="9a55e6c904391172078e71a0186ef751" category="inline-link-rx"></block>。</block>
   <block id="6ce481dcdc8134b6b4c81db0911f0267" category="list-text">单击 * 继续订阅 * 。</block>
   <block id="1ee9033888539de2e81ddb29d255c405" category="list-text">选择您的合同选项，然后单击 * 创建合同 * 。</block>
-  <block id="52f71b65e8b2575ecbdcd630dd568078" category="section-title">从 Azure 订阅</block>
   <block id="5b708f827f75588e652438e8d2977fb4" category="paragraph">Azure 使您可以按需付费或每年支付。</block>
   <block id="251910634a1b47d0359b6171382f3f9a" category="paragraph">在相关订阅中具有“贡献者”或“所有者”权限的 Azure 用户帐户。</block>
   <block id="2164db8f01d0c0a0dc250abc3b9556f5" category="list-text">选择 * Azure * 。</block>
@@ -7540,7 +7478,6 @@
   <block id="981e7253aa8df6872dfd3d544c12ef23" category="paragraph">选择 * 按月 * 按小时付费，或者选择 * 按年 * 按前一年付费。</block>
   <block id="23a902dd0c4b97b70f0c79f7c46ed483" category="list-text">部署完成后，在通知弹出窗口中单击 SaaS 资源的名称。</block>
   <block id="04175f98fb77c715f35a84f3004d8ed5" category="list-text">单击 * 配置帐户 * 以返回到 Cloud Sync 。</block>
-  <block id="01cc9c7cd06e97ce20ebea964dc79244" category="section-title">从 NetApp 购买许可证并将其添加到 Cloud Sync</block>
   <block id="6dabde8f330be16cbc68c6ed11cd0dcb" category="paragraph">要预先支付同步关系的费用、您必须购买一个或多个许可证并将其添加到 Cloud Sync 服务。</block>
   <block id="0f5161c9e18f97b653442fef34de1024" category="list-text">请发送邮件至： ng-cloudsync-contact@netapp.com ？ Subject=Cloud%20Sync%20Service%20-%20BYOL%20License%20Purches%20Request[ 联系 NetApp] 购买许可证。</block>
   <block id="47073df9c54bc93012bf8231b4da55fe" category="list-text">在 Cloud Manager 中，单击 * 同步 &gt; 许可 * 。</block>
@@ -7552,7 +7489,6 @@
   <block id="7e3c9594a3f6833ecddbf1cbe150528c" category="inline-image-macro">Cloud Central 的登录屏幕。</block>
   <block id="33ec64420d3361f9794053a9add38468" category="paragraph"><block ref="33ec64420d3361f9794053a9add38468" category="inline-image-macro-rx" type="image"></block></block>
   <block id="3dbeb1f4be4a6bfc83af63e943633f2c" category="summary">通过将数据分层到 Azure Blob 存储，在内部 ONTAP 集群上释放空间。数据分层由 NetApp 的 Cloud Tiering 服务提供支持。</block>
-  <block id="957364b59094743bfdbab75c269bbe14" category="section-title">准备将数据分层到 Azure Blob 存储</block>
   <block id="09c3a47298cb1b2183702dd8bab5673a" category="list-text">一种使用纯 SSD 聚合的 AFF 或 FAS 系统，该系统运行的是 ONTAP 9.4 或更高版本，并与 Azure Blob 存储建立 HTTPS 连接。</block>
   <block id="971990a0128297e61982fb657642391e" category="list-text">安装在 Azure vNet 中的 Connector 。</block>
   <block id="a81db118acfbd6a1141871c99120b570" category="list-text">用于 Connector 的网络连接，支持通过出站 HTTPS 连接到数据中心中的 ONTAP 集群， Azure Blob 存储和 Cloud Tiering 服务。</block>
@@ -7743,11 +7679,8 @@
   <block id="90b4dd69e9064f99b3ebe400973d5224" category="paragraph"><block ref="9c9896fd31a93be26bce42c226a95f7e" category="inline-link-macro-rx"></block>。</block>
   <block id="836aeee2007aac18c035dd91372a749d" category="summary">请完成几个步骤，开始使用 Cloud Compliance 扫描数据库架构。</block>
   <block id="ce41a706cd7d768f91deb7b6d30a53a6" category="doc">正在扫描数据库架构</block>
-  <block id="643748e16cea45dc6b50bd34b156599e" category="section-title">查看数据库前提条件</block>
   <block id="6ba6f62eaa922e3764dfb0e34527892f" category="paragraph">确保您的数据库受支持，并且您具有连接到数据库所需的信息。</block>
-  <block id="117276e96b89d072e0a833596332ef29" category="section-title">添加数据库服务器</block>
   <block id="18145622150e1a809831297a4332c742" category="paragraph">添加要访问的数据库服务器。</block>
-  <block id="a12cdf39bf2e9ffec8531b7773ae748d" category="section-title">选择模式</block>
   <block id="5a810676627d546e80218e706059b849" category="paragraph">选择要扫描的模式。</block>
   <block id="858dab6028691ee21ab79719c188f31c" category="paragraph">在启用 Cloud Compliance 之前，请查看以下前提条件以确保您的配置受支持。</block>
   <block id="1416008fc37354356eb0ecd95dfddc96" category="section-title">支持的数据库</block>
@@ -7854,7 +7787,6 @@
   <block id="b73f462d1b9e7ff90a325153c831927c" category="paragraph">解除用户关联后，用户将无法再访问 Cloud Central 帐户中的资源。</block>
   <block id="6bd6a4807d0f305654a405a52bb8f189" category="list-text">单击 * 解除关联用户 * ，然后单击 * 解除关联 * 进行确认。</block>
   <block id="bc4502cc703c46a62bd856724adfc66e" category="paragraph">用户无法再访问此 Cloud Central 帐户中的资源。</block>
-  <block id="c467a2567dd5be7e777708d1616b892d" category="section-title">管理 Workspace Admin 的工作空间</block>
   <block id="8ecff25aa4ee2497099b60f83bd4dde7" category="paragraph">您可以随时将 Workspace Admins 与工作空间关联和解除关联。通过关联用户，用户可以在该工作空间中创建和查看工作环境。</block>
   <block id="9c3fb861370470582b50839e482bd5f9" category="list-text">选择要与用户关联的工作空间，然后单击 * 应用 * 。</block>
   <block id="73974df54012eaea2a5f0b72e278983b" category="section-title">管理工作空间</block>
@@ -7863,7 +7795,6 @@
   <block id="e6b782b96ee9fd72a275037e1f900b6f" category="list-text">单击 * 添加新工作空间 * 以创建新工作空间。</block>
   <block id="9606b9dd050f482ce022efaf9f3754c9" category="list-text">单击 * 重命名 * 以重命名工作空间。</block>
   <block id="ca4a2e09f147267af54ea5fd1d962c6a" category="list-text">单击 * 删除 * 以删除此工作空间。</block>
-  <block id="3bf33688db3de262b29d7aef6461deb2" category="section-title">管理 Connector 的工作空间</block>
   <block id="5b7f3201b874f913a16c68dec709654f" category="paragraph">您需要将 Connector 与工作空间关联，以便 Workspace 管理员可以从 Cloud Manager 访问这些工作空间。</block>
   <block id="cda68882da0fbacdfcd7b3b52e15c47f" category="list-text">选择要与 Connector 关联的工作空间，然后单击 * 应用 * 。</block>
   <block id="95a0841b9a7d083d0e92b10bbb2d9538" category="section-title">管理订阅</block>
@@ -8109,4 +8040,107 @@
   <block id="ac711435545c1b14c721179de8ab94a0" category="list-text">支持的卷和聚合</block>
   <block id="cbd3171b775ecc9b275479726c41ccec" category="inline-link-macro">FabricPool 不支持的功能</block>
   <block id="80be9dc982f371739dd1f289a1ea008c" category="list-text">云分层可分层的卷总数可能小于 ONTAP 系统上的卷数。这是因为无法从某些聚合对卷进行分层。例如，您不能对 SnapLock 卷或 MetroCluster 配置中的数据进行分层。有关信息，请参见 ONTAP 文档 <block ref="735d4f7c28454cb31dcb5e7ad1dd69d6" category="inline-link-macro-rx"></block>。</block>
+  <block id="8eea62084ca7e541d918e823422bd82e" category="paragraph-title">结果</block>
+  <block id="d59db7846bd10b6d60d21543df9faa9e" category="paragraph-title">您需要的内容</block>
+  <block id="6e5bc02812454d72aa1b3361bc2f6c73" category="inline-image-macro">数字 1</block>
+  <block id="514cd509787cbab4e205428f74144f7f" category="section-title"><block ref="dc5de6e35d5028cc4c0b89b89e621258" category="inline-image-macro-rx" type="image"></block> 准备将数据分层到 Amazon S3</block>
+  <block id="3db14b7ee6183c9d58f1e9d5e8e63efd" category="inline-image-macro">数字 2</block>
+  <block id="86c142513d3fc5f40a5b0c2e354e838f" category="section-title"><block ref="8a21168e601d45e544969f8d2c358917" category="inline-image-macro-rx" type="image"></block> 设置分层</block>
+  <block id="9f3ebc84fe13f3200262a9c4b7c9807d" category="inline-image-macro">第3个</block>
+  <block id="61e07c226edc407cd9b5485effaf8e40" category="section-title"><block ref="436aa95806ef0877809848921c187b08" category="inline-image-macro-rx" type="image"></block> 设置许可</block>
+  <block id="58eaebf972358f1cf03d386a4ade1a0f" category="paragraph-title">下一步是什么？</block>
+  <block id="25bb6ac7ff79f9f75a38e828d5757ada" category="section-title"><block ref="dc5de6e35d5028cc4c0b89b89e621258" category="inline-image-macro-rx" type="image"></block> 准备将数据分层到 StorageGRID</block>
+  <block id="9b1146da7e8885b360bcba1784bf6d6c" category="inline-image-macro">数字 1</block>
+  <block id="be4475d44b787a12f755fdcce268c239" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> 验证是否支持您的配置</block>
+  <block id="6518735ebbb492ee2f8f5dfee52f3842" category="inline-image-macro">第2个</block>
+  <block id="b2e8ab94b9a77185fe6b6dd83c9f59e6" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 在新系统或现有系统上启用备份到云</block>
+  <block id="a4c574c9c96d1cf8d9986e0d17dbe38b" category="inline-image-macro">第3个</block>
+  <block id="1bae9231315ec1091e557ac65da409f3" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 输入提供程序详细信息</block>
+  <block id="fa8bdf405671f556729a131b30bab6af" category="inline-image-macro">第4个</block>
+  <block id="a452de92a372d575a0b668ed846fc145" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 定义备份策略</block>
+  <block id="6a604e45dcab200406f10c70d639255a" category="inline-image-macro">第5个</block>
+  <block id="e6b70b7531f0a4e4a8b69d3956a0c77f" category="section-title"><block ref="c8b82927684b7195fa645497b5fcc719" category="inline-image-macro-rx" type="image"></block> 选择要备份的卷</block>
+  <block id="e8655d81e5341b6de5242894893cfd0f" category="inline-image-macro">第6个</block>
+  <block id="805be66fd8cf052ebd8de5a5bd9e91c4" category="section-title"><block ref="37140c340d57bff74ec463795f4bc377" category="inline-image-macro-rx" type="image"></block> 根据需要还原数据</block>
+  <block id="e98185375ffb2411ffabfc328cd245e7" category="section-title"><block ref="dc5de6e35d5028cc4c0b89b89e621258" category="inline-image-macro-rx" type="image"></block> 准备将数据分层到 Azure Blob 存储</block>
+  <block id="27bf0058af50fd43e46419d6324f0b88" category="inline-image-macro">数字 2.</block>
+  <block id="ce8a231bcbb32541c63e621cb121e157" category="section-title"><block ref="11146b70998fa0133f04749eadcadd53" category="inline-image-macro-rx" type="image"></block> 设置分层</block>
+  <block id="bbdb28e0c385a29cad4cd3acd0870ca5" category="section-title">更改卷的分层策略</block>
+  <block id="65d2a493f808659b28f7334ecc9fe29e" category="section-title">【S3】AWS S3存储分段要求</block>
+  <block id="8c398ecad8f5257d018a9dbbc98e011b" category="section-title">《Azure Blob存储要求》</block>
+  <block id="5ab5c7141794d5f693f0b5374fcd61c3" category="section-title"><block ref="dc5de6e35d5028cc4c0b89b89e621258" category="inline-image-macro-rx" type="image"></block> 准备将数据分层到 Google Cloud Storage</block>
+  <block id="48afbf061ebdaadeb58dc858b69a1052" category="section-title"><block ref="dc5de6e35d5028cc4c0b89b89e621258" category="inline-image-macro-rx" type="image"></block> 准备您的源和目标</block>
+  <block id="377ca8c885c8d8b7612dbf6ce0ea5d6f" category="section-title"><block ref="8a21168e601d45e544969f8d2c358917" category="inline-image-macro-rx" type="image"></block> 为 NetApp 数据代理准备位置</block>
+  <block id="24d418de7deb7231eeb443678b0f0441" category="inline-image-macro">第 3 项</block>
+  <block id="f0207b569fe3cbfd5eccfb2828e3f2b7" category="section-title"><block ref="9527607e7742b1b2d282b03d60bed8ef" category="inline-image-macro-rx" type="image"></block> 创建您的第一个同步关系</block>
+  <block id="6b47d8ab70c3ef6cbc8e75d29b5e2d7e" category="inline-image-macro">第 4 项</block>
+  <block id="ac5a639d5962a25a6971d30167e47c47" category="section-title"><block ref="eaa50516809be1dcaf0dabd3af981bdd" category="inline-image-macro-rx" type="image"></block> 免费试用结束后支付同步关系费用</block>
+  <block id="d92025d25d4a2d6a7fd1c8dd346c3a78" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> 部署 Cloud Compliance 实例</block>
+  <block id="2a308ec65e0691e08ca910409399e926" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 在您的工作环境中实现云合规性</block>
+  <block id="673be64cc34cfe0793aff320631eec30" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 确保能够访问卷</block>
+  <block id="e95134d22ea5aa15300ed7e15b493afc" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 配置要扫描的卷</block>
+  <block id="f3d9abb903127694db460aa9c7f4d7be" category="paragraph-title">限制</block>
+  <block id="9bbb347fbd183c9b759619011e925584" category="section-title">要求您在AWS数据代理中使用自己的IAM角色</block>
+  <block id="70097ec71ef99a0b821b421778c3dc89" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 在新系统或现有系统上启用监控</block>
+  <block id="c13c14c9d94d99ddb8afb5df2017596d" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 查看性能数据</block>
+  <block id="6fe3b577f9152959d54f0a18687fc614" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 订阅 Cloud Insights</block>
+  <block id="732388e21e523aa0634e9409e24bb44b" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> 启用 Cloud Volumes Service API</block>
+  <block id="cbe36d012a95f25988e66e11ab902592" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 创建 GCP 服务帐户并下载凭据</block>
+  <block id="1364a0c04b3bd8a020e2233da181d34c" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 创建适用于 GCP 的 Cloud Volumes Service 工作环境</block>
+  <block id="a4210618117a87f8b7ed7fa4c4b786f5" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> 查看数据库前提条件</block>
+  <block id="19845d6514c37d5561b2df3fb3c42709" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 部署 Cloud Compliance 实例</block>
+  <block id="03e40e51de10c4fcfe185e3596c9fea9" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 添加数据库服务器</block>
+  <block id="62285cab7437c64e66969323f9b382a0" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 选择模式</block>
+  <block id="bde31567c14a78b82abddb195adfcef4" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> 在云环境中设置 S3 要求</block>
+  <block id="251dfafdaab0977444cc7db6f14d9a0c" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 在 S3 工作环境中激活合规性</block>
+  <block id="9ace5ce0bac1f885633c4a6d9237ba85" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 选择要扫描的分段</block>
+  <block id="5a08d7ee13e3d460c0abdc003e96de15" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> 查看前提条件</block>
+  <block id="06c9972a6973c3e844fd619e6820ca60" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 将 Kubernetes 集群添加到 Cloud Manager</block>
+  <block id="7babb23bf41fb0be57d79d41976f67a6" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 将集群连接到 Cloud Volumes ONTAP</block>
+  <block id="a2a98c975ba9db610320c9f064248420" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 开始配置永久性卷</block>
+  <block id="492e5546e60705134bff8d7f80511a8d" category="section-title">了解新增功能</block>
+  <block id="675d38d552c49bbf67606b2c5f1d5bed" category="section-title">什么是Flash Cache？</block>
+  <block id="f436b6f8e34b590da0473e8f6c14ebb6" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> 请求访问</block>
+  <block id="7bb2f3bb3a53cdbde6126e8ec560df26" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 设置 Azure AD 应用程序</block>
+  <block id="8777339718fab90f3d89354d635602fc" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 创建 Azure NetApp Files 工作环境</block>
+  <block id="ed14d70dad7ae627497350bc4e3868e5" category="section-title">【AWS】从AWS订阅</block>
+  <block id="b6a5a78c3221a73b92bf2f602e64a9cc" category="section-title">【订阅】从Azure订阅</block>
+  <block id="4faa53699bc5575d520ebbbdbdcb3676" category="section-title">【许可】从NetApp购买许可证并将其添加到Cloud Sync</block>
+  <block id="49cb6dd519b346b8bd8a1d8215f8d5ba" category="section-title">入门所需的内容</block>
+  <block id="ec2b9d242528edf315221ad2dddfe05f" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 在系统上启用备份到云</block>
+  <block id="f35b3fb817bc1b6969d1e5fae485e458" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 选择云提供商并输入提供商详细信息</block>
+  <block id="f265f2d996a2653c64b12be4162dbcb9" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 添加 Cloud Volumes Service for AWS 订阅</block>
+  <block id="324722d35dd7c88dc18af8dca459144c" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 创建云卷</block>
+  <block id="1098389531128dd1630a8691017ecab2" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 挂载云卷</block>
+  <block id="73d52017c88a2fcffc5b2dcbb683d5e4" category="section-title">我遇到性能问题。我们是否可以限制并发传输的数量？</block>
+  <block id="5e096b7a2c33e654f884053c567f3013" category="paragraph-title">工作原理</block>
+  <block id="2d024ab58a4f3aca200433e71bfbfb7d" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 定义备份策略</block>
+  <block id="b1f04f72c0946a167d3665d8c8028079" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 选择要备份的卷</block>
+  <block id="f54cfe8dccf99911b96d287f796ff8e6" category="section-title"><block ref="c8b82927684b7195fa645497b5fcc719" category="inline-image-macro-rx" type="image"></block> 根据需要还原数据</block>
+  <block id="ada4f28c1d7a2b6deafbea15522101b4" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> 选择支持的配置</block>
+  <block id="bf30ec6e5b418236529d5fb8a008f7a1" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 确保 Cloud Volumes ONTAP 与对象存储之间的连接</block>
+  <block id="4f171aaed4814825b1b6cd26e8bca8be" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 创建，修改或复制卷时，请选择分层策略</block>
+  <block id="396f48c649e3ff633d50433913feb87b" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> 创建连接器</block>
+  <block id="6aa6125970a0e976d1144591cce6cb48" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 规划您的配置</block>
+  <block id="eba81c0c0c62849b9a8e16bb40a9e522" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 设置网络</block>
+  <block id="a249a27f98b564b1b8bb2e87ae36533a" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 设置 AWS KMS</block>
+  <block id="67467aa7bd51d7bbe961339db94944ba" category="section-title"><block ref="c8b82927684b7195fa645497b5fcc719" category="inline-image-macro-rx" type="image"></block> 使用 Cloud Manager 启动 Cloud Volumes ONTAP</block>
+  <block id="fc6a1c4bfdea701c7028d4b2604689fb" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 使用 Cloud Manager 启动 Cloud Volumes ONTAP</block>
+  <block id="6917f8aa30f339e0174c243dc60ca829" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> 部署 Cloud Volumes ONTAP</block>
+  <block id="13cebc5d87c25a25fa19353a7dfbd762" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 部署全局文件缓存管理服务器</block>
+  <block id="ec11d0059bc2ac9fc8c2e43cab362ce6" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 部署全局文件缓存核心</block>
+  <block id="dfc5eca62d14e5b7ffb6abcaed7c1e2f" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 许可证全局文件缓存</block>
+  <block id="2767a73fa1d8353756d1ff7499837b1c" category="section-title"><block ref="c8b82927684b7195fa645497b5fcc719" category="inline-image-macro-rx" type="image"></block> 部署全局文件缓存边缘实例</block>
+  <block id="d7fc8658f9e7754760fee0f4a1678e61" category="paragraph-title">下一步是什么？</block>
+  <block id="9fddc3cde8f0b14e27df208452fe2b43" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> 查看前提条件</block>
+  <block id="df01c72ffc9521af557ac32cfdb66fd9" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> 部署云合规性</block>
+  <block id="9f5dd2f1cbabb0474ed015ae31acf7e4" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 订阅 Cloud Compliance 服务</block>
+  <block id="ad5480f838ed67e92fecf7af3cef120d" category="paragraph-title">下一步行动</block>
+  <block id="049e8331ee41fb67d481185a274aa752" category="section-title">编辑卷的大小和标记</block>
+  <block id="e66cf0363da426ff5fc40b5dff923ee7" category="paragraph-title">下一步是什么？</block>
+  <block id="06c8c2436f0f1ff2acfef84c2fe6d052" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> 设置用于数据分层的 GCP</block>
+  <block id="919a82e3f18e6877f4c7eb99f2965a6c" category="section-title"><block ref="c8b82927684b7195fa645497b5fcc719" category="inline-image-macro-rx" type="image"></block> 启用 Google Cloud API</block>
+  <block id="8793b102a57051bc0a69b6370c03bf9c" category="section-title"><block ref="37140c340d57bff74ec463795f4bc377" category="inline-image-macro-rx" type="image"></block> 使用 Cloud Manager 启动 Cloud Volumes ONTAP</block>
+  <block id="5ccc745272c52ce1868d5bcf2b07705a" category="section-title">管理Workspace Admin的工作空间</block>
+  <block id="1cf32fb78afaf111cd4c8421dc8592a6" category="section-title">管理Connector的工作空间</block>
 </blocks>

@@ -102,4 +102,5 @@ image:screenshot_data_broker_gcp.gif["屏幕截图显示了在 Google Cloud 中�
 . 完成向导中的页面以创建新的同步关系。
 
 
+.结果
 您已在 GCP 中部署数据代理并创建了新的同步关系。您可以将此数据代理与其他同步关系一起使用。

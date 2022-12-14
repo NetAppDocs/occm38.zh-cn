@@ -24,8 +24,9 @@ summary: 完成几个步骤，开始将数据从内部 ONTAP 系统备份到云�
 
 
 
-==== 验证是否支持您的配置
+==== image:number1.png["数字 1"] 验证是否支持您的配置
 
+[role="quick-margin-list"]
 * 您已发现内部集群并将其添加到 Cloud Manager 中的工作环境中。请参见 link:task_discovering_ontap.html["发现 ONTAP 集群"^] 了解详细信息。
 * 您正在集群上运行 ONTAP 9.7P5 或更高版本。
 * 您已为备份所在的存储空间订阅了有效的云提供商。
@@ -34,7 +35,7 @@ summary: 完成几个步骤，开始将数据从内部 ONTAP 系统备份到云�
 
 
 
-==== 在系统上启用备份到云
+==== image:number2.png["第2个"] 在系统上启用备份到云
 
 [role="quick-margin-para"]
 选择工作环境，然后单击右侧面板中备份到云服务旁边的 * 激活 * ，然后按照设置向导进行操作。
@@ -44,7 +45,7 @@ image:screenshot_backup_to_s3_icon.gif["屏幕截图显示了 \" 备份到云激
 
 
 
-==== 选择云提供商并输入提供商详细信息
+==== image:number3.png["第3个"] 选择云提供商并输入提供商详细信息
 
 [role="quick-margin-para"]
 选择提供程序，然后选择提供程序订阅，区域和资源组。您还需要在卷所在的 ONTAP 集群中指定 IP 空间。
@@ -54,7 +55,7 @@ image:screenshot_backup_onprem_to_azure.png["显示将卷从内部集群备份�
 
 
 
-==== 定义备份策略
+==== image:number4.png["第4个"] 定义备份策略
 
 [role="quick-margin-para"]
 默认策略每天备份卷，并保留每个卷的最新 30 个备份副本。更改为每周或每月备份，或者选择一个提供更多选项的系统定义策略。
@@ -64,14 +65,14 @@ image:screenshot_backup_onprem_policy.png["显示 Backup to Cloud 设置的屏�
 
 
 
-==== 选择要备份的卷
+==== image:number5.png["第5个"] 选择要备份的卷
 
 [role="quick-margin-para"]
 确定要从集群备份的卷。
 
 
 
-==== 根据需要还原数据
+==== image:number6.png["第6个"] 根据需要还原数据
 
 [role="quick-margin-para"]
 从备份列表中，选择一个卷，选择一个备份，然后将备份中的数据还原到使用同一云提供程序的 Cloud Volumes ONTAP 系统上的新卷。
@@ -142,6 +143,8 @@ image:screenshot_backup_select_onprem_volumes.png["选择要备份的卷的屏�
 
 
 
+.结果
 备份到云将开始对每个选定卷进行初始备份。
 
+.下一步是什么？
 link:task_managing_backups.html["您可以通过更改备份计划，还原卷等来管理备份"^]。

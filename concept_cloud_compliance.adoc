@@ -52,7 +52,7 @@ Cloud Compliance 可以从以下类型的数据源扫描数据：
 +
 link:task_deploy_cloud_compliance.html#subscribing-to-the-cloud-compliance-service["了解如何订阅"^]。
 
-* 安装 Cloud Compliance 需要部署云实例，这会导致部署该实例的云提供商收取费用。请参见  Cloud Compliance instance,为每个云提供商部署的实例类型
+* 安装 Cloud Compliance 需要部署云实例，这会导致部署该实例的云提供商收取费用。请参见 <<Cloud Compliance 实例,为每个云提供商部署的实例类型>>
 * Cloud Compliance 要求您已部署 Connector 。在许多情况下，由于您在 Cloud Manager 中使用的其他存储和服务，您已经有了 Connector 。Connector 实例会从部署该实例的云提供商处收取费用。请参见 link:reference_cloud_mgr_reqs.html["为每个云提供商部署的实例类型"^]。
 
 

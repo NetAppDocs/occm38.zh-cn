@@ -24,28 +24,28 @@ summary: 请完成几个步骤，开始使用 Cloud Compliance 扫描数据库�
 
 
 
-==== 查看数据库前提条件
+==== image:number1.png["数字 1"] 查看数据库前提条件
 
 [role="quick-margin-para"]
 确保您的数据库受支持，并且您具有连接到数据库所需的信息。
 
 
 
-==== 部署 Cloud Compliance 实例
+==== image:number2.png["第2个"] 部署 Cloud Compliance 实例
 
 [role="quick-margin-para"]
 link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compliance"^] 如果尚未部署实例。
 
 
 
-==== 添加数据库服务器
+==== image:number3.png["第3个"] 添加数据库服务器
 
 [role="quick-margin-para"]
 添加要访问的数据库服务器。
 
 
 
-==== 选择模式
+==== image:number4.png["第4个"] 选择模式
 
 [role="quick-margin-para"]
 选择要扫描的模式。
@@ -133,6 +133,7 @@ image:screenshot_compliance_select_schemas.png["扫描配置页面的屏幕截�
 
 
 
+.结果
 Cloud Compliance 将开始扫描您启用的数据库架构。如果存在任何错误，它们将显示在状态列中，并显示修复此错误所需的操作。
 
 

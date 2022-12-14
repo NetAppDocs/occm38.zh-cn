@@ -24,21 +24,21 @@ summary: 在 Cloud Manager 中创建 Azure NetApp Files 工作环境，以创建
 
 
 
-==== 请求访问
+==== image:number1.png["数字 1"] 请求访问
 
 [role="quick-margin-para"]
 https://aka.ms/azurenetappfiles["提交联机请求"^] 要授予对 Azure NetApp Files 的访问权限。
 
 
 
-==== 设置 Azure AD 应用程序
+==== image:number2.png["第2个"] 设置 Azure AD 应用程序
 
 [role="quick-margin-para"]
 从 Azure 中，向 Azure AD 应用程序授予权限，并复制应用程序（客户端） ID ，目录（租户） ID 和客户端密钥值。
 
 
 
-==== 创建 Azure NetApp Files 工作环境
+==== image:number3.png["第3个"] 创建 Azure NetApp Files 工作环境
 
 [role="quick-margin-para"]
 在 Cloud Manager 中，单击 * 添加工作环境 * > * Microsoft Azure* > * Azure NetApp Files * ，然后提供有关 AD 应用程序的详细信息。
@@ -61,6 +61,7 @@ Cloud Manager 需要设置和管理 Azure NetApp Files 的权限。您可以通�
 
 创建一个 Azure Active Directory （ AD ）应用程序和服务主体， Cloud Manager 可使用该应用程序和服务主体进行基于角色的访问控制。
 
+.开始之前
 要创建 Active Directory 应用程序并将此应用程序分配给角色，您必须在 Azure 中拥有适当的权限。有关详细信息，请参见 https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#required-permissions/["Microsoft Azure 文档：所需权限"^]。
 
 .步骤
@@ -102,6 +103,7 @@ image:screenshot_anf_client_secret.gif["Azure 门户的屏幕截图，其中显�
 
 
 
+.结果
 此时，您的 AD 应用程序已设置完毕，您应已复制应用程序（客户端） ID ，目录（租户） ID 和客户端密钥值。添加 Azure NetApp Files 工作环境时，您需要在 Cloud Manager 中输入此信息。
 
 
@@ -172,8 +174,10 @@ image:screenshot_anf_details.gif["创建 Azure NetApp Files 工作环境所需�
 . 单击 * 添加 * 。
 
 
+.结果
 现在，您应该拥有一个 Azure NetApp Files 工作环境。
 
 image:screenshot_anf_we.gif["Azure NetApp Files 工作环境的屏幕截图。"]
 
+.下一步是什么？
 link:task_manage_anf_volumes.html["开始创建和管理卷"]。

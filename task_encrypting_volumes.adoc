@@ -23,6 +23,7 @@ Cloud Volumes ONTAP 通过外部密钥管理器同时支持 NetApp 卷加密（ 
 
 Cloud Volumes ONTAP 不支持板载密钥管理。
 
+.您需要的内容
 您的 Cloud Volumes ONTAP 系统应向 NetApp 支持部门注册。从 Cloud Manager 3.7.1 开始，向 NetApp 支持部门注册的每个 Cloud Volumes ONTAP 系统都会自动安装 NetApp 卷加密许可证。
 
 * link:task_adding_nss_accounts.html["将 NetApp 支持站点帐户添加到 Cloud Manager"]

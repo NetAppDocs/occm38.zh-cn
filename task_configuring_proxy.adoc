@@ -41,4 +41,5 @@ NOTE: Cloud Manager 不支持包含 @ 字符的密码。
 
 
 
+.结果
 指定代理服务器后、新的 Cloud Volumes ONTAP 系统会自动配置为在发送 AutoSupport 消息时使用代理服务器。如果在用户创建 Cloud Volumes ONTAP 系统之前未指定代理服务器，则用户必须使用 System Manager 在每个系统的 AutoSupport 选项中手动设置代理服务器。

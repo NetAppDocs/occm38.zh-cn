@@ -328,7 +328,7 @@ summary: 通过验证是否支持和设置源和目标来准备同步数据。
 
 
 
-=== AWS S3 存储桶要求
+=== 【S3】AWS S3存储分段要求
 
 确保 AWS S3 桶满足以下要求。
 
@@ -375,7 +375,7 @@ image:screenshot_iam_role_arn.gif["AWS IAM 控制台的屏幕快照，其中显�
 
 
 
-=== Azure Blob 存储要求
+=== 《Azure Blob存储要求》
 
 确保 Azure Blob 存储满足以下要求。
 

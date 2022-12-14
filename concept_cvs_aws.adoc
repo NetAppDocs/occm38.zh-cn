@@ -57,28 +57,28 @@ Cloud Volumes Service for AWS 创建的卷会根据您的服务订阅付费，�
 
 
 
-==== 验证是否支持您的配置
+==== image:number1.png["数字 1"] 验证是否支持您的配置
 
 [role="quick-margin-para"]
 您已为 Cloud Volumes Service 设置 AWS ，并且必须已订阅其中一个 https://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=netapp+cloud+volumes+service["AWS 市场上的 NetApp Cloud Volumes Service 产品"^]。
 
 
 
-==== 添加 Cloud Volumes Service for AWS 订阅
+==== image:number2.png["第2个"] 添加 Cloud Volumes Service for AWS 订阅
 
 [role="quick-margin-para"]
 您必须根据 Cloud Volumes Service for AWS 订阅为卷创建一个工作环境。
 
 
 
-==== 创建云卷
+==== image:number3.png["第3个"] 创建云卷
 
 [role="quick-margin-para"]
 此订阅已存在的云卷将显示在新的工作环境中。否则，您将从 Cloud Manager 创建新卷。
 
 
 
-==== 挂载云卷
+==== image:number4.png["第4个"] 挂载云卷
 
 [role="quick-margin-para"]
 将新的云卷挂载到 AWS 实例，以便用户可以开始使用存储。

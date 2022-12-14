@@ -22,6 +22,7 @@ summary: 您可以从 Cloud Manager 停止并启动 Cloud Volumes ONTAP 来管�
 
 您可能希望在特定时间间隔内关闭 Cloud Volumes ONTAP 以降低计算成本。您可以将 Cloud Manager 配置为在特定时间自动关闭然后重新启动系统，而不是手动执行此操作。
 
+.关于此任务
 计划自动关闭 Cloud Volumes ONTAP 系统时，如果正在进行活动数据传输，则 Cloud Manager 会推迟关闭。传输完成后， Cloud Manager 将关闭系统。
 
 此任务会安排 HA 对中两个节点的自动关闭。
@@ -49,6 +50,7 @@ image:screenshot_shutdown.gif["屏幕截图：显示了关闭计划、该计划�
 . 单击 * 保存 * 。
 
 
+.结果
 云管理器可保存计划。时钟图标将发生变化以指示已设置计划： image:screenshot_shutdown_icon_scheduled.gif["屏幕截图：在定义计划后显示自动关机图标。"]
 
 
@@ -57,6 +59,7 @@ image:screenshot_shutdown.gif["屏幕截图：显示了关闭计划、该计划�
 
 停止 Cloud Volumes ONTAP 可以节省计算成本并创建根磁盘和引导磁盘的快照，这有助于排除故障。
 
+.关于此任务
 当您停止 HA 对时、 Cloud Manager 会关闭两个节点。
 
 .步骤

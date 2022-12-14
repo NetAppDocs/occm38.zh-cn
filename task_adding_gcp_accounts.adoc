@@ -80,6 +80,7 @@ image:screenshot_gcp_access_key.gif["GCP 存储控制台的屏幕截图，其中
 
 现在，您已有服务帐户的访问密钥，您可以将其添加到 Cloud Manager 中。
 
+.您需要的内容
 您需要先创建 Connector ，然后才能更改 Cloud Manager 设置。 link:concept_connectors.html#how-to-create-a-connector["了解如何操作"]。
 
 .步骤
@@ -95,6 +96,7 @@ Cloud Manager 可通过这些密钥设置用于数据分层的云存储分段。
 . 确认已满足策略要求，然后单击 * 创建帐户 * 。
 
 
+.下一步是什么？
 现在，您可以在创建，修改或复制 Cloud Volumes ONTAP 9.6 系统上的各个卷时对其启用数据分层。有关详细信息，请参见 link:task_tiering.html["将非活动数据分层到低成本对象存储"]。
 
 但是，在执行此操作之前，请确保 Cloud Volumes ONTAP 所在的子网已配置为专用 Google 访问。有关说明，请参见 https://cloud.google.com/vpc/docs/configure-private-google-access["Google Cloud 文档：配置私有 Google Access"^]。

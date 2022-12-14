@@ -24,11 +24,12 @@ summary: 通过将数据分层到 StorageGRID ，在内部 ONTAP 集群上释放
 
 
 
-==== 准备将数据分层到 StorageGRID
+==== image:number1.png["数字 1"] 准备将数据分层到 StorageGRID
 
 [role="quick-margin-para"]
 您需要满足以下要求：
 
+[role="quick-margin-list"]
 * 一种 AFF 或 FAS 系统，其中包含运行 ONTAP 9.4 或更高版本的纯 SSD 聚合，并通过用户指定的端口连接到 StorageGRID 。
 * 具有 S3 权限的 AWS 访问密钥的 StorageGRID 10.3 或更高版本。
 * 内部安装的连接器。
@@ -37,7 +38,7 @@ summary: 通过将数据分层到 StorageGRID ，在内部 ONTAP 集群上释放
 
 
 
-==== 设置分层
+==== image:number2.png["数字 2"] 设置分层
 
 [role="quick-margin-para"]
 选择一个内部工作环境，单击 * 设置分层 * ，然后按照提示将数据分层到 StorageGRID 。
@@ -150,7 +151,7 @@ S3 凭据:: 在设置 StorageGRID 分层时，您需要为云分层提供 S3 访
 
 准备好环境后，开始对第一个集群中的非活动数据进行分层。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * link:task_discovering_ontap.html["内部工作环境"]。
 * 具有所需 S3 权限的 AWS 访问密钥。
 
@@ -186,6 +187,8 @@ image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_selec
 
 
 
+.结果
 您已成功设置从集群上的卷到 StorageGRID 的数据分层。
 
+.下一步是什么？
 您可以添加其他集群或查看有关集群上的活动和非活动数据的信息。有关详细信息，请参见 link:task_managing_tiering.html["从集群管理数据分层"]。

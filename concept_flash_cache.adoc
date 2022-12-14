@@ -18,7 +18,7 @@ AWS 和 Azure 中的某些 Cloud Volumes ONTAP 配置包括本地 NVMe 存储，
 
 
 
-== 什么是 Flash Cache ？
+== 什么是Flash Cache？
 
 Flash Cache 通过实时智能缓存最近读取的用户数据和 NetApp 元数据来加快数据访问速度。它适用于随机读取密集型工作负载，包括数据库，电子邮件和文件服务。
 

@@ -46,7 +46,7 @@ summary: 创建同步关系时，请选择 AWS 数据代理选项以在 VPC 中�
 
 
 
-== 在 AWS 数据代理中使用您自己的 IAM 角色的要求
+== 要求您在AWS数据代理中使用自己的IAM角色
 
 当 Cloud Sync 部署数据代理时、它会为数据代理实例创建 IAM 角色。如果您愿意，可以使用自己的 IAM 角色部署数据代理。如果您的组织具有严格的安全策略，则可以使用此选项。
 
@@ -92,7 +92,7 @@ image:screenshot_create_data_broker.gif["数据代理页面的屏幕截图，可
 video::video_cloud_sync.mp4[width=848,height=480]
 . 如果您输入了 AWS 访问密钥，请为实例选择一个位置，选择一个密钥对，选择是否启用公有 IP 地址，然后选择现有的 IAM 角色，或者将此字段留空，以便 Cloud Sync 为您创建角色。
 +
-如果您选择自己的 IAM 角色， ,您需要提供所需的权限。
+如果您选择自己的 IAM 角色， <<iam,您需要提供所需的权限>>。
 
 +
 image:screenshot_aws_data_broker.gif["在 AWS 中部署数据代理时需要提供的信息的屏幕截图。"]
@@ -107,4 +107,5 @@ image:screenshot_created_instance.gif["此屏幕快照显示已成功部署的�
 . 完成向导中的页面以创建新的同步关系。
 
 
+.结果
 您已在 AWS 中部署了数据代理并创建了新的同步关系。您可以将此数据代理与其他同步关系一起使用。

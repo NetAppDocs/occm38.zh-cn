@@ -119,8 +119,10 @@ NOTE: Cloud Manager 会将卷移动到使用选定磁盘类型并进行分层的
 
 您可以通过添加磁盘，查看聚合相关信息以及删除聚合来自行管理聚合。
 
+.开始之前
 如果要删除聚合、必须先删除聚合中的卷。
 
+.关于此任务
 如果聚合空间不足，则可以使用 OnCommand System Manager 将卷移动到另一个聚合。
 
 .步骤
@@ -196,6 +198,7 @@ TIP: 聚合中的所有磁盘大小必须相同。
 . 单击 * 保存 * 。
 
 
+.结果
 Cloud Volumes ONTAP 会根据更改更新 CIFS 服务器。
 
 
@@ -223,11 +226,11 @@ Cloud Volumes ONTAP 会根据更改更新 CIFS 服务器。
 云管理器可能会显示一条需要执行的操作消息、指出需要移动卷以避免容量问题、但无法提供解决问题的建议。如果发生这种情况，您需要确定如何更正问题、然后移动一个或多个卷。
 
 .步骤
-.  how to correct capacity issues,确定如何解决此问题。。
+. <<确定如何解决容量问题,确定如何解决此问题。>>。
 . 根据您的分析、移动卷以避免容量问题：
 +
-**  volumes to another system to avoid capacity issues,将卷移动到另一个系统。。
-**  volumes to another aggregate to avoid capacity issues,将卷移动到同一系统上的另一个聚合。。
+** <<将卷移动到另一个系统以避免容量问题,将卷移动到另一个系统。>>。
+** <<将卷移动到另一个聚合以避免容量问题,将卷移动到同一系统上的另一个聚合。>>。
 
 
 
@@ -282,6 +285,7 @@ image:screenshot_aggr_volumes.gif["屏幕抓图：显示聚合中聚合中卷的
 
 您可以将一个或多个卷移动到另一个 Cloud Volumes ONTAP 系统以避免容量问题。如果系统达到其磁盘限制，则可能需要执行此操作。
 
+.关于此任务
 您可以按照此任务中的步骤更正以下需要执行的操作消息：
 
  Moving a volume is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you because the system has reached the disk limit.
@@ -311,6 +315,7 @@ image:screenshot_aggr_volumes.gif["屏幕抓图：显示聚合中聚合中卷的
 
 您可以将一个或多个卷移动到另一个聚合中以避免容量问题。
 
+.关于此任务
 您可以按照此任务中的步骤更正以下需要执行的操作消息：
 
  Moving two or more volumes is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you.

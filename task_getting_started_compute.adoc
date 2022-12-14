@@ -41,6 +41,7 @@ image:screenshot_compute_add_account.gif["显示连接页面上每个可用字�
 
 
 
+.结果
 Cloud Analyzer 开始处理您的 AWS 帐户数据。如果您有多个帐户， Cloud Analyzer 将从主付款人帐户下所有链接帐户的只读功能开始。如果您希望了解有关这些客户可能节省的空间的更多详细信息，则还需要将其连接起来。有关此过程的详细信息，请参见以下部分。
 
 

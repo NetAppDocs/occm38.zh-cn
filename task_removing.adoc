@@ -16,6 +16,7 @@ summary: 帐户管理员可以删除 Cloud Volumes ONTAP 工作环境以将其�
 [role="lead"]
 帐户管理员可以删除 Cloud Volumes ONTAP 工作环境以将其移至其他系统或对发现问题进行故障排除。
 
+.关于此任务
 删除 Cloud Volumes ONTAP 工作环境会将其从 Cloud Manager 中删除。它不会删除 Cloud Volumes ONTAP 系统。您可以在以后重新发现工作环境。
 
 通过从云管理器中删除工作环境，您可以执行以下操作：
@@ -35,4 +36,5 @@ image:screenshot_settings_icon.gif["一个屏幕截图，显示 Cloud Manager �
 . 在 Review and Approve 页面上，单击 * 执行 * 。
 
 
+.结果
 Cloud Manager 可消除工作环境。用户可以随时从 " 工作环境 " 页重新发现此工作环境。

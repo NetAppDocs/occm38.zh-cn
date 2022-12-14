@@ -24,21 +24,21 @@ summary: 在 Cloud Manager 中创建适用于 Google Cloud 的 Cloud Volumes Ser
 
 
 
-==== 启用 Cloud Volumes Service API
+==== image:number1.png["数字 1"] 启用 Cloud Volumes Service API
 
 [role="quick-margin-para"]
 在 Google 中，启用适用于 GCP 的 Cloud Volumes Service API ，以便 Cloud Manager 可以管理订阅和云卷。
 
 
 
-==== 创建 GCP 服务帐户并下载凭据
+==== image:number2.png["第2个"] 创建 GCP 服务帐户并下载凭据
 
 [role="quick-margin-para"]
 在 Google 中，创建一个 GCP 服务帐户和角色，以便 Cloud Manager 可以访问您的 Cloud Volumes Service for GCP 帐户。
 
 
 
-==== 创建适用于 GCP 的 Cloud Volumes Service 工作环境
+==== image:number3.png["第3个"] 创建适用于 GCP 的 Cloud Volumes Service 工作环境
 
 [role="quick-margin-para"]
 在 Cloud Volumes Service 中，单击 * 添加工作环境 * > * Google Cloud* > * * ，然后提供有关服务帐户和 Google Cloud 项目的详细信息。
@@ -101,6 +101,7 @@ summary: 在 Cloud Manager 中创建适用于 Google Cloud 的 Cloud Volumes Ser
 
 TIP: 如果您在多个 GCP 项目中有订阅和卷，则需要对每个项目执行此任务。
 
+.开始之前
 为每个项目添加订阅时，您必须具有以下信息：
 
 * 服务帐户凭据（您下载的 JSON 专用密钥）
@@ -126,6 +127,7 @@ image:screenshot_add_cvs_gcp_credentials.png["为 Cloud Volumes Service for GCP 
 
 
 
+.结果
 Cloud Manager 可显示适用于 Google Cloud 的 Cloud Volumes Service 工作环境。
 
 image:screenshot_cvs_gcp_cloud.png["Cloud Volumes Service for Google Cloud 工作环境的屏幕截图。"]
@@ -134,4 +136,5 @@ image:screenshot_cvs_gcp_cloud.png["Cloud Volumes Service for Google Cloud 工�
 
 如果此订阅不存在任何云卷，请立即创建。
 
+.下一步是什么？
 link:task_manage_cvs_gcp.html["开始创建和管理卷"]。

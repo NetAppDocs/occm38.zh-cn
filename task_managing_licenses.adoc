@@ -62,6 +62,7 @@ image:screenshot_system_license.gif["Cloud Volumes ONTAP 系统许可证的屏�
 . 单击 * 添加许可证 * 。
 
 
+.结果
 Cloud Manager 会在 Cloud Volumes ONTAP 系统上安装新的许可证文件。
 
 
@@ -83,6 +84,7 @@ image:screenshot_system_license.gif["Cloud Volumes ONTAP 系统许可证的屏�
 . 单击 * 更新许可证 * 。
 
 
+.结果
 Cloud Manager 将更新 Cloud Volumes ONTAP 系统上的许可证。
 
 
@@ -112,4 +114,5 @@ image:screenshot_backup_byol_license_add.png["显示用于添加备份 BYOL 许�
 
 
 
+.结果
 Cloud Manager 会添加或更新许可证，以使您的备份到云服务处于活动状态。

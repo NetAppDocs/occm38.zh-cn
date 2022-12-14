@@ -24,28 +24,28 @@ summary: 完成几个步骤，在 Cloud Manager 工作空间中部署 Cloud Comp
 
 
 
-==== 创建连接器
+==== image:number1.png["数字 1"] 创建连接器
 
 [role="quick-margin-para"]
 如果您还没有 Connector ，请在 Azure 或 AWS 中创建 Connector 。请参见 link:task_creating_connectors_aws.html["在 AWS 中创建连接器"] 或 link:task_creating_connectors_azure.html["在 Azure 中创建连接器"]。
 
 
 
-==== 查看前提条件
+==== image:number2.png["第2个"] 查看前提条件
 
 [role="quick-margin-para"]
-确保您的云环境可以满足以下前提条件：云合规性实例需要 16 个 vCPU ，实例的出站 Internet 访问，通过端口 80 在 Connector 和 Cloud Compliance 之间建立连接等。  prerequisites,请参见完整列表。
+确保您的云环境可以满足以下前提条件：云合规性实例需要 16 个 vCPU ，实例的出站 Internet 访问，通过端口 80 在 Connector 和 Cloud Compliance 之间建立连接等。 <<查看前提条件,请参见完整列表>>。
 
 
 
-==== 部署云合规性
+==== image:number3.png["第3个"] 部署云合规性
 
 [role="quick-margin-para"]
 启动安装向导以在 Cloud Manager 中部署 Cloud Compliance 实例。
 
 
 
-==== 订阅 Cloud Compliance 服务
+==== image:number4.png["第4个"] 订阅 Cloud Compliance 服务
 
 [role="quick-margin-para"]
 Cloud Compliance 在 Cloud Manager 中扫描的前 1 TB 数据是免费的。要在这之后继续扫描数据，需要订阅 AWS 或 Azure Marketplace 。
@@ -145,8 +145,10 @@ image:screenshot_cloud_compliance_wizard_start.png["用于部署新实例的 Clo
 . 部署实例后，单击 * 继续配置 * 以转到 _Scan Configuration_ 页面。
 
 
+.结果
 Cloud Manager 会在您的云提供商中部署 Cloud Compliance 实例。
 
+.下一步行动
 在扫描配置页面中，您可以选择要扫描的工作环境，卷和分段以确保合规性。您还可以连接到数据库服务器以扫描特定的数据库架构。在任何这些数据源上激活 Cloud Compliance 。
 
 
@@ -159,8 +161,9 @@ Cloud Compliance 在 Cloud Manager 工作空间中扫描的前 1 TB 数据是免
 
 image:screenshot_compliance_subscribe.png["屏幕截图显示了正在扫描的数据量以及用于订阅服务的 \" 订阅 \" 按钮。"]
 
-* 注意： * 如果 Cloud Compliance 提示您订阅，但您已订阅 Azure ，则您可能正在使用旧的 * Cloud Manager* 订阅，需要更改为新的 * NetApp Cloud Manager* 订阅。请参见 to the new Cloud Manager plan in Azure,在 Azure 中更改为新的 NetApp Cloud Manager 计划 了解详细信息。
+* 注意： * 如果 Cloud Compliance 提示您订阅，但您已订阅 Azure ，则您可能正在使用旧的 * Cloud Manager* 订阅，需要更改为新的 * NetApp Cloud Manager* 订阅。请参见<<在 Azure 中更改为新的 Cloud Manager 计划,在 Azure 中更改为新的 NetApp Cloud Manager 计划>> 了解详细信息。
 
+.步骤
 这些步骤必须由具有 _Account Admin_ 角色的用户完成。
 
 . 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * 凭据 * 。
@@ -206,6 +209,7 @@ video::video_subscribing_azure.mp4[width=848,height=480]
 
 NOTE: 如果您的现有订阅附带了特殊的私人优惠，则您需要联系 NetApp ，以便我们问题描述可以根据合规性申请新的特殊私人优惠。
 
+.步骤
 这些步骤与上述添加新订阅类似，但在某些方面有所不同。
 
 . 在 Cloud Manager 控制台的右上角，单击设置图标，然后选择 * 凭据 * 。

@@ -24,29 +24,30 @@ summary: 完成几个步骤以开始监控 Cloud Volumes ONTAP 性能。
 
 
 
-==== 验证是否支持您的配置
+==== image:number1.png["数字 1"] 验证是否支持您的配置
 
 [role="quick-margin-para"]
 您需要在 AWS 中全新安装 Cloud Manager 3.8.4 或更高版本，在 AWS 中安装 Cloud Volumes ONTAP ，并且您必须是新的 Cloud Insights 客户。
 
 
 
-==== 在新系统或现有系统上启用监控
+==== image:number2.png["第2个"] 在新系统或现有系统上启用监控
 
+[role="quick-margin-list"]
 * 新的工作环境：在创建工作环境时，请确保始终启用监控（默认情况下处于启用状态）。
 * 现有工作环境：选择一个工作环境，然后单击 * 启动监控 * 。
 
 
 
 
-==== 查看性能数据
+==== image:number3.png["第3个"] 查看性能数据
 
 [role="quick-margin-para"]
 单击 * 监控 * 并查看卷的性能数据。
 
 
 
-==== 订阅 Cloud Insights
+==== image:number4.png["第4个"] 订阅 Cloud Insights
 
 [role="quick-margin-para"]
 在 30 天免费试用结束之前订阅，继续在 Cloud Manager 和 Cloud Insights 中查看性能数据。 https://docs.netapp.com/us-en/cloudinsights/concept_subscribing_to_cloud_insights.html["了解如何订阅"^]。
@@ -165,6 +166,7 @@ image:screenshot_cloud_insights.gif["显示 \" 监控 \" 选项卡右上角的 C
 
 
 
+.结果
 Cloud Insights 将在新的浏览器选项卡中打开。如果需要帮助，请参见 https://docs.netapp.com/us-en/cloudinsights["Cloud Insights 文档"^]。
 
 

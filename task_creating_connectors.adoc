@@ -29,7 +29,7 @@ TIP: 在创建首个 Cloud Volumes ONTAP 工作环境时，如果您还没有连
 
 您可以通过 Cloud Manager 直接从其用户界面在 AWS 中创建 Connector 。您还可以选择 link:task_launching_aws_mktp.html["从 AWS Marketplace 创建 Connector"]或 link:task_installing_linux.html["下载软件并将其安装在您自己的主机上"]。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * 具有的 IAM 用户的 AWS 访问密钥和机密密钥 https://mysupport.netapp.com/site/info/cloud-manager-policies["所需权限"^]。
 * 您选择的 AWS 区域中的 VPC ，子网和密钥对。
 
@@ -72,7 +72,7 @@ NOTE: 除非您启动 Connector ，否则不会向其传入流量。HTTP 和 HTT
 
 您可以通过 Cloud Manager 直接从其用户界面在 Azure 中创建 Connector 。您还可以选择 link:task_launching_azure_mktp.html["从 Azure Marketplace 创建 Connector"]或 link:task_installing_linux.html["下载软件并将其安装在您自己的主机上"]。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * 。 https://mysupport.netapp.com/site/info/cloud-manager-policies["所需权限"^] 适用于您的 Azure 帐户。
 * Azure 订阅。
 * 您选择的 Azure 区域中的 vNet 和子网。
@@ -120,7 +120,7 @@ NOTE: 除非您启动 Connector ，否则不会向其传入流量。HTTP 和 HTT
 
 您可以通过 Cloud Manager 直接从其用户界面在 GCP 中创建 Connector 。您还可以选择 link:task_installing_linux.html["下载软件并将其安装在您自己的主机上"]。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * 。 https://mysupport.netapp.com/site/info/cloud-manager-policies["所需权限"^] 适用于您的 Google Cloud 帐户。
 * Google Cloud 项目。
 * 具有创建和管理 Cloud Volumes ONTAP 所需权限的服务帐户。

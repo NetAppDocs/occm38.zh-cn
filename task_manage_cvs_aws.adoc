@@ -27,6 +27,7 @@ summary: 您可以通过 Cloud Manager 根据 Cloud Volumes Service for AWS 订�
 
 TIP: 如果您的订阅和卷位于多个 AWS 区域，则需要对每个区域执行此任务。
 
+.开始之前
 在每个地区添加订阅时，您必须具有以下信息：
 
 * Cloud Volumes API 密钥和机密密钥： https://docs.netapp.com/us-en/cloud_volumes/aws/reference_cloud_volume_apis.html#finding-the-api-url-api-key-and-secret-key["要获取此信息，请参见 Cloud Volumes Service for AWS 文档"^]。
@@ -52,6 +53,7 @@ image:screenshot_add_cvs_aws_credentials.png["为 Cloud Volumes Service for AWS 
 
 
 
+.结果
 Cloud Manager 会在 " 工作环境 " 页面上显示您的 Cloud Volumes Service for AWS 配置。
 
 image:screenshot_cvs_aws_cloud.gif["Cloud Volumes Service for AWS 在 \" 工作环境 \" 页面上的屏幕截图。"]
@@ -183,6 +185,7 @@ TIP: 您应按照 AWS 安全组设置指南进行操作，以使云卷能够正�
 
 此时，新卷将添加到工作环境中。
 
+.完成后
 如果这是在此 AWS 订阅中创建的第一个卷，则需要启动 AWS 管理控制台以接受此 AWS 区域将使用的两个虚拟接口来连接所有云卷。请参见 https://docs.netapp.com/us-en/cloud_volumes/aws/media/cvs_aws_account_setup.pdf["《 NetApp Cloud Volumes Service for AWS 帐户设置指南》"^] 了解详细信息。
 
 单击 * 添加卷 * 按钮后，您必须在 10 分钟内接受这些接口，否则系统可能会超时。如果发生这种情况，请发送电子邮件至 cvs-support@netapp.com ，并附上您的 AWS 客户 ID 和 NetApp 序列号。支持部门将修复问题描述，您可以重新启动入职流程。

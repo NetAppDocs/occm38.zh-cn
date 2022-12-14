@@ -20,15 +20,15 @@ summary: 通过查看有关组织中个人数据和敏感个人数据的详细�
 
 image:screenshot_compliance_dashboard.png["Cloud Compliance 信息板的屏幕截图"]
 
-如果只想查看某些工作环境的数据，  data from specific working environments,选择这些工作环境。
+如果只想查看某些工作环境的数据， <<查看特定工作环境中的数据,选择这些工作环境>>。
 
 
 
 == 个人数据
 
-Cloud Compliance 会自动识别数据中的特定字词，字符串和模式（ Reex ）。例如，个人身份信息（ Personal Identification" ， Pi2 ），信用卡号，社会保险号，银行帐号等。  of personal data,请参见完整列表。
+Cloud Compliance 会自动识别数据中的特定字词，字符串和模式（ Reex ）。例如，个人身份信息（ Personal Identification" ， Pi2 ），信用卡号，社会保险号，银行帐号等。 <<个人数据的类型,请参见完整列表>>。
 
-对于某些类型的个人数据， Cloud Compliance 会使用 _proximity validation_来 验证其结果。通过查找与所发现的个人数据相邻的一个或多个预定义关键字来进行验证。例如， Cloud Compliance 会标识一个美国如果在 SSN 旁边看到一个接近词，则将社会安全号（ SSN ）作为 SSN ，例如 _SSN_ 或 _社交 安全 _ 。  of personal data,以下列表 显示 Cloud Compliance 何时使用接近验证。
+对于某些类型的个人数据， Cloud Compliance 会使用 _proximity validation_来 验证其结果。通过查找与所发现的个人数据相邻的一个或多个预定义关键字来进行验证。例如， Cloud Compliance 会标识一个美国如果在 SSN 旁边看到一个接近词，则将社会安全号（ SSN ）作为 SSN ，例如 _SSN_ 或 _社交 安全 _ 。 <<个人数据的类型,以下列表>> 显示 Cloud Compliance 何时使用接近验证。
 
 
 
@@ -61,7 +61,7 @@ image:screenshot_compliance_investigation_filtered.png["在调查页面中细化
 
 === 个人数据的类型
 
-文件中的个人数据可以是常规个人数据或国家标识符。第三列确定 Cloud Compliance 是否使用  data,接近验证 以验证其对标识符的发现。
+文件中的个人数据可以是常规个人数据或国家标识符。第三列确定 Cloud Compliance 是否使用 <<个人数据,接近验证>> 以验证其对标识符的发现。
 
 [cols="20,50,18"]
 |===
@@ -173,7 +173,7 @@ image:screenshot_compliance_investigation_filtered.png["在调查页面中细化
 
 == 敏感的个人数据
 
-Cloud Compliance 会根据隐私法规的定义自动识别特殊类型的敏感个人信息，例如 https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679&from=EN#d1e2051-1-1["《一般数据保护条例》第 9 条和第 10 条"^]。例如，有关个人健康，种族或性取向的信息。  of sensitive personal data,请参见完整列表。
+Cloud Compliance 会根据隐私法规的定义自动识别特殊类型的敏感个人信息，例如 https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679&from=EN#d1e2051-1-1["《一般数据保护条例》第 9 条和第 10 条"^]。例如，有关个人健康，种族或性取向的信息。 <<敏感个人数据的类型,请参见完整列表>>。
 
 Cloud Compliance 使用人工智能（ AI ），自然语言处理（ NLP ），机器学习（ ML ）和认知计算（ CC ）来了解其扫描内容的含义，以便提取实体并对其进行相应的分类。
 
@@ -219,7 +219,7 @@ ICD-10-CM 医疗代码:: 医疗和健康行业使用的代码。
 
 == 类别
 
-Cloud Compliance 会获取所扫描的数据并将其划分为不同类型的类别。类别是基于 AI 对每个文件的内容和元数据的分析而得出的主题。  of categories,查看类别列表。
+Cloud Compliance 会获取所扫描的数据并将其划分为不同类型的类别。类别是基于 AI 对每个文件的内容和元数据的分析而得出的主题。 <<类别类型,查看类别列表>>。
 
 类别可以通过向您显示所拥有的信息类型来帮助您了解数据的变化。例如，恢复或员工合同等类别可以包含敏感数据。调查结果时，您可能会发现员工合同存储在不安全的位置。然后，您可以更正此问题描述。
 
@@ -344,7 +344,7 @@ Cloud Compliance 会按如下方式对您的数据进行分类：
 
 == 文件类型
 
-Cloud Compliance 会获取所扫描的数据，并按文件类型对其进行细分。查看文件类型有助于控制敏感数据，因为您可能会发现某些文件类型存储不正确。  of files,请参见文件类型列表。
+Cloud Compliance 会获取所扫描的数据，并按文件类型对其进行细分。查看文件类型有助于控制敏感数据，因为您可能会发现某些文件类型存储不正确。 <<文件类型,请参见文件类型列表>>。
 
 例如，您可能存储的 CAD 文件包含有关您的组织的非常敏感的信息。如果这些文件不安全，您可以通过限制权限或将文件移动到其他位置来控制敏感数据。
 

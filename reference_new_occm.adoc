@@ -54,11 +54,11 @@ image:screenshot_compute_dashboard.gif["显示 Cloud Manager 中 \" 成本分析
 
 == Cloud Manager 3.8.9 （ 2020 年 10 月 4 日）
 
-*  Compliance enhancements
-*  Volumes Service for AWS enhancements
-*  Sync integration
-*  management enhancements
-*  for Government regions
+* <<云合规性增强功能>>
+* <<适用于 AWS 的 Cloud Volumes Service 增强功能>>
+* <<Cloud Sync 集成>>
+* <<帐户管理增强功能>>
+* <<政府区域的变更>>
 
 
 
@@ -162,12 +162,12 @@ link:concept_gfc.html["了解有关全局文件缓存的更多信息"]。
 
 == Cloud Manager 3.8.8 （ 2020 年 9 月 9 日）
 
-*  for Cloud Volumes Service for Google Cloud
-*  to Cloud now supports on-premises ONTAP clusters
-*  to Cloud enhancements
-*  Compliance enhancements
-*  navigation
-*  improvements
+* <<支持适用于 Google Cloud 的 Cloud Volumes Service>>
+* <<现在，备份到云支持内部 ONTAP 集群>>
+* <<备份到云增强功能>>
+* <<云合规性增强功能>>
+* <<已刷新导航>>
+* <<管理改进>>
 
 
 
@@ -253,13 +253,13 @@ https://occm-sample-policies.s3.amazonaws.com/Policy_for_cloud_Manager_Azure_3.8
 
 == Cloud Manager 3.8.7 （ 2020 年 8 月 3 日）
 
-*  software-as-a-service experience
-*  Volumes ONTAP enhancements
-*  NetApp Files enhancements
-*  Volumes Service for AWS enhancements
-*  Compliance enhancements
-*  to Cloud enhancements
-*  for Global File Cache
+* <<全新的软件即服务体验>>
+* <<Cloud Volumes ONTAP 增强功能>>
+* <<Azure NetApp Files 增强功能>>
+* <<适用于 AWS 的 Cloud Volumes Service 增强功能>>
+* <<云合规性增强功能>>
+* <<备份到云增强功能>>
+* <<支持全局文件缓存>>
 
 
 
@@ -488,8 +488,8 @@ https://cloudmanagerinfraprod.azurecr.io
 
 == Cloud Manager 3.8.6 （ 2020 年 7 月 6 日）
 
-*  for iSCSI volumes
-*  for the All tiering policy
+* <<支持 iSCSI 卷>>
+* <<支持所有分层策略>>
 
 
 
@@ -519,9 +519,9 @@ NOTE: 您可以从 System Manager 或 CLI 创建其他 LUN 。
 
 == Cloud Manager 3.8.5 （ 2020 年 5 月 31 日）
 
-*  subscription required in the Azure Marketplace
-*  to Cloud enhancements
-*  Compliance enhancements
+* <<Azure Marketplace 中需要新订阅>>
+* <<备份到云增强功能>>
+* <<云合规性增强功能>>
 
 
 
@@ -601,11 +601,11 @@ Cloud Manager 3.8.4 包括以下改进。
 
 == Cloud Manager 3.8.3 （ 2020 年 4 月 5 日）
 
-*  Tiering integration
-*  migration to Azure NetApp Files
-*  Compliance enhancements
-*  to S3 enhancements
-*  volumes using APIs
+* <<Cloud Tiering 集成>>
+* <<将数据迁移到 Azure NetApp Files>>
+* <<云合规性增强功能>>
+* <<备份到 S3 增强功能>>
+* <<使用 API 的 iSCSI 卷>>
 
 
 
@@ -683,10 +683,10 @@ Cloud Manager 现在可启用 https://docs.aws.amazon.com/AmazonS3/latest/dev/ac
 
 == Cloud Manager 3.8.2 （ 2020 年 3 月 1 日）
 
-*  S3 working environments
-*  Compliance enhancements
-*  version for volumes
-*  for Azure US Gov regions
+* <<Amazon S3 工作环境>>
+* <<云合规性增强功能>>
+* <<卷的 NFS 版本>>
+* <<支持 Azure US Gov 地区>>
 
 
 
@@ -786,9 +786,9 @@ link:task_backup_to_s3.html["了解有关备份到 S3 的更多信息"]。
 
 == Cloud Manager 3.8.1 （ 2020 年 2 月 2 日）
 
-*  Compliance enhancements
-*  to accounts and subscriptions
-*  enhancements
+* <<云合规性增强功能>>
+* <<帐户和订阅的增强功能>>
+* <<时间线增强功能>>
 
 
 
@@ -869,8 +869,8 @@ image:screenshot_timeline.gif["Cloud Manager 中显示的时间线的屏幕截�
 
 == Cloud Manager 3.8 （ 2020 年 1 月 8 日）
 
-*  enhancements in Azure
-*  tiering enhancements in GCP
+* <<Azure 中的 HA 增强功能>>
+* <<GCP 中的数据分层增强功能>>
 
 
 

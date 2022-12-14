@@ -24,8 +24,9 @@ summary: 完成几个步骤，开始将数据从 Cloud Volumes ONTAP 备份到 A
 
 
 
-==== 验证是否支持您的配置
+==== image:number1.png["数字 1"] 验证是否支持您的配置
 
+[role="quick-margin-list"]
 * 您正在 Azure 中运行 Cloud Volumes ONTAP 9.7 或更高版本。
 * 您已为备份所在的存储空间订阅了有效的云提供商。
 * 您已订阅 https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Cloud Manager Marketplace Backup 产品"^]或您已购买 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["并激活"^] NetApp 提供的 Backup to Cloud BYOL 许可证。
@@ -33,8 +34,9 @@ summary: 完成几个步骤，开始将数据从 Cloud Volumes ONTAP 备份到 A
 
 
 
-==== 在新系统或现有系统上启用备份到云
+==== image:number2.png["第2个"] 在新系统或现有系统上启用备份到云
 
+[role="quick-margin-list"]
 * 新系统：默认情况下，在工作环境向导中启用 " 备份到云 " 。请务必保持此选项处于启用状态。
 * 现有系统：选择工作环境，然后单击右侧面板中备份到云服务旁边的 * 激活 * ，然后按照设置向导进行操作。
 +
@@ -44,7 +46,7 @@ image:screenshot_backup_to_s3_icon.gif["屏幕截图显示了 \" 备份到云激
 
 
 
-==== 输入提供程序详细信息
+==== image:number3.png["第3个"] 输入提供程序详细信息
 
 [role="quick-margin-para"]
 选择提供程序订阅，然后选择是要创建新资源组还是使用已有的资源组。
@@ -54,7 +56,7 @@ image:screenshot_backup_provider_settings_azure.png["显示将卷从内部集群
 
 
 
-==== 定义备份策略
+==== image:number4.png["第4个"] 定义备份策略
 
 [role="quick-margin-para"]
 默认策略每天备份卷，并保留每个卷的最新 30 个备份副本。更改为每周或每月备份，或者选择一个提供更多选项的系统定义策略。
@@ -64,14 +66,14 @@ image:screenshot_backup_onprem_policy.png["显示 Backup to Cloud 设置的屏�
 
 
 
-==== 选择要备份的卷
+==== image:number5.png["第5个"] 选择要备份的卷
 
 [role="quick-margin-para"]
 在选择卷页面中确定要备份的卷。
 
 
 
-==== 根据需要还原数据
+==== image:number6.png["第6个"] 根据需要还原数据
 
 [role="quick-margin-para"]
 从备份列表中，选择一个卷，选择一个备份，然后将备份中的数据还原到新卷。
@@ -104,7 +106,7 @@ image:screenshot_backup_to_s3_restore_icon.gif["选择卷后备份的还原图�
 默认情况下， " 工作环境 " 向导会启用 " 备份到云 " 。请务必保持此选项处于启用状态。
 
 
-NOTE: 如果要选择资源组的名称，请在部署 Cloud Volumes ONTAP 时 * 禁用 * 备份到云。按照的步骤进行操作 ,在现有系统上启用到云的备份 启用备份到云并选择资源组。
+NOTE: 如果要选择资源组的名称，请在部署 Cloud Volumes ONTAP 时 * 禁用 * 备份到云。按照的步骤进行操作 <<enabling-backup-to-cloud-on-an-existing-system,在现有系统上启用到云的备份>> 启用备份到云并选择资源组。
 
 .步骤
 . 单击 * 创建 Cloud Volumes ONTAP * 。
@@ -117,8 +119,10 @@ image:screenshot_backup_to_azure.gif["显示了工作环境向导中的备份到
 . 完成向导中的页面以部署系统。
 
 
+.结果
 系统上启用了 " 备份到云 " ，每天备份卷，并保留最近 30 个备份副本。
 
+.下一步是什么？
 link:task_managing_backups.html["您可以通过更改备份计划，还原卷等来管理备份"^]。
 
 
@@ -158,6 +162,8 @@ image:screenshot_backup_select_volumes.png["选择要备份的卷的屏幕截图
 
 
 
+.结果
 备份到云将开始对每个选定卷进行初始备份。
 
+.下一步是什么？
 link:task_managing_backups.html["您可以通过更改备份计划，还原卷等来管理备份"^]。
