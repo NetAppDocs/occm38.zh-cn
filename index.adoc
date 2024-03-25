@@ -16,6 +16,14 @@ summary: 借助 Cloud Manager ， IT 专家和云架构师可以使用 NetApp �
 
 
 
+== BlueXP
+
+NetApp BlueXP扩展并增强了Cloud Manager提供的功能。
+
+https://docs.netapp.com/us-en/bluexp-family/["转到BlueXP文档"^]
+
+
+
 == 了解新增功能
 
 * link:reference_key_changes.html["Cloud Manager 中的重要变更"]
